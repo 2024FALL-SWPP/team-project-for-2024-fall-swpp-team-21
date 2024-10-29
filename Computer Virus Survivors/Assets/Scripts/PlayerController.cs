@@ -5,13 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f; // Movement speed
-    public float inputBufferTime = 0.05f; // Time buffer to detect simultaneous input
-
-    private Vector3 moveDirection;
-
-    // Input buffers for key timing
-    private float buffer = 0f;
-    private bool buffered = false;
 
     void Start()
     {
@@ -20,53 +13,47 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        HandleBufferedMovement();
+        Move();
     }
 
-    void HandleBufferedMovement()
+    void Move()
     {
-        if (buffered && buffer > 0)
+        const int thresholdFrame = 3; 
+
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        float horizontalAbs = Mathf.Abs(horizontalInput);
+        float verticalAbs = Mathf.Abs(verticalInput);
+
+        if(horizontalAbs < 0.6f && verticalAbs < 0.6f) {return;}
+
+        if(horizontalAbs - verticalAbs > thresholdFrame + .1f)
         {
-            buffer -= Time.deltaTime;
-            return;
+            verticalInput = 0;
         }
-
-        float moveX = Input.GetAxisRaw("Horizontal"); // A/D or Left/Right keys
-        float moveZ = Input.GetAxisRaw("Vertical");   // W/S or Up/Down keys
-
-        if (!buffered)
+        else if(verticalAbs - horizontalAbs > thresholdFrame + .1f)
         {
-            // If there is horizontal input, start or reset the buffer timer for horizontal movement
-            if (moveX != 0 && moveZ == 0)
+            horizontalInput = 0;
+        }
+        else
+        {
+            if(verticalAbs > .1f)
             {
-                buffer = inputBufferTime;
-                buffered = true;
-                return;
+                verticalInput /= verticalAbs;
             }
-
-            // If there is vertical input, start or reset the buffer timer for vertical movement
-            if (moveZ != 0 && moveX == 0)
+            
+            if(horizontalAbs > .1f)
             {
-                buffer = inputBufferTime;
-                buffered = true;
-                return;
+                horizontalInput /= horizontalAbs;
             }
         }
 
-        if (buffered && buffer <= 0)
-        {
-            buffered = false;
-        }
+        Vector3 moveDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
 
-        // Move only in the direction of the active input
-        moveDirection = new Vector3(moveX, 0, moveZ).normalized;
+        transform.Translate(moveSpeed * Time.deltaTime * moveDirection, Space.World);
+        transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
-        // Move the character smoothly using CharacterController
-        if (moveDirection != Vector3.zero)
-        {
-            transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
-            transform.rotation = Quaternion.LookRotation(moveDirection);
-        }
     }
 
     private void Die()
