@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void GetDamage()
+    public void GetDamage(int damage)
     {
 
     }
