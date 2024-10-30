@@ -5,13 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f; // Movement speed
-    public float inputBufferTime = 0.05f; // Time buffer to detect simultaneous input
-
-    private Vector3 moveDirection;
-
-    // Input buffers for key timing
-    private float buffer = 0f;
-    private bool buffered = false;
 
     void Start()
     {
@@ -20,53 +13,54 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        HandleBufferedMovement();
+        Move();
     }
 
-    void HandleBufferedMovement()
+    void Move()
     {
-        if (buffered && buffer > 0)
+        const int thresholdFrame = 3;       // 대각선으로 움직이다 한 쪽 방향키를 뗐을 때 대각선을 유지하는 유예 프레임
+        const float inputUnitPerSec = .2f;  // 방향키를 뗐을 때 axis input 감소량 (input manager -> gravity / 60)
+
+
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        float horizontalAbs = Mathf.Abs(horizontalInput);
+        float verticalAbs = Mathf.Abs(verticalInput);
+
+        // 두 방향키를 모두 뗀 후 3프레임이 지난 시점에 중립 판정
+        if(horizontalAbs < .6f && verticalAbs < .6f) {return;}
+
+        // 8-axis movement
+        if(horizontalAbs - verticalAbs > thresholdFrame * inputUnitPerSec + .1f)
         {
-            buffer -= Time.deltaTime;
-            return;
+            // 수직 방향키를 뗀 후 3프레임 이상 지나면 수직 속력 0
+            verticalInput = 0;
         }
-
-        float moveX = Input.GetAxisRaw("Horizontal"); // A/D or Left/Right keys
-        float moveZ = Input.GetAxisRaw("Vertical");   // W/S or Up/Down keys
-
-        if (!buffered)
+        else if(verticalAbs - horizontalAbs > thresholdFrame * inputUnitPerSec + .1f)
         {
-            // If there is horizontal input, start or reset the buffer timer for horizontal movement
-            if (moveX != 0 && moveZ == 0)
+            // 수평 방향키를 뗀 후 3프레임 이상 지나면 수평 속력 0
+            horizontalInput = 0;
+        }
+        else
+        {
+            // 각 축에 대해 가능한 속력을 {-1, 0, 1}로 제한하여 8축의 이산 방향 설정
+            if(verticalAbs > .1f)
             {
-                buffer = inputBufferTime;
-                buffered = true;
-                return;
+                verticalInput /= verticalAbs;
             }
-
-            // If there is vertical input, start or reset the buffer timer for vertical movement
-            if (moveZ != 0 && moveX == 0)
+            
+            if(horizontalAbs > .1f)
             {
-                buffer = inputBufferTime;
-                buffered = true;
-                return;
+                horizontalInput /= horizontalAbs;
             }
         }
 
-        if (buffered && buffer <= 0)
-        {
-            buffered = false;
-        }
+        Vector3 moveDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
 
-        // Move only in the direction of the active input
-        moveDirection = new Vector3(moveX, 0, moveZ).normalized;
+        transform.Translate(moveSpeed * Time.deltaTime * moveDirection, Space.World);
+        transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
-        // Move the character smoothly using CharacterController
-        if (moveDirection != Vector3.zero)
-        {
-            transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
-            transform.rotation = Quaternion.LookRotation(moveDirection);
-        }
     }
 
     private void Die()
