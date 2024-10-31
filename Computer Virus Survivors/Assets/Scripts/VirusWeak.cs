@@ -5,7 +5,7 @@ using UnityEngine;
 public class VirusWeak : VirusBehaviour
 {
     // // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         player = GameObject.Find("Player");
         maxHP = 1;
@@ -16,7 +16,7 @@ public class VirusWeak : VirusBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Move();
     }

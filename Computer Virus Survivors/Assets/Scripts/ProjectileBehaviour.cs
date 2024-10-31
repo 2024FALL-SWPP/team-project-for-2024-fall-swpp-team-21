@@ -8,5 +8,5 @@ abstract public class ProjectileBehaviour : MonoBehaviour
     protected Animator animator;
     protected int damage;
 
-    protected Action<Collider> ProjEffect;
+    protected Action<Collider> projEffect;
 }

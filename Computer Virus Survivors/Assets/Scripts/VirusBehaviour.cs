@@ -14,7 +14,7 @@ public class VirusBehaviour : MonoBehaviour
     // // Start is called before the first frame update
     // void Start()
     // {
-        
+
     // }
 
     public void Initialize(GameObject player)
@@ -47,7 +47,7 @@ public class VirusBehaviour : MonoBehaviour
     public void GetDamage(int damage)
     {
         currentHP -= damage;
-        if(currentHP <= 0)
+        if (currentHP <= 0)
         {
             Die();
         }
@@ -60,7 +60,7 @@ public class VirusBehaviour : MonoBehaviour
 
     protected void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerController>().GetDamage(contactDamage);
         }
