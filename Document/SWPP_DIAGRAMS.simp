@@ -52,10 +52,6 @@
         <value>1</value>
       </counter>
       <counter>
-        <item-type type="Unknown" />
-        <value>1</value>
-      </counter>
-      <counter>
         <item-type type-id="final-state" type="Final State" />
         <value>1</value>
       </counter>
@@ -67,11 +63,11 @@
       </counter>
       <counter>
         <item-type type-id="property" type="Property" />
-        <value>336</value>
+        <value>338</value>
       </counter>
       <counter>
         <item-type type-id="universal-connector" type="Universal Connector" />
-        <value>15</value>
+        <value>30</value>
       </counter>
       <counter>
         <item-type type-id="uml-interface-classifier" type="Interface" />
@@ -167,7 +163,7 @@
     <fields>
       <counter>
         <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.OperationField</type>
-        <value>92</value>
+        <value>93</value>
       </counter>
     </fields>
   </counters>
@@ -194,6 +190,16 @@
         <description />
         <color>#00000000</color>
         <working-schedule uid="ws-0a133dccdb474d5aa92837a21b46aaf3" hours="8" monday="8" tuesday="8" wednesday="8" thursday="8" friday="8" saturday="0" sunday="0" />
+      </person>
+      <person id="">
+        <first-name />
+        <last-name>tpwls6630</last-name>
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+        <working-schedule uid="ws-455e8ebe22f2493db1b8fcb0cb725d2f" hours="8" monday="8" tuesday="8" wednesday="8" thursday="8" friday="8" saturday="0" sunday="0" />
       </person>
       <person id="">
         <first-name />
@@ -242,8 +248,8 @@
         <type id="Class:0c1c65a807fd41a9a9ab1282a5aa61af" name="CharacterSelectCanvas" class-ref="0c1c65a807fd41a9a9ab1282a5aa61af" />
         <type id="Class:13e6dd84777b4aa99232cbdcd3a85a85" name="Enemy" class-ref="13e6dd84777b4aa99232cbdcd3a85a85" />
         <type id="Class:337f3c4c41d1457ba3514358f53854c5" name="SpawnPattern" class-ref="337f3c4c41d1457ba3514358f53854c5" />
-        <type id="Class:03dc86642fec4062b198696172e0ece6" name="GameManager" class-ref="03dc86642fec4062b198696172e0ece6" />
         <type id="Class:0619b792ce4f4b779e04a80383c48916" name="Home Player Controller" class-ref="0619b792ce4f4b779e04a80383c48916" />
+        <type id="Class:03dc86642fec4062b198696172e0ece6" name="GameManager" class-ref="03dc86642fec4062b198696172e0ece6" />
         <type id="Class:1f06501ecde44aa982a9984aa3069559" name="Stage1Puzzle" class-ref="1f06501ecde44aa982a9984aa3069559" />
         <type id="Class:a050b46603f442908aaa989c0f699f47" name="CanvasManager" class-ref="a050b46603f442908aaa989c0f699f47" />
         <type id="Class:72f3aef49f22415583b8834b3e73c075" tid="Class:72f3aef49f22415583b8834b3e73c075" name="Item" class-ref="72f3aef49f22415583b8834b3e73c075" />
@@ -271,7 +277,7 @@
     <item id="a2b55bcfb3334ee7b1a528ed5bfaf4e7" cid="PROP124" type="property" owner="1e696d00675f437bb9fb57903d366e5a" creator="" creation-date="10/24/2024 19:14:12" visibility="private">
       <structural-feature type="Enemy" type-id="Class:13e6dd84777b4aa99232cbdcd3a85a85" />
     </item>
-    <item id="a9cc7fa178854337a50d464895d11e73" cid="ELEM014" type="trigger" name="btn_menu" creator="" creation-date="10/25/2024 16:43:44">
+    <item id="a9cc7fa178854337a50d464895d11e73" cid="ELEM014" type="trigger" name="btn_menu" creator="" creation-date="10/25/2024 16:43:44" visibility="undefined">
       <trigger />
     </item>
     <item id="ed4049b43cdc475da6975d96970fc724" cid="PROP064" type="property" owner="b110e26b29394cef8d8e814f391d84b0" creator="" creation-date="10/24/2024 17:49:56" visibility="private">
@@ -336,7 +342,7 @@
     </item>
     <item id="difb498fcff303442e922cbcfec27c7b319299" veid="0b93b71c0e104c5385edb5a2e846708e" cid="CN001" type="comment-connector" creator="" creation-date="10/17/2024 22:56:05" from="bfc68ed76ac84aee97e2d6af41e36dc7" to="72f3aef49f22415583b8834b3e73c075" />
     <item id="di299922e6193048b89a0241e636fe43136211" veid="62d60f3adcf54356918f78f7e088b737" cid="CN007" type="comment-connector" creator="" creation-date="10/24/2024 21:11:29" from="e5e267eae5de4fe6be95598fa55d0e77" to="c661676951884197865371ca81c00c73" />
-    <item id="e0f0dfdbe24544e89b5b27f784e139f4" cid="ELEM019" type="trigger" name="resume" creator="" creation-date="10/25/2024 16:48:18">
+    <item id="e0f0dfdbe24544e89b5b27f784e139f4" cid="ELEM019" type="trigger" name="resume" creator="" creation-date="10/25/2024 16:48:18" visibility="undefined">
       <trigger />
     </item>
     <item id="df935ea5ff314b32ad740cd108fa0e2e" cid="CMT007" type="comment" name="Comment" creator="" creation-date="10/24/2024 18:47:50">
@@ -380,16 +386,16 @@
     <item id="35448a23c75b42449169f6a483f2361e" cid="PROP309" type="property" owner="aaab0e28413344d7b4bc3d2af20b24f5" creator="" creation-date="10/25/2024 16:27:50" visibility="private">
       <structural-feature type="GameOverCanvasManager" type-id="Class:2721fe2d137146b586681d8e06c823ed" />
     </item>
+    <item id="bfc68ed76ac84aee97e2d6af41e36dc7" cid="CMT001" type="comment" name="Comment" creator="" creation-date="10/17/2024 22:56:05">
+      <comment>itemFunctions :
+아이템에 플레이어에게 미치는 영향을 함수로 정의함으로써 스텟 추가 등 여러 효과를 구현 가능
+ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아님.</comment>
+    </item>
     <item id="da538c42c05749c8864291813ac1c176" cid="ST006" type="state" name="Item_Pause" creation-date="10/25/2024 16:43:26" visibility="undefined">
       <state composite="false" orthogonal="false" simple="false" submachine-state="false">
         <state-invariant />
         <actions />
       </state>
-    </item>
-    <item id="bfc68ed76ac84aee97e2d6af41e36dc7" cid="CMT001" type="comment" name="Comment" creator="" creation-date="10/17/2024 22:56:05">
-      <comment>itemFunctions :
-아이템에 플레이어에게 미치는 영향을 함수로 정의함으로써 스텟 추가 등 여러 효과를 구현 가능
-ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아님.</comment>
     </item>
     <item id="58fffdb4ba1842c0acdb90ea79103570" cid="PROP054" type="property" owner="5f70e3eba5034277bcef58d838cf409c" creator="" creation-date="10/17/2024 23:17:03" visibility="private">
       <structural-feature type="Projectile" type-id="Class:663adc4034ce41d9ae6a289d86648d12" />
@@ -400,7 +406,7 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
     <item id="53f2a87556b4414fb66a8325e9bf57ca" cid="PROP307" type="property" owner="a641542e4c5746b9a1895f1392f3d412" creator="" creation-date="10/25/2024 16:27:48" visibility="private">
       <structural-feature type="PauseCanvasManager" type-id="Class:2474a860aa6c4e6bb4e15919e3d42377" />
     </item>
-    <item id="c59ce9ee48db4edcb1496ec67fb45c5f" cid="ELEM017" type="trigger" name="item select" creator="" creation-date="10/25/2024 16:48:12">
+    <item id="c59ce9ee48db4edcb1496ec67fb45c5f" cid="ELEM017" type="trigger" name="item select" creator="" creation-date="10/25/2024 16:48:12" visibility="undefined">
       <trigger />
     </item>
     <item id="70f6d543c3a74e8ba16877a18b42a96e" cid="PROP043" type="property" owner="631deaf1be3540c78a2735f8da248b6e" creator="" creation-date="10/17/2024 22:50:55" visibility="private">
@@ -417,11 +423,11 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
       <structural-feature type="Player" type-id="Class:9834d946f2624f05b2fc1560daeb2ccf" />
     </item>
     <item id="did8bf4c74f3c746cd89e11b5a9e9a942e8764" veid="6e6dd41a0f6745b5bcdb3711863e0f2d" cid="CN006" type="comment-connector" creator="" creation-date="10/24/2024 19:33:57" from="0c9ce2917e6e49eab3716acab3bb05b2" to="0619b792ce4f4b779e04a80383c48916" />
-    <item id="6be87fc840b54e2d8a0d08f517e88739" cid="PROP304" type="property" owner="f240585666224a4cb9d4084473dfe56a" creator="" creation-date="10/25/2024 16:27:40" visibility="private">
-      <structural-feature type="CanvasManager" type-id="Class:a050b46603f442908aaa989c0f699f47" />
-    </item>
     <item id="df2ae85a7cdf4489a4affefa447b02a6" cid="PROP060" type="property" owner="64db837fdde64ad3843babfd74d8d5ec" creator="" creation-date="10/24/2024 17:48:33" visibility="private">
       <structural-feature type="MainMenu Manger" type-id="Class:365ebd3ae5494de1b8a90a942f3ca1e8" />
+    </item>
+    <item id="6be87fc840b54e2d8a0d08f517e88739" cid="PROP304" type="property" owner="f240585666224a4cb9d4084473dfe56a" creator="" creation-date="10/25/2024 16:27:40" visibility="private">
+      <structural-feature type="CanvasManager" type-id="Class:a050b46603f442908aaa989c0f699f47" />
     </item>
     <item id="0c9ce2917e6e49eab3716acab3bb05b2" cid="CMT011" type="comment" name="Comment" creator="" creation-date="10/24/2024 19:33:57">
       <comment>wasd or 방향키 : 이동 
@@ -432,16 +438,16 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
     <item id="70593d36b7ba41349ca49c3a294da518" cid="PROP114" type="property" owner="9159c9cbefb3455d8ba16273454701dd" creator="" creation-date="10/24/2024 19:13:58" visibility="private">
       <structural-feature type="GameManager" type-id="Class:03dc86642fec4062b198696172e0ece6" />
     </item>
-    <item id="47b4a21b62064210bfa6adeaf78f16f0" cid="ELEM012" type="trigger" name="levelup" creator="" creation-date="10/25/2024 16:43:21">
+    <item id="47b4a21b62064210bfa6adeaf78f16f0" cid="ELEM012" type="trigger" name="levelup" creator="" creation-date="10/25/2024 16:43:21" visibility="undefined">
       <trigger />
     </item>
     <item id="fed283efc7eb4477b3e6e4fab63edfd9" cid="PROP205" type="property" owner="da2272a8c4a94758b687ff05b4eab79b" creator="" creation-date="10/24/2024 19:31:13" visibility="private">
       <structural-feature type="CharacterPanel" type-id="Class:bd023e57df30452d82c67aadecedc830" />
     </item>
+    <item id="9affa1fd12854078be2e4dae68761f32" cid="C038" type="class" name="p_CoreDump" creation-date="10/24/2024 21:43:47" visibility="undefined" />
     <item id="2f463a0ed8fd4b2ca10f66b1c32bd5c8" cid="PROP118" type="property" owner="b6a32734a5464967b17d85c016168471" creator="" creation-date="10/24/2024 19:14:03" visibility="private">
       <structural-feature type="SpawnManager" type-id="Class:7f85d6c8799c4eed940bb5ddcfd65e7c" />
     </item>
-    <item id="9affa1fd12854078be2e4dae68761f32" cid="C038" type="class" name="p_CoreDump" creation-date="10/24/2024 21:43:47" visibility="undefined" />
     <item id="b4d7d7049e564761a9986bfab1116488" cid="PROP215" type="property" owner="87ddecff5045475c94d0b9e2aaca77ba" creator="" creation-date="10/24/2024 19:32:48" visibility="private">
       <structural-feature type="Home Player Controller" type-id="Class:0619b792ce4f4b779e04a80383c48916" />
     </item>
@@ -468,20 +474,20 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
     <item id="96a7fef5f6b547fd9ed0005a9a2cf5ca" cid="PROP308" type="property" owner="a641542e4c5746b9a1895f1392f3d412" creator="" creation-date="10/25/2024 16:27:48" visibility="private">
       <structural-feature type="CanvasManager" type-id="Class:a050b46603f442908aaa989c0f699f47" />
     </item>
-    <item id="60b766a299e747a18be643ee9b2d4dcb" cid="ELEM023" type="trigger" name="btn_mainmenu" creator="" creation-date="10/25/2024 16:49:25">
+    <item id="60b766a299e747a18be643ee9b2d4dcb" cid="ELEM023" type="trigger" name="btn_mainmenu" creator="" creation-date="10/25/2024 16:49:25" visibility="undefined">
       <trigger />
     </item>
     <item id="caab3f5d2bd44124ab87b4eb6f219318" cid="PROP113" type="property" owner="9159c9cbefb3455d8ba16273454701dd" creator="" creation-date="10/24/2024 19:13:58" visibility="private">
       <structural-feature type="Player" type-id="Class:9834d946f2624f05b2fc1560daeb2ccf" />
     </item>
-    <item id="4108c4abe59e47498c3f0dd3a5797139" cid="PROP297" type="property" owner="935a73d93ad245749a7f77fa88431903" creator="" creation-date="10/25/2024 16:20:58" visibility="private">
-      <structural-feature type="Stage1Piece" type-id="Class:f54ba9f8f3f74eb9aed64444ef137838" />
-    </item>
+    <item id="62ea4c4237814570bce74cd5bb9fe9bb" cid="PROP061" type="property" owner="64db837fdde64ad3843babfd74d8d5ec" creator="" creation-date="10/24/2024 17:48:33" visibility="private" />
     <item id="4d93dcd4079e4eb28db0f018bbe4221c" cid="PROP213" type="property" owner="e4533851d5dc4be785f4d93ff6434027" creator="" creation-date="10/24/2024 19:32:38" visibility="private">
       <structural-feature type="CharacterSelectCanvas" type-id="Class:0c1c65a807fd41a9a9ab1282a5aa61af" />
     </item>
-    <item id="62ea4c4237814570bce74cd5bb9fe9bb" cid="PROP061" type="property" owner="64db837fdde64ad3843babfd74d8d5ec" creator="" creation-date="10/24/2024 17:48:33" visibility="private" />
-    <item id="73997b6819b5419bb514308c717f151b" cid="ELEM025" type="trigger" name="btn_home" creator="" creation-date="10/25/2024 16:49:57">
+    <item id="4108c4abe59e47498c3f0dd3a5797139" cid="PROP297" type="property" owner="935a73d93ad245749a7f77fa88431903" creator="" creation-date="10/25/2024 16:20:58" visibility="private">
+      <structural-feature type="Stage1Piece" type-id="Class:f54ba9f8f3f74eb9aed64444ef137838" />
+    </item>
+    <item id="73997b6819b5419bb514308c717f151b" cid="ELEM025" type="trigger" name="btn_home" creator="" creation-date="10/25/2024 16:49:57" visibility="undefined">
       <trigger />
     </item>
     <item id="di2d44aa6a38894316a5f0e923e371aa747722" veid="21a51955fe4343d7a0eb0e605da7c49d" cid="CN002" type="comment-connector" creator="" creation-date="10/24/2024 18:27:10" from="ea0ddb219bf24c8595f345b029bab1e6" to="54e940f579414f0ca57467303b5513c6" />
@@ -502,11 +508,11 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
         <operation id="7e8ce87cdd8b4e88bda1b7d5b1a96a51" cid="OP022" veid="ob784858e217a4663a3d5a13895b0f05b949" name="void OnClick" creation-date="10/24/2024 17:48:13" type="" type-id="" visibility="public" />
       </operations>
     </item>
-    <item id="c769f6dda4d14c3a9f003125e1f63f11" cid="PROP123" type="property" owner="1e696d00675f437bb9fb57903d366e5a" creator="" creation-date="10/24/2024 19:14:12" visibility="private">
-      <structural-feature type="Player" type-id="Class:9834d946f2624f05b2fc1560daeb2ccf" />
-    </item>
     <item id="17ada47f228143d881518d24b2e9e9e3" cid="ELEM006" type="trigger" name="Space" creator="" creation-date="10/24/2024 18:14:31" visibility="undefined">
       <trigger />
+    </item>
+    <item id="c769f6dda4d14c3a9f003125e1f63f11" cid="PROP123" type="property" owner="1e696d00675f437bb9fb57903d366e5a" creator="" creation-date="10/24/2024 19:14:12" visibility="private">
+      <structural-feature type="Player" type-id="Class:9834d946f2624f05b2fc1560daeb2ccf" />
     </item>
     <item id="5c485abd809d44f7beaa78237e805c7f" cid="PROP122" type="property" owner="42fe26e3a77540ea8628b7beec9759e2" creator="" creation-date="10/24/2024 19:14:07" visibility="private">
       <structural-feature type="Player" type-id="Class:9834d946f2624f05b2fc1560daeb2ccf" />
@@ -517,11 +523,11 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
     <item id="ad5967c8977c423e9aa498f392e04486" cid="PROP202" type="property" owner="6cab185a657242cd8c5cc47f8dd8c62d" creator="" creation-date="10/24/2024 19:27:56" visibility="private">
       <structural-feature type="CharacterSelectCanvas" type-id="Class:0c1c65a807fd41a9a9ab1282a5aa61af" />
     </item>
-    <item id="7c47addf8dc24b07a0307c5c809aa176" cid="PROP268" type="property" owner="5e67fad929264dc08079ab99a106a3a2" creator="" creation-date="10/25/2024 15:37:38" visibility="private">
-      <structural-feature type="SpawnPattern" type-id="Class:337f3c4c41d1457ba3514358f53854c5" />
-    </item>
     <item id="c8e8f1f3130d463daa4c246c1343dbdf" cid="PROP044" type="property" owner="631deaf1be3540c78a2735f8da248b6e" creator="" creation-date="10/17/2024 22:50:55" visibility="private">
       <structural-feature type="Item" type-id="Class:72f3aef49f22415583b8834b3e73c075" />
+    </item>
+    <item id="7c47addf8dc24b07a0307c5c809aa176" cid="PROP268" type="property" owner="5e67fad929264dc08079ab99a106a3a2" creator="" creation-date="10/25/2024 15:37:38" visibility="private">
+      <structural-feature type="SpawnPattern" type-id="Class:337f3c4c41d1457ba3514358f53854c5" />
     </item>
     <item id="dd929d2e99dd419da1f3d07e5c3008aa" cid="PROP111" type="property" owner="b6b2588281be48418c20f61506c316be" creator="" creation-date="10/24/2024 19:13:56" visibility="private">
       <structural-feature type="SpawnManager" type-id="Class:7f85d6c8799c4eed940bb5ddcfd65e7c" />
@@ -529,17 +535,17 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
     <item id="e74db2b6550242ecaf5f79584ed126c6" cid="PROP318" type="property" owner="4c4b9bd645ca434a97069a1b618740b4" creator="" creation-date="10/25/2024 16:57:29" visibility="private">
       <structural-feature type="btn_ItemPanel" type-id="Class:af8c0696b907445b94b0f8f54f70b9fe" />
     </item>
-    <item id="1f9796c78b7b47799b8b55113b47055f" cid="PROP306" type="property" owner="d2e25cda92e14b0989f3a5b24af52efe" creator="" creation-date="10/25/2024 16:27:44" visibility="private">
-      <structural-feature type="CanvasManager" type-id="Class:a050b46603f442908aaa989c0f699f47" />
-    </item>
     <item id="5149744901cb47edb29aa4484fcf2f3e" cid="PROP255" type="property" creation-date="10/25/2024 14:57:47" visibility="private">
       <structural-feature type="Player Stat" type-id="Class:9d591b12fde34eb1a3a8397483b891ee" />
     </item>
-    <item id="37706c46ad7e4d77b6044e5ddbc1a466" cid="ELEM028" type="trigger" name="gameover" creator="" creation-date="10/25/2024 16:53:56">
-      <trigger />
+    <item id="1f9796c78b7b47799b8b55113b47055f" cid="PROP306" type="property" owner="d2e25cda92e14b0989f3a5b24af52efe" creator="" creation-date="10/25/2024 16:27:44" visibility="private">
+      <structural-feature type="CanvasManager" type-id="Class:a050b46603f442908aaa989c0f699f47" />
     </item>
     <item id="7b70d65872ee430798bccdf086dc9008" cid="PROP200" type="property" owner="a7635c41a9da42f692fe776f9d108abb" creator="" creation-date="10/24/2024 19:27:53" visibility="private">
       <structural-feature type="CharacterSelectCanvas" type-id="Class:0c1c65a807fd41a9a9ab1282a5aa61af" />
+    </item>
+    <item id="37706c46ad7e4d77b6044e5ddbc1a466" cid="ELEM028" type="trigger" name="gameover" creator="" creation-date="10/25/2024 16:53:56" visibility="undefined">
+      <trigger />
     </item>
     <item id="3917d5a6cf2848c9b6b6ecece8d53208" cid="PROP204" type="property" owner="c2d4c6b1b6184d11b98eae5e3da864a1" creator="" creation-date="10/24/2024 19:30:25" visibility="private">
       <structural-feature type="CharacterPanel" type-id="Class:bd023e57df30452d82c67aadecedc830" />
@@ -663,8 +669,8 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="5f70e3eba5034277bcef58d838cf409c" cid="REL002" type="relationship" name="0..1" creator="" creation-date="10/17/2024 23:17:03" from="bf248e979dba46fcb05e318c7efde534" to="663adc4034ce41d9ae6a289d86648d12" visibility="package">
             <owned-items />
             <relation from="bf248e979dba46fcb05e318c7efde534" to="663adc4034ce41d9ae6a289d86648d12" derived="false">
-              <start-role id="umlar-5e857e49-15f0-4334-b6c0-d74399bcb5b4" name="" navigability="" association-type="aggregation" visibility="private" attribute-ref="a5942e1e858664233b2145b3290e8268e860" property-ref="f1536178cc434f0295f0ff3b3afea423" />
-              <end-role id="umlar-5d5da46e-a8cd-4adb-ba6f-7ab2fa00a987" name="" navigability="" association-type="association" visibility="private" property-ref="58fffdb4ba1842c0acdb90ea79103570" />
+              <start-role id="umlar-4f2297ff-0e30-4238-be6a-b8ab4808f526" name="" navigability="" association-type="aggregation" visibility="private" attribute-ref="a5942e1e858664233b2145b3290e8268e860" property-ref="f1536178cc434f0295f0ff3b3afea423" />
+              <end-role id="umlar-2fd841fb-0d40-4607-8c6b-477549560e17" name="" navigability="" association-type="association" visibility="private" property-ref="58fffdb4ba1842c0acdb90ea79103570" />
             </relation>
           </item>
           <item id="988e65bc2f2c415b8a683b4e62bb741c" cid="PROP048" type="property" name="func&lt;void&gt; itemAbility" owner="72f3aef49f22415583b8834b3e73c075" creator="" creation-date="10/17/2024 23:07:08" visibility="public" />
@@ -704,7 +710,6 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <attribute id="a5caa1391ae86418ca373270669685522943" cid="PROP056" name="Image itemImage" creation-date="10/17/2024 23:17:33" property-ref="bbfe7132d1fe492cb7b8969ef8811fab" />
             </attributes>
           </item>
-          <item id="cd97849f73044d5b839634e1b06bf4b1" veid="c732908de692411abf47272cde676b52" cid="PROP001" type="property" name="int health" creation-date="10/17/2024 21:05:26" visibility="private" />
           <item id="0f00290e1a9c4999995797fe8a2aa192" cid="ELEM004" type="usage" name="Reference Stats" creator="" creation-date="10/17/2024 22:54:43" from="72f3aef49f22415583b8834b3e73c075" to="213ecdf7d85f43b88c41301bc2ebcd53" visibility="package">
             <stereotypes>
               <stereotype name="use" />
@@ -713,13 +718,14 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <stereotype id="0f00290e1a9c4999995797fe8a2aa192_use_c" type="use" creation-date="10/17/2024 22:54:43" ref="" />
             </stereotype-instances>
           </item>
+          <item id="cd97849f73044d5b839634e1b06bf4b1" veid="c732908de692411abf47272cde676b52" cid="PROP001" type="property" name="int health" creation-date="10/17/2024 21:05:26" visibility="private" />
           <item id="4da585fd683d4eb88cca8875374c6b2c" cid="PROP041" type="property" name="int expGainRatio" owner="213ecdf7d85f43b88c41301bc2ebcd53" creator="" creation-date="10/17/2024 22:45:58" visibility="protected" />
           <item id="19cc5a7b478841808aa4c60f6c74ea2f" cid="DEP007" type="dependency" creator="" creation-date="10/17/2024 22:47:29" from="213ecdf7d85f43b88c41301bc2ebcd53" to="465645b88c86486986964c1090bab1b9" visibility="package" />
           <item id="631deaf1be3540c78a2735f8da248b6e" cid="REL001" type="relationship" name="0..*" creator="" creation-date="10/17/2024 22:50:55" from="cff85eb7d6cc47faa6017ea05f747b0e" to="72f3aef49f22415583b8834b3e73c075" visibility="package">
             <owned-items />
             <relation from="cff85eb7d6cc47faa6017ea05f747b0e" to="72f3aef49f22415583b8834b3e73c075" derived="false">
-              <start-role id="umlar-2bac9cd7-793a-4122-9987-d138e4a72ea1" name="" navigability="" association-type="aggregation" visibility="private" attribute-ref="a89f936d96e4046839e3d39daaffd0cc3473" property-ref="70f6d543c3a74e8ba16877a18b42a96e" />
-              <end-role id="umlar-17509617-c37d-482e-a711-2a81d1fb9887" name="" navigability="" association-type="association" visibility="private" property-ref="c8e8f1f3130d463daa4c246c1343dbdf" />
+              <start-role id="umlar-18024170-786c-4932-9a1f-294a18c64b12" name="" navigability="" association-type="aggregation" visibility="private" attribute-ref="a89f936d96e4046839e3d39daaffd0cc3473" property-ref="70f6d543c3a74e8ba16877a18b42a96e" />
+              <end-role id="umlar-8ba9e2ac-99d1-4feb-ad82-a3d5467b9533" name="" navigability="" association-type="association" visibility="private" property-ref="c8e8f1f3130d463daa4c246c1343dbdf" />
             </relation>
           </item>
           <item id="91a8797ee5f64e67a11bb116ff7e24a8" cid="PROP022" type="property" name="int health_max" owner="465645b88c86486986964c1090bab1b9" creator="" creation-date="10/17/2024 22:28:46" visibility="protected" />
@@ -738,24 +744,6 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="7dcd781dec374e64b1257bafccaea28b" cid="C012" type="class" name="Class11" owner="96f348abde514af7916594d90fe138b1" creator="" creation-date="10/24/2024 17:39:57" visibility="undefined" />
           <item id="0d225cb5bc254eb8b8a156314dd0ff20" cid="PKG004" type="package" name="Stage 1" creator="" creation-date="10/24/2024 17:40:33" visibility="undefined" />
           <item id="e7ed898a476f4cd2b3e3f44159ca2d33" veid="91dd4721c9fd4fcc8fa08a963c36fbd0" cid="PROP016" type="property" name="float moveSpeed" creation-date="10/17/2024 22:25:01" visibility="private" />
-          <item id="465645b88c86486986964c1090bab1b9" cid="I001" type="uml-interface-classifier" name="Entity" creator="" creation-date="10/17/2024 22:28:42" visibility="undefined">
-            <stereotypes>
-              <stereotype name="interface" />
-            </stereotypes>
-            <stereotype-instances>
-              <stereotype id="465645b88c86486986964c1090bab1b9_interface_c" type="interface" creation-date="10/17/2024 22:28:42" ref="" />
-            </stereotype-instances>
-            <owned-items />
-            <attributes>
-              <attribute id="a3a8258f732024506b26ae83fd9821950677" cid="PROP022" name="int health_max" creation-date="10/17/2024 22:28:46" property-ref="91a8797ee5f64e67a11bb116ff7e24a8" />
-              <attribute id="a87344a7376014a658fcd2b79120e7c9c353" cid="PROP023" name="int health" creation-date="10/17/2024 22:30:24" property-ref="6b183c79ee844b9a8674ac4679e67c0d" />
-              <attribute id="a5c31cb233b9a47d19760977d95bb1838447" cid="PROP024" name="float moveSpeed" creation-date="10/17/2024 22:30:24" property-ref="d92c58b3c0294091b329b64909b5381f" />
-            </attributes>
-            <operations>
-              <operation id="obdb11605e63244f085f9d92455c8205a65" cid="OP001" name="abstract void Move" creation-date="10/17/2024 22:31:29" type="" type-id="" visibility="protected" />
-              <operation id="oe025d191319741dbb64fb6212a96b44e500" cid="OP002" name="abstract void Die" creation-date="10/17/2024 22:31:33" type="" type-id="" visibility="protected" />
-            </operations>
-          </item>
           <item id="20324a2f1b334cbfbb937e15b6ca5297" cid="PKG001" type="package" name="Main Scene" creator="" creation-date="10/24/2024 17:36:44" visibility="undefined">
             <nested-diagrams>
               <diagram type="uml-class" id="pb2bfe21a515f4fe4a1c2cab61d8ec3c9_599671509" name="Main Scene" order-index="-1" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="979,563" zoom="1.8">
@@ -778,8 +766,8 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
                   <item id="e805f3ad5416467eaa90983539ab36a4" cid="REL006" type="relationship" creator="" creation-date="10/24/2024 17:49:58" from="365ebd3ae5494de1b8a90a942f3ca1e8" to="953da7dc1c1e44e88b4afdb70d3342b4" visibility="package">
                     <owned-items />
                     <relation from="365ebd3ae5494de1b8a90a942f3ca1e8" to="953da7dc1c1e44e88b4afdb70d3342b4" derived="false">
-                      <start-role id="umlar-83ed3200-bda7-4313-b74f-1cd74541cf0a" name="" navigability="" association-type="association" visibility="private" property-ref="a96dd618462446d89175094a85f247f9" />
-                      <end-role id="umlar-2a8519e5-80c1-45d2-96ba-8dd608d1e3eb" name="" navigability="" association-type="association" visibility="private" property-ref="8b46ae533e5a4299af4dbd187cbb7897" />
+                      <start-role id="umlar-05a2e981-ebf0-474d-a4f2-feb633bd057d" name="" navigability="" association-type="association" visibility="private" property-ref="a96dd618462446d89175094a85f247f9" />
+                      <end-role id="umlar-b1a2b740-7f7e-4f53-8ecc-da9ad491c800" name="" navigability="" association-type="association" visibility="private" property-ref="8b46ae533e5a4299af4dbd187cbb7897" />
                     </relation>
                   </item>
                   <item id="8d15408926da4eb5af01419103fdcd49" cid="I007" type="uml-interface-classifier" name="btn_GameStart" creator="" creation-date="10/24/2024 17:48:04" visibility="undefined">
@@ -796,15 +784,15 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
                   <item id="64db837fdde64ad3843babfd74d8d5ec" cid="REL003" type="relationship" name="OnClick" creator="" creation-date="10/24/2024 17:48:33" from="365ebd3ae5494de1b8a90a942f3ca1e8" to="8d15408926da4eb5af01419103fdcd49" visibility="package">
                     <owned-items />
                     <relation from="365ebd3ae5494de1b8a90a942f3ca1e8" to="8d15408926da4eb5af01419103fdcd49" derived="false">
-                      <start-role id="umlar-9dd927a5-2c75-4101-9bc0-1be127c51583" name="" navigability="" association-type="association" visibility="private" property-ref="df2ae85a7cdf4489a4affefa447b02a6" />
-                      <end-role id="umlar-9c550910-8397-46d9-8118-8a82caabe086" name="" navigability="" association-type="association" visibility="private" property-ref="62ea4c4237814570bce74cd5bb9fe9bb" />
+                      <start-role id="umlar-2dde769d-f534-4a9c-ae50-346004129c2f" name="" navigability="" association-type="association" visibility="private" property-ref="df2ae85a7cdf4489a4affefa447b02a6" />
+                      <end-role id="umlar-cea596c1-feb5-4c46-b815-54a825b6f843" name="" navigability="" association-type="association" visibility="private" property-ref="62ea4c4237814570bce74cd5bb9fe9bb" />
                     </relation>
                   </item>
                   <item id="b110e26b29394cef8d8e814f391d84b0" cid="REL005" type="relationship" creator="" creation-date="10/24/2024 17:49:56" from="365ebd3ae5494de1b8a90a942f3ca1e8" to="a7c05bac3a714c2dbdeea149148967ff" visibility="package">
                     <owned-items />
                     <relation from="365ebd3ae5494de1b8a90a942f3ca1e8" to="a7c05bac3a714c2dbdeea149148967ff" derived="false">
-                      <start-role id="umlar-c8c45e3e-7d86-48ee-9f1a-4693b8baf80f" name="" navigability="" association-type="association" visibility="private" property-ref="ed4049b43cdc475da6975d96970fc724" />
-                      <end-role id="umlar-ef119213-c784-4fd1-98b6-3b2fc7ab0da2" name="" navigability="" association-type="association" visibility="private" property-ref="53783db37dee4ca896a11ad209f9d88f" />
+                      <start-role id="umlar-525acbfb-c5a9-4d50-bdcc-28fe30745a0b" name="" navigability="" association-type="association" visibility="private" property-ref="ed4049b43cdc475da6975d96970fc724" />
+                      <end-role id="umlar-50570b91-79a2-4b15-8479-86686e3fc8a1" name="" navigability="" association-type="association" visibility="private" property-ref="53783db37dee4ca896a11ad209f9d88f" />
                     </relation>
                   </item>
                   <item id="a4b1e14f26c94a96bd41b884219dc8d4" cid="CMT003" type="comment" creator="" creation-date="10/24/2024 17:45:18">
@@ -877,6 +865,24 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               </diagram>
             </nested-diagrams>
           </item>
+          <item id="465645b88c86486986964c1090bab1b9" cid="I001" type="uml-interface-classifier" name="Entity" creator="" creation-date="10/17/2024 22:28:42" visibility="undefined">
+            <stereotypes>
+              <stereotype name="interface" />
+            </stereotypes>
+            <stereotype-instances>
+              <stereotype id="465645b88c86486986964c1090bab1b9_interface_c" type="interface" creation-date="10/17/2024 22:28:42" ref="" />
+            </stereotype-instances>
+            <owned-items />
+            <attributes>
+              <attribute id="a3a8258f732024506b26ae83fd9821950677" cid="PROP022" name="int health_max" creation-date="10/17/2024 22:28:46" property-ref="91a8797ee5f64e67a11bb116ff7e24a8" />
+              <attribute id="a87344a7376014a658fcd2b79120e7c9c353" cid="PROP023" name="int health" creation-date="10/17/2024 22:30:24" property-ref="6b183c79ee844b9a8674ac4679e67c0d" />
+              <attribute id="a5c31cb233b9a47d19760977d95bb1838447" cid="PROP024" name="float moveSpeed" creation-date="10/17/2024 22:30:24" property-ref="d92c58b3c0294091b329b64909b5381f" />
+            </attributes>
+            <operations>
+              <operation id="obdb11605e63244f085f9d92455c8205a65" cid="OP001" name="abstract void Move" creation-date="10/17/2024 22:31:29" type="" type-id="" visibility="protected" />
+              <operation id="oe025d191319741dbb64fb6212a96b44e500" cid="OP002" name="abstract void Die" creation-date="10/17/2024 22:31:33" type="" type-id="" visibility="protected" />
+            </operations>
+          </item>
           <item id="74d47d5e99474afcbc17738d88e66bbc" cid="PROP032" type="property" name="int defensePoint" owner="213ecdf7d85f43b88c41301bc2ebcd53" creator="" creation-date="10/17/2024 22:45:06" visibility="protected" />
           <item id="663adc4034ce41d9ae6a289d86648d12" cid="C011" type="class" name="Projectile" creator="" creation-date="10/17/2024 23:16:42" visibility="undefined">
             <owned-items />
@@ -939,6 +945,7 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
             <owned-items />
           </item>
           <item id="8ea3fe0d6f3247f7aa201a3b65db84b0" cid="PROP038" type="property" name="int attackRange" owner="213ecdf7d85f43b88c41301bc2ebcd53" creator="" creation-date="10/17/2024 22:45:56" visibility="protected" />
+          <item id="1a7e694013e748208e553098efee922c" cid="C004" type="class" name="File Virus" creator="" creation-date="10/17/2024 22:39:05" visibility="undefined" />
           <item id="bf248e979dba46fcb05e318c7efde534" cid="C010" type="class" name="Weapon" creator="" creation-date="10/17/2024 23:14:45" visibility="undefined">
             <owned-items />
             <attributes>
@@ -946,9 +953,8 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <attribute id="a5942e1e858664233b2145b3290e8268e860" cid="PROP052" name="Projectile projectile" creation-date="10/17/2024 23:15:17" property-ref="0b9d11f495c34cb7a817a61b6cf08b04" />
             </attributes>
           </item>
-          <item id="1a7e694013e748208e553098efee922c" cid="C004" type="class" name="File Virus" creator="" creation-date="10/17/2024 22:39:05" visibility="undefined" />
-          <item id="2fca2265b3a4472f9a81d1f189edd903" cid="PROP051" type="property" name="func&lt;void&gt; weaponAbility" owner="bf248e979dba46fcb05e318c7efde534" creator="" creation-date="10/17/2024 23:14:50" visibility="public" />
           <item id="08874bff72184f0b979b27f6be14fb23" cid="DEP006" type="dependency" creator="" creation-date="10/17/2024 22:47:22" from="cff85eb7d6cc47faa6017ea05f747b0e" to="213ecdf7d85f43b88c41301bc2ebcd53" visibility="package" />
+          <item id="2fca2265b3a4472f9a81d1f189edd903" cid="PROP051" type="property" name="func&lt;void&gt; weaponAbility" owner="bf248e979dba46fcb05e318c7efde534" creator="" creation-date="10/17/2024 23:14:50" visibility="public" />
         </abstract-items>
         <layer id="9a0cb67f45134822b207e34426f6a99c" name="Default" visible="true" enabled="true" locked="false">
           <item id="465645b88c86486986964c1090bab1b9" iid="16fafe8aa6d04bbe9d84b0c6d3039c66" creation-date="10/17/2024 22:28:42" order-index="2" type="entity">
@@ -1134,7 +1140,7 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           </item>
         </layer>
       </diagram>
-      <diagram type="uml-class" id="p9b2d66e6578f4fd8a89f25a655bc1350_958756939" name="In Stage" order-index="2" overview-order-index="0" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="1190,-54">
+      <diagram type="uml-class" id="p9b2d66e6578f4fd8a89f25a655bc1350_958756939" name="In Stage" order-index="2" overview-order-index="0" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="955,-656" zoom="1.2">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -1153,21 +1159,21 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
         <abstract-items>
           <item id="6e16e1d3dbe941bea7a9c4d896f900b0" cid="PROP249" type="property" name="int maxHP" owner="13e6dd84777b4aa99232cbdcd3a85a85" creator="" creation-date="10/24/2024 22:06:48" visibility="protected" />
           <item id="16494c0b4b6a46309df03a91ae1e34e0" cid="C037" type="class" name="Projectile" creator="" creation-date="10/24/2024 19:15:18" visibility="undefined" />
-          <item id="a641542e4c5746b9a1895f1392f3d412" cid="REL051" type="relationship" creator="" creation-date="10/25/2024 16:27:48" from="2474a860aa6c4e6bb4e15919e3d42377" to="a050b46603f442908aaa989c0f699f47" visibility="package">
-            <owned-items />
-            <relation from="2474a860aa6c4e6bb4e15919e3d42377" to="a050b46603f442908aaa989c0f699f47" derived="false">
-              <start-role id="umlar-4da5a183-bd8a-4939-bad4-c346a63f8631" name="" navigability="" association-type="association" visibility="private" property-ref="53f2a87556b4414fb66a8325e9bf57ca" />
-              <end-role id="umlar-b0da6e20-c730-4acc-b666-99d54087b9b5" name="" navigability="yes" association-type="association" visibility="private" property-ref="96a7fef5f6b547fd9ed0005a9a2cf5ca" />
-            </relation>
-          </item>
           <item id="b6a32734a5464967b17d85c016168471" cid="REL020" type="relationship" creator="" creation-date="10/24/2024 19:14:03" from="13e6dd84777b4aa99232cbdcd3a85a85" to="7f85d6c8799c4eed940bb5ddcfd65e7c" visibility="package">
             <owned-items />
             <relation from="13e6dd84777b4aa99232cbdcd3a85a85" to="7f85d6c8799c4eed940bb5ddcfd65e7c" derived="false">
-              <start-role id="umlar-7f78dd04-918e-4776-95aa-fd2c76132d57" name="" navigability="" association-type="association" visibility="private" property-ref="2499fe4a59cf405aa66ea9bc636d2adc" />
-              <end-role id="umlar-74bdb17e-0ffb-4ab6-aeb6-3316417b4768" name="" navigability="yes" association-type="association" visibility="private" property-ref="2f463a0ed8fd4b2ca10f66b1c32bd5c8" />
+              <start-role id="umlar-45286ec6-3a89-44e6-8423-5af9d769a014" name="" navigability="" association-type="association" visibility="private" property-ref="2499fe4a59cf405aa66ea9bc636d2adc" />
+              <end-role id="umlar-5b5dd4ca-1720-468b-a266-5a3e5a0872b2" name="" navigability="yes" association-type="association" visibility="private" property-ref="2f463a0ed8fd4b2ca10f66b1c32bd5c8" />
             </relation>
           </item>
-          <item id="a04d9a70cb7b42e39cc494e97c060a82" cid="C044" type="class" name="Navigator" creator="" creation-date="10/25/2024 16:24:51" />
+          <item id="a641542e4c5746b9a1895f1392f3d412" cid="REL051" type="relationship" creator="" creation-date="10/25/2024 16:27:48" from="2474a860aa6c4e6bb4e15919e3d42377" to="a050b46603f442908aaa989c0f699f47" visibility="package">
+            <owned-items />
+            <relation from="2474a860aa6c4e6bb4e15919e3d42377" to="a050b46603f442908aaa989c0f699f47" derived="false">
+              <start-role id="umlar-e4d15024-b895-4ccc-bf5f-6b532790a504" name="" navigability="" association-type="association" visibility="private" property-ref="53f2a87556b4414fb66a8325e9bf57ca" />
+              <end-role id="umlar-1b7e0968-63ac-4f5f-a701-67b5f002344b" name="" navigability="yes" association-type="association" visibility="private" property-ref="96a7fef5f6b547fd9ed0005a9a2cf5ca" />
+            </relation>
+          </item>
+          <item id="a04d9a70cb7b42e39cc494e97c060a82" cid="C044" type="class" name="Navigator" creator="" creation-date="10/25/2024 16:24:51" visibility="undefined" />
           <item id="18bf1a44671e4fd9930a4456377479ca" cid="PROP250" type="property" name="int currentHP" owner="13e6dd84777b4aa99232cbdcd3a85a85" creator="" creation-date="10/24/2024 22:06:54" visibility="protected" />
           <item id="488a9716c3c74a209108c0059d0a0d5e" cid="CMT013" type="comment" creator="" creation-date="10/24/2024 21:30:59">
             <comment>일단은 player stat은 public, 무기에서 공격할때마다 무기 stat 계산해주기.
@@ -1177,12 +1183,12 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           </item>
           <item id="15a7cf7bd109478090816f12d3ef7be3" veid="70c9bd60ccc84d61bf5b3c269ef5dad5" cid="REL036" type="relationship" change-tracking-state="added" creator="" creation-date="10/24/2024 21:44:41" from="9d591b12fde34eb1a3a8397483b891ee" to="9834d946f2624f05b2fc1560daeb2ccf" visibility="package">
             <relation from="9d591b12fde34eb1a3a8397483b891ee" to="9834d946f2624f05b2fc1560daeb2ccf" derived="false">
-              <start-role id="umlar-d18eba4c-be08-49bb-a441-4b1e2e61398e" name="" navigability="" association-type="association" visibility="private" property-ref="5149744901cb47edb29aa4484fcf2f3e" />
-              <end-role id="umlar-dfd9101e-e6a2-4e1b-b750-2c3d388c3786" name="" navigability="yes" association-type="association" visibility="private" property-ref="15507ae8fd6245b0b9c42f74bb8409d2" />
+              <start-role id="umlar-02c09e13-a345-4399-9bcd-b428ad60ce62" name="" navigability="" association-type="association" visibility="private" property-ref="5149744901cb47edb29aa4484fcf2f3e" />
+              <end-role id="umlar-14a8e24d-3899-490e-84e0-60562e329761" name="" navigability="yes" association-type="association" visibility="private" property-ref="15507ae8fd6245b0b9c42f74bb8409d2" />
             </relation>
           </item>
           <item id="1cdc602b85af49149755c53f350f4849" cid="PROP321" type="property" name="Player player" owner="6050c9c96a6a4b9d896711934b2a9549" creator="" creation-date="10/25/2024 16:59:34" visibility="private" />
-          <item id="1f06501ecde44aa982a9984aa3069559" cid="C045" type="class" name="Stage1Puzzle" creator="" creation-date="10/25/2024 16:25:23">
+          <item id="1f06501ecde44aa982a9984aa3069559" cid="C045" type="class" name="Stage1Puzzle" creator="" creation-date="10/25/2024 16:25:23" visibility="undefined">
             <operations>
               <operation id="o86e968f5af454eb8b4b1b27117b6162747" cid="OP073" name="void OnTriggerEnter" creation-date="10/25/2024 16:25:44" type="" type-id="" visibility="public" />
             </operations>
@@ -1190,35 +1196,35 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="8754d55132b3473db4ad69fda3f7c5fd" cid="PROP271" type="property" name="GameManager gameManager" owner="7f85d6c8799c4eed940bb5ddcfd65e7c" creator="" creation-date="10/25/2024 15:49:36" visibility="private" />
           <item id="b6d1f913c41c4aa395f52bee04666ccf" cid="PROP244" type="property" name="int maxHP" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/24/2024 22:03:47" visibility="protected" />
           <item id="6fb4627d067840088c660ba1bb23d92b" cid="PROP261" type="property" name="float spawnDistanceMin" owner="337f3c4c41d1457ba3514358f53854c5" creator="" creation-date="10/25/2024 15:35:37" visibility="private" />
-          <item id="89b87e83159a4b29b72bfbeaa4c67e91" cid="PROP198" type="property" name="Func&lt;Collider&gt; ProjEffect" owner="5c367616416243cebac7c58fcbb7fcba" creator="" creation-date="10/24/2024 19:23:15" visibility="protected" />
+          <item id="89b87e83159a4b29b72bfbeaa4c67e91" cid="PROP198" type="property" name="Action&lt;Collider&gt; ProjEffect" owner="5c367616416243cebac7c58fcbb7fcba" creator="" creation-date="10/24/2024 19:23:15" visibility="protected" />
           <item id="90ff63e842ea4903ae7ee572ce963c31" cid="PROP252" type="property" name="float moveSpeed" owner="13e6dd84777b4aa99232cbdcd3a85a85" creator="" creation-date="10/24/2024 22:07:06" visibility="protected" />
           <item id="f6ad5845ad3249728830cfac211e0158" cid="PROP323" type="property" name="Action OnPlayerStatChange" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/25/2024 17:05:11" visibility="public" />
-          <item id="f54ba9f8f3f74eb9aed64444ef137838" cid="C043" type="class" name="Stage1Piece" creator="" creation-date="10/25/2024 16:20:21">
+          <item id="f54ba9f8f3f74eb9aed64444ef137838" cid="C043" type="class" name="Stage1Piece" creator="" creation-date="10/25/2024 16:20:21" visibility="undefined">
             <operations>
               <operation id="o94bb9b686f88474dab91e5ecb36a4e29373" cid="OP071" name="void OnTriggerEnter" creation-date="10/25/2024 16:20:30" type="" type-id="" visibility="public" />
             </operations>
           </item>
-          <item id="cd51cb54f27540aeb4d66ccdeb6063c2" cid="PROP334" type="property" name="int exp" owner="e507fd5f7e8f41a9ba7595f7df7ffc07" creator="" creation-date="10/25/2024 17:13:22" visibility="public" />
           <item id="1b0c86218d944aee88d99e725bd2d760" cid="PROP241" type="property" name="float moveSpeed" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/24/2024 22:02:46" visibility="public" />
+          <item id="cd51cb54f27540aeb4d66ccdeb6063c2" cid="PROP334" type="property" name="int exp" owner="e507fd5f7e8f41a9ba7595f7df7ffc07" creator="" creation-date="10/25/2024 17:13:22" visibility="public" />
           <item id="150194ed2e104ba381819df3a0a9278b" cid="C038" type="class" name="p_PacketStream" creator="" creation-date="10/24/2024 21:43:47" visibility="undefined" />
           <item id="0d06d3cb09a54c1585ca1250cf386cdd" cid="REL055" type="relationship" creator="" creation-date="10/25/2024 16:28:35" from="1f06501ecde44aa982a9984aa3069559" to="a050b46603f442908aaa989c0f699f47" visibility="package">
             <owned-items />
             <relation from="1f06501ecde44aa982a9984aa3069559" to="a050b46603f442908aaa989c0f699f47" derived="false">
-              <start-role id="umlar-86a513d9-cc9c-4504-bafc-f93d88d0d1a9" name="" navigability="" association-type="association" visibility="private" property-ref="4482d718b1e1400fab1b5c95e90ca23f" />
-              <end-role id="umlar-539160d6-0a26-42d2-9e11-aa8d5b655559" name="" navigability="yes" association-type="association" visibility="private" property-ref="f22863d093534a81bf68afb4516f18eb" />
+              <start-role id="umlar-8e882045-8aa4-4fd2-a1a7-7248588c23c6" name="" navigability="" association-type="association" visibility="private" property-ref="4482d718b1e1400fab1b5c95e90ca23f" />
+              <end-role id="umlar-2422b269-c123-4ae1-a872-b4d5b1124954" name="" navigability="yes" association-type="association" visibility="private" property-ref="f22863d093534a81bf68afb4516f18eb" />
             </relation>
           </item>
           <item id="d61c614eef6043ee993e760576519e81" cid="PROP197" type="property" name="int damage" owner="5c367616416243cebac7c58fcbb7fcba" creator="" creation-date="10/24/2024 19:20:36" visibility="protected" />
           <item id="935a73d93ad245749a7f77fa88431903" cid="REL046" type="relationship" creator="" creation-date="10/25/2024 16:20:58" from="f54ba9f8f3f74eb9aed64444ef137838" to="66df7ac8f64c4217a8c78ec72c37b460" visibility="package">
             <owned-items />
             <relation from="f54ba9f8f3f74eb9aed64444ef137838" to="66df7ac8f64c4217a8c78ec72c37b460" derived="false">
-              <start-role id="umlar-946dc7a1-c8f2-4da1-a4ec-dc566b1c7c70" name="" navigability="" association-type="association" visibility="private" property-ref="4108c4abe59e47498c3f0dd3a5797139" />
-              <end-role id="umlar-c62455e2-4753-4614-ad21-63eb59f4c757" name="" navigability="yes" association-type="association" visibility="private" property-ref="ade2327e94e64c1cbf4ca0663e05569a" />
+              <start-role id="umlar-79b6e1da-1c13-4c91-87c1-31ff7410d5d9" name="" navigability="" association-type="association" visibility="private" property-ref="4108c4abe59e47498c3f0dd3a5797139" />
+              <end-role id="umlar-512aaaf1-f94d-4ca8-af97-de46fdb6c27a" name="" navigability="yes" association-type="association" visibility="private" property-ref="ade2327e94e64c1cbf4ca0663e05569a" />
             </relation>
           </item>
-          <item id="7c9b46b3427948f1b9cf923136e89e49" cid="PROP325" type="property" name="CanvasManger canvasManager" owner="2721fe2d137146b586681d8e06c823ed" creator="" creation-date="10/25/2024 17:06:48" visibility="public" />
-          <item id="53da69a2443b404e979de3788b60fa10" cid="PROP269" type="property" name="GameState gameState" owner="03dc86642fec4062b198696172e0ece6" creator="" creation-date="10/25/2024 15:45:35" visibility="private" />
           <item id="70577f3f1bda4cbc80bb08da1de2e01c" cid="PROP264" type="property" name="string monsterID" owner="337f3c4c41d1457ba3514358f53854c5" creator="" creation-date="10/25/2024 15:35:45" visibility="private" />
+          <item id="53da69a2443b404e979de3788b60fa10" cid="PROP269" type="property" name="GameState gameState" owner="03dc86642fec4062b198696172e0ece6" creator="" creation-date="10/25/2024 15:45:35" visibility="private" />
+          <item id="7c9b46b3427948f1b9cf923136e89e49" cid="PROP325" type="property" name="CanvasManger canvasManager" owner="2721fe2d137146b586681d8e06c823ed" creator="" creation-date="10/25/2024 17:06:48" visibility="public" />
           <item id="41dc8f38f3de43ce905cc7c4b81e8cdc" cid="PROP240" type="property" name="PlayerStat playerStat" owner="9834d946f2624f05b2fc1560daeb2ccf" creator="" creation-date="10/24/2024 22:02:09" visibility="public" />
           <item id="d6e5e6766d234ca0be88958ca3df3bab" cid="PROP257" type="property" name="int spawnStartTime" owner="337f3c4c41d1457ba3514358f53854c5" creator="" creation-date="10/25/2024 15:35:36" visibility="private" />
           <item id="9834d946f2624f05b2fc1560daeb2ccf" cid="C026" type="class" name="Player" creator="" creation-date="10/24/2024 19:10:03" visibility="undefined">
@@ -1247,29 +1253,22 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="9159c9cbefb3455d8ba16273454701dd" cid="REL018" type="relationship" creator="" creation-date="10/24/2024 19:13:58" from="9834d946f2624f05b2fc1560daeb2ccf" to="03dc86642fec4062b198696172e0ece6" visibility="package">
             <owned-items />
             <relation from="9834d946f2624f05b2fc1560daeb2ccf" to="03dc86642fec4062b198696172e0ece6" derived="false">
-              <start-role id="umlar-df286505-33f7-46fd-a802-25fdf12cec86" name="" navigability="" association-type="association" visibility="private" attribute-ref="d16ca0e26186454facad1db168074775" property-ref="caab3f5d2bd44124ab87b4eb6f219318" />
-              <end-role id="umlar-0148bb07-73ad-4772-9552-051dc57f4a19" name="" navigability="yes" association-type="association" visibility="private" property-ref="70593d36b7ba41349ca49c3a294da518" />
+              <start-role id="umlar-3b970d9f-5da9-4d28-8d39-124f264d7d06" name="" navigability="" association-type="association" visibility="private" attribute-ref="d16ca0e26186454facad1db168074775" property-ref="caab3f5d2bd44124ab87b4eb6f219318" />
+              <end-role id="umlar-b975e167-e815-4e53-a5f0-d566868a2344" name="" navigability="yes" association-type="association" visibility="private" property-ref="70593d36b7ba41349ca49c3a294da518" />
             </relation>
           </item>
           <item id="5e67fad929264dc08079ab99a106a3a2" cid="REL038" type="relationship" name="1..n" creator="" creation-date="10/25/2024 15:37:38" from="7f85d6c8799c4eed940bb5ddcfd65e7c" to="337f3c4c41d1457ba3514358f53854c5" visibility="package">
             <owned-items />
             <relation from="7f85d6c8799c4eed940bb5ddcfd65e7c" to="337f3c4c41d1457ba3514358f53854c5" derived="false">
-              <start-role id="umlar-ebe99cd6-3d8d-4129-98cf-f49cb109017c" name="" navigability="" association-type="aggregation" visibility="private" attribute-ref="afcc93b5f3ca8416eb862327ee5fd8f2577" property-ref="9dd6ed66240b4b5a96c24ac30fd7b241" />
-              <end-role id="umlar-0b9d02c5-5840-4433-ba5b-59c827205298" name="" navigability="" association-type="association" visibility="private" property-ref="7c47addf8dc24b07a0307c5c809aa176" />
+              <start-role id="umlar-d91a01f6-76ea-4e87-95f5-2e3baeb1e4c9" name="" navigability="" association-type="aggregation" visibility="private" attribute-ref="afcc93b5f3ca8416eb862327ee5fd8f2577" property-ref="9dd6ed66240b4b5a96c24ac30fd7b241" />
+              <end-role id="umlar-1050a51b-5286-425c-8d67-5dabcec5edf2" name="" navigability="" association-type="association" visibility="private" property-ref="7c47addf8dc24b07a0307c5c809aa176" />
             </relation>
           </item>
           <item id="fe52071338534c148c8cdc543d05e9c7" cid="REL047" type="relationship" creator="" creation-date="10/25/2024 16:25:08" from="a04d9a70cb7b42e39cc494e97c060a82" to="9834d946f2624f05b2fc1560daeb2ccf" visibility="package">
             <owned-items />
             <relation from="a04d9a70cb7b42e39cc494e97c060a82" to="9834d946f2624f05b2fc1560daeb2ccf" derived="false">
-              <start-role id="umlar-c5fe31aa-92b2-46c7-b990-c0433a8273a8" name="" navigability="" association-type="association" visibility="private" property-ref="a743dc39434e44b39b6f92ec2d7ceca0" />
-              <end-role id="umlar-70c9d710-e8e5-4094-8fe0-ff355cda2432" name="" navigability="yes" association-type="association" visibility="private" property-ref="f40510144e3b44fbaf34ff4600055da1" />
-            </relation>
-          </item>
-          <item id="4c4b9bd645ca434a97069a1b618740b4" cid="REL056" type="relationship" name="Selectable : item" creator="" creation-date="10/25/2024 16:57:29" from="af8c0696b907445b94b0f8f54f70b9fe" to="3c8cffecec3f47ef95ccc86435919e63" visibility="package">
-            <owned-items />
-            <relation from="af8c0696b907445b94b0f8f54f70b9fe" to="3c8cffecec3f47ef95ccc86435919e63" derived="false">
-              <start-role id="umlar-b0726406-f78f-496e-9868-03d52acae5b9" name="" navigability="" association-type="association" visibility="private" property-ref="e74db2b6550242ecaf5f79584ed126c6" />
-              <end-role id="umlar-be140d3a-d6a1-4a52-9b55-54c24da28f46" name="" navigability="yes" association-type="association" visibility="private" property-ref="d57925641fe84ae6828e07c1e7f80aaa" />
+              <start-role id="umlar-e28bd2e5-bff1-4b23-9f9f-d484b48a7389" name="" navigability="" association-type="association" visibility="private" property-ref="a743dc39434e44b39b6f92ec2d7ceca0" />
+              <end-role id="umlar-8d9cf3b3-2f2e-4594-b03e-fb0a49aedf2b" name="" navigability="yes" association-type="association" visibility="private" property-ref="f40510144e3b44fbaf34ff4600055da1" />
             </relation>
           </item>
           <item id="811ea0bcee7944f58d13f8fa053d515a" cid="C030" type="class" name="w_PacketStream" creator="" creation-date="10/24/2024 19:10:35" visibility="undefined">
@@ -1277,7 +1276,21 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <operation id="oe74d16046f4c4594910825d478544e38134" cid="OP052" name="final IEnumerator Attack" creation-date="10/24/2024 21:37:47" type="" type-id="" visibility="private" />
             </operations>
           </item>
-          <item id="337f3c4c41d1457ba3514358f53854c5" cid="C041" type="class" name="SpawnPattern" creator="" creation-date="10/25/2024 15:35:28">
+          <item id="4c4b9bd645ca434a97069a1b618740b4" cid="REL056" type="relationship" name="Selectable : item" creator="" creation-date="10/25/2024 16:57:29" from="af8c0696b907445b94b0f8f54f70b9fe" to="3c8cffecec3f47ef95ccc86435919e63" visibility="package">
+            <owned-items />
+            <relation from="af8c0696b907445b94b0f8f54f70b9fe" to="3c8cffecec3f47ef95ccc86435919e63" derived="false">
+              <start-role id="umlar-1e92fec9-2b24-416b-93a2-6ab91e51e95c" name="" navigability="" association-type="association" visibility="private" property-ref="e74db2b6550242ecaf5f79584ed126c6" />
+              <end-role id="umlar-596df624-ce3d-45d3-89b6-1d65362b1c69" name="" navigability="yes" association-type="association" visibility="private" property-ref="d57925641fe84ae6828e07c1e7f80aaa" />
+            </relation>
+          </item>
+          <item id="68831313b9f040de925b91e848bf103d" cid="REL016" type="relationship" creator="" creation-date="10/24/2024 19:13:53" from="66df7ac8f64c4217a8c78ec72c37b460" to="03dc86642fec4062b198696172e0ece6" visibility="package">
+            <owned-items />
+            <relation from="66df7ac8f64c4217a8c78ec72c37b460" to="03dc86642fec4062b198696172e0ece6" derived="false">
+              <start-role id="umlar-fd8e4e45-7790-42b7-a1b9-6b545ce15489" name="" navigability="" association-type="association" visibility="private" property-ref="5946a9487fd4427ba650b879a7dfd25d" />
+              <end-role id="umlar-73853d87-a413-4c1f-a232-9731e1e9eaeb" name="" navigability="yes" association-type="association" visibility="private" property-ref="9db8e711a45c4cd0bbee75f60d5cdf03" />
+            </relation>
+          </item>
+          <item id="337f3c4c41d1457ba3514358f53854c5" cid="C041" type="class" name="SpawnPattern" creator="" creation-date="10/25/2024 15:35:28" visibility="undefined">
             <owned-items />
             <attributes>
               <attribute id="a0a8876f1fb174a7e869acb8f77f32916792" cid="PROP257" name="int spawnStartTime" creation-date="10/25/2024 15:35:36" property-ref="d6e5e6766d234ca0be88958ca3df3bab" />
@@ -1293,20 +1306,13 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <operation id="o3825d667eeed426994be7cfb1789abcf193" cid="OP064" name="static void jsonMaker" creation-date="10/25/2024 15:43:02" type="" type-id="" visibility="public" />
             </operations>
           </item>
-          <item id="68831313b9f040de925b91e848bf103d" cid="REL016" type="relationship" creator="" creation-date="10/24/2024 19:13:53" from="66df7ac8f64c4217a8c78ec72c37b460" to="03dc86642fec4062b198696172e0ece6" visibility="package">
-            <owned-items />
-            <relation from="66df7ac8f64c4217a8c78ec72c37b460" to="03dc86642fec4062b198696172e0ece6" derived="false">
-              <start-role id="umlar-5ba89039-b71c-43c1-b997-226e4d7eca40" name="" navigability="" association-type="association" visibility="private" property-ref="5946a9487fd4427ba650b879a7dfd25d" />
-              <end-role id="umlar-218f0e4e-2fed-46d8-b367-9264867d3a90" name="" navigability="yes" association-type="association" visibility="private" property-ref="9db8e711a45c4cd0bbee75f60d5cdf03" />
-            </relation>
-          </item>
           <item id="e97ed10d4e504446857f09dd501c78ac" cid="PROP242" type="property" name="int playerLevel" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/24/2024 22:03:07" visibility="public" />
           <item id="ab2ecc9c02a54cbdb165218f8c9f802a" veid="7c9b46b3427948f1b9cf923136e89e49" cid="PROP325" type="property" name="CanvasManger canvasManager" owner="2474a860aa6c4e6bb4e15919e3d42377" creation-date="10/25/2024 17:06:48" visibility="public" />
           <item id="34f44f745eed4e0da57c19cb7d7b5211" cid="PROP260" type="property" name="int spawnPeriod" owner="337f3c4c41d1457ba3514358f53854c5" creator="" creation-date="10/25/2024 15:35:37" visibility="private" />
           <item id="5281d7771cc046f5a419cc3022a65e49" cid="PROP243" type="property" name="int currentExp" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/24/2024 22:03:20" visibility="public" />
           <item id="f211ac8194634b44b3230e58a3723f17" veid="7c9b46b3427948f1b9cf923136e89e49" cid="PROP325" type="property" name="CanvasManger canvasManager" owner="3c8cffecec3f47ef95ccc86435919e63" creation-date="10/25/2024 17:06:48" visibility="public" />
-          <item id="32b664ecd57c4a0293e189b071cea3cf" cid="PROP320" type="property" name="Selectable item" owner="af8c0696b907445b94b0f8f54f70b9fe" creator="" creation-date="10/25/2024 16:58:09" visibility="private" />
-          <item id="af8c0696b907445b94b0f8f54f70b9fe" cid="C048" type="class" name="btn_ItemPanel" creator="" creation-date="10/25/2024 16:57:19">
+          <item id="561f28c7af0c4149a49bcfe7fdb60dc9" cid="PROP336" type="property" name="int contactDamage" owner="13e6dd84777b4aa99232cbdcd3a85a85" creator="" creation-date="10/30/2024 19:27:42" visibility="protected" />
+          <item id="af8c0696b907445b94b0f8f54f70b9fe" cid="C048" type="class" name="btn_ItemPanel" creator="" creation-date="10/25/2024 16:57:19" visibility="undefined">
             <owned-items />
             <attributes>
               <attribute id="add23cce505144c74961b16d56cf6ad51227" cid="PROP320" name="Selectable item" creation-date="10/25/2024 16:58:09" property-ref="32b664ecd57c4a0293e189b071cea3cf" />
@@ -1315,6 +1321,7 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <operation id="o8c0dc2bc4da04eb4a44534bcf21d5820495" cid="OP081" name="void OnClick" creation-date="10/25/2024 16:57:43" type="" type-id="" visibility="public" />
             </operations>
           </item>
+          <item id="32b664ecd57c4a0293e189b071cea3cf" cid="PROP320" type="property" name="Selectable item" owner="af8c0696b907445b94b0f8f54f70b9fe" creator="" creation-date="10/25/2024 16:58:09" visibility="private" />
           <item id="7f85d6c8799c4eed940bb5ddcfd65e7c" cid="C032" type="class" name="SpawnManager" creator="" creation-date="10/24/2024 19:10:51" visibility="undefined">
             <owned-items />
             <attributes>
@@ -1338,24 +1345,24 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
             </operations>
           </item>
           <item id="68ba8f8a828541bbb0b6724587efaf23" veid="c326dd475b7e42de95de0dd297def459" cid="PROP174" type="property" name="int multiProjectile" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/17/2024 22:45:31" visibility="protected" />
-          <item id="ab942584e3424ec0998c5016f355d99d" cid="PROP273" type="property" name="bool isBossDead" owner="66df7ac8f64c4217a8c78ec72c37b460" creator="" creation-date="10/25/2024 16:06:23" visibility="private" />
           <item id="ef042ac889ae444bb5910d62851e9699" cid="PROP258" type="property" name="int spawnEndTime" owner="337f3c4c41d1457ba3514358f53854c5" creator="" creation-date="10/25/2024 15:35:36" visibility="private" />
+          <item id="ab942584e3424ec0998c5016f355d99d" cid="PROP273" type="property" name="bool isBossDead" owner="66df7ac8f64c4217a8c78ec72c37b460" creator="" creation-date="10/25/2024 16:06:23" visibility="private" />
           <item id="f98df9521137433b896c5821d8d835da" cid="REA006" type="realization" creator="" creation-date="10/24/2024 21:44:12" from="150194ed2e104ba381819df3a0a9278b" to="5c367616416243cebac7c58fcbb7fcba" visibility="package" />
+          <item id="45d74d531aa4475ba737cd5795233e9c" veid="f7c811f0babf4e4493947ab69c8549d5" cid="PROP170" type="property" name="int healthRezenPer10" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/17/2024 22:45:06" visibility="protected" />
           <item id="f240585666224a4cb9d4084473dfe56a" cid="REL049" type="relationship" creator="" creation-date="10/25/2024 16:27:40" from="6050c9c96a6a4b9d896711934b2a9549" to="a050b46603f442908aaa989c0f699f47" visibility="package">
             <owned-items />
             <relation from="6050c9c96a6a4b9d896711934b2a9549" to="a050b46603f442908aaa989c0f699f47" derived="false">
-              <start-role id="umlar-a0c4a5e9-d5c9-4e04-a95e-2b69cbf497d8" name="" navigability="" association-type="association" visibility="private" property-ref="b01500e45f0e4201871628411abce403" />
-              <end-role id="umlar-8b7afc08-78f5-41c3-a320-d91e33bdc338" name="" navigability="yes" association-type="association" visibility="private" property-ref="6be87fc840b54e2d8a0d08f517e88739" />
+              <start-role id="umlar-2e0946f4-5ae4-40fd-9bf3-c839ef809232" name="" navigability="" association-type="association" visibility="private" property-ref="b01500e45f0e4201871628411abce403" />
+              <end-role id="umlar-c43943bf-3797-4679-ba10-b4f4ffde7723" name="" navigability="yes" association-type="association" visibility="private" property-ref="6be87fc840b54e2d8a0d08f517e88739" />
             </relation>
           </item>
-          <item id="45d74d531aa4475ba737cd5795233e9c" veid="f7c811f0babf4e4493947ab69c8549d5" cid="PROP170" type="property" name="int healthRezenPer10" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/17/2024 22:45:06" visibility="protected" />
           <item id="d1e470643264417d9e660e6b148a7c8d" cid="PROP225" type="property" name="float attackRange" owner="c661676951884197865371ca81c00c73" creator="" creation-date="10/24/2024 21:18:12" visibility="protected" />
           <item id="72a7170d336c47d5abcb683b37f2e53b" cid="DEP012" type="dependency" creator="" creation-date="10/24/2024 21:49:04" from="c661676951884197865371ca81c00c73" to="ed9e9df4c2d84add9e74e925ea1bef8d" visibility="package" />
           <item id="1e696d00675f437bb9fb57903d366e5a" cid="REL023" type="relationship" creator="" creation-date="10/24/2024 19:14:12" from="9834d946f2624f05b2fc1560daeb2ccf" to="13e6dd84777b4aa99232cbdcd3a85a85" visibility="package">
             <owned-items />
             <relation from="9834d946f2624f05b2fc1560daeb2ccf" to="13e6dd84777b4aa99232cbdcd3a85a85" derived="false">
-              <start-role id="umlar-5bc97e9a-3415-4360-8ceb-e4f1eadb292f" name="" navigability="yes" association-type="association" visibility="private" attribute-ref="d16ca0e26186454facad1db168074775" property-ref="c769f6dda4d14c3a9f003125e1f63f11" />
-              <end-role id="umlar-721d0b7c-6fce-4779-8075-83d573f65ac5" name="" navigability="yes" association-type="association" visibility="private" property-ref="a2b55bcfb3334ee7b1a528ed5bfaf4e7" />
+              <start-role id="umlar-f7c65b35-4994-4c68-b2cc-12bddce35af3" name="" navigability="yes" association-type="association" visibility="private" attribute-ref="d16ca0e26186454facad1db168074775" property-ref="c769f6dda4d14c3a9f003125e1f63f11" />
+              <end-role id="umlar-4e868dc2-453c-41f7-883a-d7460f07cc6c" name="" navigability="yes" association-type="association" visibility="private" property-ref="a2b55bcfb3334ee7b1a528ed5bfaf4e7" />
             </relation>
           </item>
           <item id="5c367616416243cebac7c58fcbb7fcba" cid="I013" type="uml-interface-classifier" name="Projectile" creator="" creation-date="10/24/2024 21:43:20" visibility="undefined">
@@ -1369,7 +1376,7 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
             <attributes>
               <attribute id="a6efe062b4fd541eeb754d93a05044a9b833" cid="PROP196" name="Animator animator" creation-date="10/24/2024 19:20:24" property-ref="1734b45d052d4b65875e238fe2143080" />
               <attribute id="acac2bbc69e2c4583b6e531cbb8d8f377222" cid="PROP197" name="int damage" creation-date="10/24/2024 19:20:36" property-ref="d61c614eef6043ee993e760576519e81" />
-              <attribute id="a4f012e5efec840d49b62c97c8584129c852" cid="PROP198" name="Func&lt;Collider&gt; ProjEffect" creation-date="10/24/2024 19:23:15" property-ref="89b87e83159a4b29b72bfbeaa4c67e91" />
+              <attribute id="a4f012e5efec840d49b62c97c8584129c852" cid="PROP198" name="Action&lt;Collider&gt; ProjEffect" creation-date="10/24/2024 19:23:15" property-ref="89b87e83159a4b29b72bfbeaa4c67e91" />
             </attributes>
           </item>
           <item id="c661676951884197865371ca81c00c73" cid="I012" type="uml-interface-classifier" name="Weapon" creator="" creation-date="10/24/2024 21:08:04" visibility="undefined">
@@ -1385,6 +1392,7 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <attribute id="a2f9dd52604bf45f687c0b1286bc5769c677" cid="PROP219" name="int damage" creation-date="10/24/2024 21:03:12" property-ref="33070d72ff2e47cda44f925033999373" />
               <attribute id="a64edaca8b4444ec8a2869987cdd21c5f919" cid="PROP220" name="float attackPeriod" creation-date="10/24/2024 21:03:20" property-ref="231a2ac989834ce6b42c9899de5d6fc2" />
               <attribute id="a5cbb003854d74457bcae60afbecadada821" cid="PROP225" name="float attackRange" creation-date="10/24/2024 21:18:12" property-ref="d1e470643264417d9e660e6b148a7c8d" />
+              <attribute id="a8920ac6537634762b2a057e7b2784ffd60" cid="PROP337" name="Player player" creation-date="10/30/2024 20:28:36" property-ref="cf45d08a573f4fa890ce7f658e24da87" />
             </attributes>
             <operations>
               <operation id="o837dc8c278fe4451b9a191a4bd6329e3406" cid="OP046" name="abstract IEnumerator Attack" creation-date="10/24/2024 21:10:13" type="" type-id="" visibility="protected" />
@@ -1395,7 +1403,7 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
             </operations>
           </item>
           <item id="daf7706602f14183aaadc149e1197892" veid="95e51627008242e9bd2ddbcf56dc56ee" cid="PROP175" type="property" name="int attackSpeed" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/17/2024 22:45:31" visibility="protected" />
-          <item id="6050c9c96a6a4b9d896711934b2a9549" cid="C046" type="class" name="MainCanvasManager" creator="" creation-date="10/25/2024 16:26:49">
+          <item id="6050c9c96a6a4b9d896711934b2a9549" cid="C046" type="class" name="MainCanvasManager" creator="" creation-date="10/25/2024 16:26:49" visibility="undefined">
             <owned-items />
             <attributes>
               <attribute id="8490675eb1dc467ebea037d933aef9e7" cid="PROP325" veid="ae61fa73cd30c47498fba45c9b69e28fc356" name="CanvasManger canvasManager" creation-date="10/25/2024 17:06:48" property-ref="5819019a8d114a9eb4d3c31b181c618e" />
@@ -1409,8 +1417,8 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="f0f8d35d7d4e4661b1da1b7a1464516d" cid="REL037" type="relationship" creator="" creation-date="10/24/2024 22:05:08" from="c661676951884197865371ca81c00c73" to="9834d946f2624f05b2fc1560daeb2ccf" visibility="package">
             <owned-items />
             <relation from="c661676951884197865371ca81c00c73" to="9834d946f2624f05b2fc1560daeb2ccf" derived="false">
-              <start-role id="umlar-2086dcfb-1d22-47da-b519-d854f3af5914" name="" navigability="" association-type="association" visibility="private" property-ref="017bc4a755c74032ad94b4c8b8158a3e" />
-              <end-role id="umlar-420619b3-269b-4e1f-9c05-8cd59e35c627" name="" navigability="yes" association-type="association" visibility="private" property-ref="6b6e6a914ca94c2e938027ab361ddf4e" />
+              <start-role id="umlar-659f51b9-df15-4c9b-89e4-40f3f215405d" name="" navigability="" association-type="association" visibility="private" property-ref="017bc4a755c74032ad94b4c8b8158a3e" />
+              <end-role id="umlar-c125bc40-826d-45ba-bbec-5c440df8a36c" name="" navigability="yes" association-type="association" visibility="private" property-ref="6b6e6a914ca94c2e938027ab361ddf4e" />
             </relation>
           </item>
           <item id="427c7ba532e2493fa91967d37a57f03f" cid="PROP263" type="property" name="int maxMonsterNumInScreen" owner="7f85d6c8799c4eed940bb5ddcfd65e7c" creator="" creation-date="10/25/2024 15:35:37" visibility="private" />
@@ -1421,12 +1429,22 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <attribute id="af9f151541ca942ab8877f1470f148c83849" cid="PROP250" name="int currentHP" creation-date="10/24/2024 22:06:54" property-ref="18bf1a44671e4fd9930a4456377479ca" />
               <attribute id="af39c67a3e7914c05a640d165d73f4150123" cid="PROP251" name="int dropExp" creation-date="10/24/2024 22:06:59" property-ref="fe6f892c6dfd43118d7b3f73d79367c9" />
               <attribute id="ad127143336354c1fa7a21794a2702957947" cid="PROP252" name="float moveSpeed" creation-date="10/24/2024 22:07:06" property-ref="90ff63e842ea4903ae7ee572ce963c31" />
+              <attribute id="a709f7e4e90374e99b801f17ac1df9423371" cid="PROP336" name="int contactDamage" creation-date="10/30/2024 19:27:42" property-ref="561f28c7af0c4149a49bcfe7fdb60dc9" />
             </attributes>
             <operations>
               <operation id="o4c96237085854bf984a49b36e7a774cb158" cid="OP059" name="void Move" creation-date="10/24/2024 22:06:20" type="" type-id="" visibility="protected" />
               <operation id="o712680da640040cdac87f9899732e7eb381" cid="OP060" name="void Die" creation-date="10/24/2024 22:06:25" type="" type-id="" visibility="protected" />
-              <operation id="of0145866ad3a44b69098c66ca8492bb674" cid="OP061" name="void GetDamage" creation-date="10/24/2024 22:06:29" type="" type-id="" visibility="protected" />
+              <operation id="of0145866ad3a44b69098c66ca8492bb674" cid="OP061" name="void GetDamage" creation-date="10/24/2024 22:06:29" type="" type-id="" visibility="public">
+                <parameters>
+                  <parameter id="p7d7c470f0aae4368a8fd4c3ddba3f223" name="int damage" type="" type-id="" creation-date="10/30/2024 19:20:22" />
+                </parameters>
+              </operation>
               <operation id="o5401571e6ffd4820bfffa4331db0a58c665" cid="OP062" name="void Attack" creation-date="10/24/2024 22:09:25" type="" type-id="" visibility="protected" />
+              <operation id="ob151260232ab486996aef0a96adc0aff730" cid="OP092" name="void Initialize" creation-date="10/30/2024 19:29:46" type="" type-id="" visibility="public">
+                <parameters>
+                  <parameter id="p0dfe3e5718a24448b56b2c666f59b346" name="GameObject player" type="" type-id="" creation-date="10/30/2024 19:30:08" />
+                </parameters>
+              </operation>
             </operations>
           </item>
           <item id="9164f1c8e40e43ef91da8e81ba6a7b0a" cid="PROP236" type="property" name="List&lt;Item&gt; items" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/24/2024 21:49:13" visibility="private" />
@@ -1486,8 +1504,8 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <operation id="o77cac103897c403d83fb56a1570568ea473" cid="OP056" name="void LevelUp" creation-date="10/24/2024 21:57:04" type="" type-id="" visibility="protected" />
             </operations>
           </item>
-          <item id="0e82454375db4cac90c972e60e0f43dd" cid="PROP265" type="property" name="int spawnMonsterNum" owner="337f3c4c41d1457ba3514358f53854c5" creator="" creation-date="10/25/2024 15:36:11" visibility="private" />
           <item id="2157be6c16184f2bbbaeffefe9eccf9e" veid="74d47d5e99474afcbc17738d88e66bbc" cid="PROP171" type="property" name="int defensePoint" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/17/2024 22:45:06" visibility="protected" />
+          <item id="0e82454375db4cac90c972e60e0f43dd" cid="PROP265" type="property" name="int spawnMonsterNum" owner="337f3c4c41d1457ba3514358f53854c5" creator="" creation-date="10/25/2024 15:36:11" visibility="private" />
           <item id="03dc86642fec4062b198696172e0ece6" cid="C033" type="class" name="GameManager" creator="" creation-date="10/24/2024 19:11:04" visibility="undefined">
             <owned-items />
             <attributes>
@@ -1511,20 +1529,20 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="f36c7ca252964c329399631546a90642" cid="PROP245" type="property" name="int currentHP" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/24/2024 22:03:53" visibility="protected" />
           <item id="34517ce63d7b4341a34cd139b42a64f9" veid="8ea3fe0d6f3247f7aa201a3b65db84b0" cid="PROP176" type="property" name="int attackRange" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/17/2024 22:45:56" visibility="protected" />
           <item id="56ef9977acf94fc19ef9e2c88a04d6c2" veid="0ff34c0c7359449eb3a000d6163605b4" cid="PROP177" type="property" name="int critAttackProbability" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/17/2024 22:45:57" visibility="protected" />
-          <item id="a050b46603f442908aaa989c0f699f47" cid="C047" type="class" name="CanvasManager" creator="" creation-date="10/25/2024 16:27:19">
+          <item id="a050b46603f442908aaa989c0f699f47" cid="C047" type="class" name="CanvasManager" creator="" creation-date="10/25/2024 16:27:19" visibility="undefined">
             <owned-items />
             <attributes>
               <attribute id="aab7835042108498da9bfeddf4b3e8f20447" cid="PROP317" name="CanvasState canvasState" creation-date="10/25/2024 16:54:08" property-ref="2892f6e9de5444e0af607bbd79387d4f" />
             </attributes>
           </item>
+          <item id="4cd0e2be027a4f76b5fc8314008b1916" veid="292b8df024ac4824b39fe6ba443ce3be" cid="PROP178" type="property" name="int critAttackPoint" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/17/2024 22:45:58" visibility="protected" />
           <item id="aaab0e28413344d7b4bc3d2af20b24f5" cid="REL052" type="relationship" creator="" creation-date="10/25/2024 16:27:50" from="2721fe2d137146b586681d8e06c823ed" to="a050b46603f442908aaa989c0f699f47" visibility="package">
             <owned-items />
             <relation from="2721fe2d137146b586681d8e06c823ed" to="a050b46603f442908aaa989c0f699f47" derived="false">
-              <start-role id="umlar-20a0f798-879a-4e18-a6a4-6dbe8799a73e" name="" navigability="" association-type="association" visibility="private" property-ref="35448a23c75b42449169f6a483f2361e" />
-              <end-role id="umlar-5b229ac4-0b72-4088-8ba8-4f46d760dd67" name="" navigability="yes" association-type="association" visibility="private" property-ref="66e07ee9b34540659677c902c64a3490" />
+              <start-role id="umlar-1c66e2bf-20d5-41ee-a956-151c478de26c" name="" navigability="" association-type="association" visibility="private" property-ref="35448a23c75b42449169f6a483f2361e" />
+              <end-role id="umlar-67f8df87-ec37-4164-8798-80e3968dc7fa" name="" navigability="yes" association-type="association" visibility="private" property-ref="66e07ee9b34540659677c902c64a3490" />
             </relation>
           </item>
-          <item id="4cd0e2be027a4f76b5fc8314008b1916" veid="292b8df024ac4824b39fe6ba443ce3be" cid="PROP178" type="property" name="int critAttackPoint" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/17/2024 22:45:58" visibility="protected" />
           <item id="0ba6f3ac8c794d9c85be05eedcb24314" cid="PROP254" type="property" name="int invincibleFrame" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/24/2024 22:10:39" visibility="protected" />
           <item id="2474a860aa6c4e6bb4e15919e3d42377" cid="C034" type="class" name="PauseCanvasManager" creator="" creation-date="10/24/2024 19:11:14" visibility="undefined">
             <owned-items />
@@ -1548,9 +1566,12 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="42fe26e3a77540ea8628b7beec9759e2" cid="REL022" type="relationship" creator="" creation-date="10/24/2024 19:14:07" from="93d42a869dad4e03b343593e77e236a5" to="9834d946f2624f05b2fc1560daeb2ccf" visibility="package">
             <owned-items />
             <relation from="93d42a869dad4e03b343593e77e236a5" to="9834d946f2624f05b2fc1560daeb2ccf" derived="false">
-              <start-role id="umlar-3585477c-da2e-4040-b6e9-b9a007266609" name="" navigability="" association-type="association" visibility="private" property-ref="009e48fb23874a8694fd41d655b5bcbf" />
-              <end-role id="umlar-8f72dc76-38da-4a84-8470-bfd9d5624fc6" name="" navigability="yes" association-type="association" visibility="private" property-ref="5c485abd809d44f7beaa78237e805c7f" />
+              <start-role id="umlar-2c82e81b-d883-4793-adb9-6a03d4b8f3fc" name="" navigability="" association-type="association" visibility="private" property-ref="009e48fb23874a8694fd41d655b5bcbf" />
+              <end-role id="umlar-4ccec855-8f36-4f06-aa00-1ea5bd7a89db" name="" navigability="yes" association-type="association" visibility="private" property-ref="5c485abd809d44f7beaa78237e805c7f" />
             </relation>
+          </item>
+          <item id="382f4385b4dd404db8b70e92f182dbea" cid="PROP193" type="property" name="Projectile projectile" owner="c661676951884197865371ca81c00c73" creator="" creation-date="10/24/2024 19:15:32" visibility="protected">
+            <structural-feature type="Projectile" type-id="Class:16494c0b4b6a46309df03a91ae1e34e0" />
           </item>
           <item id="3c8cffecec3f47ef95ccc86435919e63" cid="C035" type="class" name="ItemSelectCanvasManager" creator="" creation-date="10/24/2024 19:11:54" visibility="undefined">
             <owned-items />
@@ -1568,41 +1589,39 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <operation id="o889f5840d5d44967b48224b32fdc85eb621" cid="OP084" name="void OnPlayerLevelUp" creation-date="10/25/2024 16:58:52" type="" type-id="" visibility="public" />
             </operations>
           </item>
-          <item id="382f4385b4dd404db8b70e92f182dbea" cid="PROP193" type="property" name="Projectile projectile" owner="c661676951884197865371ca81c00c73" creator="" creation-date="10/24/2024 19:15:32" visibility="protected">
-            <structural-feature type="Projectile" type-id="Class:16494c0b4b6a46309df03a91ae1e34e0" />
-          </item>
+          <item id="be5b89b8346847899d92f1d76626db1c" veid="88fc38726e984115be8c75480282beae" cid="PROP172" type="property" name="int evadeProb_max" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/17/2024 22:45:06" visibility="protected" />
           <item id="4a6990bff6274840a5d6fa2813657bab" cid="REL053" type="relationship" creator="" creation-date="10/25/2024 16:27:51" from="a050b46603f442908aaa989c0f699f47" to="03dc86642fec4062b198696172e0ece6" visibility="package">
             <owned-items />
             <relation from="a050b46603f442908aaa989c0f699f47" to="03dc86642fec4062b198696172e0ece6" derived="false">
-              <start-role id="umlar-11e43175-f3ec-44e4-846c-28d2a826a846" name="" navigability="" association-type="association" visibility="private" property-ref="037bc91168c743a3b9547437cc90b9a5" />
-              <end-role id="umlar-8376d622-ba18-4a1d-85e9-aef6375b6e67" name="" navigability="yes" association-type="association" visibility="private" property-ref="d8137c62233a4eebabe7cf57cbfb387e" />
+              <start-role id="umlar-3165ab9f-9a2e-4024-ab75-96aa87e872c5" name="" navigability="" association-type="association" visibility="private" property-ref="037bc91168c743a3b9547437cc90b9a5" />
+              <end-role id="umlar-da2bdc0e-6ef2-47c9-be31-009c3eedba2d" name="" navigability="yes" association-type="association" visibility="private" property-ref="d8137c62233a4eebabe7cf57cbfb387e" />
             </relation>
           </item>
-          <item id="be5b89b8346847899d92f1d76626db1c" veid="88fc38726e984115be8c75480282beae" cid="PROP172" type="property" name="int evadeProb_max" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/17/2024 22:45:06" visibility="protected" />
           <item id="d94ed7f8ccd646cd9ae30f0a5d715c28" cid="REA008" type="realization" creator="" creation-date="10/24/2024 21:44:18" from="449faae85fd5470cbcfe437de74402c2" to="c661676951884197865371ca81c00c73" visibility="package" />
           <item id="39e1d3efb33f47e2a025ba82f9e4fc76" cid="DEP011" type="dependency" creator="" creation-date="10/24/2024 21:49:01" from="93d42a869dad4e03b343593e77e236a5" to="ed9e9df4c2d84add9e74e925ea1bef8d" visibility="package" />
-          <item id="32adeedcdbd042209b2409c39673f430" cid="PROP238" type="property" name="int levelMax" owner="ed9e9df4c2d84add9e74e925ea1bef8d" creator="" creation-date="10/24/2024 21:49:57" visibility="private" />
+          <item id="32adeedcdbd042209b2409c39673f430" cid="PROP238" type="property" name="int levelMax" owner="ed9e9df4c2d84add9e74e925ea1bef8d" creator="" creation-date="10/24/2024 21:49:57" visibility="public" />
           <item id="b6b2588281be48418c20f61506c316be" cid="REL017" type="relationship" creator="" creation-date="10/24/2024 19:13:56" from="7f85d6c8799c4eed940bb5ddcfd65e7c" to="03dc86642fec4062b198696172e0ece6" visibility="package">
             <owned-items />
             <relation from="7f85d6c8799c4eed940bb5ddcfd65e7c" to="03dc86642fec4062b198696172e0ece6" derived="false">
-              <start-role id="umlar-913a10a2-1e4f-45af-91ea-77904115dd39" name="" navigability="" association-type="association" visibility="private" property-ref="dd929d2e99dd419da1f3d07e5c3008aa" />
-              <end-role id="umlar-4dd286ca-de84-4377-b823-c7f01d8e67ec" name="" navigability="yes" association-type="association" visibility="private" property-ref="8522dabe6e3a4099bba040f87f4b18ac" />
+              <start-role id="umlar-b9be2d83-576e-4a45-9d01-4cacfc345397" name="" navigability="" association-type="association" visibility="private" property-ref="dd929d2e99dd419da1f3d07e5c3008aa" />
+              <end-role id="umlar-4e2ddd9c-7f15-4d8c-ab45-3a3c324433cf" name="" navigability="yes" association-type="association" visibility="private" property-ref="8522dabe6e3a4099bba040f87f4b18ac" />
             </relation>
           </item>
           <item id="1734b45d052d4b65875e238fe2143080" cid="PROP196" type="property" name="Animator animator" owner="5c367616416243cebac7c58fcbb7fcba" creator="" creation-date="10/24/2024 19:20:24" visibility="protected" />
-          <item id="bdf4f72744ac46b98819d7c4e94ae5e2" cid="PROP262" type="property" name="float spawnDistanceMax" owner="337f3c4c41d1457ba3514358f53854c5" creator="" creation-date="10/25/2024 15:35:37" visibility="private" />
           <item id="461a856c9f6c496a8af389816a0e8376" cid="PROP259" type="property" name="bool isSpawnPointRandom" owner="337f3c4c41d1457ba3514358f53854c5" creator="" creation-date="10/25/2024 15:35:37" visibility="private" />
+          <item id="bdf4f72744ac46b98819d7c4e94ae5e2" cid="PROP262" type="property" name="float spawnDistanceMax" owner="337f3c4c41d1457ba3514358f53854c5" creator="" creation-date="10/25/2024 15:35:37" visibility="private" />
           <item id="0df65f0cf98546e0ba736a296080fe6e" cid="REL024" type="relationship" creator="" creation-date="10/24/2024 19:15:57" from="5c367616416243cebac7c58fcbb7fcba" to="c661676951884197865371ca81c00c73" visibility="package">
             <owned-items />
             <relation from="5c367616416243cebac7c58fcbb7fcba" to="c661676951884197865371ca81c00c73" derived="false">
-              <start-role id="umlar-42c3f65f-73a0-4b4f-b4f2-f774ab0851e4" name="" navigability="" association-type="association" visibility="private" property-ref="522fd14dae284a8f83289a8d7918e368" />
-              <end-role id="umlar-699e372b-403e-4d0d-b518-d06330ee4564" name="" navigability="yes" association-type="association" visibility="private" attribute-ref="ac6a17d78d2504feba4c914b272912edf595" property-ref="cee07ceedbbe46c4a717d6c78b7df773" />
+              <start-role id="umlar-04e0900a-f968-4c33-8516-0d16a58a0cd6" name="" navigability="" association-type="association" visibility="private" property-ref="522fd14dae284a8f83289a8d7918e368" />
+              <end-role id="umlar-f0e22026-6f28-47be-a509-27bb52512f6a" name="" navigability="yes" association-type="association" visibility="private" attribute-ref="ac6a17d78d2504feba4c914b272912edf595" property-ref="cee07ceedbbe46c4a717d6c78b7df773" />
             </relation>
           </item>
+          <item id="cf45d08a573f4fa890ce7f658e24da87" cid="PROP337" type="property" name="Player player" owner="c661676951884197865371ca81c00c73" creator="" creation-date="10/30/2024 20:28:36" visibility="protected" />
           <item id="842dee8688f648869a4db7d869f1ef38" cid="PROP224" type="property" name="List&lt;Weapon&gt; weapons" owner="9d591b12fde34eb1a3a8397483b891ee" creator="" creation-date="10/24/2024 21:06:32" visibility="private" />
-          <item id="f6a09e9b8c57408f93868cc24b4cb480" cid="PROP237" type="property" name="int level" owner="ed9e9df4c2d84add9e74e925ea1bef8d" creator="" creation-date="10/24/2024 21:49:53" visibility="private" />
+          <item id="f6a09e9b8c57408f93868cc24b4cb480" cid="PROP237" type="property" name="int level" owner="ed9e9df4c2d84add9e74e925ea1bef8d" creator="" creation-date="10/24/2024 21:49:53" visibility="public" />
           <item id="4abda84e5ceb453aae0e17651238ba19" cid="PROP228" type="property" name="Player player" owner="ed9e9df4c2d84add9e74e925ea1bef8d" creator="" creation-date="10/24/2024 21:25:49" visibility="protected" />
-          <item id="e507fd5f7e8f41a9ba7595f7df7ffc07" cid="C049" type="class" name="ExpGem" creator="" creation-date="10/25/2024 17:12:45">
+          <item id="e507fd5f7e8f41a9ba7595f7df7ffc07" cid="C049" type="class" name="ExpGem" creator="" creation-date="10/25/2024 17:12:45" visibility="undefined">
             <owned-items />
             <attributes>
               <attribute id="a2957489d40b74da6b3bdbfeb51e432c9757" cid="PROP334" name="int exp" creation-date="10/25/2024 17:13:22" property-ref="cd51cb54f27540aeb4d66ccdeb6063c2" />
@@ -1614,15 +1633,15 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="b0eae5e430f94b448c6baa9b0a57c0ad" cid="REL059" type="relationship" creator="" creation-date="10/25/2024 17:13:14" from="13e6dd84777b4aa99232cbdcd3a85a85" to="e507fd5f7e8f41a9ba7595f7df7ffc07" visibility="package">
             <owned-items />
             <relation from="13e6dd84777b4aa99232cbdcd3a85a85" to="e507fd5f7e8f41a9ba7595f7df7ffc07" derived="false">
-              <start-role id="umlar-76d24123-3b18-4343-9d9d-7c2755101f22" name="" navigability="" association-type="association" visibility="private" property-ref="5804bfa0d67548aeb5a60d150c2c2f42" />
-              <end-role id="umlar-a735ba24-e414-48a6-9e9e-cdff38f61716" name="" navigability="yes" association-type="association" visibility="private" property-ref="10a4789de7174ec7b08da4589f3de15c" />
+              <start-role id="umlar-dec97cc5-2162-4d97-8b49-1b438d651642" name="" navigability="" association-type="association" visibility="private" property-ref="5804bfa0d67548aeb5a60d150c2c2f42" />
+              <end-role id="umlar-26da7dd7-81dc-4b49-bc27-1e8f08af77fd" name="" navigability="yes" association-type="association" visibility="private" property-ref="10a4789de7174ec7b08da4589f3de15c" />
             </relation>
           </item>
           <item id="d2e25cda92e14b0989f3a5b24af52efe" cid="REL050" type="relationship" creator="" creation-date="10/25/2024 16:27:44" from="3c8cffecec3f47ef95ccc86435919e63" to="a050b46603f442908aaa989c0f699f47" visibility="package">
             <owned-items />
             <relation from="3c8cffecec3f47ef95ccc86435919e63" to="a050b46603f442908aaa989c0f699f47" derived="false">
-              <start-role id="umlar-c4698534-cc1c-4424-b0f7-1f7c1a7c1e8b" name="" navigability="" association-type="association" visibility="private" property-ref="03c909237c124f9db36854ef5104e1ac" />
-              <end-role id="umlar-85386253-678b-4472-8f51-3c7d7e60fc22" name="" navigability="yes" association-type="association" visibility="private" property-ref="1f9796c78b7b47799b8b55113b47055f" />
+              <start-role id="umlar-f9465691-9b4a-4325-b149-bf65ae7c7320" name="" navigability="" association-type="association" visibility="private" property-ref="03c909237c124f9db36854ef5104e1ac" />
+              <end-role id="umlar-b191036e-81fe-4bd5-845a-29a748b5b4cc" name="" navigability="yes" association-type="association" visibility="private" property-ref="1f9796c78b7b47799b8b55113b47055f" />
             </relation>
           </item>
           <item id="a6d0b6c2db7d431180ae7423c52a07b3" cid="PROP275" type="property" name="bool isGameClear" owner="66df7ac8f64c4217a8c78ec72c37b460" creator="" creation-date="10/25/2024 16:06:28" visibility="private" />
@@ -1640,7 +1659,7 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
             <class />
           </item>
           <item id="13e6dd84777b4aa99232cbdcd3a85a85" iid="2722941f2d384401b4e4cdf0947558fa" show-fields="true" creation-date="10/24/2024 19:10:16" order-index="2" type="entity">
-            <layout ax="1363" ay="736" awidth="140" aheight="191" x="1363" y="736" width="140" height="160" />
+            <layout ax="1363" ay="736" awidth="226" aheight="229" x="1363" y="736" width="140" height="160" />
             <classifier />
             <class />
           </item>
@@ -1707,10 +1726,10 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
             <relation from="9834d946f2624f05b2fc1560daeb2ccf" from-iid="d5597b4172c44bbe8942ad5ba9f111c2" to="03dc86642fec4062b198696172e0ece6" to-iid="c1008b76e30c469cb2cbebee15e4d9d6" />
           </item>
           <item id="b6a32734a5464967b17d85c016168471" iid="8508c03f7ea145fbb629141bca1e6ae0" creation-date="10/24/2024 19:14:03" order-index="18" type="relation">
-            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" start-auto-side="false" end-auto-side="false" lock-to-fields="false" auto-path="" x1="1503" y1="832" x2="1759" y2="831" start-border-pos="0.3754682291240592" end-border-pos="0.8745560495476974" start-local-pos="72" end-local-pos="81" name-position="0,20">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" start-auto-side="false" end-auto-side="false" lock-to-fields="false" auto-path="" x1="1589" y1="845" x2="1759" y2="838" start-border-pos="0.36923391017330787" end-border-pos="0.8657572696083471" start-local-pos="72" end-local-pos="81" name-position="-27,155">
               <points>
-                <point x="1503" y="832" />
-                <point x="1759" y="831" />
+                <point x="1589" y="845" />
+                <point x="1759" y="838" />
               </points>
             </layout>
             <relation from="13e6dd84777b4aa99232cbdcd3a85a85" from-iid="2722941f2d384401b4e4cdf0947558fa" to="7f85d6c8799c4eed940bb5ddcfd65e7c" to-iid="e37a1d5bd6fa497186135c635f87b732" />
@@ -1725,18 +1744,18 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
             <relation from="93d42a869dad4e03b343593e77e236a5" from-iid="491f733688cd4f54b577e6fa4ca27744" to="9834d946f2624f05b2fc1560daeb2ccf" to-iid="d5597b4172c44bbe8942ad5ba9f111c2" />
           </item>
           <item id="1e696d00675f437bb9fb57903d366e5a" iid="3cf4fbb3826447eeabb7a78a986171ad" creation-date="10/24/2024 19:14:12" order-index="21" type="relation">
-            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" end-auto-side="false" lock-to-fields="false" auto-path="" x1="1437" y1="678" x2="1435" y2="736" start-border-pos="0.6282196044921875" end-border-pos="0.1289215087890625" start-local-pos="136.5" end-local-pos="70" name-position="0,20">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" end-auto-side="false" lock-to-fields="false" auto-path="" x1="1457" y1="678" x2="1463" y2="736" start-border-pos="0.6093621148003472" end-border-pos="0.11098824560114767" start-local-pos="136.5" end-local-pos="70" name-position="0,20">
               <points>
-                <point x="1437" y="678" />
-                <point x="1435" y="736" />
+                <point x="1457" y="678" />
+                <point x="1463" y="736" />
               </points>
             </layout>
             <relation from="9834d946f2624f05b2fc1560daeb2ccf" from-iid="d5597b4172c44bbe8942ad5ba9f111c2" to="13e6dd84777b4aa99232cbdcd3a85a85" to-iid="2722941f2d384401b4e4cdf0947558fa" />
           </item>
           <item id="0df65f0cf98546e0ba736a296080fe6e" iid="861619ebddab4f609e41fc86f25dd93b" creation-date="10/24/2024 19:15:57" order-index="25" type="relation">
-            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="true" auto-path="" x1="1624" y1="-357" x2="1523" y2="-338" start-border-pos="0.8742424249649048" end-border-pos="0.30457089552238803" start-local-pos="83" end-local-pos="58" name-position="0,20">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="true" auto-path="" x1="1624" y1="-375" x2="1523" y2="-338" start-border-pos="0.8742424249649048" end-border-pos="0.30457089552238803" start-local-pos="83" end-local-pos="58" name-position="0,20">
               <points>
-                <point x="1624" y="-357" />
+                <point x="1624" y="-375" />
                 <point x="1523" y="-338" />
               </points>
             </layout>
@@ -1777,7 +1796,7 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
             <class />
           </item>
           <item id="5c367616416243cebac7c58fcbb7fcba" iid="abc8a9017deb40da9a454551381585e9" creation-date="10/24/2024 21:43:20" order-index="31" type="entity">
-            <layout ax="1624" ay="-440" awidth="197" aheight="165" x="1624" y="-440" width="197" height="160" />
+            <layout ax="1624" ay="-440" awidth="197" aheight="129" x="1624" y="-440" width="197" height="129" />
             <classifier />
             <class />
           </item>
@@ -1792,19 +1811,19 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
             <class />
           </item>
           <item id="f98df9521137433b896c5821d8d835da" iid="18d92a879e6d4e7ca4189c9d0b2fc901" creation-date="10/24/2024 21:44:12" order-index="33" type="relation">
-            <layout line-style="oblique" lock-to-fields="false" auto-path="" x1="1922" y1="-305" x2="1821" y2="-332" start-border-pos="0.9037615776062011" end-border-pos="0.4136868563565341" start-local-pos="70" end-local-pos="70" name-position="0,20">
+            <layout line-style="oblique" lock-to-fields="false" auto-path="" x1="1922" y1="-310" x2="1821" y2="-343" start-border-pos="0.9110532283782959" end-border-pos="0.43727389786594595" start-local-pos="70" end-local-pos="70" name-position="0,20">
               <points>
-                <point x="1922" y="-305" />
-                <point x="1821" y="-332" />
+                <point x="1922" y="-310" />
+                <point x="1821" y="-343" />
               </points>
             </layout>
             <relation from="150194ed2e104ba381819df3a0a9278b" from-iid="7c14eef238434c4f870edffa34fdc006" to="5c367616416243cebac7c58fcbb7fcba" to-iid="abc8a9017deb40da9a454551381585e9" />
           </item>
           <item id="027d5bb7323a4d268b1b99208d98288d" iid="d4ded245d82646729b6c50a9df89a7f1" creation-date="10/24/2024 21:44:13" order-index="34" type="relation">
-            <layout line-style="oblique" start-auto-side="false" lock-to-fields="false" auto-path="" x1="1922" y1="-437" x2="1821" y2="-397" start-border-pos="0.8316550731658936" end-border-pos="0.3147979736328125" start-local-pos="78" end-local-pos="82" name-position="0,20">
+            <layout line-style="oblique" start-auto-side="false" lock-to-fields="false" auto-path="" x1="1922" y1="-442" x2="1821" y2="-409" start-border-pos="0.8389467716217041" end-border-pos="0.31078811763793" start-local-pos="78" end-local-pos="82" name-position="0,20">
               <points>
-                <point x="1922" y="-437" />
-                <point x="1821" y="-397" />
+                <point x="1922" y="-442" />
+                <point x="1821" y="-409" />
               </points>
             </layout>
             <relation from="9affa1fd12854078be2e4dae68761f32" from-iid="ed6d94ea607148468894afde96a63730" to="5c367616416243cebac7c58fcbb7fcba" to-iid="abc8a9017deb40da9a454551381585e9" />
@@ -1884,13 +1903,13 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
             <class />
           </item>
           <item id="935a73d93ad245749a7f77fa88431903" iid="1120e0558c164b459d5e88cb73854151" creation-date="10/25/2024 16:20:58" order-index="46" type="relation">
-            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-to-fields="true" auto-path="" x1="2415" y1="504" x2="2275" y2="570" start-border-pos="0.91328125" end-border-pos="0.44140625" start-local-pos="56" end-local-pos="122" name-position="0,20">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-to-fields="true" auto-path="" x1="2415" y1="504" x2="2275" y2="528" start-border-pos="0.91328125" end-border-pos="0.375" start-local-pos="56" end-local-pos="122" name-position="0,20">
               <points>
                 <point x="2415" y="504" />
-                <point x="2275" y="570" />
+                <point x="2275" y="528" />
               </points>
             </layout>
-            <relation from="f54ba9f8f3f74eb9aed64444ef137838" from-iid="67f20037141c4dbc8a96f8e70a13874b" from-field="o94bb9b686f88474dab91e5ecb36a4e29373" to="66df7ac8f64c4217a8c78ec72c37b460" to-iid="fb991de6ccad48edaf5771aca897b7d2" to-field="o433353538f774948b02b045696f99ac754" />
+            <relation from="f54ba9f8f3f74eb9aed64444ef137838" from-iid="67f20037141c4dbc8a96f8e70a13874b" from-field="o94bb9b686f88474dab91e5ecb36a4e29373" to="66df7ac8f64c4217a8c78ec72c37b460" to-iid="fb991de6ccad48edaf5771aca897b7d2" />
           </item>
           <item id="a04d9a70cb7b42e39cc494e97c060a82" iid="8ab851f910434d5592e6465dfcaaf0cd" show-fields="true" creation-date="10/25/2024 16:24:51" order-index="47" type="entity">
             <layout ax="1600" ay="555" awidth="140" aheight="160" x="1600" y="555" width="140" height="160" />
@@ -1996,10 +2015,10 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
             <class />
           </item>
           <item id="b0eae5e430f94b448c6baa9b0a57c0ad" iid="24384984225841c18198408a09da40aa" creation-date="10/25/2024 17:13:14" order-index="61" type="relation">
-            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-to-fields="true" auto-path="" x1="1363" y1="878" x2="1286" y2="829" start-border-pos="0.8147905759162304" end-border-pos="0.377484130859375" start-local-pos="142" name-position="0,20">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-to-fields="true" auto-path="" x1="1363" y1="896" x2="1286" y2="833" start-border-pos="0.8247816593886463" end-border-pos="0.3845372200012207" start-local-pos="160" name-position="0,20">
               <points>
-                <point x="1363" y="878" />
-                <point x="1286" y="829" />
+                <point x="1363" y="896" />
+                <point x="1286" y="833" />
               </points>
             </layout>
             <relation from="13e6dd84777b4aa99232cbdcd3a85a85" from-iid="2722941f2d384401b4e4cdf0947558fa" from-field="o712680da640040cdac87f9899732e7eb381" to="e507fd5f7e8f41a9ba7595f7df7ffc07" to-iid="2e16cbf0b1ce47bdab9f783d993984ca" />
@@ -2054,7 +2073,7 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <trigger ref="e0f0dfdbe24544e89b5b27f784e139f4" />
             </transition>
           </item>
-          <item id="0dfe0d83d2cc4a51a81451f5742dc813" cid="ST005" type="state" name="ItemSelect" creator="" creation-date="10/25/2024 16:43:10">
+          <item id="0dfe0d83d2cc4a51a81451f5742dc813" cid="ST005" type="state" name="ItemSelect" creator="" creation-date="10/25/2024 16:43:10" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
               <state-invariant />
               <actions />
@@ -2065,19 +2084,19 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <trigger ref="a9cc7fa178854337a50d464895d11e73" />
             </transition>
           </item>
-          <item id="f4b9711a125847a896fbc32268c5370c" cid="FS001" type="final-state" name="Goto MainMenu" creator="" creation-date="10/25/2024 16:52:09">
+          <item id="f4b9711a125847a896fbc32268c5370c" cid="FS001" type="final-state" name="Goto MainMenu" creator="" creation-date="10/25/2024 16:52:09" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
               <state-invariant />
               <actions />
             </state>
           </item>
-          <item id="3e6f87e3bd7945c7b4da43c04d81be29" cid="ST008" type="state" name="GameOver" creator="" creation-date="10/25/2024 16:50:13">
+          <item id="3e6f87e3bd7945c7b4da43c04d81be29" cid="ST008" type="state" name="GameOver" creator="" creation-date="10/25/2024 16:50:13" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
               <state-invariant />
               <actions />
             </state>
           </item>
-          <item id="decccb79b1c74704ba2a6f267d99f121" cid="ST006" type="state" name="Pause" creator="" creation-date="10/25/2024 16:43:26">
+          <item id="decccb79b1c74704ba2a6f267d99f121" cid="ST006" type="state" name="Pause" creator="" creation-date="10/25/2024 16:43:26" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
               <state-invariant />
               <actions />
@@ -2093,7 +2112,7 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <trigger ref="37706c46ad7e4d77b6044e5ddbc1a466" />
             </transition>
           </item>
-          <item id="fa6cedfe4a8944719b5c442c6df6df0e" cid="ST004" type="state" name="Main" creator="" creation-date="10/25/2024 16:43:02">
+          <item id="fa6cedfe4a8944719b5c442c6df6df0e" cid="ST004" type="state" name="Main" creator="" creation-date="10/25/2024 16:43:02" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
               <state-invariant />
               <actions />
@@ -2306,8 +2325,8 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="c2d4c6b1b6184d11b98eae5e3da864a1" cid="REL027" type="relationship" name="click" creator="" creation-date="10/24/2024 19:30:25" from="06192842d1534bde933d80b06944f451" to="bd023e57df30452d82c67aadecedc830" visibility="package">
             <owned-items />
             <relation from="06192842d1534bde933d80b06944f451" to="bd023e57df30452d82c67aadecedc830" derived="false">
-              <start-role id="umlar-2498b9b3-9741-4780-8f6f-5530ae39c565" name="" navigability="" association-type="association" visibility="private" property-ref="7a8a4fdbffe7442fa3de31f9405c48df" />
-              <end-role id="umlar-0ef16ac0-b5e4-4111-a1c3-9f78e4ae039f" name="" navigability="yes" association-type="association" visibility="private" property-ref="3917d5a6cf2848c9b6b6ecece8d53208" />
+              <start-role id="umlar-1d51d425-512d-4466-9f2c-dadaf7077bad" name="" navigability="" association-type="association" visibility="private" property-ref="7a8a4fdbffe7442fa3de31f9405c48df" />
+              <end-role id="umlar-2a59ab26-c164-478a-a58c-73b0c2e4e72a" name="" navigability="yes" association-type="association" visibility="private" property-ref="3917d5a6cf2848c9b6b6ecece8d53208" />
             </relation>
           </item>
           <item id="2f5ab7bf2dc84050b32201c344e03ff5" cid="PROP072" type="property" name="bool canInput" owner="0619b792ce4f4b779e04a80383c48916" creator="" creation-date="10/24/2024 18:16:13" visibility="private" />
@@ -2316,8 +2335,8 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="e10e76e4c99d4e6cb621b95c61d9a578" cid="REL031" type="relationship" creator="" creation-date="10/24/2024 19:32:28" from="0c1c65a807fd41a9a9ab1282a5aa61af" to="0be8484b3038494fbdaad1d24ba082d4" visibility="package">
             <owned-items />
             <relation from="0c1c65a807fd41a9a9ab1282a5aa61af" to="0be8484b3038494fbdaad1d24ba082d4" derived="false">
-              <start-role id="umlar-64ba91d4-56c8-4642-a339-4654d1f097c1" name="" navigability="" association-type="association" visibility="private" property-ref="be1add0225af426fb5166a7a9b458110" />
-              <end-role id="umlar-871b80a1-2717-4de3-9360-24a8d23d464c" name="" navigability="yes" association-type="association" visibility="private" property-ref="d243a0d345c54c6d8de42389773518a7" />
+              <start-role id="umlar-1934f8be-41a1-4821-953c-e93cf8efa165" name="" navigability="" association-type="association" visibility="private" property-ref="be1add0225af426fb5166a7a9b458110" />
+              <end-role id="umlar-c27893f4-9700-465c-8727-34a717441f21" name="" navigability="yes" association-type="association" visibility="private" property-ref="d243a0d345c54c6d8de42389773518a7" />
             </relation>
           </item>
           <item id="0be8484b3038494fbdaad1d24ba082d4" cid="C018" type="class" name="Home Manager" creator="" creation-date="10/24/2024 17:52:06" visibility="undefined">
@@ -2388,8 +2407,8 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="87ddecff5045475c94d0b9e2aaca77ba" cid="REL033" type="relationship" name="subscribe" creator="" creation-date="10/24/2024 19:32:48" from="0619b792ce4f4b779e04a80383c48916" to="0be8484b3038494fbdaad1d24ba082d4" visibility="package">
             <owned-items />
             <relation from="0619b792ce4f4b779e04a80383c48916" to="0be8484b3038494fbdaad1d24ba082d4" derived="false">
-              <start-role id="umlar-a507ef41-209f-49dd-a644-54b737987ae4" name="" navigability="" association-type="association" visibility="private" property-ref="b4d7d7049e564761a9986bfab1116488" />
-              <end-role id="umlar-6f4d58d7-c214-439a-aff1-7beb213d658d" name="" navigability="yes" association-type="association" visibility="private" attribute-ref="add839ffa597e4285b02daf2edff45fb6999" property-ref="82edb910976842568cb857a4cfe391e7" />
+              <start-role id="umlar-ad0e0faf-c1f5-41e2-a34e-c26d979c57c7" name="" navigability="" association-type="association" visibility="private" property-ref="b4d7d7049e564761a9986bfab1116488" />
+              <end-role id="umlar-e13f95b9-23ef-41f1-8331-1aab4f6bc8fd" name="" navigability="yes" association-type="association" visibility="private" attribute-ref="add839ffa597e4285b02daf2edff45fb6999" property-ref="82edb910976842568cb857a4cfe391e7" />
             </relation>
           </item>
           <item id="0619b792ce4f4b779e04a80383c48916" cid="C019" type="class" name="Home Player Controller" creator="" creation-date="10/24/2024 17:52:47" visibility="undefined">
@@ -2412,8 +2431,8 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="6cab185a657242cd8c5cc47f8dd8c62d" cid="REL026" type="relationship" name="click" creator="" creation-date="10/24/2024 19:27:56" from="390f1d2ad4d841f19d8b7aad3aba21d9" to="0c1c65a807fd41a9a9ab1282a5aa61af" visibility="package">
             <owned-items />
             <relation from="390f1d2ad4d841f19d8b7aad3aba21d9" to="0c1c65a807fd41a9a9ab1282a5aa61af" derived="false">
-              <start-role id="umlar-3dc43d17-88e9-49ee-9d00-058bddb99acb" name="" navigability="" association-type="association" visibility="private" property-ref="c93c1163de3c4e3093941aa6d09b3190" />
-              <end-role id="umlar-562bac31-27a1-47e0-b48f-7cfd20c91566" name="" navigability="yes" association-type="association" visibility="private" property-ref="ad5967c8977c423e9aa498f392e04486" />
+              <start-role id="umlar-da458105-dd42-4413-ac1e-7a2ba161108a" name="" navigability="" association-type="association" visibility="private" property-ref="c93c1163de3c4e3093941aa6d09b3190" />
+              <end-role id="umlar-da9f8011-c6e6-471a-a982-0ddfcb963af5" name="" navigability="yes" association-type="association" visibility="private" property-ref="ad5967c8977c423e9aa498f392e04486" />
             </relation>
           </item>
           <item id="04792eb21d4a4fa9b409e1b1b1248121" cid="PROP089" type="property" name="CharacterSelectCanvas canvas" owner="bd023e57df30452d82c67aadecedc830" creator="" creation-date="10/24/2024 18:48:41" visibility="private" />
@@ -2421,8 +2440,8 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="da2272a8c4a94758b687ff05b4eab79b" cid="REL028" type="relationship" name="character: character" creator="" creation-date="10/24/2024 19:31:13" from="bd023e57df30452d82c67aadecedc830" to="0c1c65a807fd41a9a9ab1282a5aa61af" visibility="package">
             <owned-items />
             <relation from="bd023e57df30452d82c67aadecedc830" to="0c1c65a807fd41a9a9ab1282a5aa61af" derived="false">
-              <start-role id="umlar-e03aa8ca-9a27-4797-acd6-01ec314d0edc" name="" navigability="" association-type="association" visibility="private" property-ref="fed283efc7eb4477b3e6e4fab63edfd9" />
-              <end-role id="umlar-750abc82-b3b2-41d9-bd95-7842166eaac3" name="" navigability="yes" association-type="association" visibility="private" property-ref="762518980ca140bd9ac4af8f764877a4" />
+              <start-role id="umlar-8d50870b-f8e6-42e8-b8cb-56b8a133a77a" name="" navigability="" association-type="association" visibility="private" property-ref="fed283efc7eb4477b3e6e4fab63edfd9" />
+              <end-role id="umlar-647013a1-f8c6-44ce-9bad-c61a4ef9ca24" name="" navigability="yes" association-type="association" visibility="private" property-ref="762518980ca140bd9ac4af8f764877a4" />
             </relation>
           </item>
           <item id="a21d3ed891dd4a789bc9f97f3df6577b" cid="PROP074" type="property" name="Action&lt;GameState&gt; OnStateChange;" owner="0be8484b3038494fbdaad1d24ba082d4" creator="" creation-date="10/24/2024 18:23:14" visibility="public">
@@ -2439,8 +2458,8 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="a7635c41a9da42f692fe776f9d108abb" cid="REL025" type="relationship" name="click" creator="" creation-date="10/24/2024 19:27:53" from="2c554ff9cf4e44c2ac1135c4d367c647" to="0c1c65a807fd41a9a9ab1282a5aa61af" visibility="package">
             <owned-items />
             <relation from="2c554ff9cf4e44c2ac1135c4d367c647" to="0c1c65a807fd41a9a9ab1282a5aa61af" derived="false">
-              <start-role id="umlar-4cbd785a-9f68-4561-8b73-1ffaaeb17236" name="" navigability="" association-type="association" visibility="private" property-ref="7b2f63d6e53745fda7e4758ac2c73557" />
-              <end-role id="umlar-d8c88ed8-705c-46e3-98d9-c9d215c35451" name="" navigability="yes" association-type="association" visibility="private" property-ref="7b70d65872ee430798bccdf086dc9008" />
+              <start-role id="umlar-7a2e9695-0b14-4701-a7ca-794031221810" name="" navigability="" association-type="association" visibility="private" property-ref="7b2f63d6e53745fda7e4758ac2c73557" />
+              <end-role id="umlar-cfe1c3c6-05b1-4c49-ae23-f4c36356eb6e" name="" navigability="yes" association-type="association" visibility="private" property-ref="7b70d65872ee430798bccdf086dc9008" />
             </relation>
           </item>
           <item id="2c554ff9cf4e44c2ac1135c4d367c647" cid="I009" type="uml-interface-classifier" name="btn_back" creator="" creation-date="10/24/2024 18:36:12" visibility="undefined">
@@ -2451,18 +2470,18 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <stereotype id="2c554ff9cf4e44c2ac1135c4d367c647_interface_c" type="interface" creation-date="10/24/2024 18:36:12" ref="" />
             </stereotype-instances>
           </item>
-          <item id="e4533851d5dc4be785f4d93ff6434027" cid="REL032" type="relationship" name="subscribe" creator="" creation-date="10/24/2024 19:32:38" from="0c1c65a807fd41a9a9ab1282a5aa61af" to="0be8484b3038494fbdaad1d24ba082d4" visibility="package">
-            <owned-items />
-            <relation from="0c1c65a807fd41a9a9ab1282a5aa61af" to="0be8484b3038494fbdaad1d24ba082d4" derived="false">
-              <start-role id="umlar-3177a815-9531-4b14-b9d3-d1b91f54a3d1" name="" navigability="" association-type="association" visibility="private" property-ref="4d93dcd4079e4eb28db0f018bbe4221c" />
-              <end-role id="umlar-f4adb8c0-4b99-40a4-90f2-71754f64371c" name="" navigability="yes" association-type="association" visibility="private" attribute-ref="add839ffa597e4285b02daf2edff45fb6999" property-ref="8ecfd8e42e4e4ce985c3904cc40e5397" />
-            </relation>
-          </item>
           <item id="14d1ef6a53d94aa8adffd06000d609c6" cid="REL034" type="relationship" creator="" creation-date="10/24/2024 19:33:01" from="6a7c3ba477344ccfb4bff90352287e1f" to="0be8484b3038494fbdaad1d24ba082d4" visibility="package">
             <owned-items />
             <relation from="6a7c3ba477344ccfb4bff90352287e1f" to="0be8484b3038494fbdaad1d24ba082d4" derived="false">
-              <start-role id="umlar-c751684c-f56b-4933-9275-c59b7e74f1e4" name="" navigability="" association-type="association" visibility="private" property-ref="15ed828969bf4fdba2b0fb1395265ece" />
-              <end-role id="umlar-8cd5ffbc-1a31-499d-a69d-d3ccab318848" name="" navigability="yes" association-type="association" visibility="private" property-ref="ac6a28d6cd104648b614f04958fa734d" />
+              <start-role id="umlar-43b4a10c-3b45-4131-a6d6-c8cbfa0b8408" name="" navigability="" association-type="association" visibility="private" property-ref="15ed828969bf4fdba2b0fb1395265ece" />
+              <end-role id="umlar-f4f4d4b8-1416-41d7-93ee-3c5117d6a088" name="" navigability="yes" association-type="association" visibility="private" property-ref="ac6a28d6cd104648b614f04958fa734d" />
+            </relation>
+          </item>
+          <item id="e4533851d5dc4be785f4d93ff6434027" cid="REL032" type="relationship" name="subscribe" creator="" creation-date="10/24/2024 19:32:38" from="0c1c65a807fd41a9a9ab1282a5aa61af" to="0be8484b3038494fbdaad1d24ba082d4" visibility="package">
+            <owned-items />
+            <relation from="0c1c65a807fd41a9a9ab1282a5aa61af" to="0be8484b3038494fbdaad1d24ba082d4" derived="false">
+              <start-role id="umlar-b661add8-2d7f-4033-8f6c-1f4b4799f1cf" name="" navigability="" association-type="association" visibility="private" property-ref="4d93dcd4079e4eb28db0f018bbe4221c" />
+              <end-role id="umlar-d0bb276d-9d83-4a6d-b38c-abd90fd47d5a" name="" navigability="yes" association-type="association" visibility="private" attribute-ref="add839ffa597e4285b02daf2edff45fb6999" property-ref="8ecfd8e42e4e4ce985c3904cc40e5397" />
             </relation>
           </item>
           <item id="54e940f579414f0ca57467303b5513c6" cid="C023" type="class" name="HomeDefs" creator="" creation-date="10/24/2024 18:27:02" visibility="undefined">
@@ -2504,8 +2523,8 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="dc7fc63049df4cbe938293ed755f758b" cid="REL029" type="relationship" name="selected: selected" creator="" creation-date="10/24/2024 19:32:09" from="0c1c65a807fd41a9a9ab1282a5aa61af" to="0be8484b3038494fbdaad1d24ba082d4" visibility="package">
             <owned-items />
             <relation from="0c1c65a807fd41a9a9ab1282a5aa61af" to="0be8484b3038494fbdaad1d24ba082d4" derived="false">
-              <start-role id="umlar-10526e52-524c-483d-8256-4d96fc7bf92b" name="" navigability="" association-type="association" visibility="private" property-ref="91fd4f37869c48ccbecf88d583d6fcb5" />
-              <end-role id="umlar-10c00636-dd96-4b27-955d-7cd409f33edd" name="" navigability="yes" association-type="association" visibility="private" property-ref="a6153884c7aa4fcfbdf92c321e466373" />
+              <start-role id="umlar-8e8069c9-6b79-4ff0-a359-e1dac665c8cb" name="" navigability="" association-type="association" visibility="private" property-ref="91fd4f37869c48ccbecf88d583d6fcb5" />
+              <end-role id="umlar-7e736859-c2e0-4954-ab91-ae472673c00f" name="" navigability="yes" association-type="association" visibility="private" property-ref="a6153884c7aa4fcfbdf92c321e466373" />
             </relation>
           </item>
           <item id="0c1c65a807fd41a9a9ab1282a5aa61af" cid="C024" type="class" name="CharacterSelectCanvas" creator="" creation-date="10/24/2024 18:30:02" visibility="undefined">
@@ -2674,7 +2693,7 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
             <relation from="0c1c65a807fd41a9a9ab1282a5aa61af" from-iid="5a411d7e0056451fb921c0627e8ae09b" from-field="oe17c4a5c4c364bd4b5af3fb95110b001793" to="0be8484b3038494fbdaad1d24ba082d4" to-iid="18d048960e7f4bc3b492e15fe4362fe1" />
           </item>
           <item id="87ddecff5045475c94d0b9e2aaca77ba" iid="2af80358a93f429f914dd326823be3fc" creation-date="10/24/2024 19:32:48" order-index="30" type="relation">
-            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-to-fields="true" auto-path="" x1="1142" y1="700" x2="1022" y2="649" start-border-pos="0.8077445652173914" end-border-pos="0.3764585910883165" start-local-pos="141" end-local-pos="50" name-position="0,20">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-to-fields="true" auto-path="" x1="1142" y1="700" x2="1022" y2="649" start-border-pos="0.8077445652173914" end-border-pos="0.3764585910883165" start-local-pos="91" end-local-pos="50" name-position="0,20">
               <points>
                 <point x="1142" y="700" />
                 <point x="1022" y="649" />
@@ -2739,16 +2758,16 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
               <actions />
             </state>
           </item>
+          <item id="2dfeb4ba692b4d2f9eef2369f6e36961" cid="ELEM009" type="general-transition" creator="" creation-date="10/24/2024 18:14:50" from="55f640246d6940dfbd451df3862a1d4f" to="1b9cb76457d545a095a6e7ecfc178fcb" visibility="package">
+            <transition kind="internal">
+              <trigger ref="c98347c9e5f24712a728cf5cdee83fd2" />
+            </transition>
+          </item>
           <item id="69b0602b1cab4911a1eaa9cb4a5ab6d9" cid="ST003" type="state" name="Character Select" creator="" creation-date="10/24/2024 18:13:39" visibility="undefined">
             <state composite="false" orthogonal="false" simple="false" submachine-state="false">
               <state-invariant />
               <actions />
             </state>
-          </item>
-          <item id="2dfeb4ba692b4d2f9eef2369f6e36961" cid="ELEM009" type="general-transition" creator="" creation-date="10/24/2024 18:14:50" from="55f640246d6940dfbd451df3862a1d4f" to="1b9cb76457d545a095a6e7ecfc178fcb" visibility="package">
-            <transition kind="internal">
-              <trigger ref="c98347c9e5f24712a728cf5cdee83fd2" />
-            </transition>
           </item>
           <item id="26229e586a824017bbad5ad86da15d3f" cid="ELEM007" type="general-transition" creator="" creation-date="10/24/2024 18:14:36" from="69b0602b1cab4911a1eaa9cb4a5ab6d9" to="55f640246d6940dfbd451df3862a1d4f" visibility="package">
             <transition kind="internal">
@@ -2837,8 +2856,8 @@ ex) 적 이동속도 감소는 스텟으로 추가할 수 있는 능력이 아�
           <item id="425434d54ffb46bd9c0eabc8f7c0c16b" cid="AC001" type="actor" name="User" creator="" creation-date="10/24/2024 19:00:19" visibility="undefined">
             <owned-items />
           </item>
-          <item id="f12d28b67a794e20885117434d1f6a88" cid="ES001" type="activation-bar" name="ExecutionSpecification1" owner="425434d54ffb46bd9c0eabc8f7c0c16b" creator="" creation-date="10/24/2024 19:00:58" visibility="undefined" />
           <item id="afb933f8bc8742fa9306996dd902b0df" cid="ES005" type="activation-bar" name="ExecutionSpecification5" owner="425434d54ffb46bd9c0eabc8f7c0c16b" creator="" creation-date="10/24/2024 19:01:12" visibility="undefined" />
+          <item id="f12d28b67a794e20885117434d1f6a88" cid="ES001" type="activation-bar" name="ExecutionSpecification1" owner="425434d54ffb46bd9c0eabc8f7c0c16b" creator="" creation-date="10/24/2024 19:00:58" visibility="undefined" />
           <item id="afd48f58d6684a8a9e880813ecd79e8e" cid="LL001" type="lifeline" name="HomeScene" creator="" creation-date="10/24/2024 19:00:31" visibility="undefined">
             <owned-items />
             <lifeline classifier-name="" selector="" is-multi-object="false" />
