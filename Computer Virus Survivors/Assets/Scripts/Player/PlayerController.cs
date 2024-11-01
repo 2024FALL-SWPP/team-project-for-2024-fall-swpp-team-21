@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public PlayerStatData playerStatData;
     public PlayerStatEventCaller statEventCaller;
 
-    private PlayerStat playerStat = new PlayerStat();
+    public PlayerStat playerStat = new PlayerStat();
 
     private void Start()
     {

@@ -22,8 +22,8 @@ public class PlayerStatData : ScriptableObject
     public int multiProjectile;            // 다중 발사체 수
     public int attackSpeed;                // 공격 속도   attackPeriod = 100 / (attackSpeed) : default = 100
     public int attackRange;                // 공격 범위
-    public int critAttackProbability;      // 치명타 확률
-    public int critAttackPoint;            // 치명타시 대미지 배율 (100 + critAttackPoint)%
+    public int critProbability;      // 치명타 확률
+    public int critPoint;            // 치명타시 대미지 배율 (100 + critAttackPoint)%
 
     public int expGainRatio;               // 경험치 획득 비율 (100 + expGainRatio)%
     public int playerLevel;                // 플레이어 레벨
