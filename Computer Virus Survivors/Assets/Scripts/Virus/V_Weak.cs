@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VirusWeak : VirusBehaviour
+public class V_Weak : VirusBehaviour
 {
-    // // Start is called before the first frame update
+    // Temp
     private void Start()
     {
-        player = GameObject.Find("Player");
-        maxHP = 1;
+        player = GameObject.Find("Player"); // FIXME
+        maxHP = 10;
         currentHP = maxHP;
         moveSpeed = 1.5f;
         dropExp = 100;
         contactDamage = 5;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         Move();

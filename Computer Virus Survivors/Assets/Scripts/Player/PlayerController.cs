@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 
     public PlayerStat playerStat = new PlayerStat();
 
+    private int currentInvincibleFrame = 0;
+
     private void Start()
     {
         playerStat.Initialize(playerStatData, statEventCaller);
@@ -18,6 +20,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (currentInvincibleFrame > 0)
+        {
+            currentInvincibleFrame--;
+        }
         Move();
     }
 
@@ -71,12 +77,24 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-
+        // TODO: Game Over
     }
 
     public void GetDamage(int damage)
     {
+        // 만약 무적 프레임이 남아있다면 데미지를 받지 않음
+        if (currentInvincibleFrame > 0)
+        {
+            return;
+        }
 
+        playerStat.CurrentHP -= damage;
+        currentInvincibleFrame = playerStat.InvincibleFrame;
+        Debug.Log("Player HP: " + playerStat.CurrentHP);
+        if (playerStat.CurrentHP <= 0)
+        {
+            Die();
+        }
     }
 
     public void GetSelectable()
@@ -84,9 +102,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void GetExp()
+    public void GetExp(int exp)
     {
-
+        playerStat.CurrentExp += exp;
+        Debug.Log("Player EXP: " + playerStat.CurrentExp);
+        // TODO: Level up
     }
 
     private void OnTriggerEnter(Collider other)
