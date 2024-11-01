@@ -5,11 +5,15 @@ using Cst = GameConstants;
 
 public class PlayerController : MonoBehaviour
 {
-    public PlayerStat playerStat = new PlayerStat();
+
+    public PlayerStatData playerStatData;
+    public PlayerStatEventCaller statEventCaller;
+
+    private PlayerStat playerStat = new PlayerStat();
 
     private void Start()
     {
-
+        playerStat.Initialize(playerStatData, statEventCaller);
     }
 
     private void Update()

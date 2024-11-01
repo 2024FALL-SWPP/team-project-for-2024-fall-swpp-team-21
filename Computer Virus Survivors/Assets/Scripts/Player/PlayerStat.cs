@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements.Experimental;
 
 public class PlayerStat
 {
+
+    private PlayerStatEventCaller statEventCaller;
 
     public int MaxHp
     {
@@ -17,6 +19,7 @@ public class PlayerStat
             if (value > 0)
             {
                 maxHP = value;
+                statEventCaller.OnStatChanged(nameof(MaxHp), value);
             }
         }
     }
@@ -34,6 +37,7 @@ public class PlayerStat
             {
                 currentHP = 0;
             }
+            statEventCaller.OnStatChanged(nameof(CurrentHP), value);
         }
     }
 
@@ -47,6 +51,7 @@ public class PlayerStat
         set
         {
             healthRezenPer10 = value;
+            statEventCaller.OnStatChanged(nameof(HealthRezenPer10), value);
         }
     }
 
@@ -59,6 +64,7 @@ public class PlayerStat
         set
         {
             defencePoint = value;
+            statEventCaller.OnStatChanged(nameof(DefencePoint), value);
         }
     }
 
@@ -72,6 +78,7 @@ public class PlayerStat
         set
         {
             evadeProbability = value;
+            statEventCaller.OnStatChanged(nameof(EvadeProbability), value);
         }
     }
 
@@ -85,6 +92,7 @@ public class PlayerStat
         set
         {
             invincibleFrame = value;
+            statEventCaller.OnStatChanged(nameof(InvincibleFrame), value);
         }
     }
 
@@ -97,6 +105,7 @@ public class PlayerStat
         set
         {
             attackPoint = value;
+            statEventCaller.OnStatChanged(nameof(AttackPoint), value);
         }
     }
 
@@ -110,6 +119,7 @@ public class PlayerStat
         set
         {
             multiProjectile = value;
+            statEventCaller.OnStatChanged(nameof(MultiProjectile), value);
         }
     }
 
@@ -122,6 +132,7 @@ public class PlayerStat
         set
         {
             attackSpeed = value;
+            statEventCaller.OnStatChanged(nameof(AttackSpeed), value);
         }
     }
 
@@ -134,6 +145,7 @@ public class PlayerStat
         set
         {
             attackRange = value;
+            statEventCaller.OnStatChanged(nameof(AttackRange), value);
         }
     }
 
@@ -146,6 +158,7 @@ public class PlayerStat
         set
         {
             critAttackProbability = value;
+            statEventCaller.OnStatChanged(nameof(CritAttackProbability), value);
         }
     }
 
@@ -158,6 +171,7 @@ public class PlayerStat
         set
         {
             critAttackPoint = value;
+            statEventCaller.OnStatChanged(nameof(CritAttackPoint), value);
         }
     }
 
@@ -170,6 +184,7 @@ public class PlayerStat
         set
         {
             expGainRatio = value;
+            statEventCaller.OnStatChanged(nameof(ExpGainRatio), value);
         }
     }
 
@@ -182,6 +197,7 @@ public class PlayerStat
         set
         {
             playerLevel = value;
+            statEventCaller.OnStatChanged(nameof(PlayerLevel), value);
         }
     }
 
@@ -194,6 +210,7 @@ public class PlayerStat
         set
         {
             currentExp = value;
+            statEventCaller.OnStatChanged(nameof(CurrentExp), value);
         }
     }
 
@@ -206,6 +223,7 @@ public class PlayerStat
         set
         {
             expGainRange = value;
+            statEventCaller.OnStatChanged(nameof(ExpGainRange), value);
         }
     }
 
@@ -218,6 +236,7 @@ public class PlayerStat
         set
         {
             moveSpeed = value;
+            statEventCaller.OnStatChanged(nameof(MoveSpeed), value);
         }
     }
 
@@ -241,47 +260,38 @@ public class PlayerStat
     private float expGainRange;             // 경험치 획득 범위
     private float moveSpeed;                // 이동 속도
 
-    private List<int> maxExpList;           // 최대 경험치 리스트
+    private int[] maxExpList;           // 최대 경험치 리스트
     private List<WeaponBehaviour> weapons;  // 무기 리스트
-    // TODO : "ItemBehavior" 아이템 구현
-    //private List<ItemBehaviour> items;    // 아이템 리스트
+                                            // TODO : "ItemBehavior" 아이템 구현
+                                            //private List<ItemBehaviour> items;    // 아이템 리스트
 
-    public PlayerStat()
+    public void Initialize(PlayerStatData playerStatData, PlayerStatEventCaller eventCaller)
     {
-        MaxHp = GameConstants.DefaultMaxHp;
-        CurrentHP = GameConstants.DefaultCurrentHp;
-        HealthRezenPer10 = GameConstants.DefaultHealthRegenPer10;
-        DefencePoint = GameConstants.DefaultDefencePoint;
-        EvadeProbability = GameConstants.DefaultEvadeProbability;
-        InvincibleFrame = GameConstants.DefaultInvincibleFrame;
 
-        AttackPoint = GameConstants.DefaultAttackPoint;
-        MultiProjectile = GameConstants.DefaultMultiProjectile;
-        AttackSpeed = GameConstants.DefaultAttackSpeed;
-        AttackRange = GameConstants.DefaultAttackRange;
-        CritAttackProbability = GameConstants.DefaultCritAttackProbability;
-        CritAttackPoint = GameConstants.DefaultCritAttackPoint;
+        statEventCaller = eventCaller;
 
-        ExpGainRatio = GameConstants.DefaultExpGainRatio;
-        PlayerLevel = GameConstants.DefaultPlayerLevel;
-        CurrentExp = GameConstants.DefaultCurrentExp;
-        ExpGainRange = GameConstants.DefaultExpGainRange;
-        MoveSpeed = GameConstants.DefaultMoveSpeed;
+        maxHP = playerStatData.maxHP;
+        currentHP = playerStatData.currentHP;
+        healthRezenPer10 = playerStatData.healthRezenPer10;
+        defencePoint = playerStatData.defencePoint;
+        evadeProbability = playerStatData.evadeProbability;
+        invincibleFrame = playerStatData.invincibleFrame;
 
-        maxExpList = GameConstants.ExpList;
-        weapons = new List<WeaponBehaviour>();
-        // TODO : items 초기화
+        attackPoint = playerStatData.attackPoint;
+        multiProjectile = playerStatData.multiProjectile;
+        attackSpeed = playerStatData.attackSpeed;
+        attackRange = playerStatData.attackRange;
+        critAttackProbability = playerStatData.critAttackProbability;
+        critAttackPoint = playerStatData.critAttackPoint;
+
+        expGainRatio = playerStatData.expGainRatio;
+        playerLevel = playerStatData.playerLevel;
+        currentExp = playerStatData.currentExp;
+        expGainRange = playerStatData.expGainRange;
+        moveSpeed = playerStatData.moveSpeed;
+
+        maxExpList = playerStatData.maxExpList;
     }
 
-    public void GetWeapon(WeaponBehaviour weapon)
-    {
-        weapons.Add(weapon);
-        // TODO : 무기 효과 적용
-    }
-
-    // public void GetItem(ItemBehaviour item)
-    // {
-    //     // TODO : 아이템 효과 적용
-    // }
 
 }
