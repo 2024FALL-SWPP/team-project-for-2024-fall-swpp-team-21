@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cst = GameConstants;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f; // Movement speed
+    public PlayerStat playerStat = new PlayerStat();
 
     private void Start()
     {
@@ -18,9 +19,6 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        const int thresholdFrame = 3;       // 대각선으로 움직이다 한 쪽 방향키를 뗐을 때 대각선을 유지하는 유예 프레임
-        const float inputUnitPerSec = .2f;  // 방향키를 뗐을 때 axis input 감소량 (input manager -> gravity / 60)
-
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -29,15 +27,19 @@ public class PlayerController : MonoBehaviour
         float verticalAbs = Mathf.Abs(verticalInput);
 
         // 두 방향키를 모두 뗀 후 3프레임이 지난 시점에 중립 판정
-        if (horizontalAbs < .6f && verticalAbs < .6f) return;
+        if (horizontalAbs < Cst.DeadZoneSec
+            && verticalAbs < Cst.DeadZoneSec)
+        {
+            return;
+        }
 
         // 8-axis movement
-        if (horizontalAbs - verticalAbs > thresholdFrame * inputUnitPerSec + .1f)
+        if (horizontalAbs - verticalAbs > Cst.ThresholdSec)
         {
             // 수직 방향키를 뗀 후 3프레임 이상 지나면 수직 속력 0
             verticalInput = 0;
         }
-        else if (verticalAbs - horizontalAbs > thresholdFrame * inputUnitPerSec + .1f)
+        else if (verticalAbs - horizontalAbs > Cst.ThresholdSec)
         {
             // 수평 방향키를 뗀 후 3프레임 이상 지나면 수평 속력 0
             horizontalInput = 0;
@@ -58,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
 
-        transform.Translate(moveSpeed * Time.deltaTime * moveDirection, Space.World);
+        transform.Translate(playerStat.MoveSpeed * Time.deltaTime * moveDirection, Space.World);
         transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
     }

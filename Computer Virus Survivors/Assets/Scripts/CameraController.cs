@@ -1,22 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cst = GameConstants;
 
 public class CameraController : MonoBehaviour
 {
     public GameObject player;
-    public Vector3 offset = new Vector3(0, 10, -10);
 
     // Start is called before the first frame update
-    // private void Start()
-    // {
-
-    // }
+    private void Start()
+    {
+        transform.position = player.transform.position + Cst.CameraOffset;
+        transform.LookAt(player.transform);
+    }
 
     // Update is called once per frame
     private void LateUpdate()
     {
-        transform.position = player.transform.position + offset;
-        transform.LookAt(player.transform);
+        transform.position = player.transform.position + Cst.CameraOffset;
     }
 }
