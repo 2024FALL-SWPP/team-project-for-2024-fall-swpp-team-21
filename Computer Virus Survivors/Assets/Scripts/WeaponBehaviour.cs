@@ -4,32 +4,34 @@ using UnityEngine;
 
 abstract public class WeaponBehaviour : SelectableBehaviour
 {
-    protected GameObject player;
+
+    protected PlayerController playerController;
+    protected PlayerStat playerStat;
     protected ProjectileBehaviour projectile;
-    protected int damage;
-    protected float attackPeriod;
-    protected float attackRange;
+    protected int basicDamage;
+    protected float basicAttackPeriod;
+    protected float basicAttackRange;
 
     protected abstract IEnumerator Attack();
     protected int CalcProjectileDamage()
     {
-        // TODO:
-        return damage;
+        return basicDamage * playerStat.AttackPoint * (IsCritical() ? playerStat.CritAttackPoint : 100) / 10000;
     }
     protected float CalcAttackPeriod()
     {
-        // TODO
-        return attackPeriod;
+
+        return basicAttackPeriod;
     }
     protected float CalcAttackRange()
     {
         // TODO
-        return attackRange;
+        return basicAttackRange;
     }
+
+
     protected bool IsCritical()
     {
-        // TODO
-        return false;
+        return Random.Range(0, 100) < playerStat.CritAttackProbability;
     }
 
 
