@@ -4,8 +4,8 @@ using UnityEngine;
 
 abstract public class SelectableBehaviour : MonoBehaviour
 {
-    protected int level;
-    protected int levelMax;
+    public int level;
+    public int levelMax;
     protected GameObject player;
 
     abstract protected void LevelUp();

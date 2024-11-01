@@ -149,29 +149,29 @@ public class PlayerStat
         }
     }
 
-    public int CritAttackProbability
+    public int CritProbability
     {
         get
         {
-            return critAttackProbability;
+            return critProbability;
         }
         set
         {
-            critAttackProbability = value;
-            statEventCaller.OnStatChanged(nameof(CritAttackProbability), value);
+            critProbability = value;
+            statEventCaller.OnStatChanged(nameof(CritProbability), value);
         }
     }
 
-    public int CritAttackPoint
+    public int CritPoint
     {
         get
         {
-            return critAttackPoint;
+            return critPoint;
         }
         set
         {
-            critAttackPoint = value;
-            statEventCaller.OnStatChanged(nameof(CritAttackPoint), value);
+            critPoint = value;
+            statEventCaller.OnStatChanged(nameof(CritPoint), value);
         }
     }
 
@@ -251,8 +251,8 @@ public class PlayerStat
     private int multiProjectile;            // 다중 발사체 수
     private int attackSpeed;                // 공격 속도   attackPeriod = 100 / (attackSpeed) : default = 100
     private int attackRange;                // 공격 범위
-    private int critAttackProbability;      // 치명타 확률
-    private int critAttackPoint;            // 치명타시 대미지 배율 (100 + critAttackPoint)%
+    private int critProbability;            // 치명타 확률
+    private int critPoint;                  // 치명타시 대미지 배율 (100 + critPoint)%
 
     private int expGainRatio;               // 경험치 획득 비율 (100 + expGainRatio)%
     private int playerLevel;                // 플레이어 레벨
@@ -267,7 +267,6 @@ public class PlayerStat
 
     public void Initialize(PlayerStatData playerStatData, PlayerStatEventCaller eventCaller)
     {
-
         statEventCaller = eventCaller;
 
         maxHP = playerStatData.maxHP;
@@ -281,8 +280,8 @@ public class PlayerStat
         multiProjectile = playerStatData.multiProjectile;
         attackSpeed = playerStatData.attackSpeed;
         attackRange = playerStatData.attackRange;
-        critAttackProbability = playerStatData.critAttackProbability;
-        critAttackPoint = playerStatData.critAttackPoint;
+        critProbability = playerStatData.critProbability;
+        critPoint = playerStatData.critPoint;
 
         expGainRatio = playerStatData.expGainRatio;
         playerLevel = playerStatData.playerLevel;
@@ -291,7 +290,13 @@ public class PlayerStat
         moveSpeed = playerStatData.moveSpeed;
 
         maxExpList = playerStatData.maxExpList;
+        weapons = new List<WeaponBehaviour>();
     }
 
-
+    // TODO : 테스트용 함수
+    public void GetWeapon(WeaponBehaviour weapon)
+    {
+        weapons.Add(weapon);
+        weapon.InitializeWeapon(this, statEventCaller);
+    }
 }
