@@ -6,31 +6,32 @@ public class VirusBehaviour : MonoBehaviour
 {
     protected GameObject player;
     protected int maxHP;
-    protected int currentHP;
     protected float moveSpeed;
     protected int dropExp;
     protected int contactDamage;
 
-    // // Start is called before the first frame update
-    // void Start()
-    // {
-
-    // }
+    protected int currentHP;
 
     public void Initialize(GameObject player)
     {
         this.player = player;
     }
 
-    // // Update is called once per frame
-    // void Update()
+    // protected void OnEnable()
+    // {
+    //     currentHP = maxHP;
+    // }
+
+    // protected void Update()
     // {
     //     Move();
     // }
 
     protected void Move()
     {
-        Vector3 moveDirection = (player.transform.position - transform.position).normalized;
+        Vector3 playerPos = new Vector3(player.transform.position.x, 0, player.transform.position.z);
+        Vector3 myPos = new Vector3(transform.position.x, 0, transform.position.z);
+        Vector3 moveDirection = (playerPos - myPos).normalized;
         transform.Translate(moveSpeed * Time.deltaTime * moveDirection, Space.World);
         transform.rotation = Quaternion.LookRotation(moveDirection);
     }
@@ -39,6 +40,7 @@ public class VirusBehaviour : MonoBehaviour
     {
         // TODO: Object pooling
         Destroy(gameObject);
+        // gameObject.SetActive(false);
 
         // TODO: Drop exp + object pooling
         // Instantiate(expPrefab, transform.position, expPrefab.transform.rotation);
@@ -53,12 +55,21 @@ public class VirusBehaviour : MonoBehaviour
         }
     }
 
-    protected void Attack()
-    {
+    // ??
+    // protected void Attack(
+    // {
 
-    }
+    // }
 
     protected void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerController>().GetDamage(contactDamage);
+        }
+    }
+
+    protected void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

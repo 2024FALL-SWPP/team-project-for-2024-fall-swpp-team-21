@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 
     public PlayerStat playerStat = new PlayerStat();
 
+    private bool isInvincible = false;
+
     private void Start()
     {
         playerStat.Initialize(playerStatData, statEventCaller);
@@ -71,12 +73,24 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-
+        // TODO: Game Over
     }
 
     public void GetDamage(int damage)
     {
+        // 만약 무적 프레임이 남아있다면 데미지를 받지 않음
+        if (isInvincible)
+        {
+            return;
+        }
 
+        StartCoroutine(BeInvincible());
+        playerStat.CurrentHP -= damage;
+        Debug.Log("Player HP: " + playerStat.CurrentHP);
+        if (playerStat.CurrentHP <= 0)
+        {
+            Die();
+        }
     }
 
     public void GetSelectable()
@@ -84,13 +98,22 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void GetExp()
+    public void GetExp(int exp)
     {
-
+        playerStat.CurrentExp += exp;
+        Debug.Log("Player EXP: " + playerStat.CurrentExp);
+        // TODO: Level up
     }
 
     private void OnTriggerEnter(Collider other)
     {
 
+    }
+
+    private IEnumerator BeInvincible()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(playerStat.InvincibleFrame / 60.0f);
+        isInvincible = false;
     }
 }
