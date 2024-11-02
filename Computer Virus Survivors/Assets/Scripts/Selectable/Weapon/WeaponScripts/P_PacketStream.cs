@@ -5,21 +5,16 @@ using System;
 
 public class P_PacketStream : ProjectileBehaviour
 {
+    [SerializeField] private float bulletSpeed;
 
-    private void OnEnable()
+    private void OnBecameInvisible()
     {
-        StartCoroutine(LifeTime());
-    }
-
-    private IEnumerator LifeTime()
-    {
-        yield return new WaitForSeconds(3);
-        Destroy(gameObject);
+        //enabled = false;
     }
 
     private void Update()
     {
-        transform.Translate(10 * Time.deltaTime * Vector3.forward);
+        transform.Translate(bulletSpeed * Time.deltaTime * Vector3.forward);
     }
 
     protected override void OnTriggerEnter(Collider other)

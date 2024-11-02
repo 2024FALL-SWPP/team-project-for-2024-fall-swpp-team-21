@@ -293,10 +293,4 @@ public class PlayerStat
         weapons = new List<WeaponBehaviour>();
     }
 
-    // TODO : 테스트용 함수
-    public void GetWeapon(WeaponBehaviour weapon)
-    {
-        weapons.Add(weapon);
-        weapon.InitializeWeapon(this, statEventCaller);
-    }
 }

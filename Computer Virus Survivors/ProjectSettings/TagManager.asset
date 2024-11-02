@@ -12,11 +12,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Player_Projectile
+  - Virus
+  - Virus_Projectile
+  - Terrain
   - 
   - 
   - 

@@ -5,49 +5,176 @@ using UnityEngine;
 abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
 {
 
-    [SerializeField] protected ProjectileBehaviour projectile;  // 발사체 프리팹
-    [SerializeField] private int basicDamage;   // 기본 공격력
-    [SerializeField] private int basicMultiProjectile;  // 기본 다중 발사체 수
-    [SerializeField] private float basicAttackPeriod;   // 기본 공격 주기
-    [SerializeField] private float basicAttackRange;    // 기본 공격 범위
-    [SerializeField] private int basicAdditionalCritProbability;  // 기본 치명타 공격 확률
-    [SerializeField] private int basicAdditionalCritPoint;    // 기본 치명타 공격 대미지 배율
+    // 레벨업에 따른 설명을 저장하기 위해 어쩔 수 없이 만듦
+    // 만드는 김에 초기값도 저장함
+    // 런타임 데이터도 저장함
+    [SerializeField] private WeaponData weaponData;
 
+    // 아래 변수들의 데이터는 weaponData에 저장되어 있음
+    // set{}을 정의하기 위해 따로 뺌
+    protected int level
+    {
+        get
+        {
+            return weaponData.currentLevel;
+        }
+        set
+        {
+            weaponData.currentLevel = value;
+        }
+    }
 
-    protected PlayerStatEventCaller playerStatEventCaller;  // PlayerStatEventCaller
+    protected ProjectileBehaviour projectile;
+    protected int BasicDamage
+    {
+        get
+        {
+            return weaponData.basicDamage;
+        }
+        set
+        {
+            weaponData.basicDamage = value;
+            CalcAttackDamage();
+        }
+    }
+    protected int BasicMultiProjectile
+    {
+        get
+        {
+            return weaponData.basicMultiProjectile;
+        }
+        set
+        {
+            weaponData.basicMultiProjectile = value;
+            CalcMultiProjectile();
+        }
+    }
+    protected float BasicAttackPeriod
+    {
+        get
+        {
+            return weaponData.basicAttackPeriod;
+        }
+        set
+        {
+            weaponData.basicAttackPeriod = value;
+            CalcAttackPeriod();
+        }
+    }
+    protected float BasicAttackRange
+    {
+        get
+        {
+            return weaponData.basicAttackRange;
+        }
+        set
+        {
+            weaponData.basicAttackRange = value;
+            CalcAttackRange();
+        }
+    }
+    protected int BasicAdditionalCritProbability
+    {
+        get
+        {
+            return weaponData.basicAddiCritProbability;
+        }
+        set
+        {
+            weaponData.basicAddiCritProbability = value;
+            CalcCritProbability();
+        }
+    }
+    protected int BasicAdditionalCritPoint
+    {
+        get
+        {
+            return weaponData.basicAddiCritPoint;
+        }
+        set
+        {
+            weaponData.basicAddiCritPoint = value;
+            CalcCritPoint();
+        }
+    }
+
+    protected PlayerStatEventCaller playerStatEventCaller;
+    protected PlayerStat playerStat;
     protected Coroutine attackCoroutine;
-    protected int finalDamage;  // 최종 공격력
-    protected int finalMultiProjectile; // 최종 다중 발사체 수
-    protected float finalAttackPeriod;  // 최종 공격 주기
-    protected float finalAttackRange;   // 최종 공격 범위
-    protected int finalCritPoint;       // 최종 치명타 공격 대미지 배율
 
-    private int finalCritProbability;  // 최종 치명타 공격 확률
+    protected int finalDamage { get; private set; }  // 최종 공격력
+    protected int finalMultiProjectile { get; private set; } // 최종 다중 발사체 수
+    protected float finalAttackPeriod { get; private set; }  // 최종 공격 주기
+    protected float finalAttackRange { get; private set; }   // 최종 공격 범위
+    protected int finalCritPoint { get; private set; }       // 최종 치명타 공격 대미지 배율
+    protected int finalCritProbability { get; private set; }  // 최종 치명타 공격 확률
 
 
     /// <summary>
-    /// 무��별로 서로 다른 공격을 구현하기 위한 추상 메소드
+    /// 무기별로 서로 다른 공격을 구현하기 위한 추상 메소드
     /// </summary>
     /// <returns></returns>
-    protected abstract IEnumerator Attack();
+    abstract protected IEnumerator Attack();
 
 
     /// <summary>
-    /// PlayerStat으로부터 무기 스탯 초기화.
+    /// 무기별로 레벨업에 따른 효과를 정의하는 추상 메소드
+    /// </summary>
+    /// <param name="level"></param>
+    abstract protected void LevelUpEffect(int level);
+
+    /// <summary>
+    /// 레벨업시 호출되는 메소드
+    /// 각 무기를 정의하는 클래스에서 정의하지 않도록 봉인함
+    /// </summary>
+    sealed protected override void LevelUp()
+    {
+        if (level < weaponData.levelMax)
+        {
+            level++;
+            LevelUpEffect(level);
+        }
+    }
+
+
+
+    /// <summary>
+    /// 플레이어가 이 무기를 선택하면 호출됨
+    /// </summary>
+    /// <param name="player"></param>
+    public override void GetSelectable(PlayerController player)
+    {
+        if (level == 0)
+        {
+            this.player = player.gameObject;
+            InitializeWeapon(player.playerStat, player.statEventCaller);
+        }
+
+        LevelUp();
+    }
+
+
+    /// <summary>
+    /// PlayerStat받아서 저장
     /// PlayerStatEventCaller받아서 저장
+    /// final 값들 초기화
     /// </summary>
     /// <param name="playerStat"></param>
     /// <param name="caller"></param>
-    public void InitializeWeapon(PlayerStat playerStat, PlayerStatEventCaller caller)
+    private void InitializeWeapon(PlayerStat playerStat, PlayerStatEventCaller caller)
     {
-        CalcAttackDamage(playerStat.AttackPoint);
-        CalcAttackPeriod(playerStat.AttackSpeed);
-        CalcAttackRange(playerStat.AttackRange);
-        CalcMultiProjectile(playerStat.MultiProjectile);
-        CalcCritProbability(playerStat.CritProbability);
-        CalcCritPoint(playerStat.CritPoint);
+        this.playerStat = playerStat;
         playerStatEventCaller = caller;
         playerStatEventCaller.StatChanged += OnStatChanged;
+
+        projectile = weaponData.projectile;
+        BasicDamage = weaponData.basicDamage;
+        BasicMultiProjectile = weaponData.basicMultiProjectile;
+        BasicAttackPeriod = weaponData.basicAttackPeriod;
+        BasicAttackRange = weaponData.basicAttackRange;
+        BasicAdditionalCritProbability = weaponData.basicAddiCritProbability;
+        BasicAdditionalCritPoint = weaponData.basicAddiCritPoint;
+
         StartAttack();
     }
 
@@ -55,7 +182,7 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// <summary>
     /// 공격을 시작함
     /// </summary>
-    public void StartAttack()
+    protected void StartAttack()
     {
         attackCoroutine = StartCoroutine(Attack());
     }
@@ -64,7 +191,7 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// <summary>
     /// 공격을 중지함
     /// </summary>
-    public void StopAttack()
+    protected void StopAttack()
     {
         StopCoroutine(attackCoroutine);
     }
@@ -84,9 +211,9 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// 공격 대미지를 ���산함
     /// </summary>
     /// <param name="attackPoint"></param>
-    private void CalcAttackDamage(int attackPoint)
+    protected void CalcAttackDamage()
     {
-        finalDamage = basicDamage * attackPoint / 100;
+        finalDamage = BasicDamage * playerStat.AttackPoint / 100;
     }
 
 
@@ -94,9 +221,9 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// 공격 주기를 계산함
     /// </summary>
     /// <param name="attackSpeed"></param>
-    private void CalcAttackPeriod(int attackSpeed)
+    protected void CalcAttackPeriod()
     {
-        finalAttackPeriod = basicAttackPeriod / attackSpeed * 100;
+        finalAttackPeriod = BasicAttackPeriod / playerStat.AttackSpeed * 100;
     }
 
 
@@ -104,9 +231,9 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// 공격 범위를 계산함
     /// </summary>
     /// <param="attackRange"></param>
-    private void CalcAttackRange(float attackRange)
+    protected void CalcAttackRange()
     {
-        finalAttackRange = basicAttackRange * attackRange / 100;
+        finalAttackRange = BasicAttackRange * playerStat.AttackRange / 100;
     }
 
 
@@ -114,9 +241,9 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// 다중 발사체의 수를 계산함
     /// </summary>
     /// <param name="multiProjectile"></param>
-    private void CalcMultiProjectile(int multiProjectile)
+    protected void CalcMultiProjectile()
     {
-        finalMultiProjectile = basicMultiProjectile * multiProjectile;
+        finalMultiProjectile = BasicMultiProjectile * playerStat.MultiProjectile;
     }
 
 
@@ -124,9 +251,9 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// 치명타 공격 확률을 계산함
     /// </summary>
     /// <param name="critAttackProbability"></param>
-    private void CalcCritProbability(int critAttackProbability)
+    protected void CalcCritProbability()
     {
-        finalCritProbability = basicAdditionalCritProbability + critAttackProbability;
+        finalCritProbability = BasicAdditionalCritProbability + playerStat.CritProbability;
     }
 
 
@@ -134,9 +261,9 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// 치명타 공격 시 대미지 배율을 계산함
     /// </summary>
     /// <param name="critAttackPoint"></param>
-    private void CalcCritPoint(int critAttackPoint)
+    protected void CalcCritPoint()
     {
-        finalCritPoint = basicAdditionalCritPoint + critAttackPoint;
+        finalCritPoint = BasicAdditionalCritPoint + playerStat.CritPoint;
     }
 
 
@@ -150,24 +277,26 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
         switch (e.StatName)
         {
             case nameof(PlayerStat.AttackPoint):
-                CalcAttackDamage((int) e.NewValue);
+                CalcAttackDamage();
                 break;
             case nameof(PlayerStat.AttackSpeed):
-                CalcAttackPeriod((int) e.NewValue);
+                CalcAttackPeriod();
                 break;
             case nameof(PlayerStat.AttackRange):
-                CalcAttackRange((float) e.NewValue);
+                CalcAttackRange();
                 break;
             case nameof(PlayerStat.MultiProjectile):
-                CalcMultiProjectile((int) e.NewValue);
+                CalcMultiProjectile();
                 break;
             case nameof(PlayerStat.CritProbability):
-                CalcCritProbability((int) e.NewValue);
+                CalcCritProbability();
                 break;
             case nameof(PlayerStat.CritPoint):
-                CalcCritPoint((int) e.NewValue);
+                CalcCritPoint();
                 break;
         }
     }
+
+
 
 }
