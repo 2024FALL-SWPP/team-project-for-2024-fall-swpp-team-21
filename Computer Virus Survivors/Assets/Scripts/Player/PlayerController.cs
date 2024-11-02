@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public PlayerStat playerStat = new PlayerStat();
 
-    private int currentInvincibleFrame = 0;
+    private bool isInvincible = false;
 
     private void Start()
     {
@@ -20,10 +20,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (currentInvincibleFrame > 0)
-        {
-            currentInvincibleFrame--;
-        }
         Move();
     }
 
@@ -83,13 +79,13 @@ public class PlayerController : MonoBehaviour
     public void GetDamage(int damage)
     {
         // 만약 무적 프레임이 남아있다면 데미지를 받지 않음
-        if (currentInvincibleFrame > 0)
+        if (isInvincible)
         {
             return;
         }
 
+        StartCoroutine(BeInvincible());
         playerStat.CurrentHP -= damage;
-        currentInvincibleFrame = playerStat.InvincibleFrame;
         Debug.Log("Player HP: " + playerStat.CurrentHP);
         if (playerStat.CurrentHP <= 0)
         {
@@ -112,5 +108,12 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
+    }
+
+    private IEnumerator BeInvincible()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(playerStat.InvincibleFrame / 60.0f);
+        isInvincible = false;
     }
 }
