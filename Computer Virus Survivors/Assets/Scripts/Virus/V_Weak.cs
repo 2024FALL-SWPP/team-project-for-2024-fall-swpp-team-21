@@ -7,7 +7,6 @@ public class V_Weak : VirusBehaviour
     // Temp
     private void Start()
     {
-        player = GameObject.Find("Player"); // FIXME
         maxHP = 10;
         currentHP = maxHP;
         moveSpeed = 1.5f;
