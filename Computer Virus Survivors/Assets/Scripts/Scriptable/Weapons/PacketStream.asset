@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a834765126e9b1d4dae896be9081798d, type: 3}
-  m_Name: PacketData
+  m_Name: PacketStream
   m_EditorClassIdentifier: 
   objectName: "\uD328\uD0B7 \uC2A4\uD2B8\uB9BC"
   maxLevel: 9
