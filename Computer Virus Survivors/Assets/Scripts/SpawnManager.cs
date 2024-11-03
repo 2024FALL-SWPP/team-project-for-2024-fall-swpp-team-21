@@ -19,19 +19,14 @@ public class SpawnManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void Spawn(int index)
+    public void Spawn(PoolType index)
     {
         float x = Random.Range(-spawnRange.x, spawnRange.x);
         float z = Random.Range(-spawnRange.y, spawnRange.y);
 
         Vector3 spawnPosition = player.transform.position + new Vector3(x, 0, z);
-        GameObject virus = poolManager.Get(index, spawnPosition);
+        GameObject virus = poolManager.Get(index, spawnPosition, Quaternion.LookRotation(player.transform.position - spawnPosition));
 
-        // 만약 풀에서 새로 생성되었다면 Intialize 호출
-        if (virus.activeSelf)
-        {
-            virus.GetComponent<VirusBehaviour>().Initialize(player, poolManager);
-        }
-        virus.SetActive(true);
+        virus.GetComponent<VirusBehaviour>().Initialize(player, poolManager);
     }
 }

@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c847345dc6adf4694d3a3c6122f6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expPrefab: {fileID: 4880556664663077042, guid: 3a49f03556e48894b95c1bc201b28741, type: 3}
+  virusData: {fileID: 11400000, guid: 8faabd2fed0e27749ba4c5bfbd4912e7, type: 2}
 --- !u!54 &2474614017452228051
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -225,7 +225,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1 &2474614017495195098
 GameObject:

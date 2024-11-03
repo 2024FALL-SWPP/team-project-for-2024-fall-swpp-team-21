@@ -5,14 +5,14 @@ using UnityEngine;
 public class V_Weak : VirusBehaviour
 {
     // Temp
-    private void Start()
-    {
-        maxHP = 10;
-        currentHP = maxHP;
-        moveSpeed = 1.5f;
-        dropExp = 100;
-        contactDamage = 5;
-    }
+    // private void Start()
+    // {
+    //     maxHP = 10;
+    //     currentHP = maxHP;
+    //     moveSpeed = 1.5f;
+    //     dropExp = 100;
+    //     contactDamage = 5;
+    // }
 
     private void Update()
     {
