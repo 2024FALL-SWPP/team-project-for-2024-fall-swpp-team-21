@@ -11,14 +11,34 @@ public class PlayerController : MonoBehaviour
 
     public PlayerStat playerStat = new PlayerStat();
 
+    private bool isInvincible = false;
+    private SphereCollider sphereCollider;
+
+    public GameObject spawnManager; // Temp: 나중에 삭제
+
     private void Start()
     {
         playerStat.Initialize(playerStatData, statEventCaller);
+        statEventCaller.StatChanged += OnStatChanged;
+
+        // 경험치 획득 범위 초기화
+        sphereCollider = GetComponent<SphereCollider>();
+        sphereCollider.radius = playerStat.ExpGainRange;
     }
 
     private void Update()
     {
         Move();
+
+        // Temp: 스폰 임시로 구현
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            spawnManager.GetComponent<SpawnManager>().Spawn(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            spawnManager.GetComponent<SpawnManager>().Spawn(2);
+        }
     }
 
     private void Move()
@@ -71,12 +91,24 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-
+        // TODO: Game Over
     }
 
     public void GetDamage(int damage)
     {
+        // 만약 무적 프레임이 남아있다면 데미지를 받지 않음
+        if (isInvincible)
+        {
+            return;
+        }
 
+        StartCoroutine(BeInvincible());
+        playerStat.CurrentHP -= damage;
+        Debug.Log("Player HP: " + playerStat.CurrentHP);
+        if (playerStat.CurrentHP <= 0)
+        {
+            Die();
+        }
     }
 
     public void GetSelectable()
@@ -84,13 +116,30 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void GetExp()
+    public void GetExp(int exp)
     {
-
+        playerStat.CurrentExp += exp * playerStat.ExpGainRatio;
+        Debug.Log("Player EXP: " + playerStat.CurrentExp);
+        // TODO: Level up
     }
 
     private void OnTriggerEnter(Collider other)
     {
 
+    }
+
+    private IEnumerator BeInvincible()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(playerStat.InvincibleFrame / 60.0f);
+        isInvincible = false;
+    }
+
+    public void OnStatChanged(object sender, StatChangedEventArgs e)
+    {
+        if (e.StatName == nameof(PlayerStat.ExpGainRange))
+        {
+            sphereCollider.radius = playerStat.ExpGainRange;
+        }
     }
 }
