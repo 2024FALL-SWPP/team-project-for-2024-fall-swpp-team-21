@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7949ba2b296f0174fbf0ba368bdafb11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  virusData: {fileID: 11400000, guid: ec44fba017adaf74fb16cefd9ec3d13f, type: 2}
   attackPeriod: 4
   attackRange: 10
   dashSpeed: 15
@@ -128,5 +129,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0

@@ -33,11 +33,11 @@ public class PlayerController : MonoBehaviour
         // Temp: 스폰 임시로 구현
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            spawnManager.GetComponent<SpawnManager>().Spawn(1);
+            spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Weak);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            spawnManager.GetComponent<SpawnManager>().Spawn(2);
+            spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Trojan);
         }
     }
 
