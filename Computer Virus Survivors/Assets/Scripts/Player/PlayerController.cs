@@ -142,4 +142,21 @@ public class PlayerController : MonoBehaviour
             sphereCollider.radius = playerStat.ExpGainRange;
         }
     }
+
+    public void BuffStat(string statName, int value, float duration)
+    {
+        StartCoroutine(BuffCoroutine(statName, value, duration));
+    }
+
+    private IEnumerator BuffCoroutine(string statName, int value, float duration)
+    {
+        switch (statName)
+        {
+            case nameof(PlayerStat.MoveSpeed):
+                playerStat.MoveSpeed *= value;
+                yield return new WaitForSeconds(duration);
+                playerStat.MoveSpeed /= value;
+                break;
+        }
+    }
 }
