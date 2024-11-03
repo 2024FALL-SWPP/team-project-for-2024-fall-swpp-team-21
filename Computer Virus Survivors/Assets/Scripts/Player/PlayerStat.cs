@@ -299,4 +299,14 @@ public class PlayerStat
         weapons.Add(weapon);
         weapon.InitializeWeapon(this, statEventCaller);
     }
+
+    public void GetExp(int exp)
+    {
+        currentExp += exp;
+        if (currentExp >= maxExpList[playerLevel])
+        {
+            playerLevel++;
+            // 이제 다른 코드의 OnStatChanged에서 selectable 띄움
+        }
+    }
 }
