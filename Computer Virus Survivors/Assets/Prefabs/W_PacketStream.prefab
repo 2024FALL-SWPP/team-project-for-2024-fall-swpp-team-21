@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5543367068500698089}
   - component: {fileID: 5543367068500698091}
   - component: {fileID: 5543367068500698090}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5543367069014170353}
   - component: {fileID: 5543367069014170352}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: W_PacketStream
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5543367069899869934}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

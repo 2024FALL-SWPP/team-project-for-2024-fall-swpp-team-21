@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour
 #if WEAPON_TEST
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Weapon Test");
             weapon.GetSelectable(this);
         }
 #endif

@@ -5,8 +5,8 @@ using UnityEngine;
 public class VirusData : ScriptableObject
 {
 
-    [Header("경험치 프리팹")]
-    [SerializeField] public GameObject expPrefab;
+    [Header("오브젝트 풀 타입")]
+    [SerializeField] public PoolType poolType;
 
     [Header("최대 체력")]
     [SerializeField] public int maxHP;

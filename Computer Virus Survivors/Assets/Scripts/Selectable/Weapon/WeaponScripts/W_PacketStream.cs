@@ -58,12 +58,12 @@ sealed public class W_PacketStream : WeaponBehaviour
 
     private IEnumerator Shoot()
     {
-        ProjectileBehaviour proj;
+        GameObject proj;
         for (int i = 0; i < finalMultiProjectile; i++)
         {
             Vector3 finalPosition = muzzle.transform.position + FireFluctuation();
-            proj = Instantiate(projectile, finalPosition, muzzle.transform.rotation);
-            proj.Initialize(finalDamage * (IsCritical() ? finalCritPoint : 100) / 100);
+            proj = PoolManager.instance.GetObject(projectile, finalPosition, muzzle.transform.rotation);
+            proj.GetComponent<ProjectileBehaviour>().Initialize(finalDamage * (IsCritical() ? finalCritPoint : 100) / 100);
             yield return new WaitForSeconds(0.03f);
         }
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3813b8a75afeea143976a2d10aa03fb1, type: 3}
   m_Name: V_Trojan
   m_EditorClassIdentifier: 
-  expPrefab: {fileID: 0}
+  poolType: 2
   maxHP: 200
   moveSpeed: 4
   dropExp: 2500

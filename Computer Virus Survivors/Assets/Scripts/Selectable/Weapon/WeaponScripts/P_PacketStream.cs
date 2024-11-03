@@ -11,7 +11,7 @@ public class P_PacketStream : ProjectileBehaviour
     {
         SphereCollider collider = GetComponent<SphereCollider>();
 
-        float currentWorldY = transform.position.y + collider.center.y * transform.lossyScale.y;
+        float currentWorldY = transform.position.y;
         float offsetY = -currentWorldY / transform.lossyScale.y;
 
         collider.center = new Vector3(collider.center.x, offsetY, collider.center.z);
@@ -19,7 +19,7 @@ public class P_PacketStream : ProjectileBehaviour
 
     private void OnBecameInvisible()
     {
-        gameObject.SetActive(false);
+        PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
     }
 
     private void Update()
@@ -32,7 +32,7 @@ public class P_PacketStream : ProjectileBehaviour
         if (other.CompareTag("Virus"))
         {
             other.GetComponent<VirusBehaviour>().GetDamage(damage);
-            Destroy(gameObject);
+            PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
         }
     }
 }

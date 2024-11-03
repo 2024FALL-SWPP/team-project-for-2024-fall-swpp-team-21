@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: "\uD328\uD0B7 \uC2A4\uD2B8\uB9BC"
   maxLevel: 9
-  projectilePrefab: {fileID: 6843417813078717767, guid: 3cef44125bb778e46bb4e7e0d5910be1, type: 3}
+  projectilePrefab: 3
   damage: 30
   multiProjectile: 1
-  attackPeriod: 0.5
+  attackPeriod: 0.4
   attackRange: 1
   addiCritProbability: 0
   addiCritPoint: 0

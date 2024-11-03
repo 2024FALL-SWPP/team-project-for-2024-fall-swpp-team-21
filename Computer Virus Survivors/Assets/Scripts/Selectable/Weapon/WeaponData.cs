@@ -10,9 +10,9 @@ public class WeaponData : SelectableData
     /// 초기값 설정
     /// </summary>
 
-    [Header("발사체 프리팹")]
+    [Header("발사체 풀")]
     [SerializeField]
-    private GameObject projectilePrefab;
+    private PoolType projectilePrefab;
 
     [Header("기본 공격력(int)")]
     [SerializeField]
@@ -49,7 +49,7 @@ public class WeaponData : SelectableData
     /// </summary>
 
     [NonSerialized] public string weaponName;
-    [NonSerialized] public ProjectileBehaviour projectile;
+    [NonSerialized] public PoolType projectile;
     [NonSerialized] public int basicDamage;
     [NonSerialized] public int basicMultiProjectile;
     [NonSerialized] public float basicAttackPeriod;
@@ -61,7 +61,7 @@ public class WeaponData : SelectableData
     public void Initialize()
     {
         weaponName = objectName;
-        projectile = projectilePrefab.GetComponent<ProjectileBehaviour>();
+        projectile = projectilePrefab;
         basicDamage = damage;
         basicMultiProjectile = multiProjectile;
         basicAttackPeriod = attackPeriod;

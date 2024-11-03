@@ -19,7 +19,7 @@ public class ExpGem : MonoBehaviour
             // Add exp to player
             other.GetComponent<PlayerController>().GetExp(exp);
             // Destroy the gem
-            gameObject.SetActive(false);
+            PoolManager.instance.ReturnObject(PoolType.ExpGem, gameObject);
         }
     }
 

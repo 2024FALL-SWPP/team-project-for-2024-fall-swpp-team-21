@@ -24,7 +24,7 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
         }
     }
 
-    protected ProjectileBehaviour projectile;
+    protected PoolType projectile;
     protected int BasicDamage
     {
         get
