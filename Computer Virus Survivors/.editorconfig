@@ -103,3 +103,5 @@ csharp_space_between_empty_square_brackets = false
 csharp_space_between_square_brackets = false
 
 # csharp_preserve_single_line_statements = false  # fix it if needed
+
+csharp_preferred_modifier_order = public,private,protected,internal,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,required,volatile,async:suggestion
