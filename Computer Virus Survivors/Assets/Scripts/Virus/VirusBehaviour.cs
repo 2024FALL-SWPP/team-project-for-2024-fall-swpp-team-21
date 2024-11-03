@@ -12,15 +12,20 @@ public class VirusBehaviour : MonoBehaviour
 
     protected int currentHP;
 
-    public void Initialize(GameObject player)
+    protected PoolManager poolManager;
+
+    public GameObject expPrefab;
+
+    public void Initialize(GameObject player, PoolManager poolManager)
     {
         this.player = player;
+        this.poolManager = poolManager;
     }
 
-    // protected void OnEnable()
-    // {
-    //     currentHP = maxHP;
-    // }
+    protected void OnEnable()
+    {
+        currentHP = maxHP;
+    }
 
     // protected void Update()
     // {
@@ -38,12 +43,12 @@ public class VirusBehaviour : MonoBehaviour
 
     protected void Die()
     {
-        // TODO: Object pooling
-        Destroy(gameObject);
-        // gameObject.SetActive(false);
+        gameObject.SetActive(false);
 
-        // TODO: Drop exp + object pooling
-        // Instantiate(expPrefab, transform.position, expPrefab.transform.rotation);
+        // Drop exp
+        GameObject expGem = poolManager.Get(0, transform.position);
+        expGem.GetComponent<ExpGem>().Initialize(dropExp);
+        expGem.SetActive(true);
     }
 
     public void GetDamage(int damage)
@@ -55,7 +60,6 @@ public class VirusBehaviour : MonoBehaviour
         }
     }
 
-    // ??
     // protected void Attack(
     // {
 
