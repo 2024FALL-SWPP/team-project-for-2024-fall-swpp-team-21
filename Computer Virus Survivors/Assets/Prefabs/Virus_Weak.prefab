@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 2474614017452228052}
   - component: {fileID: 2474614017452228051}
   m_Layer: 8
-  m_Name: VirusWeak
+  m_Name: Virus_Weak
   m_TagString: Virus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
