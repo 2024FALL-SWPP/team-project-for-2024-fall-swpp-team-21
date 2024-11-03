@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public PlayerStat playerStat = new PlayerStat();
 
     private bool isInvincible = false;
-    private SphereCollider sphereCollider;
+    public SphereCollider sphereCollider;
 
     public GameObject spawnManager; // Temp: 나중에 삭제
 
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         statEventCaller.StatChanged += OnStatChanged;
 
         // 경험치 획득 범위 초기화
-        sphereCollider = GetComponent<SphereCollider>();
+        //sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = playerStat.ExpGainRange;
     }
 
