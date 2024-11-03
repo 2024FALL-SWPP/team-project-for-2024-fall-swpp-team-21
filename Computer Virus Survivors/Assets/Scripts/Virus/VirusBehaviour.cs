@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class VirusBehaviour : MonoBehaviour
 {
+
+    [SerializeField] protected VirusData virusData;
     protected GameObject player;
-    protected int maxHP;
-    protected float moveSpeed;
-    protected int dropExp;
-    protected int contactDamage;
+    protected PoolManager poolManager;
+    protected PlayerController playerController;
 
     protected int currentHP;
 
-    protected PoolManager poolManager;
-
-    public GameObject expPrefab;
-
     public void Initialize(GameObject player, PoolManager poolManager)
     {
-        this.player = player;
-        this.poolManager = poolManager;
+        if (this.player == null)
+        {
+            this.player = player;
+            this.poolManager = poolManager;
+            playerController = player.GetComponent<PlayerController>();
+        }
     }
 
     protected void OnEnable()
     {
-        currentHP = maxHP;
+        currentHP = virusData.maxHP;
     }
 
     // protected void Update()
@@ -34,21 +34,21 @@ public class VirusBehaviour : MonoBehaviour
 
     protected void Move()
     {
-        Vector3 playerPos = new Vector3(player.transform.position.x, 0, player.transform.position.z);
-        Vector3 myPos = new Vector3(transform.position.x, 0, transform.position.z);
-        Vector3 moveDirection = (playerPos - myPos).normalized;
-        transform.Translate(moveSpeed * Time.deltaTime * moveDirection, Space.World);
+
+        Vector3 moveDirection = Vector3.ProjectOnPlane(
+            (player.transform.position - transform.position).normalized,
+            Vector3.up);
+        transform.Translate(virusData.moveSpeed * Time.deltaTime * moveDirection, Space.World);
         transform.rotation = Quaternion.LookRotation(moveDirection);
     }
 
     protected void Die()
     {
-        gameObject.SetActive(false);
 
+        gameObject.SetActive(false);
         // Drop exp
-        GameObject expGem = poolManager.Get(0, transform.position);
-        expGem.GetComponent<ExpGem>().Initialize(dropExp);
-        expGem.SetActive(true);
+        GameObject expGem = poolManager.Get(PoolType.ExpGem, transform.position, Quaternion.LookRotation(Vector3.forward));
+        expGem.GetComponent<ExpGem>().Initialize(virusData.dropExp);
     }
 
     public void GetDamage(int damage)
@@ -69,7 +69,7 @@ public class VirusBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerController>().GetDamage(contactDamage);
+            playerController.GetDamage(virusData.contactDamage);
         }
     }
 
@@ -77,7 +77,7 @@ public class VirusBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerController>().GetDamage(contactDamage);
+            playerController.GetDamage(virusData.contactDamage);
         }
     }
 }
