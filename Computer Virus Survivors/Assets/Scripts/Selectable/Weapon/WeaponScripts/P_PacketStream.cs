@@ -7,9 +7,19 @@ public class P_PacketStream : ProjectileBehaviour
 {
     [SerializeField] private float bulletSpeed;
 
+    private void OnEnable()
+    {
+        SphereCollider collider = GetComponent<SphereCollider>();
+
+        float currentWorldY = transform.position.y + collider.center.y * transform.lossyScale.y;
+        float offsetY = -currentWorldY / transform.lossyScale.y;
+
+        collider.center = new Vector3(collider.center.x, offsetY, collider.center.z);
+    }
+
     private void OnBecameInvisible()
     {
-        //enabled = false;
+        gameObject.SetActive(false);
     }
 
     private void Update()

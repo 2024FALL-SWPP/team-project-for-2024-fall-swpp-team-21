@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
 #if WEAPON_TEST
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("Weapon Test");
             weapon.GetSelectable(this);
         }
 #endif
@@ -128,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
     public void GetExp(int exp)
     {
-        playerStat.CurrentExp += exp * playerStat.ExpGainRatio;
+        playerStat.CurrentExp += exp * playerStat.ExpGainRatio / 100;
         Debug.Log("Player EXP: " + playerStat.CurrentExp);
         // TODO: Level up
     }
