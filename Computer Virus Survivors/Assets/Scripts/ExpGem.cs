@@ -6,7 +6,7 @@ using UnityEngine;
 public class ExpGem : MonoBehaviour
 {
     private int exp;
-    private bool inGainRange = false;
+    private bool isAttracted = false;
     private GameObject player;
     public float moveSpeed = 5.5f;  // player보다 빨라야 함
 
@@ -14,14 +14,8 @@ public class ExpGem : MonoBehaviour
     {
         // Set the amount of exp to drop
         this.exp = exp;
-    }
-
-    private void Update()
-    {
-        if (inGainRange)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
-        }
+        // Player도 그냥 처음에 갖고 시작하는게 나아보임
+        // this.player = player;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,12 +25,24 @@ public class ExpGem : MonoBehaviour
             // Add exp to player
             other.GetComponent<PlayerController>().GetExp(exp);
             // Destroy the gem
+            isAttracted = false;
             gameObject.SetActive(false);
         }
-        if (other.CompareTag("Magnet"))
+        if (!isAttracted && other.CompareTag("Magnet"))
         {
             player = other.gameObject.transform.parent.gameObject;
-            inGainRange = true;
+            isAttracted = true;
+            StartCoroutine(Attracted());
+        }
+    }
+
+    // 플레이어에게 빨려들어감
+    private IEnumerator Attracted()
+    {
+        while (true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+            yield return null;
         }
     }
 
