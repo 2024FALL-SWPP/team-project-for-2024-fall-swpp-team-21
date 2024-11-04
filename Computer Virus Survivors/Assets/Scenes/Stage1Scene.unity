@@ -189,7 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 681921746}
   - component: {fileID: 681921745}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Magnet
   m_TagString: Magnet
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1052069961}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -597,7 +597,6 @@ GameObject:
   - component: {fileID: 1052069963}
   - component: {fileID: 1052069957}
   - component: {fileID: 1052069956}
-  - component: {fileID: 1052069962}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -661,6 +660,7 @@ Transform:
   - {fileID: 745613111}
   - {fileID: 1802898925}
   - {fileID: 923589574}
+  - {fileID: 681921746}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
