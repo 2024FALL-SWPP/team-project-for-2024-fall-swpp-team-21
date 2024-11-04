@@ -14,7 +14,9 @@ public class ExpGem : MonoBehaviour
     {
         // Set the amount of exp to drop
         this.exp = exp;
-        // Player도 그냥 처음에 갖고 시작하는게 나아보임
+        MeshChange();
+
+        // Player도 그냥 처음에 갖고 시작하는게 나을수도 + PlayerController도
         // this.player = player;
     }
 
