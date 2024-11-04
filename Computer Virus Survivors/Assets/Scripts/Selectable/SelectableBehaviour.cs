@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 public abstract class SelectableBehaviour : MonoBehaviour
 {
@@ -17,12 +18,20 @@ public abstract class SelectableBehaviour : MonoBehaviour
     private List<string> explanations = new List<string>();
 
     private int currentLevel;
+    protected GameObject Player { get; private set; }
 
-    public GameObject Player { get; private set; }
+    /// <summary>
+    /// 읽기 전용 필드
+    /// </summary>
     public string ObjectName { get { return itemName; } }
+    public int CurrentLevel { get { return currentLevel; } }
     public int MaxLevel { get { return maxLevel; } }
-    public List<string> Explanations { get { return explanations; } }
+    public ReadOnlyCollection<string> Explanations => explanations.AsReadOnly();
 
+
+    /// <summary>
+    /// 추상 메소드
+    /// </summary>
     public abstract void Initialize();
     protected abstract void LevelUpEffect(int currentLevel);
 
@@ -31,6 +40,11 @@ public abstract class SelectableBehaviour : MonoBehaviour
         return currentLevel == maxLevel;
     }
 
+
+    /// <summary>
+    /// 플레이어가 이 아이템을 획득했을 때 호출되는 메소드
+    /// </summary>
+    /// <param name="player"></param>
     public void GetSelectable(PlayerController player)
     {
 
@@ -50,6 +64,9 @@ public abstract class SelectableBehaviour : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// 인스펙터 창에서 최대 레벨을 변경했을 때 설명 리스트를 갱신하는 메소드
+    /// </summary>
     private void OnValidate()
     {
         if (MaxLevel > 0 && explanations.Count > MaxLevel)
@@ -71,6 +88,27 @@ public abstract class SelectableBehaviour : MonoBehaviour
 
             }
         }
+    }
+
+    /// <summary>
+    /// Equals 메소드 오버라이드
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns>아이템 이름이 같으면 같은 오브젝트</returns>
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        SelectableBehaviour info = (SelectableBehaviour) obj;
+        return ObjectName == info.ObjectName;
+    }
+
+    public override int GetHashCode()
+    {
+        return ObjectName.GetHashCode();
     }
 
 }

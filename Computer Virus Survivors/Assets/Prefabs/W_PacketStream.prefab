@@ -129,7 +129,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61042f5dd06f21a46aba943e0b4c2d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: 0545ebf16b6935143a41cf92b9e01ca7, type: 2}
+  itemName: "\uD328\uD0B7 \uC2A4\uD2B8\uB9BC"
+  maxLevel: 9
+  explanations:
+  - "\uD50C\uB808\uC774\uC5B4\uC758 \uC804\uBC29\uC744 \uD5A5\uD574 \uBC31\uC2E0
+    \uD328\uD0B7\uC744 \uB0A0\uB9BD\uB2C8\uB2E4."
+  - "<\uB808\uBCA8 2 \uC5C5\uADF8\uB808\uC774\uB4DC \uC124\uBA85>"
+  - "<\uB808\uBCA8 3 \uC5C5\uADF8\uB808\uC774\uB4DC \uC124\uBA85>"
+  - "<\uB808\uBCA8 4 \uC5C5\uADF8\uB808\uC774\uB4DC \uC124\uBA85>"
+  - "<\uB808\uBCA8 5 \uC5C5\uADF8\uB808\uC774\uB4DC \uC124\uBA85>"
+  - "<\uB808\uBCA8 6 \uC5C5\uADF8\uB808\uC774\uB4DC \uC124\uBA85>"
+  - "<\uB808\uBCA8 7 \uC5C5\uADF8\uB808\uC774\uB4DC \uC124\uBA85>"
+  - "<\uB808\uBCA8 8 \uC5C5\uADF8\uB808\uC774\uB4DC \uC124\uBA85>"
+  - "<\uB808\uBCA8 9 \uC5C5\uADF8\uB808\uC774\uB4DC \uC124\uBA85>"
+  projectilePoolType: 3
+  initialDamage: 10
+  initialMultiProjectile: 1
+  initialAttackPeriod: 0.5
+  initialAttackRange: 0
+  initialAddiCritProbability: 0
+  initialAddiCritPoint: 0
   muzzle: {fileID: 5543367069899869933}
   fluctuationRadius: 0.3
 --- !u!1 &5543367069899869933
@@ -156,7 +175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5543367069899869933}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.736, y: 0.736, z: 0.744}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
