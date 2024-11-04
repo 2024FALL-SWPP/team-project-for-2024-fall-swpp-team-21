@@ -8,6 +8,7 @@ public enum PoolType
     ExpGem,
     Virus_Weak,
     Virus_Trojan,
+    Virus_Ransomware,
     Proj_PacketStream
 }
 
