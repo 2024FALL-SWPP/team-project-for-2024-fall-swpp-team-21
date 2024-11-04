@@ -129,7 +129,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61042f5dd06f21a46aba943e0b4c2d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: 0545ebf16b6935143a41cf92b9e01ca7, type: 2}
+  itemName: 
+  maxLevel: 0
+  explanations: []
+  projectilePoolType: 4
+  initialDamage: 0
+  initialMultiProjectile: 0
+  initialAttackPeriod: 0
+  initialAttackRange: 0
+  initialAddiCritProbability: 0
+  initialAddiCritPoint: 0
   muzzle: {fileID: 5543367069899869933}
   fluctuationRadius: 0.3
 --- !u!1 &5543367069899869933

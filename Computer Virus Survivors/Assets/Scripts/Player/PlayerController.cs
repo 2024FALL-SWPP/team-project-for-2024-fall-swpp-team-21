@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour
         {
             spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Trojan);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Ransomware);
+        }
 #if WEAPON_TEST
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -158,20 +162,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void BuffStat(string statName, int value, float duration)
+    public void BuffMoveSpeed(float value, float duration)
     {
-        StartCoroutine(BuffCoroutine(statName, value, duration));
+        StartCoroutine(BuffMoveSpeedCoroutine(value, duration));
     }
 
-    private IEnumerator BuffCoroutine(string statName, int value, float duration)
+    private IEnumerator BuffMoveSpeedCoroutine(float value, float duration)
     {
-        switch (statName)
-        {
-            case nameof(PlayerStat.MoveSpeed):
-                playerStat.MoveSpeed *= value;
-                yield return new WaitForSeconds(duration);
-                playerStat.MoveSpeed /= value;
-                break;
-        }
+        playerStat.MoveSpeed *= value;
+        yield return new WaitForSeconds(duration);
+        playerStat.MoveSpeed /= value;
     }
 }
