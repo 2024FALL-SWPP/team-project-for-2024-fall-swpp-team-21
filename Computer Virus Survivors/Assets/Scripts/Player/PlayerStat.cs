@@ -293,10 +293,14 @@ public class PlayerStat
         weapons = new List<WeaponBehaviour>();
     }
 
-    // TODO : 테스트용 함수
-    public void GetWeapon(WeaponBehaviour weapon)
+
+    public void GetExp(int exp)
     {
-        weapons.Add(weapon);
-        weapon.InitializeWeapon(this, statEventCaller);
+        currentExp += exp;
+        if (currentExp >= maxExpList[playerLevel])
+        {
+            playerLevel++;
+            // 이제 다른 코드의 OnStatChanged에서 selectable 띄움
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,17 +13,20 @@ public class PlayerController : MonoBehaviour
     public PlayerStat playerStat = new PlayerStat();
 
     private bool isInvincible = false;
-    private SphereCollider sphereCollider;
+    public SphereCollider sphereCollider;
 
     public GameObject spawnManager; // Temp: 나중에 삭제
 
+#if WEAPON_TEST
+    public WeaponBehaviour weapon;
+#endif
     private void Start()
     {
         playerStat.Initialize(playerStatData, statEventCaller);
         statEventCaller.StatChanged += OnStatChanged;
 
         // 경험치 획득 범위 초기화
-        sphereCollider = GetComponent<SphereCollider>();
+        //sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = playerStat.ExpGainRange;
     }
 
@@ -39,6 +43,12 @@ public class PlayerController : MonoBehaviour
         {
             spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Trojan);
         }
+#if WEAPON_TEST
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            weapon.GetSelectable(this);
+        }
+#endif
     }
 
     private void Move()
@@ -118,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
     public void GetExp(int exp)
     {
-        playerStat.CurrentExp += exp * playerStat.ExpGainRatio;
+        playerStat.CurrentExp += exp * playerStat.ExpGainRatio / 100;
         Debug.Log("Player EXP: " + playerStat.CurrentExp);
         // TODO: Level up
     }

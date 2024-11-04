@@ -30,7 +30,7 @@ dotnet_naming_rule.pascal_case_methods.severity = error
 dotnet_naming_rule.pascal_case_methods.symbols = method
 dotnet_naming_rule.pascal_case_methods.style = pascal_case
 
-dotnet_naming_symbols.method.applicable_kinds = method, property, event
+dotnet_naming_symbols.method.applicable_kinds = method, event
 dotnet_naming_symbols.method.applicable_accessibilities = *
 dotnet_naming_symbols.method.required_modifiers = 
 
@@ -42,7 +42,7 @@ dotnet_naming_rule.camel_case_fields.symbols = field
 dotnet_naming_rule.camel_case_fields.style = camel_case
 
 dotnet_naming_symbols.field.applicable_kinds = field
-dotnet_naming_symbols.field.applicable_accessibilities = private, internal, protected, protected_internal
+dotnet_naming_symbols.field.applicable_accessibilities = private, internal, protected_internal
 dotnet_naming_symbols.field.required_modifiers = 
 
 dotnet_naming_rule.pascal_case_public_const_fields.severity = error
@@ -103,3 +103,5 @@ csharp_space_between_empty_square_brackets = false
 csharp_space_between_square_brackets = false
 
 # csharp_preserve_single_line_statements = false  # fix it if needed
+
+csharp_preferred_modifier_order = public,private,protected,internal,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,required,volatile,async:suggestion

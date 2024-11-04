@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3813b8a75afeea143976a2d10aa03fb1, type: 3}
   m_Name: V_Weak
   m_EditorClassIdentifier: 
-  expPrefab: {fileID: 4880556664663077042, guid: 3a49f03556e48894b95c1bc201b28741, type: 3}
+  poolType: 1
   maxHP: 10
   moveSpeed: 1.5
   dropExp: 100
