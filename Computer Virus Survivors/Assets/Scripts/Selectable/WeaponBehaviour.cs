@@ -1,39 +1,81 @@
 using System.Collections;
-using Unity.IO.LowLevel.Unsafe;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
 {
 
-    // 레벨업에 따른 설명을 저장하기 위해 어쩔 수 없이 만듦
-    // 만드는 김에 초기값도 저장함
-    // 런타임 데이터도 저장함
-    [SerializeField] private WeaponData weaponData;
+    /// <summary>
+    /// 초기값 설정
+    /// </summary>
 
-    // 아래 변수들의 데이터는 weaponData에 저장되어 있음
-    // set{}을 정의하기 위해 따로 뺌
-    protected int level
-    {
-        get
-        {
-            return weaponData.currentLevel;
-        }
-        set
-        {
-            weaponData.currentLevel = value;
-        }
-    }
+    [Header("발사체 풀")]
+    [SerializeField]
+    private PoolType projectilePoolType;
 
-    protected PoolType projectile;
+    [Header("기본 공격력(int)")]
+    [SerializeField]
+    private int initialDamage;   // 기본 공격력
+
+    [Header("기본 발사체 개수(int, 개)")]
+    [SerializeField]
+    private int initialMultiProjectile;  // 기본 다중 발사체 수
+
+    [Header("기본 공격 주기(float, 초)")]
+    [Min(0)]
+    [SerializeField]
+    private float initialAttackPeriod;   // 기본 공격 주기
+
+    [Header("기본 공격 범위(float)")]
+    [Min(0)]
+    [SerializeField]
+    private float initialAttackRange;    // 기본 공격 범위
+
+    [Header("기본 추가 치명타 확률(int, %)")]
+    [SerializeField]
+    private int initialAddiCritProbability;  // 기본 치명타 공격 확률
+
+    [Header("기본 추가 치명타 대미지(int, %)")]
+    [SerializeField]
+    private int initialAddiCritPoint;    // 기본 치명타 공격 대미지 배율
+
+
+
+
+    /// <summary>
+    /// 런타임 변수
+    /// </summary>
+
+    private int basicDamage;
+    private int basicMultiProjectile;
+    private float basicAttackPeriod;
+    private float basicAttackRange;
+    private int basicAddiCritProbability;
+    private int basicAddiCritPoint;
+    protected PlayerStatEventCaller playerStatEventCaller;
+    protected PlayerStat playerStat;
+    protected Coroutine attackCoroutine;
+    protected PoolType projectilePool;
+
+    /// <summary>
+    /// 런타임 get; set;
+    /// </summary>
+
+    // SelectableBehaviour에서 상속받음
+    // public string ObjectName { get; }
+    // public int MaxLevel { get; }
+    // public int CurrentLevel { get; protected set; }
+    // public List<string> Explanations { get { return explanations; } }
     protected int BasicDamage
     {
         get
         {
-            return weaponData.basicDamage;
+            return basicDamage;
         }
         set
         {
-            weaponData.basicDamage = value;
+            basicDamage = value;
             CalcAttackDamage();
         }
     }
@@ -41,11 +83,15 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     {
         get
         {
-            return weaponData.basicMultiProjectile;
+            return basicMultiProjectile;
         }
         set
         {
-            weaponData.basicMultiProjectile = value;
+            if (value < 1)
+            {
+                value = 1;
+            }
+            basicMultiProjectile = value;
             CalcMultiProjectile();
         }
     }
@@ -53,11 +99,15 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     {
         get
         {
-            return weaponData.basicAttackPeriod;
+            return basicAttackPeriod;
         }
         set
         {
-            weaponData.basicAttackPeriod = value;
+            if (value < 0.02f)
+            {
+                value = 0.02f;
+            }
+            basicAttackPeriod = value;
             CalcAttackPeriod();
         }
     }
@@ -65,11 +115,15 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     {
         get
         {
-            return weaponData.basicAttackRange;
+            return basicAttackRange;
         }
         set
         {
-            weaponData.basicAttackRange = value;
+            if (value < 0)
+            {
+                value = 0;
+            }
+            basicAttackRange = value;
             CalcAttackRange();
         }
     }
@@ -77,11 +131,11 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     {
         get
         {
-            return weaponData.basicAddiCritProbability;
+            return basicAddiCritProbability;
         }
         set
         {
-            weaponData.basicAddiCritProbability = value;
+            basicAddiCritProbability = value;
             CalcCritProbability();
         }
     }
@@ -89,18 +143,19 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     {
         get
         {
-            return weaponData.basicAddiCritPoint;
+            return basicAddiCritPoint;
         }
         set
         {
-            weaponData.basicAddiCritPoint = value;
+            basicAddiCritPoint = value;
             CalcCritPoint();
         }
     }
 
-    protected PlayerStatEventCaller playerStatEventCaller;
-    protected PlayerStat playerStat;
-    protected Coroutine attackCoroutine;
+
+    /// <summary>
+    /// 최종 값
+    /// </summary>
 
     protected int finalDamage { get; private set; }  // 최종 공격력
     protected int finalMultiProjectile { get; private set; } // 최종 다중 발사체 수
@@ -114,45 +169,7 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// 무기별로 서로 다른 공격을 구현하기 위한 추상 메소드
     /// </summary>
     /// <returns></returns>
-    abstract protected IEnumerator Attack();
-
-
-    /// <summary>
-    /// 무기별로 레벨업에 따른 효과를 정의하는 추상 메소드
-    /// </summary>
-    /// <param name="level"></param>
-    abstract protected void LevelUpEffect(int level);
-
-    /// <summary>
-    /// 레벨업시 호출되는 메소드
-    /// 각 무기를 정의하는 클래스에서 정의하지 않도록 봉인함
-    /// </summary>
-    sealed protected override void LevelUp()
-    {
-        if (level < weaponData.levelMax)
-        {
-            level++;
-            Debug.Log($"Weapon<{weaponData.weaponName}> Level Up! Level: " + level);
-            LevelUpEffect(level);
-        }
-    }
-
-
-
-    /// <summary>
-    /// 플레이어가 이 무기를 선택하면 호출됨
-    /// </summary>
-    /// <param name="player"></param>
-    public override void GetSelectable(PlayerController player)
-    {
-        if (level == 0)
-        {
-            this.player = player.gameObject;
-            InitializeWeapon(player.playerStat, player.statEventCaller);
-        }
-
-        LevelUp();
-    }
+    protected abstract IEnumerator Attack();
 
 
     /// <summary>
@@ -162,19 +179,19 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// </summary>
     /// <param name="playerStat"></param>
     /// <param name="caller"></param>
-    private void InitializeWeapon(PlayerStat playerStat, PlayerStatEventCaller caller)
+    public override void Initialize()
     {
-        this.playerStat = playerStat;
-        playerStatEventCaller = caller;
+        playerStat = Player.GetComponent<PlayerController>().playerStat;
+        playerStatEventCaller = Player.GetComponent<PlayerController>().statEventCaller;
         playerStatEventCaller.StatChanged += OnStatChanged;
 
-        projectile = weaponData.projectile;
-        BasicDamage = weaponData.basicDamage;
-        BasicMultiProjectile = weaponData.basicMultiProjectile;
-        BasicAttackPeriod = weaponData.basicAttackPeriod;
-        BasicAttackRange = weaponData.basicAttackRange;
-        BasicAdditionalCritProbability = weaponData.basicAddiCritProbability;
-        BasicAdditionalCritPoint = weaponData.basicAddiCritPoint;
+        projectilePool = projectilePoolType;
+        BasicDamage = initialDamage;
+        BasicMultiProjectile = initialMultiProjectile;
+        BasicAttackPeriod = initialAttackPeriod;
+        BasicAttackRange = initialAttackRange;
+        BasicAdditionalCritProbability = initialAddiCritProbability;
+        BasicAdditionalCritPoint = initialAddiCritPoint;
 
         StartAttack();
     }
@@ -297,7 +314,4 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
                 break;
         }
     }
-
-
-
 }
