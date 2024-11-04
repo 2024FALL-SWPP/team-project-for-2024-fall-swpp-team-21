@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour
         {
             spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Trojan);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Ransomware);
+        }
 #if WEAPON_TEST
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -156,5 +160,17 @@ public class PlayerController : MonoBehaviour
         {
             sphereCollider.radius = playerStat.ExpGainRange;
         }
+    }
+
+    public void BuffMoveSpeed(float value, float duration)
+    {
+        StartCoroutine(BuffMoveSpeedCoroutine(value, duration));
+    }
+
+    private IEnumerator BuffMoveSpeedCoroutine(float value, float duration)
+    {
+        playerStat.MoveSpeed *= value;
+        yield return new WaitForSeconds(duration);
+        playerStat.MoveSpeed /= value;
     }
 }

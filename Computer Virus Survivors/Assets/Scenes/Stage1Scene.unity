@@ -162,6 +162,9 @@ MonoBehaviour:
     prefab: {fileID: 5841041427378954025, guid: 201474e5e0f694042a381edadef11a79, type: 3}
     initialPoolSize: 10
   - poolName: 3
+    prefab: {fileID: 6518646726042284800, guid: bbdf0800585a240419e30e1d73dd0fe7, type: 3}
+    initialPoolSize: 0
+  - poolName: 4
     prefab: {fileID: 6843417813078717767, guid: 3cef44125bb778e46bb4e7e0d5910be1, type: 3}
     initialPoolSize: 10
 --- !u!4 &454088697
@@ -442,7 +445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5543367069014170352, guid: 41c4aec1feb590844b2cff1b9e9414e1, type: 3}
       propertyPath: projectilePoolType
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5543367069014170352, guid: 41c4aec1feb590844b2cff1b9e9414e1, type: 3}
       propertyPath: initialAttackPeriod

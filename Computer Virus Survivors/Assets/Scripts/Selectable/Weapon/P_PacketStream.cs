@@ -34,5 +34,9 @@ public class P_PacketStream : ProjectileBehaviour
             other.GetComponent<VirusBehaviour>().GetDamage(damage);
             PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
         }
+        else
+        {
+            PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
+        }
     }
 }
