@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject spawnManager; // Temp: 나중에 삭제
 
+#if WEAPON_TEST
+    public WeaponBehaviour weapon;
+#endif
     private void Start()
     {
         playerStat.Initialize(playerStatData, statEventCaller);
@@ -39,6 +43,12 @@ public class PlayerController : MonoBehaviour
         {
             spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Trojan);
         }
+#if WEAPON_TEST
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            weapon.GetSelectable(this);
+        }
+#endif
     }
 
     private void Move()

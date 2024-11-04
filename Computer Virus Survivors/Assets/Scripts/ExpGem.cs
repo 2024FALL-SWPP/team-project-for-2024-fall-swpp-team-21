@@ -26,7 +26,7 @@ public class ExpGem : MonoBehaviour
             other.GetComponent<PlayerController>().GetExp(exp);
             // Destroy the gem
             isAttracted = false;
-            gameObject.SetActive(false);
+            PoolManager.instance.ReturnObject(PoolType.ExpGem, gameObject);
         }
         if (!isAttracted && other.CompareTag("Magnet"))
         {

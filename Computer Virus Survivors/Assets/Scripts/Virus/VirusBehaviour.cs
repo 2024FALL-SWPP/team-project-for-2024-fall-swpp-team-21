@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,17 +8,16 @@ public class VirusBehaviour : MonoBehaviour
 
     [SerializeField] protected VirusData virusData;
     protected GameObject player;
-    protected PoolManager poolManager;
     protected PlayerController playerController;
+
 
     protected int currentHP;
 
-    public void Initialize(GameObject player, PoolManager poolManager)
+    public void Initialize(GameObject player)
     {
         if (this.player == null)
         {
             this.player = player;
-            this.poolManager = poolManager;
             playerController = player.GetComponent<PlayerController>();
         }
     }
@@ -27,14 +27,9 @@ public class VirusBehaviour : MonoBehaviour
         currentHP = virusData.maxHP;
     }
 
-    // protected void Update()
-    // {
-    //     Move();
-    // }
 
     protected void Move()
     {
-
         Vector3 moveDirection = Vector3.ProjectOnPlane(
             (player.transform.position - transform.position).normalized,
             Vector3.up);
@@ -44,10 +39,9 @@ public class VirusBehaviour : MonoBehaviour
 
     protected void Die()
     {
+        PoolManager.instance.ReturnObject(virusData.poolType, gameObject);
 
-        gameObject.SetActive(false);
-        // Drop exp
-        GameObject expGem = poolManager.Get(PoolType.ExpGem, transform.position, Quaternion.LookRotation(Vector3.forward));
+        GameObject expGem = PoolManager.instance.GetObject(PoolType.ExpGem, transform.position, transform.rotation);
         expGem.GetComponent<ExpGem>().Initialize(virusData.dropExp);
     }
 
@@ -59,11 +53,6 @@ public class VirusBehaviour : MonoBehaviour
             Die();
         }
     }
-
-    // protected void Attack(
-    // {
-
-    // }
 
     protected void OnCollisionEnter(Collision collision)
     {

@@ -1,59 +1,90 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public enum PoolType
 {
-    ExpGem = 0,
+    ExpGem,
     Virus_Weak,
-    Virus_Trojan
+    Virus_Trojan,
+    Proj_PacketStream
 }
 
 public class PoolManager : MonoBehaviour
 {
-    public GameObject[] prefabs;
+    public static PoolManager instance;
 
-    private List<GameObject>[] pool;  // TODO: 프리팹들의 인덱스를 따로 관리해줘야 할 듯
-    // 현재 - 0: ExpGem, 1: Virus_Weak, 2: Virus_Trojan
+    [System.Serializable]
+    public class PoolObject
+    {
+        public PoolType poolName;
+        public GameObject prefab;
+        public int initialPoolSize;
+    }
+
+    [SerializeField] private List<PoolObject> prefabEntries;
+
+    private Dictionary<PoolType, Queue<GameObject>> poolDict;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     private void Start()
     {
-        pool = new List<GameObject>[prefabs.Length];
+        poolDict = new Dictionary<PoolType, Queue<GameObject>>();
 
-        for (int i = 0; i < prefabs.Length; i++)
+        for (int i = 0; i < prefabEntries.Count; i++)
         {
-            pool[i] = new List<GameObject>();
+            poolDict[prefabEntries[i].poolName] = new Queue<GameObject>();
+
+            for (int j = 0; j < prefabEntries[i].initialPoolSize; j++)
+            {
+                GameObject obj = Instantiate(prefabEntries[i].prefab);
+                obj.SetActive(false);
+                poolDict[prefabEntries[i].poolName].Enqueue(obj);
+            }
         }
     }
 
-    // Get함수는 Instantiate와 동일한 작동을 해야 하는 함수
-    public GameObject Get(PoolType index, Vector3 position, Quaternion rotation)
+    public GameObject GetObject(PoolType poolType)
     {
-        GameObject selected = null;
+        return GetObject(poolType, Vector3.zero, Quaternion.identity);
+    }
 
-        foreach (GameObject obj in pool[(int) index])
+    // Get함수는 Instantiate와 동일한 작동을 해야 하는 함수
+    public GameObject GetObject(PoolType poolType, Vector3 position, Quaternion rotation)
+    {
+        GameObject selected;
+
+        if (poolDict[poolType].Count > 0)
         {
-            if (!obj.activeSelf)
-            {
-                selected = obj;
-                selected.SetActive(true);
-                // 세진 : Get은 당장 사용 가능한 오브젝트를 반환하는 것이 의미상 맞다고 생각합니다.
-                // 여기에서 SetActive(true)를 해주나, 아래에서 Instantiate를 해주나 해당 오브젝트의
-                // OnEnable()은 호출되기 때문에, PoolManager에서 관리하는 오브젝트들의 초기화는 OnEnable()에서 하면 될 겁니다.
-                break;
-            }
+            selected = poolDict[poolType].Dequeue();
+            selected.transform.SetPositionAndRotation(position, rotation);
+            selected.SetActive(true);
         }
-
-        if (!selected)
+        else
         {
-            selected = Instantiate(prefabs[(int) index]);
-            pool[(int) index].Add(selected);
+            selected = Instantiate(prefabEntries.Find(x => x.poolName == poolType).prefab, position, rotation);
         }
-
-        selected.transform.position = position;
-        selected.transform.rotation = rotation;
 
         return selected;
+    }
+
+
+    public void ReturnObject(PoolType poolType, GameObject returned)
+    {
+        returned.SetActive(false);
+        poolDict[poolType].Enqueue(returned);
     }
 }
