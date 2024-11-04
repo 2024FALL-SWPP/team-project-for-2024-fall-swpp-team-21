@@ -299,6 +299,7 @@ public class PlayerStat
         currentExp += exp;
         if (currentExp >= maxExpList[playerLevel])
         {
+            currentExp -= maxExpList[playerLevel];
             playerLevel++;
             // 이제 다른 코드의 OnStatChanged에서 selectable 띄움
         }
