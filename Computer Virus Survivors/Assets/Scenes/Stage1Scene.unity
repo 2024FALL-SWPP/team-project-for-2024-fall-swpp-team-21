@@ -179,6 +179,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &621937194 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7705764597580276043, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
+  m_PrefabInstance: {fileID: 714918751}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3328858c9e7191f43b9feebd6c148d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &681921744
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 681921746}
   - component: {fileID: 681921745}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Magnet
   m_TagString: Magnet
   m_Icon: {fileID: 0}
@@ -222,7 +233,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1052069961}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -318,6 +329,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &714918751
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 276952103715841915, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 276952103715841915, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276952103715841915, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 276952103715841915, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 276952103715841915, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 276952103715841915, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276952103715841915, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276952103715841915, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276952103715841915, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276952103715841915, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276952103715841915, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279996990134477508, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
+      propertyPath: m_Name
+      value: I_OverClock
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
 --- !u!1 &745613110
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,7 +665,6 @@ GameObject:
   - component: {fileID: 1052069963}
   - component: {fileID: 1052069957}
   - component: {fileID: 1052069956}
-  - component: {fileID: 1052069962}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -638,6 +705,7 @@ MonoBehaviour:
   sphereCollider: {fileID: 681921745}
   spawnManager: {fileID: 2094598312}
   weapon: {fileID: 923589575}
+  attackSpeedItem: {fileID: 621937194}
 --- !u!33 &1052069960
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -661,6 +729,7 @@ Transform:
   - {fileID: 745613111}
   - {fileID: 1802898925}
   - {fileID: 923589574}
+  - {fileID: 681921746}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -905,6 +974,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons:
   - {fileID: 11400000, guid: 0545ebf16b6935143a41cf92b9e01ca7, type: 2}
+  items:
+  - {fileID: 11400000, guid: d49a0dc8ca125764bb4ce5e284df9ba1, type: 2}
 --- !u!4 &1892258565
 Transform:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
 #if WEAPON_TEST
     public WeaponBehaviour weapon;
+    public ItemBehaviour attackSpeedItem;
 #endif
     private void Start()
     {
@@ -47,6 +48,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             weapon.GetSelectable(this);
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            attackSpeedItem.GetSelectable(this);
         }
 #endif
     }

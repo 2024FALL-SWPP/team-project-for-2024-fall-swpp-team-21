@@ -57,7 +57,7 @@ public class WeaponData : SelectableData
     [NonSerialized] public int basicAddiCritProbability;
     [NonSerialized] public int basicAddiCritPoint;
     [NonSerialized] public int levelMax;
-
+    [NonSerialized] public List<string> weaponExplanations;
     public void Initialize()
     {
         weaponName = objectName;
@@ -70,6 +70,7 @@ public class WeaponData : SelectableData
         basicAddiCritPoint = addiCritPoint;
         currentLevel = 0;
         levelMax = maxLevel;
+        weaponExplanations = explanations;
         Debug.Log($"Weapon <{weaponName}> initialized");
     }
 

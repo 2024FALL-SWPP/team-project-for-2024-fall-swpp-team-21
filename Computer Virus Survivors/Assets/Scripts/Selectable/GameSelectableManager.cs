@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
+using Unity.VisualScripting;
 
 public class GameSelectableManager : MonoBehaviour
 {
     [SerializeField] private List<WeaponData> weapons;
-    //[SerializeField] private ItemData[] items;
+    [SerializeField] private List<ItemData> items;
 
     private void OnEnable()
     {
@@ -14,6 +16,13 @@ public class GameSelectableManager : MonoBehaviour
             foreach (WeaponData weapon in weapons)
             {
                 weapon.Initialize();
+            }
+        }
+        if (items != null)
+        {
+            foreach (ItemData item in items)
+            {
+                item.Initialize();
             }
         }
     }
@@ -44,9 +53,23 @@ public class GameSelectableManager : MonoBehaviour
                         manager.weapons.Add(weaponData);
                     }
                 }
+                Debug.Log("Weapon list populated with " + manager.weapons.Count + " weapon(s).");
+
+                guids = AssetDatabase.FindAssets("t:ItemData", new[] { "Assets/Scripts/Scriptable/Items" });
+                manager.items = new List<ItemData>();
+
+                foreach (string guid in guids)
+                {
+                    string path = AssetDatabase.GUIDToAssetPath(guid);
+                    ItemData itemData = AssetDatabase.LoadAssetAtPath<ItemData>(path);
+                    if (itemData != null)
+                    {
+                        manager.items.Add(itemData);
+                    }
+                }
+                Debug.Log("Item list populated with " + manager.items.Count + " item(s).");
 
                 EditorUtility.SetDirty(manager);
-                Debug.Log("Weapon list populated with " + manager.weapons.Count + " weapon(s).");
             }
         }
     }

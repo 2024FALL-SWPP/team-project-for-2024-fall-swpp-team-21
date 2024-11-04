@@ -132,6 +132,7 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
         if (level < weaponData.levelMax)
         {
             level++;
+            Debug.Log($"Weapon<{weaponData.weaponName}> Level Up! Level: " + level);
             LevelUpEffect(level);
         }
     }
