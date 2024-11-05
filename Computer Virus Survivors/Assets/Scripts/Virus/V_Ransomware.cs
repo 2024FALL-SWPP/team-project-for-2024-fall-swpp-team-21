@@ -15,6 +15,8 @@ public class V_Ransomware : VirusBehaviour
     [SerializeField] private float eSDebuffDegree = 0.5f;
     [SerializeField] private float eSDebuffDuration = 3.0f;
 
+    [SerializeField] private float uIJamDuration = 10.0f;
+
     [SerializeField] private GameObject corruptedZonePf;
     [SerializeField] private Vector2 cZRange = new Vector2(15.0f, 15.0f);
     [SerializeField] private int cZDamage = 1;
@@ -70,7 +72,7 @@ public class V_Ransomware : VirusBehaviour
     private void UIJam()
     {
         Debug.Log("UI Jam!");
-        playerController.BuffMoveSpeed(-1, 10.0f);
+        playerController.BuffMoveSpeed(-1, uIJamDuration);
     }
 
     private void CorruptedZone()
@@ -98,4 +100,6 @@ public class V_Ransomware : VirusBehaviour
         yield return new WaitForSeconds(fBDuration);
         Destroy(barricade);
     }
+
+    // TODO: 죽을 때 세미콜론 아이템 드롭
 }
