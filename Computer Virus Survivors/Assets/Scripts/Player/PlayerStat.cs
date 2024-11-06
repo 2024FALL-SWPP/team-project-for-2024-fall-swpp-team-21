@@ -267,8 +267,6 @@ public class PlayerStat
 
     private int[] maxExpList;           // 최대 경험치 리스트
     private List<WeaponBehaviour> weapons;  // 무기 리스트
-                                            // TODO : "ItemBehavior" 아이템 구현
-                                            //private List<ItemBehaviour> items;    // 아이템 리스트
     private List<ItemBehaviour> items;    // 아이템 리스트
 
     public void Initialize(PlayerStatData playerStatData, PlayerStatEventCaller eventCaller)
@@ -303,27 +301,27 @@ public class PlayerStat
 
     public List<SelectableBehaviour> GetPlayerWeaponInfos()
     {
-        Debug.Log("GetPlayerWeaponInfos");
         return weapons.Cast<SelectableBehaviour>().ToList();
     }
 
     public List<SelectableBehaviour> GetPlayerItemInfos()
     {
-        Debug.Log("GetPlayerItemInfos");
         return items.Cast<SelectableBehaviour>().ToList();
     }
 
-    public void AddSelectable(SelectableBehaviour selectable)
+    public void TakeSelectable(SelectableBehaviour selectable)
     {
-        if (selectable is WeaponBehaviour)
+        // level up
+        selectable.Acquire();
+
+        // 신규 무기나 아이템이면 추가
+        if (selectable is WeaponBehaviour && !weapons.Contains(selectable as WeaponBehaviour))
         {
             weapons.Add(selectable as WeaponBehaviour);
         }
-        else if (selectable is ItemBehaviour)
+        else if (selectable is ItemBehaviour && !items.Contains(selectable as ItemBehaviour))
         {
             items.Add(selectable as ItemBehaviour);
         }
-        selectable.GetSelectable();
     }
-
 }

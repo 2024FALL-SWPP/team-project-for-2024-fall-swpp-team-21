@@ -6,9 +6,13 @@ public class SpawnManager : MonoBehaviour
 {
     /* Temp version of SpawnManager*/
 
-    [SerializeField] private GameObject player;
     [SerializeField] private Vector2 spawnRange;
+    private GameObject player;
 
+    private void Start()
+    {
+        player = GameManager.instance.Player;
+    }
 
     // Update is called once per frame
     public void Spawn(PoolType index)

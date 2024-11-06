@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 public abstract class SelectableBehaviour : MonoBehaviour
 {
     [Header("이름")]
     [SerializeField]
-    private string itemName;
+    private string objectName;
 
     [Header("최대 레벨")]
     [SerializeField]
@@ -14,8 +15,8 @@ public abstract class SelectableBehaviour : MonoBehaviour
 
     [Header("레벨 별 설명")]
     [Multiline]
-    [SerializeField]
-    private List<string> explanations = new List<string>();
+    [SerializeField, ReadOnly(true)]
+    protected List<string> explanations = new List<string>();
 
     private GameObject player;
     private int currentLevel;
@@ -25,8 +26,7 @@ public abstract class SelectableBehaviour : MonoBehaviour
         {
             if (player == null)
             {
-                // TODO : from GameManager
-                player = GameObject.FindGameObjectWithTag("Player");
+                player = GameManager.instance.Player;
             }
 
             return player;
@@ -36,7 +36,7 @@ public abstract class SelectableBehaviour : MonoBehaviour
     /// <summary>
     /// 읽기 전용 필드
     /// </summary>
-    public string ObjectName { get { return itemName; } }
+    public string ObjectName { get { return objectName; } }
     public int CurrentLevel { get { return currentLevel; } }
     public int MaxLevel { get { return maxLevel; } }
     public ReadOnlyCollection<string> Explanations => explanations.AsReadOnly();
@@ -47,6 +47,7 @@ public abstract class SelectableBehaviour : MonoBehaviour
     /// </summary>
     public abstract void Initialize();
     protected abstract void LevelUpEffect(int currentLevel);
+    protected abstract void InitExplanation();
 
     public bool IsMaxLevel()
     {
@@ -58,7 +59,7 @@ public abstract class SelectableBehaviour : MonoBehaviour
     /// 플레이어가 이 아이템을 획득했을 때 호출되는 메소드
     /// </summary>
     /// <param name="player"></param>
-    public void GetSelectable()
+    public void Acquire()
     {
 
         if (currentLevel == 0)
@@ -100,6 +101,8 @@ public abstract class SelectableBehaviour : MonoBehaviour
 
             }
         }
+
+        InitExplanation();
     }
 
     /// <summary>

@@ -6,8 +6,8 @@ public class CanvasManager : MonoBehaviour, IPlayerStatObserver
 {
 
     public static CanvasManager instance;
-    [SerializeField] private PlayerStatEventCaller playerStatEventCaller;
 
+    [SerializeField] private PlayerStatEventCaller playerStatEventCaller;
     [SerializeField] private ItemSelectCanvasManager itemSelectCanvas;
 
     private void Awake()

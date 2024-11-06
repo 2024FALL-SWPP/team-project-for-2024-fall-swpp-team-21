@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ItemSelectCanvasManager : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
     [SerializeField] private List<GameObject> itemSelectBtn;
 
     private List<SelectionInfo> choices;
@@ -14,7 +13,7 @@ public class ItemSelectCanvasManager : MonoBehaviour
     {
         if (playerStat == null)
         {
-            playerStat = player.GetComponent<PlayerController>().playerStat;
+            playerStat = GameManager.instance.Player.GetComponent<PlayerController>().playerStat;
         }
         ShowItemSelectCanvas();
     }
@@ -22,22 +21,23 @@ public class ItemSelectCanvasManager : MonoBehaviour
     public void ShowItemSelectCanvas()
     {
         Debug.Log("ShowItemSelectCanvas");
-        choices = SelectableManager.instance.GetChoices(playerStat.GetPlayerWeaponInfos(), playerStat.GetPlayerItemInfos());
+        choices = SelectableManager.instance.GetChoices();
 
-        if (choices.Count == 0)
+        for (int i = 0; i < 3; i++)
         {
-            return;
-        }
-
-        for (int i = 0; i < choices.Count; i++)
-        {
+            if (choices.Count <= i)
+            {
+                itemSelectBtn[i].SetActive(false);
+                continue;
+            }
             itemSelectBtn[i].transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = choices[i].ToString();
         }
     }
 
     public void OnClick(int selectedIndex)
     {
-        playerStat.AddSelectable(choices[selectedIndex].selectableBehaviour);
+        Debug.Log("OnClick" + choices[selectedIndex].objectName);
+        playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour(choices[selectedIndex].objectName));
 
         CanvasManager.instance.OnSelectionDone();
     }

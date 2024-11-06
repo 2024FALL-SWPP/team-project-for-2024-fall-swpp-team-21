@@ -8,16 +8,14 @@ using System.Linq;
 /// </summary>
 public class SelectionInfo
 {
-    public SelectableBehaviour selectableBehaviour;
-    public string itemName;
+    public string objectName;
     public int currentLevel;
     public int maxLevel;
     public string explanation;
 
     public SelectionInfo(SelectableBehaviour selectableBehaviour)
     {
-        this.selectableBehaviour = selectableBehaviour;
-        this.itemName = selectableBehaviour.ObjectName;
+        this.objectName = selectableBehaviour.ObjectName;
         this.currentLevel = selectableBehaviour.CurrentLevel;
         this.maxLevel = selectableBehaviour.MaxLevel;
         this.explanation = selectableBehaviour.Explanations[currentLevel];
@@ -25,7 +23,7 @@ public class SelectionInfo
 
     public override string ToString()
     {
-        return string.Format("Item Name: {0}, Current Level: {1}, Max Level: {2}, Explanation: {3}", itemName, currentLevel, maxLevel, explanation);
+        return string.Format("Item Name: {0}\n Current Level: {1}\n Max Level: {2}\n Explanation: {3}", objectName, currentLevel, maxLevel, explanation);
     }
 }
 
@@ -34,14 +32,16 @@ public class SelectableManager : MonoBehaviour
     public static SelectableManager instance;
 
     [SerializeField]
-    private List<GameObject> weaponPrefabs = new List<GameObject>();
+    private List<GameObject> weaponPrefabs;
 
     [SerializeField]
-    private List<GameObject> itemPrefabs = new List<GameObject>();
+    private List<GameObject> itemPrefabs;
 
-    private List<SelectableBehaviour> weaponInfos = new List<SelectableBehaviour>();
-    private List<SelectableBehaviour> itemInfos = new List<SelectableBehaviour>();
+    private List<SelectableBehaviour> allWeaponBehaviour;
+    private List<SelectableBehaviour> allItemBehaviour;
 
+    private List<SelectableBehaviour> playerWeapons;
+    private List<SelectableBehaviour> playerItems;
 
     private void OnEnable()
     {
@@ -54,21 +54,23 @@ public class SelectableManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        allWeaponBehaviour = new List<SelectableBehaviour>();
+        allItemBehaviour = new List<SelectableBehaviour>();
+
         foreach (var obj in weaponPrefabs)
         {
-            weaponInfos.Add(obj.GetComponent<SelectableBehaviour>());
+            allWeaponBehaviour.Add(obj.GetComponent<SelectableBehaviour>());
         }
 
         foreach (var obj in itemPrefabs)
         {
-            itemInfos.Add(obj.GetComponent<SelectableBehaviour>());
+            allItemBehaviour.Add(obj.GetComponent<SelectableBehaviour>());
         }
 
         Debug.Log("Initialized SelectableManager");
-        Debug.Log("WeaponInfos count : " + weaponInfos.Count);
-        Debug.Log("ItemInfos count : " + itemInfos.Count);
+        Debug.Log("WeaponInfos count : " + allWeaponBehaviour.Count);
+        Debug.Log("ItemInfos count : " + allItemBehaviour.Count);
     }
-
 
     /// <summary>
     /// 전체 아이템 중 플레이어의 만렙인 아이템을 제외하여 랜덤하게 count개의 아이템을 선택하여 정보를 반환
@@ -79,15 +81,19 @@ public class SelectableManager : MonoBehaviour
     /// <param name="playerItems">플레이어의 보유중인 아이템 리스트</param>
     /// <param name="count">선택지 개수</param>
     /// <returns></returns>
-    public List<SelectionInfo> GetChoices(List<SelectableBehaviour> playerWeapons, List<SelectableBehaviour> playerItems, int count = 3)
+    public List<SelectionInfo> GetChoices(int count = 3)
     {
+        UpdatePlayerSeletableInfos();
+
         List<SelectableBehaviour> candidateWeapons = new List<SelectableBehaviour>();
         List<SelectableBehaviour> candidateItems = new List<SelectableBehaviour>();
 
+        // 플레이어 무기가 6개 미만이면 플레이어가 보유하지 않은 무기를 후보로 추가
         if (playerWeapons.Count < 6)
         {
-            candidateWeapons = weaponInfos.Except(playerWeapons).ToList();
+            candidateWeapons = allWeaponBehaviour.Except(playerWeapons).ToList();
         }
+        // 플레이어 무기 중 만렙이 아닌 무기를 후보로 추가
         foreach (var playerWeapon in playerWeapons)
         {
             Debug.Log("PlayerWeapon : " + playerWeapon.CurrentLevel);
@@ -97,10 +103,13 @@ public class SelectableManager : MonoBehaviour
             }
         }
 
+
+        // 플레이어 아이템이 6개 미만이면 플레이어가 보유하지 않은 아이템을 후보로 추가
         if (playerItems.Count < 6)
         {
-            candidateItems = itemInfos.Except(playerItems).ToList();
+            candidateItems = allItemBehaviour.Except(playerItems).ToList();
         }
+        // 플레이어 아이템 중 만렙이 아닌 아이템을 후보로 추가
         foreach (var playerItem in playerItems)
         {
             if (!playerItem.IsMaxLevel())
@@ -112,6 +121,7 @@ public class SelectableManager : MonoBehaviour
         Debug.Log("CandidateWeapons count : " + candidateWeapons.Count);
         Debug.Log("CandidateItems count : " + candidateItems.Count);
 
+        // 후보 무기, 아이템을 합쳐서 랜덤하게 count개 선택
         List<SelectableBehaviour> totalCandidates = candidateWeapons.Concat(candidateItems).ToList();
         List<SelectionInfo> choices = new List<SelectionInfo>();
 
@@ -119,17 +129,14 @@ public class SelectableManager : MonoBehaviour
         {
             // TODO : 후보가 없을 때 처리. 뱀서에선 체력회복 아이템이나 골드를 띄웠음
         }
-        else if (totalCandidates.Count < count)
-        {
-            foreach (var candidate in totalCandidates)
-            {
-                choices.Add(new SelectionInfo(candidate));
-            }
-        }
         else
         {
             for (int i = 0; i < count; i++)
             {
+                if (totalCandidates.Count == 0)
+                {
+                    break;
+                }
                 int randomIndex = Random.Range(0, totalCandidates.Count);
                 choices.Add(new SelectionInfo(totalCandidates[randomIndex]));
                 totalCandidates.RemoveAt(randomIndex);
@@ -137,6 +144,63 @@ public class SelectableManager : MonoBehaviour
         }
 
         return choices;
+    }
+
+
+    /// <summary>
+    /// 아이템 이름을 받아 해당 아이템의 SelectableBehaviour를 반환
+    /// 만약 플레이어가 보유하지 않은 아이템이라면 Selectable Prefab을 인스턴스화하여 반환
+    /// </summary>
+    /// <param name="itemName"></param>
+    /// <returns></returns>
+    public SelectableBehaviour GetSelectableBehaviour(string itemName)
+    {
+
+        UpdatePlayerSeletableInfos();
+
+        foreach (var playerWeapon in playerWeapons)
+        {
+            if (playerWeapon.ObjectName == itemName)
+            {
+                return playerWeapon;
+            }
+        }
+
+        foreach (var playerItem in playerItems)
+        {
+            if (playerItem.ObjectName == itemName)
+            {
+                return playerItem;
+            }
+        }
+
+        // 아이템이 없을 경우 프리팹을 찾아 인스턴스화
+        GameObject prefab = weaponPrefabs.Find(x => x.GetComponent<SelectableBehaviour>().ObjectName == itemName);
+        if (prefab == null)
+        {
+            prefab = itemPrefabs.Find(x => x.GetComponent<SelectableBehaviour>().ObjectName == itemName);
+        }
+        if (prefab == null)
+        {
+            Debug.LogError("No Selectable Prefab Found");
+            return null;
+        }
+
+        Debug.Log("Prefab : " + prefab.name);
+
+        GameObject newSelectable = Instantiate(prefab, GameManager.instance.Player.transform);
+        return newSelectable.GetComponent<SelectableBehaviour>();
+
+    }
+
+
+    /// <summary>
+    /// 플레이어의 현재 보유중인 무기, 아이템 정보 업데이트
+    /// </summary>
+    private void UpdatePlayerSeletableInfos()
+    {
+        playerWeapons = GameManager.instance.Player.GetComponent<PlayerController>().playerStat.GetPlayerWeaponInfos();
+        playerItems = GameManager.instance.Player.GetComponent<PlayerController>().playerStat.GetPlayerItemInfos();
     }
 
 

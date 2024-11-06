@@ -17,15 +17,12 @@ public class PlayerController : MonoBehaviour
 
     public GameObject spawnManager; // Temp: 나중에 삭제
 
-#if WEAPON_TEST
-    public WeaponBehaviour weapon;
-    public ItemBehaviour attackSpeedItem;
-#endif
     private void Start()
     {
         playerStat.Initialize(playerStatData, statEventCaller);
         statEventCaller.StatChanged += OnStatChanged;
 
+        playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour("패킷 스트림"));
         // 경험치 획득 범위 초기화
         //sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = playerStat.ExpGainRange;
@@ -48,20 +45,6 @@ public class PlayerController : MonoBehaviour
         {
             spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Ransomware);
         }
-#if WEAPON_TEST
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            weapon.GetSelectable();
-        }
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            List<SelectionInfo> choices = SelectableManager.instance.GetChoices(playerStat.GetPlayerWeaponInfos(), playerStat.GetPlayerItemInfos());
-            for (int i = 0; i < choices.Count; i++)
-            {
-                Debug.Log(choices[i].ToString());
-            }
-        }
-#endif
     }
 
     private void Move()
