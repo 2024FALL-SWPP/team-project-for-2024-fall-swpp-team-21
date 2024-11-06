@@ -881,7 +881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d35da5f875092a44e8f8b7a5af6e28a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1052069955}
   itemSelectBtn:
   - {fileID: 1284939933}
   - {fileID: 1821607129}
@@ -1134,7 +1133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfac542e39a9e3c40a890a7cc6b4d359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1052069955}
 --- !u!1 &1052069955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1491,7 +1489,11 @@ MonoBehaviour:
   weaponPrefabs:
   - {fileID: 5543367069014170255, guid: 41c4aec1feb590844b2cff1b9e9414e1, type: 3}
   itemPrefabs:
+  - {fileID: 8084648258450572112, guid: b87a10d89b6e7bc49bb1e6b53e47e54a, type: 3}
+  - {fileID: 5337172507349020482, guid: 136fd2db766dad54da08c99cafb48077, type: 3}
   - {fileID: 5279996990134477508, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
+  - {fileID: 732008657286886299, guid: 6dfe305c66b63d04bb02487ae3d5f351, type: 3}
+  - {fileID: 9160872606141101596, guid: f66b955dc12e7d04086eeee4ad5f5575, type: 3}
 --- !u!4 &1449843325
 Transform:
   m_ObjectHideFlags: 0
@@ -2105,7 +2107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d8c210e3ebe9440a90ac8b51652e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1052069955}
   spawnRange: {x: 20, y: 10}
 --- !u!4 &2094598314
 Transform:

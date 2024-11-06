@@ -19,7 +19,7 @@ public abstract class SelectableBehaviour : MonoBehaviour
     protected List<string> explanations = new List<string>();
 
     private GameObject player;
-    private int currentLevel;
+    private int currentLevel = 0;
     protected GameObject Player
     {
         get
@@ -58,18 +58,15 @@ public abstract class SelectableBehaviour : MonoBehaviour
     /// <summary>
     /// 플레이어가 이 아이템을 획득했을 때 호출되는 메소드
     /// </summary>
-    /// <param name="player"></param>
     public void Acquire()
     {
 
         if (currentLevel == 0)
         {
-            currentLevel = 1;
             Initialize();
-            return;
         }
 
-        if (currentLevel > 0 && currentLevel < maxLevel)
+        if (currentLevel < maxLevel)
         {
             currentLevel++;
             LevelUpEffect(currentLevel);

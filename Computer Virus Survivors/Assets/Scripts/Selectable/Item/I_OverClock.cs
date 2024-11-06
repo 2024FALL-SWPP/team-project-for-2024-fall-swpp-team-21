@@ -5,31 +5,31 @@ public class I_OverClock : ItemBehaviour
         switch (level)
         {
             case 1:
-                playerStat.AttackSpeed += 10; // 공격 속도 10% 증가
+                playerStat.AttackSpeed += 10;
                 break;
             case 2:
-                playerStat.AttackSpeed += 10; // 공격 속도 10% 증가
+                playerStat.AttackSpeed += 10;
                 break;
             case 3:
-                playerStat.AttackSpeed += 10; // 공격 속도 10% 증가
+                playerStat.AttackSpeed += 10;
                 break;
             case 4:
-                playerStat.AttackSpeed += 10; // 공격 속도 10% 증가
+                playerStat.AttackSpeed += 10;
                 break;
             case 5:
-                playerStat.AttackSpeed += 10; // 공격 속도 10% 증가
+                playerStat.AttackSpeed += 10;
                 break;
             case 6:
-                playerStat.AttackSpeed += 10; // 공격 속도 10% 증가
+                playerStat.AttackSpeed += 10;
                 break;
             case 7:
-                playerStat.AttackSpeed += 10; // 공격 속도 10% 증가
+                playerStat.AttackSpeed += 10;
                 break;
             case 8:
-                playerStat.AttackSpeed += 10; // 공격 속도 10% 증가
+                playerStat.AttackSpeed += 10;
                 break;
             case 9:
-                playerStat.AttackSpeed += 10; // 공격 속도 10% 증가
+                playerStat.AttackSpeed += 20;
                 break;
         }
     }
@@ -39,7 +39,7 @@ public class I_OverClock : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "플레이어의 공격 속도 10% 증가";
+                explanations[0] = "플레이어의 공격 속도를 10% 증가시킵니다";
                 break;
             case 2:
                 explanations[1] = "공격 속도 추가 10% 증가";
@@ -63,7 +63,7 @@ public class I_OverClock : ItemBehaviour
                 explanations[7] = "공격 속도 추가 10% 증가";
                 goto case 7;
             case 9:
-                explanations[8] = "공격 속도 추가 10% 증가";
+                explanations[8] = "공격 속도 추가 20% 증가";
                 goto case 8;
         }
     }

@@ -14,11 +14,19 @@ public class PlayerStat
         }
         set
         {
-            if (value > 0)
+
+            int increasedHp = value - maxHP;
+            maxHP = value;
+            if (currentHP + increasedHp < 0)
             {
-                maxHP = value;
-                statEventCaller.OnStatChanged(nameof(MaxHp), value);
+                currentHP = 1;
             }
+            else
+            {
+                currentHP += increasedHp;
+            }
+            statEventCaller.OnStatChanged(nameof(MaxHp), value);
+
         }
     }
 
@@ -109,7 +117,6 @@ public class PlayerStat
 
     public int MultiProjectile
     {
-        /// 최소 1의 값을 가져야 함.
         get
         {
             return multiProjectile;
@@ -317,10 +324,12 @@ public class PlayerStat
         // 신규 무기나 아이템이면 추가
         if (selectable is WeaponBehaviour && !weapons.Contains(selectable as WeaponBehaviour))
         {
+            Debug.Log("무기 추가 : " + selectable.ObjectName);
             weapons.Add(selectable as WeaponBehaviour);
         }
         else if (selectable is ItemBehaviour && !items.Contains(selectable as ItemBehaviour))
         {
+            Debug.Log("아이템 추가 : " + selectable.ObjectName);
             items.Add(selectable as ItemBehaviour);
         }
     }
