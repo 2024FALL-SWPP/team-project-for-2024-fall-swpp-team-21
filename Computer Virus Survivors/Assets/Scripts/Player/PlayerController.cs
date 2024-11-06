@@ -51,11 +51,15 @@ public class PlayerController : MonoBehaviour
 #if WEAPON_TEST
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            weapon.GetSelectable(this);
+            weapon.GetSelectable();
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            attackSpeedItem.GetSelectable(this);
+            List<SelectionInfo> choices = SelectableManager.instance.GetChoices(playerStat.GetPlayerWeaponInfos(), playerStat.GetPlayerItemInfos());
+            for (int i = 0; i < choices.Count; i++)
+            {
+                Debug.Log(choices[i].ToString());
+            }
         }
 #endif
     }

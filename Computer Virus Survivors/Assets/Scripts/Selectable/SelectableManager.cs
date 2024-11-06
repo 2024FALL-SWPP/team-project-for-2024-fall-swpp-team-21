@@ -8,21 +8,15 @@ using System.Linq;
 /// </summary>
 public class SelectionInfo
 {
+    public SelectableBehaviour selectableBehaviour;
     public string itemName;
     public int currentLevel;
     public int maxLevel;
     public string explanation;
 
-    public SelectionInfo(string itemName, int currentLevel, int maxLevel, string explanation)
-    {
-        this.itemName = itemName;
-        this.currentLevel = currentLevel;
-        this.maxLevel = maxLevel;
-        this.explanation = explanation;
-    }
-
     public SelectionInfo(SelectableBehaviour selectableBehaviour)
     {
+        this.selectableBehaviour = selectableBehaviour;
         this.itemName = selectableBehaviour.ObjectName;
         this.currentLevel = selectableBehaviour.CurrentLevel;
         this.maxLevel = selectableBehaviour.MaxLevel;
@@ -48,7 +42,8 @@ public class SelectableManager : MonoBehaviour
     private List<SelectableBehaviour> weaponInfos = new List<SelectableBehaviour>();
     private List<SelectableBehaviour> itemInfos = new List<SelectableBehaviour>();
 
-    private void Awake()
+
+    private void OnEnable()
     {
         if (instance == null)
         {
@@ -58,11 +53,7 @@ public class SelectableManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-
-    private void OnEnable()
-    {
         foreach (var obj in weaponPrefabs)
         {
             weaponInfos.Add(obj.GetComponent<SelectableBehaviour>());

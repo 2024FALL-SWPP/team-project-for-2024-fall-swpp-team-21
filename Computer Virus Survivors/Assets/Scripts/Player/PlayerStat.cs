@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-
+using UnityEngine;
 public class PlayerStat
 {
 
@@ -203,11 +203,18 @@ public class PlayerStat
     {
         get
         {
+
             return currentExp;
         }
         set
         {
             currentExp = value;
+            if (currentExp >= maxExpList[PlayerLevel])
+            {
+                currentExp -= maxExpList[PlayerLevel];
+                PlayerLevel++;
+                // 이제 다른 코드의 OnStatChanged에서 selectable 띄움
+            }
             statEventCaller.OnStatChanged(nameof(CurrentExp), value);
         }
     }
@@ -294,23 +301,29 @@ public class PlayerStat
     }
 
 
-    public void GetExp(int exp)
-    {
-        currentExp += exp;
-        if (currentExp >= maxExpList[playerLevel])
-        {
-            playerLevel++;
-            // 이제 다른 코드의 OnStatChanged에서 selectable 띄움
-        }
-    }
-
     public List<SelectableBehaviour> GetPlayerWeaponInfos()
     {
+        Debug.Log("GetPlayerWeaponInfos");
         return weapons.Cast<SelectableBehaviour>().ToList();
     }
 
     public List<SelectableBehaviour> GetPlayerItemInfos()
     {
+        Debug.Log("GetPlayerItemInfos");
         return items.Cast<SelectableBehaviour>().ToList();
     }
+
+    public void AddSelectable(SelectableBehaviour selectable)
+    {
+        if (selectable is WeaponBehaviour)
+        {
+            weapons.Add(selectable as WeaponBehaviour);
+        }
+        else if (selectable is ItemBehaviour)
+        {
+            items.Add(selectable as ItemBehaviour);
+        }
+        selectable.GetSelectable();
+    }
+
 }

@@ -17,8 +17,21 @@ public abstract class SelectableBehaviour : MonoBehaviour
     [SerializeField]
     private List<string> explanations = new List<string>();
 
+    private GameObject player;
     private int currentLevel;
-    protected GameObject Player { get; private set; }
+    protected GameObject Player
+    {
+        get
+        {
+            if (player == null)
+            {
+                // TODO : from GameManager
+                player = GameObject.FindGameObjectWithTag("Player");
+            }
+
+            return player;
+        }
+    }
 
     /// <summary>
     /// 읽기 전용 필드
@@ -45,12 +58,11 @@ public abstract class SelectableBehaviour : MonoBehaviour
     /// 플레이어가 이 아이템을 획득했을 때 호출되는 메소드
     /// </summary>
     /// <param name="player"></param>
-    public void GetSelectable(PlayerController player)
+    public void GetSelectable()
     {
 
-        if (Player == null)
+        if (currentLevel == 0)
         {
-            Player = player.gameObject;
             currentLevel = 1;
             Initialize();
             return;
