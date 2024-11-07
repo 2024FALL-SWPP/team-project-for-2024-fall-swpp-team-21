@@ -9,6 +9,7 @@ public class VirusBehaviour : MonoBehaviour
     [SerializeField] protected VirusData virusData;
     protected GameObject player;
     protected PlayerController playerController;
+    protected Rigidbody rb;
 
 
     protected int currentHP;
@@ -19,6 +20,7 @@ public class VirusBehaviour : MonoBehaviour
         {
             this.player = player;
             playerController = player.GetComponent<PlayerController>();
+            rb = GetComponent<Rigidbody>();
         }
     }
 
