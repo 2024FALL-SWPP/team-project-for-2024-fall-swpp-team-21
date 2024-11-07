@@ -17,5 +17,6 @@ public class V_Weak : VirusBehaviour
     private void Update()
     {
         Move();
+        rb.velocity = Vector3.zero;
     }
 }
