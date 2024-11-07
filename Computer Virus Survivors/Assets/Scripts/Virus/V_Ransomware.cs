@@ -48,6 +48,7 @@ public class V_Ransomware : VirusBehaviour
         {
             Move();
         }
+        rb.velocity = Vector3.zero;
     }
 
     private IEnumerator AttackCoroutine()

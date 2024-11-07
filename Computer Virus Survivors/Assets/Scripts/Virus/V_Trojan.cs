@@ -23,6 +23,8 @@ public class V_Trojan : VirusBehaviour
             isAttacking = true;
             StartCoroutine(AttackCoroutine());
         }
+
+        rb.velocity = Vector3.zero;
     }
 
     // 돌진 - 방향 전환 없이 이동
