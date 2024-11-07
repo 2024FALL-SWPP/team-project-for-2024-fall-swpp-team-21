@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-
+using UnityEngine;
 public class PlayerStat
 {
 
@@ -14,11 +14,19 @@ public class PlayerStat
         }
         set
         {
-            if (value > 0)
+
+            int increasedHp = value - maxHP;
+            maxHP = value;
+            if (currentHP + increasedHp < 0)
             {
-                maxHP = value;
-                statEventCaller.OnStatChanged(nameof(MaxHp), value);
+                currentHP = 1;
             }
+            else
+            {
+                currentHP += increasedHp;
+            }
+            statEventCaller.OnStatChanged(nameof(MaxHp), value);
+
         }
     }
 
@@ -109,7 +117,6 @@ public class PlayerStat
 
     public int MultiProjectile
     {
-        /// 최소 1의 값을 가져야 함.
         get
         {
             return multiProjectile;
@@ -203,11 +210,18 @@ public class PlayerStat
     {
         get
         {
+
             return currentExp;
         }
         set
         {
             currentExp = value;
+            if (currentExp >= maxExpList[PlayerLevel])
+            {
+                currentExp -= maxExpList[PlayerLevel];
+                PlayerLevel++;
+                // 이제 다른 코드의 OnStatChanged에서 selectable 띄움
+            }
             statEventCaller.OnStatChanged(nameof(CurrentExp), value);
         }
     }
@@ -260,8 +274,6 @@ public class PlayerStat
 
     private int[] maxExpList;           // 최대 경험치 리스트
     private List<WeaponBehaviour> weapons;  // 무기 리스트
-                                            // TODO : "ItemBehavior" 아이템 구현
-                                            //private List<ItemBehaviour> items;    // 아이템 리스트
     private List<ItemBehaviour> items;    // 아이템 리스트
 
     public void Initialize(PlayerStatData playerStatData, PlayerStatEventCaller eventCaller)
@@ -294,16 +306,6 @@ public class PlayerStat
     }
 
 
-    public void GetExp(int exp)
-    {
-        currentExp += exp;
-        if (currentExp >= maxExpList[playerLevel])
-        {
-            playerLevel++;
-            // 이제 다른 코드의 OnStatChanged에서 selectable 띄움
-        }
-    }
-
     public List<SelectableBehaviour> GetPlayerWeaponInfos()
     {
         return weapons.Cast<SelectableBehaviour>().ToList();
@@ -312,5 +314,23 @@ public class PlayerStat
     public List<SelectableBehaviour> GetPlayerItemInfos()
     {
         return items.Cast<SelectableBehaviour>().ToList();
+    }
+
+    public void TakeSelectable(SelectableBehaviour selectable)
+    {
+        // level up
+        selectable.Acquire();
+
+        // 신규 무기나 아이템이면 추가
+        if (selectable is WeaponBehaviour && !weapons.Contains(selectable as WeaponBehaviour))
+        {
+            Debug.Log("무기 추가 : " + selectable.ObjectName);
+            weapons.Add(selectable as WeaponBehaviour);
+        }
+        else if (selectable is ItemBehaviour && !items.Contains(selectable as ItemBehaviour))
+        {
+            Debug.Log("아이템 추가 : " + selectable.ObjectName);
+            items.Add(selectable as ItemBehaviour);
+        }
     }
 }

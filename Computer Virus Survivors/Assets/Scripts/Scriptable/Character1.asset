@@ -20,7 +20,7 @@ MonoBehaviour:
   evadeProbability: 0
   invincibleFrame: 20
   attackPoint: 100
-  multiProjectile: 1
+  multiProjectile: 0
   attackSpeed: 100
   attackRange: 100
   critProbability: 0
