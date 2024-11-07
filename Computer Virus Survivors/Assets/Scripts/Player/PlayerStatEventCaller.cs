@@ -33,5 +33,6 @@ public class StatChangedEventArgs : EventArgs
     {
         StatName = statName;
         NewValue = newValue;
+        Debug.Log("StatChangedEventArgs : " + statName + " " + newValue);
     }
 }

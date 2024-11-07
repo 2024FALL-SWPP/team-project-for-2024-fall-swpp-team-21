@@ -261,7 +261,7 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// <param name="multiProjectile"></param>
     protected void CalcMultiProjectile()
     {
-        finalMultiProjectile = BasicMultiProjectile * playerStat.MultiProjectile;
+        finalMultiProjectile = BasicMultiProjectile + playerStat.MultiProjectile;
     }
 
 
