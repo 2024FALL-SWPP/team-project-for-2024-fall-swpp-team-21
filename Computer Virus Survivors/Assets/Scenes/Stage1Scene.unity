@@ -2112,7 +2112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRange: {x: 20, y: 10}
-  maxVirusNum: 5
+  maxVirusNum: 100
   spawnPatterns:
   - spawnTimeRange: {x: 0, y: 31}
     spawnPeriod: 5

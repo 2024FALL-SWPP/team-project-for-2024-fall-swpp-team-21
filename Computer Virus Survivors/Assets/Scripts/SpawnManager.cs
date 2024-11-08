@@ -44,7 +44,7 @@ public class SpawnManager : MonoBehaviour
     public List<SpawnPattern> spawnPatterns;
 
     private GameObject player;
-    public int currentVirusNum = 0;
+    private int currentVirusNum = 0;
     // private List<Coroutine> runningCoroutines = new List<Coroutine>();
 
     private void Awake()
