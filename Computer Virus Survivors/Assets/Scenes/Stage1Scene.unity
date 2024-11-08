@@ -915,6 +915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1052069955}
+  gameTime: 0
 --- !u!4 &864614574
 Transform:
   m_ObjectHideFlags: 0
@@ -2108,6 +2109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRange: {x: 20, y: 10}
+  spawnPatterns: []
 --- !u!4 &2094598314
 Transform:
   m_ObjectHideFlags: 0

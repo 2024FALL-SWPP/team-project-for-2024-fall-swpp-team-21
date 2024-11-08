@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject player;
 
+    public float gameTime = 0;
+
     public GameObject Player
     {
         get { return player; }
@@ -26,4 +28,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Update is called once per frame
+    private void Update()
+    {
+        gameTime += Time.deltaTime;
+    }
 }
