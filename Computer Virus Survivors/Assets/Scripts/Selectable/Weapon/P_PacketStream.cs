@@ -17,14 +17,19 @@ public class P_PacketStream : ProjectileBehaviour
         collider.center = new Vector3(collider.center.x, offsetY, collider.center.z);
     }
 
-    private void OnBecameInvisible()
-    {
-        PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
-    }
-
     private void Update()
     {
         transform.Translate(bulletSpeed * Time.deltaTime * Vector3.forward);
+        if (CheckOutOfScreen())
+        {
+            PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
+        }
+    }
+
+    private bool CheckOutOfScreen()
+    {
+        Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
+        return viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1;
     }
 
     protected override void OnTriggerEnter(Collider other)

@@ -8,12 +8,14 @@ public class ItemSelectCanvasManager : MonoBehaviour
 
     private List<SelectionInfo> choices;
     private PlayerStat playerStat;
+    private RectTransform rectTransform;
 
     private void OnEnable()
     {
         if (playerStat == null)
         {
             playerStat = GameManager.instance.Player.GetComponent<PlayerController>().playerStat;
+            rectTransform = GetComponent<RectTransform>();
         }
         ShowItemSelectCanvas();
     }
@@ -21,6 +23,7 @@ public class ItemSelectCanvasManager : MonoBehaviour
     public void ShowItemSelectCanvas()
     {
         Debug.Log("ShowItemSelectCanvas");
+        rectTransform.SetAsLastSibling();
         choices = SelectableManager.instance.GetChoices();
 
         for (int i = 0; i < 3; i++)

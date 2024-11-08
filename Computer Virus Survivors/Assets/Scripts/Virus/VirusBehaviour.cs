@@ -47,10 +47,17 @@ public class VirusBehaviour : MonoBehaviour
 
     public void GetDamage(int damage)
     {
-        currentHP -= damage;
-        if (currentHP <= 0)
+        if (damage != 0)
         {
-            Die();
+
+            currentHP -= damage;
+            PoolManager.instance.GetObject(PoolType.DamageIndicator)
+                .GetComponent<DamageIndicator>().Initialize(damage, transform.position);
+            if (currentHP <= 0)
+            {
+                Die();
+            }
+
         }
     }
 

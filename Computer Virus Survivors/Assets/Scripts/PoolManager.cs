@@ -9,7 +9,8 @@ public enum PoolType
     Virus_Weak,
     Virus_Trojan,
     Virus_Ransomware,
-    Proj_PacketStream
+    Proj_PacketStream,
+    DamageIndicator
 }
 
 public class PoolManager : MonoBehaviour
