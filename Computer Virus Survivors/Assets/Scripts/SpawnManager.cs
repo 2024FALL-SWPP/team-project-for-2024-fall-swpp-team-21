@@ -8,18 +8,18 @@ using UnityEditor;
 [Serializable]
 public class SpawnPattern
 {
-    // 초 단위
-    public Vector2 spawnTimeRange;
-    public int spawnPeriod;
+    public Vector2 spawnTimeRange;  // 초 단위
+    public int spawnPeriod;  // 초 단위
     public PoolType virusID;
     public int spawnMonsterNum;
+    public bool ignoreMaxVirusNum;  // true일 경우 maxVirusNum을 넘더라도 무시하고 스폰 (ex: 보스)
     public bool isSpawnPointRandom;
 
     [Header("랜덤인 경우만")]
     public Vector2 offsetFromPlayer;
     public Vector2 spawnRange;
 
-    [Header("랜덤이 아닌 경우만 (spawnMonsterNum만큼의 spawn point가 있어야 함)")]
+    [Header("랜덤이 아닌 경우만 (Spawn Monster Num만큼 필요)")]
     public List<Vector2> spawnPoints;
 }
 
@@ -37,12 +37,27 @@ public class SpawnPatternList
 
 public class SpawnManager : MonoBehaviour
 {
-    // for test: 플레이어 주위 스폰 범위
-    [SerializeField] private Vector2 spawnRange;
+    public static SpawnManager instance;
+
+    [SerializeField] private Vector2 spawnRange;  // for test: 플레이어 주위 스폰 범위
+    [SerializeField] private int maxVirusNum = 100;
+    public List<SpawnPattern> spawnPatterns;
 
     private GameObject player;
-    public List<SpawnPattern> spawnPatterns;
+    public int currentVirusNum = 0;
     // private List<Coroutine> runningCoroutines = new List<Coroutine>();
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -73,7 +88,7 @@ public class SpawnManager : MonoBehaviour
             Quaternion.LookRotation(player.transform.position - spawnPosition)
         );
 
-        virus.GetComponent<VirusBehaviour>().Initialize(player);
+        currentVirusNum++;  // synchronization issue?
     }
 
 
@@ -96,6 +111,11 @@ public class SpawnManager : MonoBehaviour
         {
             for (int i = 0; i < spawnPattern.spawnMonsterNum; i++)
             {
+                if (currentVirusNum >= maxVirusNum && !spawnPattern.ignoreMaxVirusNum)
+                {
+                    continue;
+                }
+
                 Vector2 randomPoint = spawnPattern.isSpawnPointRandom ?
                     GetRandomPoint(spawnPattern.spawnRange.x, spawnPattern.spawnRange.y) :
                     spawnPattern.spawnPoints[i];
@@ -123,9 +143,7 @@ public class SpawnManager : MonoBehaviour
         // Ensure minRadius is not greater than maxRadius
         if (minRadius > maxRadius)
         {
-            float temp = minRadius;
-            minRadius = maxRadius;
-            maxRadius = temp;
+            (maxRadius, minRadius) = (minRadius, maxRadius);
         }
 
         // Random angle in radians
@@ -139,6 +157,11 @@ public class SpawnManager : MonoBehaviour
         float y = radius * Mathf.Sin(angle);
 
         return new Vector2(x, y);
+    }
+
+    public void OnVirusDestroyed()
+    {
+        currentVirusNum--;  // synchronization issue?
     }
 }
 
@@ -188,11 +211,11 @@ public class SpawnManagerEditor : Editor
         try
         {
             manager.LoadSpawnPattern();
-            Debug.Log("Successfully loaded Spawn Patterns as JSON");
+            Debug.Log("Successfully loaded Spawn Patterns from JSON");
         }
         catch (Exception e)
         {
-            Debug.Log("Failed to load Spawn Patterns as JSON: " + e.Message);
+            Debug.Log("Failed to load Spawn Patterns from JSON: " + e.Message);
         }
     }
 }
