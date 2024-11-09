@@ -7,6 +7,8 @@ public class V_Trojan : VirusBehaviour
     [SerializeField] private float attackPeriod = 4.0f;
     [SerializeField] private float attackRange = 100.0f;
     [SerializeField] private float dashSpeed = 15.0f;
+    [SerializeField] private float dashDelay = 0.3f;
+    [SerializeField] private float dashDuration = 0.5f;
 
     private bool isAttacking = false;
     private bool doNotTrack = false; // 공격 쿨타임 중에 있음
@@ -51,9 +53,9 @@ public class V_Trojan : VirusBehaviour
         {
             Debug.Log("Trojan is attacking");
 
-            yield return new WaitForSeconds(0.3f); // 잠시 멈춤
-            yield return StartCoroutine(Dash(0.5f)); // 대시
-            yield return new WaitForSeconds(0.3f); // 잠시 멈춤
+            yield return new WaitForSeconds(dashDelay); // 잠시 멈춤
+            yield return StartCoroutine(Dash(dashDuration)); // 대시
+            yield return new WaitForSeconds(dashDelay); // 잠시 멈춤
             isAttacking = false;
 
             doNotTrack = true;
