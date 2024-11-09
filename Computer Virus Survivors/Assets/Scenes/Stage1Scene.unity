@@ -1860,11 +1860,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRange: {x: 20, y: 10}
+  maxVirusNum: 100
   spawnPatterns:
   - spawnTimeRange: {x: 0, y: 31}
     spawnPeriod: 5
     virusID: 1
     spawnMonsterNum: 3
+    ignoreMaxVirusNum: 0
     isSpawnPointRandom: 1
     offsetFromPlayer: {x: 0, y: 0}
     spawnRange: {x: 10, y: 15}
@@ -1873,6 +1875,7 @@ MonoBehaviour:
     spawnPeriod: 5
     virusID: 2
     spawnMonsterNum: 3
+    ignoreMaxVirusNum: 1
     isSpawnPointRandom: 0
     offsetFromPlayer: {x: 0, y: 0}
     spawnRange: {x: 5, y: 10}
@@ -1880,6 +1883,7 @@ MonoBehaviour:
     - {x: 0, y: 10}
     - {x: 5, y: -5}
     - {x: -5, y: -5}
+  currentVirusNum: 0
 --- !u!4 &2094598314
 Transform:
   m_ObjectHideFlags: 0

@@ -33,8 +33,9 @@ public class V_Ransomware : VirusBehaviour
     // or List<IEnumerator>
     private bool startAttack = false;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         StartCoroutine(AttackCoroutine());
         attackActions.Add(EncryptionSpike);
         attackActions.Add(UIJam);

@@ -14,17 +14,14 @@ public class VirusBehaviour : MonoBehaviour
 
     protected int currentHP;
 
-    public void Initialize(GameObject player)
+    protected virtual void Start()
     {
-        if (this.player == null)
-        {
-            this.player = player;
-            playerController = player.GetComponent<PlayerController>();
-            rb = GetComponent<Rigidbody>();
-        }
+        player = GameManager.instance.Player;
+        playerController = player.GetComponent<PlayerController>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    protected void OnEnable()
+    private void OnEnable()
     {
         currentHP = virusData.maxHP;
     }
@@ -42,6 +39,7 @@ public class VirusBehaviour : MonoBehaviour
     protected void Die()
     {
         PoolManager.instance.ReturnObject(virusData.poolType, gameObject);
+        SpawnManager.instance.OnVirusDestroyed();
 
         GameObject expGem = PoolManager.instance.GetObject(PoolType.ExpGem, transform.position, transform.rotation);
         expGem.GetComponent<ExpGem>().Initialize(virusData.dropExp);
