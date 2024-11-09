@@ -9,7 +9,7 @@ public class P_PacketStream : ProjectileBehaviour
 
     private void OnEnable()
     {
-        SphereCollider collider = GetComponent<SphereCollider>();
+        CapsuleCollider collider = GetComponent<CapsuleCollider>();
 
         float currentWorldY = transform.position.y;
         float offsetY = -currentWorldY / transform.lossyScale.y;

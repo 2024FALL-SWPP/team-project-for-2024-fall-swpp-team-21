@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-abstract public class ProjectileBehaviour : MonoBehaviour
+public abstract class ProjectileBehaviour : MonoBehaviour
 {
     [SerializeField] protected Animator animator;
     protected int damage;
