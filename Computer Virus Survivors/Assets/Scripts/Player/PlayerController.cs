@@ -9,13 +9,14 @@ public class PlayerController : MonoBehaviour
 
     public PlayerStatData playerStatData;
     public PlayerStatEventCaller statEventCaller;
-
     public PlayerStat playerStat = new PlayerStat();
 
-    private bool isInvincible = false;
     public SphereCollider sphereCollider;
 
     public GameObject spawnManager; // Temp: 나중에 삭제
+
+    private Animator animator;
+    private bool isInvincible = false;
 
     private void Start()
     {
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
         // 경험치 획득 범위 초기화
         //sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = playerStat.ExpGainRange;
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -60,6 +63,7 @@ public class PlayerController : MonoBehaviour
         if (horizontalAbs < Cst.DeadZoneSec
             && verticalAbs < Cst.DeadZoneSec)
         {
+            animator.SetBool("b_IsMoving", false);
             return;
         }
 
@@ -90,9 +94,10 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
 
+        animator.SetBool("b_IsMoving", moveDirection != Vector3.zero);
+
         transform.Translate(playerStat.MoveSpeed * Time.deltaTime * moveDirection, Space.World);
         transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-
     }
 
     private void Die()
