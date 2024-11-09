@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1476339308216537651}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2549643050272070598}
   - component: {fileID: 2303247314537419483}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: W_PacketStream_Modeled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 1389153984375012089}
   - component: {fileID: 3793072646584618547}
   - component: {fileID: 2549643050212935449}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PacketStream_Rear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 2659551111532947928}
   - component: {fileID: 1389153984742532733}
   - component: {fileID: 3793072645813392055}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PacketStream_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 1389153983288778594}
   - component: {fileID: 3793072647645948840}
   - component: {fileID: 2549643049920940102}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PacketStream_front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
