@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour
 
     public SphereCollider sphereCollider;
 
-    public GameObject spawnManager; // Temp: 나중에 삭제
-
     private Animator animator;
     private bool isInvincible = false;
 
@@ -38,15 +36,15 @@ public class PlayerController : MonoBehaviour
         // Temp: 스폰 임시로 구현
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Weak);
+            SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Weak);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Trojan);
+            SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Trojan);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Ransomware);
+            SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Ransomware);
         }
     }
 

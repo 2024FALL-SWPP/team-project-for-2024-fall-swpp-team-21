@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  bulletSpeed: 30
+  bulletSpeed: 15
 --- !u!1001 &5629997423164613056
 PrefabInstance:
   m_ObjectHideFlags: 0
