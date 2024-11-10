@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 973438254336052930}
   - component: {fileID: -6830430157742786051}
   m_Layer: 7
-  m_Name: P_PacketStream
+  m_Name: P_PacketStream_Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
