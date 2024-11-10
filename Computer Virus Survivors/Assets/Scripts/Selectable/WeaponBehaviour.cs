@@ -183,7 +183,7 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     {
         playerStat = Player.GetComponent<PlayerController>().playerStat;
         playerStatEventCaller = Player.GetComponent<PlayerController>().statEventCaller;
-        playerStatEventCaller.StatChanged += OnStatChanged;
+        playerStatEventCaller.StatChangedHandler += OnStatChanged;
 
         projectilePool = projectilePoolType;
         BasicDamage = initialDamage;

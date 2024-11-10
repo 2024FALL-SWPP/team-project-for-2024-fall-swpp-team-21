@@ -13,9 +13,8 @@ public enum PoolType
     DamageIndicator
 }
 
-public class PoolManager : MonoBehaviour
+public class PoolManager : Singleton<PoolManager>
 {
-    public static PoolManager instance;
 
     [System.Serializable]
     public class PoolObject
@@ -29,20 +28,7 @@ public class PoolManager : MonoBehaviour
 
     private Dictionary<PoolType, Queue<GameObject>> poolDict;
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    // Start is called before the first frame update
-    private void Start()
+    public override void Initialize()
     {
         poolDict = new Dictionary<PoolType, Queue<GameObject>>();
 
@@ -57,6 +43,7 @@ public class PoolManager : MonoBehaviour
                 poolDict[prefabEntries[i].poolName].Enqueue(obj);
             }
         }
+
     }
 
     public GameObject GetObject(PoolType poolType)

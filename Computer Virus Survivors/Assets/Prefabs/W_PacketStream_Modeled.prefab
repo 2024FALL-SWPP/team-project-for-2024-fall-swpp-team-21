@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 2659551111365703004}
   - component: {fileID: 1389153984375012089}
   - component: {fileID: 3793072646584618547}
-  - component: {fileID: 2549643050212935449}
   m_Layer: 6
   m_Name: PacketStream_Rear
   m_TagString: Untagged
@@ -213,19 +212,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2549643050212935449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3432674243412946918}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3478fccde3dbb4c4fba2fd6dd126be19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: {x: 500, y: 0, z: 0}
 --- !u!1 &3432674244186272610
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +314,6 @@ GameObject:
   - component: {fileID: 2659551112426688711}
   - component: {fileID: 1389153983288778594}
   - component: {fileID: 3793072647645948840}
-  - component: {fileID: 2549643049920940102}
   m_Layer: 6
   m_Name: PacketStream_front
   m_TagString: Untagged
@@ -405,19 +390,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2549643049920940102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3432674244490709629}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3478fccde3dbb4c4fba2fd6dd126be19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: {x: -500, y: 0, z: 0}
 --- !u!1 &4708726180739756513
 GameObject:
   m_ObjectHideFlags: 0

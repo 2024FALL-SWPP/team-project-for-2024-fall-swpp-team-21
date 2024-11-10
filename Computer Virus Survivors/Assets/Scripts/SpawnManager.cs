@@ -35,9 +35,8 @@ public class SpawnPatternList
 
 
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManager : Singleton<SpawnManager>
 {
-    public static SpawnManager instance;
 
     [SerializeField] private Vector2 spawnRange;  // for test: 플레이어 주위 스폰 범위
     [SerializeField] private int maxVirusNum = 100;
@@ -47,26 +46,17 @@ public class SpawnManager : MonoBehaviour
     private int currentVirusNum = 0;
     // private List<Coroutine> runningCoroutines = new List<Coroutine>();
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    private void Start()
+    public override void Initialize()
     {
         player = GameManager.instance.Player;
         LoadSpawnPattern();
         spawnPatterns.Sort((a, b) => a.spawnTimeRange.x.CompareTo(b.spawnTimeRange.x));
-        StartCoroutine(MainSpawnCoroutine());
     }
 
+    public void StartSpawnManager()
+    {
+        StartCoroutine(MainSpawnCoroutine());
+    }
 
     // for test: 플레이어 주위 스폰
     public void Spawn(PoolType index)

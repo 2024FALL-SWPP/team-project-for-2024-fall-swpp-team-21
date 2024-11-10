@@ -16,10 +16,10 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private bool isInvincible = false;
 
-    private void Start()
+    public void Initialize()
     {
         playerStat.Initialize(playerStatData, statEventCaller);
-        statEventCaller.StatChanged += OnStatChanged;
+        statEventCaller.StatChangedHandler += OnStatChanged;
 
         playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour("패킷 스트림"));
         // 경험치 획득 범위 초기화
@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
         animator = GetComponent<Animator>();
     }
+
 
     private void Update()
     {
@@ -127,8 +128,8 @@ public class PlayerController : MonoBehaviour
 
     public void GetExp(int exp)
     {
+        Debug.Log("EXP gained: " + exp);
         playerStat.CurrentExp += exp * playerStat.ExpGainRatio / 100;
-        Debug.Log("Player EXP: " + playerStat.CurrentExp);
         // TODO: Level up
     }
 
