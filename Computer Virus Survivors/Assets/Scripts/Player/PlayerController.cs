@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
     private bool isInvincible = false;
+    public bool canLevelUp = true;
 
     private void Start()
     {
@@ -25,7 +26,6 @@ public class PlayerController : MonoBehaviour
 
         playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour("패킷 스트림"));
         // 경험치 획득 범위 초기화
-        //sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = playerStat.ExpGainRange;
 
         animator = GetComponent<Animator>();
@@ -130,8 +130,24 @@ public class PlayerController : MonoBehaviour
     public void GetExp(int exp)
     {
         playerStat.CurrentExp += exp * playerStat.ExpGainRatio / 100;
+        if (playerStat.CurrentExp >= playerStat.maxExpList[playerStat.PlayerLevel])
+        {
+            StartCoroutine(LevelUp());
+        }
         Debug.Log("Player EXP: " + playerStat.CurrentExp);
-        // TODO: Level up
+    }
+
+    private IEnumerator LevelUp()
+    {
+        while (playerStat.CurrentExp >= playerStat.maxExpList[playerStat.PlayerLevel])
+        {
+            yield return new WaitUntil(() => canLevelUp);
+            playerStat.CurrentExp -= playerStat.maxExpList[playerStat.PlayerLevel];
+            playerStat.PlayerLevel++;
+            canLevelUp = false;
+            Debug.Log("Player Level: " + playerStat.PlayerLevel);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
