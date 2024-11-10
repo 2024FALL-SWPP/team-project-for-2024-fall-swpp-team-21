@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2048105091527586917}
   - component: {fileID: 2846867234939165133}
   m_Layer: 7
-  m_Name: P_PacketStream_Long
+  m_Name: P_PacketStream
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -216,12 +216,12 @@ public class PlayerStat
         set
         {
             currentExp = value;
-            if (currentExp >= maxExpList[PlayerLevel])
-            {
-                currentExp -= maxExpList[PlayerLevel];
-                PlayerLevel++;
-                // 이제 다른 코드의 OnStatChanged에서 selectable 띄움
-            }
+            // if (currentExp >= maxExpList[PlayerLevel])
+            // {
+            //     currentExp -= maxExpList[PlayerLevel];
+            //     PlayerLevel++;
+            //     // 이제 다른 코드의 OnStatChanged에서 selectable 띄움
+            // }
             statEventCaller.OnStatChanged(nameof(CurrentExp), value);
         }
     }
@@ -272,7 +272,7 @@ public class PlayerStat
     private float expGainRange;             // 경험치 획득 범위
     private float moveSpeed;                // 이동 속도
 
-    private int[] maxExpList;           // 최대 경험치 리스트
+    public int[] maxExpList;           // 최대 경험치 리스트
     private List<WeaponBehaviour> weapons;  // 무기 리스트
     private List<ItemBehaviour> items;    // 아이템 리스트
 

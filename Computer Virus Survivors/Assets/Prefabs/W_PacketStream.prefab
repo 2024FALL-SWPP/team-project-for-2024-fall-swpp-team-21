@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 2549643050272070598}
   - component: {fileID: 2303247314537419483}
   m_Layer: 6
-  m_Name: W_PacketStream_Modeled
+  m_Name: W_PacketStream
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -26,12 +26,14 @@ public class CanvasManager : MonoBehaviour, IPlayerStatObserver
     private void OnEnable()
     {
         playerStatEventCaller.StatChanged += OnStatChanged;
+
     }
 
     public void OnSelectionDone()
     {
         Time.timeScale = 1;
         itemSelectCanvas.gameObject.SetActive(false);
+        GameManager.instance.Player.GetComponent<PlayerController>().canLevelUp = true;  // 그냥 PlayerController를 처음부터 갖고있는게 좋을듯
     }
 
     public void OnStatChanged(object sender, StatChangedEventArgs args)
