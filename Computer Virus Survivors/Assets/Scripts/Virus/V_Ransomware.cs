@@ -29,6 +29,8 @@ public class V_Ransomware : VirusBehaviour
     [SerializeField] private GameObject firewallBarricadePf;
     [SerializeField] private float fBDuration = 7.0f;
 
+    [SerializeField] private GameObject stage1Piece;
+
     private readonly List<Action> attackActions = new List<Action>();
     // or List<IEnumerator>
     private bool startAttack = false;
@@ -103,5 +105,11 @@ public class V_Ransomware : VirusBehaviour
         Destroy(barricade);
     }
 
-    // TODO: 죽을 때 세미콜론 아이템 드롭
+    // 죽을 때 세미콜론 아이템 드롭
+    protected override void Die()
+    {
+        base.Die();  // exp gem 드롭 안할거면 이부분 지우고 새로 써야함
+        Instantiate(stage1Piece, transform.position, stage1Piece.transform.rotation);
+        // TODO: 퍼즐 올라옴
+    }
 }

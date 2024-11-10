@@ -36,7 +36,7 @@ public class VirusBehaviour : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(moveDirection);
     }
 
-    protected void Die()
+    protected virtual void Die()
     {
         PoolManager.instance.ReturnObject(virusData.poolType, gameObject);
         SpawnManager.instance.OnVirusDestroyed();
