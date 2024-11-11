@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: V_Trojan
   m_EditorClassIdentifier: 
   poolType: 2
-  maxHP: 200
+  maxHP: 2000
   moveSpeed: 3
   dropExp: 2500
   contactDamage: 40

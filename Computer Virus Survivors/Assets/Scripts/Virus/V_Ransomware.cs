@@ -110,6 +110,7 @@ public class V_Ransomware : VirusBehaviour
     {
         base.Die();  // exp gem 드롭 안할거면 이부분 지우고 새로 써야함
         Instantiate(stage1Piece, transform.position, stage1Piece.transform.rotation);
+        Stage1Goal.instance.OnBossDead();
         // TODO: 퍼즐 올라옴
     }
 }

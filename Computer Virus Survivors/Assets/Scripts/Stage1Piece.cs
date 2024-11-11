@@ -8,7 +8,8 @@ public class Stage1Piece : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // TODO
+            Stage1Goal.instance.OnPieceGet();
+            Destroy(gameObject);
         }
     }
 }

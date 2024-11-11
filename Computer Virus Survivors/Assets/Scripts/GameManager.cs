@@ -46,4 +46,18 @@ public class GameManager : Singleton<GameManager>
         SpawnManager.instance.StartSpawnManager();
         player.GetComponent<PlayerController>().Initialize();
     }
+
+    public void GameOver()
+    {
+        Debug.Log("GameOver");
+        Time.timeScale = 0;
+        // TODO
+    }
+
+    public void GameClear()
+    {
+        Debug.Log("GameClear");
+        Time.timeScale = 0;
+        // TODO
+    }
 }
