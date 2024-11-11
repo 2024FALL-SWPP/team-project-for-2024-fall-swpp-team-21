@@ -1,24 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSelectCanvasManager : MonoBehaviour
+public class ItemSelectCanvasManager : MonoBehaviour, IState
 {
+
+    public event Action<SelectableBehaviour> SelectionHandler;
+
     [SerializeField] private List<GameObject> itemSelectBtn;
 
     private List<SelectionInfo> choices;
     private PlayerStat playerStat;
     private RectTransform rectTransform;
-
-    private void OnEnable()
-    {
-        if (playerStat == null)
-        {
-            playerStat = GameManager.instance.Player.GetComponent<PlayerController>().playerStat;
-            rectTransform = GetComponent<RectTransform>();
-        }
-        ShowItemSelectCanvas();
-    }
 
     public void ShowItemSelectCanvas()
     {
@@ -43,6 +37,27 @@ public class ItemSelectCanvasManager : MonoBehaviour
         playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour(choices[selectedIndex].objectName));
 
         CanvasManager.instance.OnSelectionDone();
+    }
+
+    public void OnEnter()
+    {
+        gameObject.SetActive(true);
+        if (playerStat == null)
+        {
+            playerStat = GameManager.instance.Player.GetComponent<PlayerController>().playerStat;
+            rectTransform = GetComponent<RectTransform>();
+        }
+        ShowItemSelectCanvas();
+    }
+
+    public void OnExit()
+    {
+
+        gameObject.SetActive(false);
+    }
+
+    public void OnUpdate()
+    {
     }
 
 }
