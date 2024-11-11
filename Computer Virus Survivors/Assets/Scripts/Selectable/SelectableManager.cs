@@ -12,6 +12,7 @@ public class SelectionInfo
     public int currentLevel;
     public int maxLevel;
     public string explanation;
+    public bool isWeapon;
 
     public SelectionInfo(SelectableBehaviour selectableBehaviour)
     {
@@ -19,11 +20,34 @@ public class SelectionInfo
         this.currentLevel = selectableBehaviour.CurrentLevel;
         this.maxLevel = selectableBehaviour.MaxLevel;
         this.explanation = selectableBehaviour.Explanations[currentLevel];
+        this.isWeapon = selectableBehaviour is WeaponBehaviour;
     }
 
     public override string ToString()
     {
-        return string.Format("Item Name: {0}\n Current Level: {1}\n Max Level: {2}\n Explanation: {3}", objectName, currentLevel, maxLevel, explanation);
+        string levelChange = "NEW!";
+        if (currentLevel != 0 && currentLevel + 1 < maxLevel)
+        {
+            levelChange = currentLevel + " -> " + (currentLevel + 1);
+        }
+        else if (currentLevel + 1 == maxLevel)
+        {
+            levelChange = "MAX LEVEL!";
+        }
+
+        return string.Format("<{0}>\n" +
+                            "{1}\n" +
+                            "{2}\n" +
+                            "\n" +
+                            "{3}"
+                            , isWeapon ? "무기" : "아이템", objectName, levelChange, explanation);
+        /*
+        <무기>
+        패킷 스트림
+        1 -> 2
+
+        공격속도 15% 증가
+        */
     }
 }
 
