@@ -14,12 +14,14 @@ public class Stage1Puzzle : MonoBehaviour
     private BoxCollider boxCollider;
     private bool isPlayerNear = false;
 
+    // Enable되면 바닥 아래에서 천천히 위로 올라옴
     private void OnEnable()
     {
         boxCollider = GetComponent<BoxCollider>();
         StartCoroutine(GoUp());
     }
 
+    // 가까이에서 Space 누르면 게임 클리어
     private void Update()
     {
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Space))
