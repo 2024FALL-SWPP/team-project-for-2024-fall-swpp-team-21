@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSelectCanvasManager : MonoBehaviour, IState
+public class ItemSelectCanvasManager : Singleton<ItemSelectCanvasManager>, IState
 {
 
     public event Action<SelectableBehaviour> SelectionHandler;
@@ -11,13 +11,17 @@ public class ItemSelectCanvasManager : MonoBehaviour, IState
     [SerializeField] private List<GameObject> itemSelectBtn;
 
     private List<SelectionInfo> choices;
-    private PlayerStat playerStat;
-    private RectTransform rectTransform;
+    private bool isShowing = false;
 
-    public void ShowItemSelectCanvas()
+    public override void Initialize()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void ShowItemSelectCanvas()
     {
         Debug.Log("ShowItemSelectCanvas");
-        rectTransform.SetAsLastSibling();
+
         choices = SelectableManager.instance.GetChoices();
 
         for (int i = 0; i < 3; i++)
@@ -34,29 +38,22 @@ public class ItemSelectCanvasManager : MonoBehaviour, IState
     public void OnClick(int selectedIndex)
     {
         Debug.Log("OnClick" + choices[selectedIndex].objectName);
-        playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour(choices[selectedIndex].objectName));
+        SelectionHandler?.Invoke(SelectableManager.instance.GetSelectableBehaviour(choices[selectedIndex].objectName));
 
-        CanvasManager.instance.OnSelectionDone();
+        isShowing = false;
     }
 
     public void OnEnter()
     {
-        gameObject.SetActive(true);
-        if (playerStat == null)
+        transform.SetAsLastSibling();
+        if (!isShowing)
         {
-            playerStat = GameManager.instance.Player.GetComponent<PlayerController>().playerStat;
-            rectTransform = GetComponent<RectTransform>();
+            ShowItemSelectCanvas();
+            isShowing = true;
         }
-        ShowItemSelectCanvas();
     }
 
     public void OnExit()
-    {
-
-        gameObject.SetActive(false);
-    }
-
-    public void OnUpdate()
     {
     }
 
