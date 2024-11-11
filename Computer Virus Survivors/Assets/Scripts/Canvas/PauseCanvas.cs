@@ -10,8 +10,8 @@ public class PauseCanvas : Singleton<PauseCanvas>, IState, IPlayerStatObserver
 
     public event Action ResumeHandler;
 
-    [SerializeField] private readonly PlayerStatEventCaller playerStatEventCaller;
-    [SerializeField] private readonly GameObject baseSpecObject;
+    [SerializeField] private PlayerStatEventCaller playerStatEventCaller;
+    [SerializeField] private GameObject baseSpecObject;
     private Dictionary<string, SingleSpec> singleSpecs;
     public override void Initialize()
     {
