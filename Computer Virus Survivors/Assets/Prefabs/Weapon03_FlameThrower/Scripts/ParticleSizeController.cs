@@ -3,7 +3,7 @@ using UnityEngine;
 public class ParticleSizeController : MonoBehaviour
 {
     public ParticleSystem particleEffect;  // 파티클 시스템 연결
-    public float startSize = 1f;           // 기본 크기 값 설정
+    public float startSize = 0f;           // 기본 크기 값 설정
 
     void Start()
     {
