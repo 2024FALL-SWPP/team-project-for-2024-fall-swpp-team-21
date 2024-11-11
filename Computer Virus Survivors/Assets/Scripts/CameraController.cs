@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cst = GameConstants;
 
-public class CameraController : MonoBehaviour
+public class CameraController : Singleton<CameraController>
 {
     private GameObject player;
 
-    // Start is called before the first frame update
-    private void Start()
+    public override void Initialize()
     {
         player = GameManager.instance.Player;
         transform.position = player.transform.position + Cst.CameraOffset;
         transform.LookAt(player.transform);
     }
+
 
     // Update is called once per frame
     private void LateUpdate()

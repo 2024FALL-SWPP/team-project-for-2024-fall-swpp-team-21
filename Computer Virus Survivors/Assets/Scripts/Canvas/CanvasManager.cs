@@ -1,37 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanvasManager : MonoBehaviour, IPlayerStatObserver
+public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
 {
-
-    public static CanvasManager instance;
 
     [SerializeField] private PlayerStatEventCaller playerStatEventCaller;
     [SerializeField] private ItemSelectCanvasManager itemSelectCanvas;
+    [SerializeField] private PlayerGUI playerGUI;
 
-    private void Awake()
+    public event Action SelectionDoneHandler;
+
+    public override void Initialize()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-    }
-
-    private void OnEnable()
-    {
-        playerStatEventCaller.StatChanged += OnStatChanged;
+        playerStatEventCaller.StatChangedHandler += OnStatChanged;
+        playerGUI.Initialize();
     }
 
     public void OnSelectionDone()
     {
         Time.timeScale = 1;
         itemSelectCanvas.gameObject.SetActive(false);
+        SelectionDoneHandler?.Invoke();
     }
 
     public void OnStatChanged(object sender, StatChangedEventArgs args)

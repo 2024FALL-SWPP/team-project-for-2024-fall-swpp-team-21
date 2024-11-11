@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-
-    public static GameManager instance;
 
     [SerializeField] private GameObject player;
 
     public float gameTime = 0;
-
     public GameObject Player
     {
         get { return player; }
@@ -17,20 +15,35 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Initialize();
+        GameStart();
     }
 
     // Update is called once per frame
     private void Update()
     {
         gameTime += Time.deltaTime;
+    }
+
+    public override void Initialize()
+    {
+        PoolManager.instance.Initialize();
+        Debug.Log("PoolManager Initialized");
+        SpawnManager.instance.Initialize();
+        Debug.Log("SpawnManager Initialized");
+        CanvasManager.instance.Initialize();
+        Debug.Log("CanvasManager Initialized");
+        SelectableManager.instance.Initialize();
+        Debug.Log("SelectableManager Initialized");
+        CameraController.instance.Initialize();
+        Debug.Log("CameraController Initialized");
+        Debug.Log("GameManager Initialized");
+    }
+
+    private void GameStart()
+    {
+        Debug.Log("GameStart");
+        SpawnManager.instance.StartSpawnManager();
+        player.GetComponent<PlayerController>().Initialize();
     }
 }

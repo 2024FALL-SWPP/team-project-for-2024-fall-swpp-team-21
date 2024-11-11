@@ -1,12 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
-public class PlayerStat
+public class PlayerStat : IPlayerStatObserver
 {
 
     private PlayerStatEventCaller statEventCaller;
 
-    public int MaxHp
+    public int MaxHP
     {
         get
         {
@@ -19,13 +21,13 @@ public class PlayerStat
             maxHP = value;
             if (currentHP + increasedHp < 0)
             {
-                currentHP = 1;
+                CurrentHP = 1;
             }
             else
             {
-                currentHP += increasedHp;
+                CurrentHP += increasedHp;
             }
-            statEventCaller.OnStatChanged(nameof(MaxHp), value);
+            statEventCaller.Invoke(nameof(MaxHP), maxHP);
 
         }
     }
@@ -43,7 +45,7 @@ public class PlayerStat
             {
                 currentHP = 0;
             }
-            statEventCaller.OnStatChanged(nameof(CurrentHP), value);
+            statEventCaller.Invoke(nameof(CurrentHP), currentHP);
         }
     }
 
@@ -57,7 +59,7 @@ public class PlayerStat
         set
         {
             healthRezenPer10 = value;
-            statEventCaller.OnStatChanged(nameof(HealthRezenPer10), value);
+            statEventCaller.Invoke(nameof(HealthRezenPer10), value);
         }
     }
 
@@ -70,7 +72,7 @@ public class PlayerStat
         set
         {
             defencePoint = value;
-            statEventCaller.OnStatChanged(nameof(DefencePoint), value);
+            statEventCaller.Invoke(nameof(DefencePoint), value);
         }
     }
 
@@ -84,7 +86,7 @@ public class PlayerStat
         set
         {
             evadeProbability = value;
-            statEventCaller.OnStatChanged(nameof(EvadeProbability), value);
+            statEventCaller.Invoke(nameof(EvadeProbability), value);
         }
     }
 
@@ -98,7 +100,7 @@ public class PlayerStat
         set
         {
             invincibleFrame = value;
-            statEventCaller.OnStatChanged(nameof(InvincibleFrame), value);
+            statEventCaller.Invoke(nameof(InvincibleFrame), value);
         }
     }
 
@@ -111,7 +113,7 @@ public class PlayerStat
         set
         {
             attackPoint = value;
-            statEventCaller.OnStatChanged(nameof(AttackPoint), value);
+            statEventCaller.Invoke(nameof(AttackPoint), value);
         }
     }
 
@@ -124,7 +126,7 @@ public class PlayerStat
         set
         {
             multiProjectile = value;
-            statEventCaller.OnStatChanged(nameof(MultiProjectile), value);
+            statEventCaller.Invoke(nameof(MultiProjectile), value);
         }
     }
 
@@ -137,7 +139,7 @@ public class PlayerStat
         set
         {
             attackSpeed = value;
-            statEventCaller.OnStatChanged(nameof(AttackSpeed), value);
+            statEventCaller.Invoke(nameof(AttackSpeed), value);
         }
     }
 
@@ -150,7 +152,7 @@ public class PlayerStat
         set
         {
             attackRange = value;
-            statEventCaller.OnStatChanged(nameof(AttackRange), value);
+            statEventCaller.Invoke(nameof(AttackRange), value);
         }
     }
 
@@ -163,7 +165,7 @@ public class PlayerStat
         set
         {
             critProbability = value;
-            statEventCaller.OnStatChanged(nameof(CritProbability), value);
+            statEventCaller.Invoke(nameof(CritProbability), value);
         }
     }
 
@@ -176,7 +178,7 @@ public class PlayerStat
         set
         {
             critPoint = value;
-            statEventCaller.OnStatChanged(nameof(CritPoint), value);
+            statEventCaller.Invoke(nameof(CritPoint), value);
         }
     }
 
@@ -189,7 +191,7 @@ public class PlayerStat
         set
         {
             expGainRatio = value;
-            statEventCaller.OnStatChanged(nameof(ExpGainRatio), value);
+            statEventCaller.Invoke(nameof(ExpGainRatio), value);
         }
     }
 
@@ -202,7 +204,10 @@ public class PlayerStat
         set
         {
             playerLevel = value;
-            statEventCaller.OnStatChanged(nameof(PlayerLevel), value);
+            if (playerLevel > 1)
+            {
+                statEventCaller.Invoke(nameof(PlayerLevel), value);
+            }
         }
     }
 
@@ -216,13 +221,7 @@ public class PlayerStat
         set
         {
             currentExp = value;
-            if (currentExp >= maxExpList[PlayerLevel])
-            {
-                currentExp -= maxExpList[PlayerLevel];
-                PlayerLevel++;
-                // 이제 다른 코드의 OnStatChanged에서 selectable 띄움
-            }
-            statEventCaller.OnStatChanged(nameof(CurrentExp), value);
+            statEventCaller.Invoke(nameof(CurrentExp), value);
         }
     }
 
@@ -235,7 +234,7 @@ public class PlayerStat
         set
         {
             expGainRange = value;
-            statEventCaller.OnStatChanged(nameof(ExpGainRange), value);
+            statEventCaller.Invoke(nameof(ExpGainRange), value);
         }
     }
 
@@ -248,7 +247,20 @@ public class PlayerStat
         set
         {
             moveSpeed = value;
-            statEventCaller.OnStatChanged(nameof(MoveSpeed), value);
+            statEventCaller.Invoke(nameof(MoveSpeed), value);
+        }
+    }
+
+    public int MaxExp
+    {
+        get
+        {
+            return maxExp;
+        }
+        private set
+        {
+            maxExp = value;
+            statEventCaller.Invoke(nameof(MaxExp), value);
         }
     }
 
@@ -271,6 +283,7 @@ public class PlayerStat
     private int currentExp;                 // 현재 경험치
     private float expGainRange;             // 경험치 획득 범위
     private float moveSpeed;                // 이동 속도
+    private int maxExp;
 
     private int[] maxExpList;           // 최대 경험치 리스트
     private List<WeaponBehaviour> weapons;  // 무기 리스트
@@ -279,30 +292,33 @@ public class PlayerStat
     public void Initialize(PlayerStatData playerStatData, PlayerStatEventCaller eventCaller)
     {
         statEventCaller = eventCaller;
+        statEventCaller.StatChangedHandler += OnStatChanged;
 
-        maxHP = playerStatData.maxHP;
-        currentHP = playerStatData.currentHP;
-        healthRezenPer10 = playerStatData.healthRezenPer10;
-        defencePoint = playerStatData.defencePoint;
-        evadeProbability = playerStatData.evadeProbability;
-        invincibleFrame = playerStatData.invincibleFrame;
+        MaxHP = playerStatData.maxHP;
+        CurrentHP = playerStatData.currentHP;
+        HealthRezenPer10 = playerStatData.healthRezenPer10;
+        DefencePoint = playerStatData.defencePoint;
+        EvadeProbability = playerStatData.evadeProbability;
+        InvincibleFrame = playerStatData.invincibleFrame;
 
-        attackPoint = playerStatData.attackPoint;
-        multiProjectile = playerStatData.multiProjectile;
-        attackSpeed = playerStatData.attackSpeed;
-        attackRange = playerStatData.attackRange;
-        critProbability = playerStatData.critProbability;
-        critPoint = playerStatData.critPoint;
+        AttackPoint = playerStatData.attackPoint;
+        MultiProjectile = playerStatData.multiProjectile;
+        AttackSpeed = playerStatData.attackSpeed;
+        AttackRange = playerStatData.attackRange;
+        CritProbability = playerStatData.critProbability;
+        CritPoint = playerStatData.critPoint;
 
-        expGainRatio = playerStatData.expGainRatio;
-        playerLevel = playerStatData.playerLevel;
-        currentExp = playerStatData.currentExp;
-        expGainRange = playerStatData.expGainRange;
-        moveSpeed = playerStatData.moveSpeed;
+        ExpGainRatio = playerStatData.expGainRatio;
+        PlayerLevel = playerStatData.playerLevel;
+        ExpGainRange = playerStatData.expGainRange;
+        MoveSpeed = playerStatData.moveSpeed;
 
-        maxExpList = playerStatData.maxExpList;
         weapons = new List<WeaponBehaviour>();
         items = new List<ItemBehaviour>();
+
+        maxExpList = playerStatData.maxExpList;
+        MaxExp = maxExpList[playerLevel];
+        CurrentExp = playerStatData.currentExp;
     }
 
 
@@ -332,5 +348,49 @@ public class PlayerStat
             Debug.Log("아이템 추가 : " + selectable.ObjectName);
             items.Add(selectable as ItemBehaviour);
         }
+    }
+
+
+    public void OnStatChanged(object sender, StatChangedEventArgs e)
+    {
+        if (e.StatName == nameof(CurrentExp))
+        {
+            CurrentExpChanged();
+        }
+    }
+
+    // 아이템 선택창, 경험치 GUI 구현의 디테일을 위해 스탯이 변하는 순서가 중요함
+    // 경험치가 maxExp보다 커지면
+    // -> 경험치 바가 100%가 됨
+    // -> PlayerLevel이 1 증가함 -> 아이템 선택창이 뜸
+    // -> 현재 경험치가 maxExp만큼 감소함 -> 경험치 바가 n%가 됨
+    // -> maxExp가 PlayerLevel에 맞게 설정됨 -> 경험치 바가 정상화 됨
+    // 하드 코딩이고, 변수의 첫글자가 소문자인지 대문자인지에 따라 양상이 달라지기 때문에 버그가 일어날 가능성 다분함
+    private async void CurrentExpChanged()
+    {
+        if (currentExp >= maxExp)
+        {
+            PlayerLevel++; // Invoke Player Level Changed Event -> Show Item Selection Canvas
+
+            await WaitForItemSelection();
+            currentExp -= maxExp;
+            MaxExp = maxExpList[PlayerLevel];
+            statEventCaller.Invoke(nameof(CurrentExp), currentExp); // 재귀 호출이 일어날 수 있음
+        }
+    }
+
+    private Task WaitForItemSelection()
+    {
+        var tcs = new TaskCompletionSource<bool>();
+
+        void handler()
+        {
+            tcs.SetResult(true);
+            CanvasManager.instance.SelectionDoneHandler -= handler;
+        }
+
+        CanvasManager.instance.SelectionDoneHandler += handler;
+
+        return tcs.Task;
     }
 }
