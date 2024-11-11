@@ -13,23 +13,22 @@ public class PlayerController : MonoBehaviour
 
     public SphereCollider sphereCollider;
 
-    public GameObject spawnManager; // Temp: 나중에 삭제
-
     private Animator animator;
     private bool isInvincible = false;
-    public bool canLevelUp = true;
 
-    private void Start()
+    public void Initialize()
     {
         playerStat.Initialize(playerStatData, statEventCaller);
-        statEventCaller.StatChanged += OnStatChanged;
+        statEventCaller.StatChangedHandler += OnStatChanged;
 
         playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour("패킷 스트림"));
         // 경험치 획득 범위 초기화
+        //sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = playerStat.ExpGainRange;
 
         animator = GetComponent<Animator>();
     }
+
 
     private void Update()
     {
@@ -38,15 +37,15 @@ public class PlayerController : MonoBehaviour
         // Temp: 스폰 임시로 구현
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Weak);
+            SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Weak);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Trojan);
+            SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Trojan);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            spawnManager.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Ransomware);
+            SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Ransomware);
         }
     }
 
@@ -129,25 +128,9 @@ public class PlayerController : MonoBehaviour
 
     public void GetExp(int exp)
     {
+        Debug.Log("EXP gained: " + exp);
         playerStat.CurrentExp += exp * playerStat.ExpGainRatio / 100;
-        if (playerStat.CurrentExp >= playerStat.maxExpList[playerStat.PlayerLevel])
-        {
-            StartCoroutine(LevelUp());
-        }
-        Debug.Log("Player EXP: " + playerStat.CurrentExp);
-    }
-
-    private IEnumerator LevelUp()
-    {
-        while (playerStat.CurrentExp >= playerStat.maxExpList[playerStat.PlayerLevel])
-        {
-            yield return new WaitUntil(() => canLevelUp);
-            playerStat.CurrentExp -= playerStat.maxExpList[playerStat.PlayerLevel];
-            playerStat.PlayerLevel++;
-            canLevelUp = false;
-            Debug.Log("Player Level: " + playerStat.PlayerLevel);
-            yield return new WaitForSeconds(0.1f);
-        }
+        // TODO: Level up
     }
 
     private void OnTriggerEnter(Collider other)

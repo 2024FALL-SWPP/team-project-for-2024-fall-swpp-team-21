@@ -6,11 +6,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerStatEventCaller", menuName = "ScriptableObj/PlayerStatEventCaller", order = 0)]
 public class PlayerStatEventCaller : ScriptableObject
 {
-    public event EventHandler<StatChangedEventArgs> StatChanged;
+    public event EventHandler<StatChangedEventArgs> StatChangedHandler;
 
-    public void OnStatChanged(string statName, object newValue)
+    public void Invoke(string statName, object newValue)
     {
-        StatChanged?.Invoke(this, new StatChangedEventArgs(statName, newValue));
+        StatChangedHandler?.Invoke(this, new StatChangedEventArgs(statName, newValue));
     }
 }
 

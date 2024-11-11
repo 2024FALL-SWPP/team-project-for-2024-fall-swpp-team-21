@@ -27,10 +27,8 @@ public class SelectionInfo
     }
 }
 
-public class SelectableManager : MonoBehaviour
+public class SelectableManager : Singleton<SelectableManager>
 {
-    public static SelectableManager instance;
-
     [SerializeField]
     private List<GameObject> weaponPrefabs;
 
@@ -43,17 +41,8 @@ public class SelectableManager : MonoBehaviour
     private List<SelectableBehaviour> playerWeapons;
     private List<SelectableBehaviour> playerItems;
 
-    private void OnEnable()
+    public override void Initialize()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         allWeaponBehaviour = new List<SelectableBehaviour>();
         allItemBehaviour = new List<SelectableBehaviour>();
 
@@ -67,9 +56,9 @@ public class SelectableManager : MonoBehaviour
             allItemBehaviour.Add(obj.GetComponent<SelectableBehaviour>());
         }
 
-        Debug.Log("Initialized SelectableManager");
         Debug.Log("WeaponInfos count : " + allWeaponBehaviour.Count);
         Debug.Log("ItemInfos count : " + allItemBehaviour.Count);
+
     }
 
     /// <summary>

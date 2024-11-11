@@ -6,32 +6,32 @@ public class I_MemoryUpgrade : ItemBehaviour
         switch (level)
         {
             case 1:
-                playerStat.MaxHp += 20;
-                break;
+        playerStat.MaxHP += 20;
+        break;
             case 2:
-                playerStat.MaxHp += 20;
-                break;
+        playerStat.MaxHP += 20;
+        break;
             case 3:
-                playerStat.MaxHp += 20;
-                break;
+        playerStat.MaxHP += 20;
+        break;
             case 4:
-                playerStat.MaxHp += 20;
-                break;
+        playerStat.MaxHP += 20;
+        break;
             case 5:
-                playerStat.MaxHp += 20;
-                break;
+        playerStat.MaxHP += 20;
+        break;
             case 6:
-                playerStat.MaxHp += 40;
-                break;
+        playerStat.MaxHP += 40;
+        break;
             case 7:
-                playerStat.MaxHp += 40;
-                break;
+        playerStat.MaxHP += 40;
+        break;
             case 8:
-                playerStat.MaxHp += 40;
-                break;
+        playerStat.MaxHP += 40;
+        break;
             case 9:
-                playerStat.MaxHp += 80;
-                break;
+        playerStat.MaxHP += 80;
+        break;
         }
     }
 
