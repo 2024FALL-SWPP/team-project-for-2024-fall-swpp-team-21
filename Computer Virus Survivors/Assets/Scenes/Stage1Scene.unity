@@ -4021,7 +4021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStatEventCaller: {fileID: 11400000, guid: 67c209f7ba7f6f1418b9784b60be40b9, type: 2}
-  singleStatObject: {fileID: 1483676638}
+  baseSpecObject: {fileID: 1483676638}
 --- !u!1001 &6206154427876196296
 PrefabInstance:
   m_ObjectHideFlags: 0
