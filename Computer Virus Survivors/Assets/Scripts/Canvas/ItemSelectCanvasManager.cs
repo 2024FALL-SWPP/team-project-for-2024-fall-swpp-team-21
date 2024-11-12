@@ -1,29 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSelectCanvasManager : MonoBehaviour
+public class ItemSelectCanvasManager : Singleton<ItemSelectCanvasManager>, IState
 {
+
+    public event Action<SelectableBehaviour> SelectionHandler;
+
     [SerializeField] private List<GameObject> itemSelectBtn;
 
     private List<SelectionInfo> choices;
-    private PlayerStat playerStat;
-    private RectTransform rectTransform;
+    private bool isShowing = false;
 
-    private void OnEnable()
+    public override void Initialize()
     {
-        if (playerStat == null)
-        {
-            playerStat = GameManager.instance.Player.GetComponent<PlayerController>().playerStat;
-            rectTransform = GetComponent<RectTransform>();
-        }
-        ShowItemSelectCanvas();
+        gameObject.SetActive(false);
     }
 
-    public void ShowItemSelectCanvas()
+    private void ShowItemSelectCanvas()
     {
         Debug.Log("ShowItemSelectCanvas");
-        rectTransform.SetAsLastSibling();
+
         choices = SelectableManager.instance.GetChoices();
 
         for (int i = 0; i < 3; i++)
@@ -40,9 +38,23 @@ public class ItemSelectCanvasManager : MonoBehaviour
     public void OnClick(int selectedIndex)
     {
         Debug.Log("OnClick" + choices[selectedIndex].objectName);
-        playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour(choices[selectedIndex].objectName));
+        SelectionHandler?.Invoke(SelectableManager.instance.GetSelectableBehaviour(choices[selectedIndex].objectName));
 
-        CanvasManager.instance.OnSelectionDone();
+        isShowing = false;
+    }
+
+    public void OnEnter()
+    {
+        transform.SetAsLastSibling();
+        if (!isShowing)
+        {
+            ShowItemSelectCanvas();
+            isShowing = true;
+        }
+    }
+
+    public void OnExit()
+    {
     }
 
 }
