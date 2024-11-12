@@ -204,10 +204,7 @@ public class PlayerStat : IPlayerStatObserver
         set
         {
             playerLevel = value;
-            if (playerLevel > 1)
-            {
-                statEventCaller.Invoke(nameof(PlayerLevel), value);
-            }
+            statEventCaller.Invoke(nameof(PlayerLevel), value);
         }
     }
 
@@ -383,13 +380,14 @@ public class PlayerStat : IPlayerStatObserver
     {
         var tcs = new TaskCompletionSource<bool>();
 
-        void handler()
+        void handler(SelectableBehaviour selectable)
         {
+            TakeSelectable(selectable);
             tcs.SetResult(true);
-            CanvasManager.instance.SelectionDoneHandler -= handler;
+            ItemSelectCanvasManager.instance.SelectionHandler -= handler;
         }
 
-        CanvasManager.instance.SelectionDoneHandler += handler;
+        ItemSelectCanvasManager.instance.SelectionHandler += handler;
 
         return tcs.Task;
     }
