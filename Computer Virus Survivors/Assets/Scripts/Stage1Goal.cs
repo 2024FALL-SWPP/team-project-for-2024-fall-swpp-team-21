@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/* Stage1Goal을 Stage1Puzzle에 통합시키는 방법도 있음 */
 public class Stage1Goal : Singleton<Stage1Goal>
 {
     [SerializeField] private GameObject stage1Puzzle;

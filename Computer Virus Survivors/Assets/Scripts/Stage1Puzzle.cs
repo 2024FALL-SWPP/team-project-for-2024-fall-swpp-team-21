@@ -7,6 +7,7 @@ public class Stage1Puzzle : MonoBehaviour
 {
     [SerializeField] private GameObject unsolvedPuzzle;
     [SerializeField] private GameObject solvedPuzzle;
+    // or use Materials instead
 
     [SerializeField] private float onGroundPos = 2.5f;
     [SerializeField] private float upSpeed = 1.0f;
