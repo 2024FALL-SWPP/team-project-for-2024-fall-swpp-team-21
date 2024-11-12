@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     public SphereCollider sphereCollider;
 
+    private Rigidbody rb;
     private Animator animator;
     private bool isInvincible = false;
 
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
         //sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = playerStat.ExpGainRange;
 
+        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
 
@@ -47,6 +49,8 @@ public class PlayerController : MonoBehaviour
         {
             SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Ransomware);
         }
+
+        rb.velocity = Vector3.zero;
     }
 
     private void Move()
