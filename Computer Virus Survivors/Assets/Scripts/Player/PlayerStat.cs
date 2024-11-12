@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 public class PlayerStat : IPlayerStatObserver
 {
+
+    private SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
 
     private PlayerStatEventCaller statEventCaller;
 
@@ -365,6 +368,7 @@ public class PlayerStat : IPlayerStatObserver
     // 하드 코딩이고, 변수의 첫글자가 소문자인지 대문자인지에 따라 양상이 달라지기 때문에 버그가 일어날 가능성 다분함
     private async void CurrentExpChanged()
     {
+        await semaphore.WaitAsync();
         if (currentExp >= maxExp)
         {
             PlayerLevel++; // Invoke Player Level Changed Event -> Show Item Selection Canvas
@@ -374,6 +378,7 @@ public class PlayerStat : IPlayerStatObserver
             MaxExp = maxExpList[PlayerLevel];
             statEventCaller.Invoke(nameof(CurrentExp), currentExp); // 재귀 호출이 일어날 수 있음
         }
+        semaphore.Release();
     }
 
     private Task WaitForItemSelection()
