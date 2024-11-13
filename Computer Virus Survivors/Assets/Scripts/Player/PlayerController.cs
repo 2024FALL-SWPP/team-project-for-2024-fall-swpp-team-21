@@ -101,6 +101,10 @@ public class PlayerController : MonoBehaviour
 
         transform.Translate(playerStat.MoveSpeed * Time.deltaTime * moveDirection, Space.World);
         transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+        if (playerStat.MoveSpeed < 0)
+        {
+            transform.rotation *= Quaternion.Euler(0, 180, 0);
+        }
     }
 
     private void Die()
