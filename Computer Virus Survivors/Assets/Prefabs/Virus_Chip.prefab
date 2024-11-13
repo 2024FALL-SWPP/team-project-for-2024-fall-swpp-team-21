@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1811028943694187740}
   - component: {fileID: 1811028943694187731}
+  - component: {fileID: 1670458960820617140}
   m_Layer: 8
   m_Name: Point Light
   m_TagString: Virus
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811028943694187741}
   m_LocalRotation: {x: 0.7071068, y: 4.329781e-17, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.03282547, y: 4.98, z: -0.010688781}
+  m_LocalPosition: {x: -0.03282547, y: 4.99, z: -0.010688781}
   m_LocalScale: {x: 0.65652406, y: 0.6565238, z: 0.656524}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -44,7 +45,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.9988526, g: 1, b: 0.9575472, a: 1}
-  m_Intensity: 15
+  m_Intensity: 0.3
   m_Range: 4.78
   m_SpotAngle: 39
   m_InnerSpotAngle: 9
@@ -81,7 +82,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -94,6 +95,20 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1670458960820617140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811028943694187741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec85ad8ae2444f4191454071199c636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObjects:
+  - {fileID: 4803730998039490954}
 --- !u!1 &4803730997200314895
 GameObject:
   m_ObjectHideFlags: 0
