@@ -10,6 +10,7 @@ public enum PoolType
     Virus_Trojan,
     Virus_Ransomware,
     Proj_PacketStream,
+    Proj_ChainLightning,
     DamageIndicator
 }
 

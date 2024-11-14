@@ -29,11 +29,13 @@ public class VirusBehaviour : MonoBehaviour
 
     protected void Move()
     {
+#if !WEAPON_LAB
         Vector3 moveDirection = Vector3.ProjectOnPlane(
             (player.transform.position - transform.position).normalized,
             Vector3.up);
         transform.Translate(virusData.moveSpeed * Time.deltaTime * moveDirection, Space.World);
         transform.rotation = Quaternion.LookRotation(moveDirection);
+#endif
     }
 
     protected virtual void Die()

@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         Move();
 
         // Temp: 스폰 임시로 구현
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.Alpha1))
         {
             SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Weak);
         }
