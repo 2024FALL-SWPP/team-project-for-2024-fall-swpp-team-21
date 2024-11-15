@@ -17,7 +17,7 @@ public class W_ChainLightning : WeaponBehaviour
         while (true)
         {
             Debug.Log("Shoot!");
-            Shoot();
+            StartCoroutine(Shoot());
             yield return new WaitForSeconds(finalAttackPeriod);
         }
     }
@@ -50,7 +50,8 @@ public class W_ChainLightning : WeaponBehaviour
                 chainDepth += 1;
                 break;
             case 8:
-                branchCount += 1;
+                BasicMultiProjectile += 1;
+                BasicDamage += 2;
                 break;
             case 9:
                 BasicMultiProjectile += 1;
@@ -61,6 +62,7 @@ public class W_ChainLightning : WeaponBehaviour
         }
     }
 
+    // 가지 개수와 전이 횟수는 예민하게 다뤄야 할 문제인듯
     protected override void InitExplanation()
     {
         switch (MaxLevel)
@@ -94,18 +96,18 @@ public class W_ChainLightning : WeaponBehaviour
                 // total = (3 * 3 * (1 + 3 ^ 3) = 252)
                 goto case 6;
             case 8:
-                explanations[7] = "번개 가지 1개 증가";
-                // total = (3 * 3 * (1 + 4 ^ 3) = 585)
+                explanations[7] = "번개 1개 증가, 기본 데미지 2증가";
+                // total = (4 * 5 * (1 + 3 ^ 3) = 585)
                 goto case 7;
             case 9:
                 explanations[8] = "번개 1개 증가, 기본 데미지 2 증가";
-                // total = (4 * 5 * (1 + 4 ^ 3) = 1300)
+                // total = (5 * 7 * (1 + 3 ^ 3) = 980)
                 goto case 8;
         }
     }
 
 
-    private void Shoot()
+    private IEnumerator Shoot()
     {
 
         for (int chainID = 0; chainID < BasicMultiProjectile; chainID++)
@@ -114,13 +116,14 @@ public class W_ChainLightning : WeaponBehaviour
             Debug.Log(target);
             if (target == null)
             {
-                return;
+                yield break;
             }
             Vector3 lightningStart = target.transform.position + lightningStartOffset;
 
             PoolManager.instance.GetObject(PoolType.Proj_ChainLightning, lightningStart, Quaternion.identity)
                 .GetComponent<P_ChainLightning>().Initialize(finalDamage, chainID, chainRadius, chainDepth, branchCount, target);
 
+            yield return new WaitForSeconds(0.07f);
         }
     }
 

@@ -47,11 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f46048b717d854188008b734b0fca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   virusLayer:
     serializedVersion: 2
     m_Bits: 256
-  chainInterval: 0.07
-  chainDuration: 0.4
+  chainInterval: 0.19
+  chainDuration: 0.5
   chainHitOffset: {x: 0, y: 0.5, z: 0}
 --- !u!95 &678428891
 Animator:
