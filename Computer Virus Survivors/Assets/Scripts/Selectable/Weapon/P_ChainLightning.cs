@@ -4,31 +4,38 @@ using DigitalRuby.LightningBolt;
 using UnityEngine;
 using System.Linq;
 
-public class P_ChainLightning : MonoBehaviour
+
+public class P_ChainLightning : ProjectileBehaviour
 {
     [SerializeField] private LayerMask virusLayer;
     [SerializeField] private float chainInterval;
     [SerializeField] private float chainDuration;
     [SerializeField] private Vector3 chainHitOffset;
 
-    private Animator animator;
     private LightningBoltScript chainAnim;
-    private int damage;
+    private ParticleSystem hitEffect;
     private int chainID;
     private int chainDepth;
     private float chainRange;
     private int branchCount;
+    private VirusBehaviour targetVirus;
 
-    public void Initialize(int damage, int chainID, float chainRange, int chainDepth, int branchCount)
+    public void Initialize(int damage, int chainID, float chainRange, int chainDepth, int branchCount, VirusBehaviour iniitalVirus = null)
     {
         this.chainID = chainID;
         this.chainRange = chainRange;
         this.chainDepth = chainDepth;
         this.damage = damage;
         this.branchCount = branchCount;
+        this.targetVirus = iniitalVirus;
 
-        animator = GetComponent<Animator>();
-        chainAnim = GetComponentInChildren<LightningBoltScript>();
+        if (chainAnim == null)
+        {
+            animator = GetComponent<Animator>();
+            chainAnim = GetComponentInChildren<LightningBoltScript>();
+            hitEffect = GetComponentInChildren<ParticleSystem>();
+        }
+
         chainAnim.StartPosition = transform.position;
 
         if (chainDepth <= 0)
@@ -52,7 +59,12 @@ public class P_ChainLightning : MonoBehaviour
         yield return new WaitForSeconds(chainInterval);
 
         // 같은 번개 가지로부터 공격 받지 않은 범위 내 랜덤한 몬스터 찾음
-        VirusBehaviour targetVirus = GetNextVirus();
+        if (targetVirus == null)
+        {
+
+            targetVirus = GetNextVirus();
+        }
+
         Debug.Log(targetVirus);
         // 그런 몬스터가 없으면 번개 삭제
         if (targetVirus == null)
@@ -71,6 +83,10 @@ public class P_ChainLightning : MonoBehaviour
 
         // 해당 몬스터를 공격 (애니메이션)
         chainAnim.EndPosition = targetVirus.transform.position + chainHitOffset;
+        Vector3 emissionDirection = transform.position - targetVirus.transform.position;
+        hitEffect.transform.rotation = Quaternion.LookRotation(emissionDirection);
+        hitEffect.transform.position = chainAnim.EndPosition;
+        hitEffect.Play();
         animator.SetBool("LightOn_b", true);
         targetVirus.GetDamage(damage);
         yield return new WaitForSeconds(chainDuration);
@@ -105,15 +121,26 @@ public class P_ChainLightning : MonoBehaviour
 
             if (marker.IsNotStrucked(chainID))
             {
-                return virusObject.GetComponent<VirusBehaviour>();
+                VirusBehaviour ret = virusObject.GetComponent<VirusBehaviour>();
+                ret.OnDie += marker.OnVirusDied;
+                return ret;
             }
         }
 
         return null;
     }
 
+    protected override void OnTriggerEnter(Collider other)
+    {
+        // do nothing
+    }
+
 }
 
+
+// 같은 번개 가지로부터 공격 받은 몬스터는 마킹 해두어 다시 공격 받지 않도록 함
+// 공격 받으면 몬스터에 추가되는 컴포넌트
+// 이 컴포넌트는 한 번 추가되면 삭제되지 않음
 public class ChainLightningMarker : MonoBehaviour
 {
     public List<int> chainID;
@@ -137,9 +164,17 @@ public class ChainLightningMarker : MonoBehaviour
         }
     }
 
+    // 일단 0.5초로 하긴 했는데 이 시간은 조절 가능
+    // 플레이어 번개 공격 주기로 하면 딱 맞을 듯
     private IEnumerator ResetChainID(int chainID)
     {
         yield return new WaitForSeconds(0.5f);
         this.chainID.Remove(chainID);
+    }
+
+    public void OnVirusDied(VirusBehaviour virus)
+    {
+        StopAllCoroutines();
+        chainID.Clear();
     }
 }

@@ -78,6 +78,7 @@ public class SpawnManager : Singleton<SpawnManager>
             Quaternion.LookRotation(player.transform.position - spawnPosition)
         );
 
+        virus.GetComponent<VirusBehaviour>().OnDie += OnVirusDestroyed;
         currentVirusNum++;  // synchronization issue?
     }
 
@@ -149,8 +150,9 @@ public class SpawnManager : Singleton<SpawnManager>
         return new Vector2(x, y);
     }
 
-    public void OnVirusDestroyed()
+    public void OnVirusDestroyed(VirusBehaviour virus)
     {
+        virus.OnDie -= OnVirusDestroyed;
         currentVirusNum--;  // synchronization issue?
     }
 }
