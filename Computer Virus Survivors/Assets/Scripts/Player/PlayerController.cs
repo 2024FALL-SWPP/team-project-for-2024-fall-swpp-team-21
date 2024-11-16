@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         playerStat.Initialize(playerStatData, statEventCaller);
         statEventCaller.StatChangedHandler += OnStatChanged;
 
-        playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour("패킷 스트림"));
+        playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour("체인 라이트닝"));
         // 경험치 획득 범위 초기화
         //sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = playerStat.ExpGainRange;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         Move();
 
         // Temp: 스폰 임시로 구현
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.Alpha1))
         {
             SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Weak);
         }

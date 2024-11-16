@@ -6,6 +6,8 @@ using UnityEngine;
 public class VirusBehaviour : MonoBehaviour
 {
 
+    public event Action<VirusBehaviour> OnDie;
+
     [SerializeField] protected VirusData virusData;
     protected GameObject player;
     protected PlayerController playerController;
@@ -29,20 +31,23 @@ public class VirusBehaviour : MonoBehaviour
 
     protected void Move()
     {
+#if !WEAPON_LAB
         Vector3 moveDirection = Vector3.ProjectOnPlane(
             (player.transform.position - transform.position).normalized,
             Vector3.up);
         transform.Translate(virusData.moveSpeed * Time.deltaTime * moveDirection, Space.World);
         transform.rotation = Quaternion.LookRotation(moveDirection);
+#endif
     }
 
     protected virtual void Die()
     {
-        PoolManager.instance.ReturnObject(virusData.poolType, gameObject);
-        SpawnManager.instance.OnVirusDestroyed();
+        OnDie?.Invoke(this);
 
         GameObject expGem = PoolManager.instance.GetObject(PoolType.ExpGem, transform.position, transform.rotation);
         expGem.GetComponent<ExpGem>().Initialize(virusData.dropExp);
+
+        PoolManager.instance.ReturnObject(virusData.poolType, gameObject);
     }
 
     public void GetDamage(int damage)
