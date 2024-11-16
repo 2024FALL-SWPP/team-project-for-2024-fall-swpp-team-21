@@ -885,11 +885,14 @@ MonoBehaviour:
   - poolName: 4
     prefab: {fileID: 4615468010908761814, guid: eb99a0df550d7b443853a49b027c28d5, type: 3}
     initialPoolSize: 10
-  - poolName: 6
-    prefab: {fileID: 7084631532191331932, guid: ba79151a99bf45541ae9e311f351d175, type: 3}
-    initialPoolSize: 10
   - poolName: 5
     prefab: {fileID: 7199673527555716025, guid: 68913c5fa631af84cba23249894555ab, type: 3}
+    initialPoolSize: 10
+  - poolName: 6
+    prefab: {fileID: 5823448282571730383, guid: 5d055ad233434496bb110599d264f01a, type: 3}
+    initialPoolSize: 10
+  - poolName: 7
+    prefab: {fileID: 7084631532191331932, guid: ba79151a99bf45541ae9e311f351d175, type: 3}
     initialPoolSize: 10
 --- !u!4 &454088697
 Transform:
@@ -3141,6 +3144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPrefabs:
   - {fileID: 4862672849468720869, guid: 585cbdc2409e8bf45b2d2558a29b93de, type: 3}
+  - {fileID: 3961084581827097767, guid: 2a58302cd19c4ce4296b57e76d28a192, type: 3}
   - {fileID: 2549643050272070597, guid: 7ae1688fda32f48d2866bb5f9586ee4f, type: 3}
   itemPrefabs:
   - {fileID: 8084648258450572112, guid: b87a10d89b6e7bc49bb1e6b53e47e54a, type: 3}

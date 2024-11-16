@@ -5,6 +5,9 @@ using UnityEngine;
 public sealed class W_CoreDump : WeaponBehaviour
 {
 
+    [SerializeField] private float dumpAreaRadius;
+    [SerializeField] private float dumpStartHeight;
+
     protected override IEnumerator Attack()
     {
         while (true)
@@ -23,29 +26,29 @@ public sealed class W_CoreDump : WeaponBehaviour
                 // Do nothing
                 break;
             case 2:
-                BasicAttackPeriod *= 1 / (1 + 0.15f);
-                break;
-            case 3:
-                BasicDamage += 5;
-                break;
-            case 4:
                 BasicMultiProjectile += 1;
                 break;
+            case 3:
+                BasicAttackPeriod *= (1 - 0.3f) / 1;
+                break;
+            case 4:
+                BasicDamage += 20;
+                break;
             case 5:
-                BasicDamage += 5;
+                BasicMultiProjectile += 1;
                 break;
             case 6:
-                BasicAttackPeriod *= 1 / (1 + 0.15f);
+                BasicAttackPeriod *= (1 - 0.3f) / 1;
                 break;
             case 7:
-                BasicAttackPeriod *= 1 / (1 + 0.3f);
+                BasicDamage += 40;
                 break;
             case 8:
-                BasicDamage += 10;
+                BasicMultiProjectile += 1;
                 break;
             case 9:
-                BasicAttackPeriod *= 1 / (1 + 0.4f);
-                BasicDamage += 10;
+                BasicMultiProjectile += 1;
+                BasicDamage += 40;
                 break;
             default:
                 break;
@@ -57,52 +60,51 @@ public sealed class W_CoreDump : WeaponBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "플레이어의 전방을 향해 빠르게 탄환을 발사합니다";
+                explanations[0] = "플레이어 주위의 랜덤한 위치에 코어가 떨어집니다.\n떨어진 위치 주변의 바이러스들은 피해를 입습니다.";
                 break;
             case 2:
-                explanations[1] = "공격 속도 15% 증가";
+                explanations[1] = "떨어지는 코어 1개 추가";
                 goto case 1;
             case 3:
-                explanations[2] = "기본 데미지 5 증가";
+                explanations[2] = "공격 주기 30% 감소";
                 goto case 2;
             case 4:
-                explanations[3] = "투사체 1개 추가 발사";
+                explanations[3] = "기본 데미지 20 증가";
                 goto case 3;
             case 5:
-                explanations[4] = "기본 데미지 5 증가";
+                explanations[4] = "떨어지는 코어 1개 추가";
                 goto case 4;
             case 6:
-                explanations[5] = "공격 속도 15% 증가";
+                explanations[5] = "공격 주기 30% 감소";
                 goto case 5;
             case 7:
-                explanations[6] = "공격 속도 30% 증가";
+                explanations[6] = "기본 데미지 40 증가";
                 goto case 6;
             case 8:
-                explanations[7] = "기본 데미지 10 증가";
+                explanations[7] = "떨어지는 코어 1개 추가";
                 goto case 7;
             case 9:
-                explanations[8] = "공격 속도 40% 증가, 기본 데미지 10 증가";
+                explanations[8] = "떨어지는 코어 1개 증가, 기본 데미지 40 증가";
                 goto case 8;
         }
     }
 
     private IEnumerator Dump()
     {
-        //GameObject proj;
+        GameObject proj;
         for (int i = 0; i < finalMultiProjectile; i++)
         {
-            // Vector3 finalPosition = muzzle.transform.position + FireFluctuation();
-            // proj = PoolManager.instance.GetObject(projectilePool, finalPosition, muzzle.transform.rotation);
-            //proj.GetComponent<ProjectileBehaviour>().Initialize(finalDamage * (IsCritical() ? finalCritPoint : 100) / 100);
-            yield return new WaitForSeconds(0.03f);
+            Vector3 finalPosition = GetRandomPosition();
+            proj = PoolManager.instance.GetObject(projectilePool, finalPosition, Quaternion.identity);
+            proj.GetComponent<P_CoreDump>().Initialize(finalDamage * (IsCritical() ? finalCritPoint : 100) / 100);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
-    // private Vector3 FireFluctuation()
-    // {
-    //     int x = Random.Range(int.MinValue, int.MaxValue);
-    //     int y = Random.Range(int.MinValue, int.MaxValue);
-    //     return new Vector3(x, y, 0) / int.MaxValue * fluctuationRadius;
-    // }
-
+    // 현재는 원 범위로 구현되어 있음, 직사각형 범위로 변경할 수도 있음
+    private Vector3 GetRandomPosition()
+    {
+        Vector2 randPoint = Random.insideUnitCircle * dumpAreaRadius;
+        return transform.position + new Vector3(randPoint.x, dumpStartHeight, randPoint.y);
+    }
 }
