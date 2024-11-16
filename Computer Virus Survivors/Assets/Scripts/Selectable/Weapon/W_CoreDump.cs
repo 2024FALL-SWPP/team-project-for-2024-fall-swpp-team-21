@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-sealed public class W_PacketStream : WeaponBehaviour
+public sealed class W_CoreDump : WeaponBehaviour
 {
-
-    [SerializeField] private GameObject muzzle;
-    [SerializeField] private float fluctuationRadius;
 
     protected override IEnumerator Attack()
     {
         while (true)
         {
-            StartCoroutine(Shoot());
+            StartCoroutine(Dump());
             yield return new WaitForSeconds(finalAttackPeriod);
         }
     }
@@ -89,23 +86,23 @@ sealed public class W_PacketStream : WeaponBehaviour
         }
     }
 
-    private IEnumerator Shoot()
+    private IEnumerator Dump()
     {
-        GameObject proj;
+        //GameObject proj;
         for (int i = 0; i < finalMultiProjectile; i++)
         {
-            Vector3 finalPosition = muzzle.transform.position + FireFluctuation();
-            proj = PoolManager.instance.GetObject(projectilePool, finalPosition, muzzle.transform.rotation);
-            proj.GetComponent<ProjectileBehaviour>().Initialize(finalDamage * (IsCritical() ? finalCritPoint : 100) / 100);
+            // Vector3 finalPosition = muzzle.transform.position + FireFluctuation();
+            // proj = PoolManager.instance.GetObject(projectilePool, finalPosition, muzzle.transform.rotation);
+            //proj.GetComponent<ProjectileBehaviour>().Initialize(finalDamage * (IsCritical() ? finalCritPoint : 100) / 100);
             yield return new WaitForSeconds(0.03f);
         }
     }
 
-    private Vector3 FireFluctuation()
-    {
-        int x = Random.Range(int.MinValue, int.MaxValue);
-        int y = Random.Range(int.MinValue, int.MaxValue);
-        return new Vector3(x, y, 0) / int.MaxValue * fluctuationRadius;
-    }
+    // private Vector3 FireFluctuation()
+    // {
+    //     int x = Random.Range(int.MinValue, int.MaxValue);
+    //     int y = Random.Range(int.MinValue, int.MaxValue);
+    //     return new Vector3(x, y, 0) / int.MaxValue * fluctuationRadius;
+    // }
 
 }
