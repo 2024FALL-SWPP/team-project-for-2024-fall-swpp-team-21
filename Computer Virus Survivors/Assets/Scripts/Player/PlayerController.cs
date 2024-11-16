@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         playerStat.Initialize(playerStatData, statEventCaller);
         statEventCaller.StatChangedHandler += OnStatChanged;
 
-        playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour("체인 라이트닝"));
+        playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour("코어 덤프"));
         // 경험치 획득 범위 초기화
         //sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = playerStat.ExpGainRange;
