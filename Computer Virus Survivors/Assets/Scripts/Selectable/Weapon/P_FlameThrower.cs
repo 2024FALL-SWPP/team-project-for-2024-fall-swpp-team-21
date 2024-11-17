@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,9 @@ using UnityEngine;
 public class P_FlameThrower : ProjectileBehaviour
 {
     [SerializeField] private LayerMask virusLayer;
-    [SerializeField] private GameObject flame;
-    [SerializeField] private Animator[] flameAnimators;
     [SerializeField] private float fireAngle = 120.0f;
     [SerializeField] private float tick = 0.5f;
+    private ParticleSystem flameParticle;
 
     private Coroutine damageCoroutine;
     private float radius;
@@ -17,7 +17,6 @@ public class P_FlameThrower : ProjectileBehaviour
     {
         this.damage = damage;
         this.radius = radius;
-        flame.transform.localScale = new Vector3(radius, radius, radius) / 10.0f;
     }
 
     public void FireOn(float duration)
@@ -48,16 +47,16 @@ public class P_FlameThrower : ProjectileBehaviour
 
     private IEnumerator Fire(float duration)
     {
-        foreach (Animator animator in flameAnimators)
+        if (flameParticle == null)
         {
-            animator.SetBool("Fire_b", true);
+            flameParticle = GetComponent<ParticleSystem>();
         }
+        var shape = flameParticle.shape;
+        shape.angle = fireAngle / 2;
+        var main = flameParticle.main;
+        main.duration = duration;
+        flameParticle.Play();
         yield return new WaitForSeconds(duration);
-
-        foreach (Animator animator in flameAnimators)
-        {
-            animator.SetBool("Fire_b", false);
-        }
         StopCoroutine(damageCoroutine);
     }
 
