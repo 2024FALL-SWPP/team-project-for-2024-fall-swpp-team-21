@@ -5018,6 +5018,14 @@ MonoBehaviour:
     m_Width: 63
     m_Height: 68
   - m_X: 0
+    m_Y: 951
+    m_Width: 1023
+    m_Height: 72
+  - m_X: 62
+    m_Y: 869
+    m_Width: 961
+    m_Height: 154
+  - m_X: 0
     m_Y: 781
     m_Width: 588
     m_Height: 3

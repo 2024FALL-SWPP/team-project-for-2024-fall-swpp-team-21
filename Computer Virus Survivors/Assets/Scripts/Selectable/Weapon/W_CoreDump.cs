@@ -7,6 +7,8 @@ public sealed class W_CoreDump : WeaponBehaviour
 
     [SerializeField] private float dumpAreaRadius;
     [SerializeField] private float dumpStartHeight;
+    private Vector3[] fallingDirections = { new Vector3(1, -1, 1).normalized, new Vector3(1, -1, -1).normalized,
+                                            new Vector3(-1, -1, 1).normalized, new Vector3(-1, -1, -1).normalized };
 
     protected override IEnumerator Attack()
     {
@@ -94,17 +96,18 @@ public sealed class W_CoreDump : WeaponBehaviour
         GameObject proj;
         for (int i = 0; i < finalMultiProjectile; i++)
         {
-            Vector3 finalPosition = GetRandomPosition();
+            Vector3 fallingDirection = fallingDirections[Random.Range(0, fallingDirections.Length)];
+            Vector3 finalPosition = GetRandomPosition(fallingDirection);
             proj = PoolManager.instance.GetObject(projectilePool, finalPosition, Quaternion.identity);
-            proj.GetComponent<P_CoreDump>().Initialize(finalDamage * (IsCritical() ? finalCritPoint : 100) / 100);
+            proj.GetComponent<P_CoreDump>().Initialize(finalDamage * (IsCritical() ? finalCritPoint : 100) / 100, fallingDirection);
             yield return new WaitForSeconds(0.1f);
         }
     }
 
     // 현재는 원 범위로 구현되어 있음, 직사각형 범위로 변경할 수도 있음
-    private Vector3 GetRandomPosition()
+    private Vector3 GetRandomPosition(Vector3 fallingDirection)
     {
         Vector2 randPoint = Random.insideUnitCircle * dumpAreaRadius;
-        return transform.position + new Vector3(randPoint.x, dumpStartHeight, randPoint.y);
+        return transform.position + new Vector3(randPoint.x, 0, randPoint.y) - fallingDirection * dumpStartHeight;
     }
 }

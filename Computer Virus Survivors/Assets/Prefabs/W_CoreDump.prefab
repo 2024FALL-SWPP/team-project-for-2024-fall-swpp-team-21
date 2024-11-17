@@ -67,4 +67,4 @@ MonoBehaviour:
   initialAddiCritProbability: 5
   initialAddiCritPoint: 0
   dumpAreaRadius: 10
-  dumpStartHeight: 10
+  dumpStartHeight: 15
