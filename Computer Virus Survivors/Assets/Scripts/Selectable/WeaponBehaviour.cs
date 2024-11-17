@@ -193,9 +193,15 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
         BasicAdditionalCritProbability = initialAddiCritProbability;
         BasicAdditionalCritPoint = initialAddiCritPoint;
 
-        StartAttack();
     }
 
+
+    public override void Acquire()
+    {
+        base.Acquire();
+        StopAttack();
+        StartAttack();
+    }
 
     /// <summary>
     /// 공격을 시작함
@@ -211,7 +217,10 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// </summary>
     protected void StopAttack()
     {
-        StopCoroutine(attackCoroutine);
+        if (attackCoroutine != null)
+        {
+            StopCoroutine(attackCoroutine);
+        }
     }
 
 

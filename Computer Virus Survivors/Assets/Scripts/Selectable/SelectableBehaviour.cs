@@ -58,7 +58,7 @@ public abstract class SelectableBehaviour : MonoBehaviour
     /// <summary>
     /// 플레이어가 이 아이템을 획득했을 때 호출되는 메소드
     /// </summary>
-    public void Acquire()
+    public virtual void Acquire()
     {
 
         if (currentLevel == 0)

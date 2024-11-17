@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,31 +6,44 @@ using UnityEngine;
 public class P_FlameThrower : ProjectileBehaviour
 {
     [SerializeField] private LayerMask virusLayer;
-    [SerializeField] private GameObject flame;
-    [SerializeField] private Animator[] flameAnimators;
     [SerializeField] private float fireAngle = 120.0f;
     [SerializeField] private float tick = 0.5f;
+    private ParticleSystem flameParticle;
 
-    private Coroutine damageCoroutine;
     private float radius;
 
     public void Initialize(int damage, float radius)
     {
         this.damage = damage;
         this.radius = radius;
-        flame.transform.localScale = new Vector3(radius, radius, radius) / 10.0f;
     }
 
     public void FireOn(float duration)
     {
-        damageCoroutine = StartCoroutine(GiveDamage());
         StartCoroutine(Fire(duration));
     }
 
-    private IEnumerator GiveDamage()
+
+    private IEnumerator Fire(float duration)
     {
-        while (true)
+        if (flameParticle == null)
         {
+            flameParticle = GetComponent<ParticleSystem>();
+        }
+        var shape = flameParticle.shape;
+        shape.angle = fireAngle / 2;
+        var main = flameParticle.main;
+        main.duration = duration;
+        main.startLifetime = 0.5f * radius / 3;
+        var emission = flameParticle.emission;
+        emission.rateOverTime = 200 * Mathf.Pow(radius / 3, 2);
+        flameParticle.Play();
+
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration)
+        {
+
             // 부채꼴 범위의 바이러스에게 데미지를 줌
             Vector3 transformOnPlane = new Vector3(transform.position.x, 0, transform.position.z);
             Collider[] colliders = Physics.OverlapSphere(transformOnPlane, radius, virusLayer);
@@ -43,22 +57,9 @@ public class P_FlameThrower : ProjectileBehaviour
                 }
             }
             yield return new WaitForSeconds(tick);
+            elapsedTime += tick;
         }
-    }
 
-    private IEnumerator Fire(float duration)
-    {
-        foreach (Animator animator in flameAnimators)
-        {
-            animator.SetBool("Fire_b", true);
-        }
-        yield return new WaitForSeconds(duration);
-
-        foreach (Animator animator in flameAnimators)
-        {
-            animator.SetBool("Fire_b", false);
-        }
-        StopCoroutine(damageCoroutine);
     }
 
     protected override void OnTriggerEnter(Collider other)
