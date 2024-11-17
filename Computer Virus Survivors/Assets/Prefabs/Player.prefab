@@ -978,7 +978,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
@@ -1011,7 +1011,6 @@ MonoBehaviour:
   playerStatData: {fileID: 11400000, guid: 142b6196dcde0c549a57c0b615d6890e, type: 2}
   statEventCaller: {fileID: 11400000, guid: 67c209f7ba7f6f1418b9784b60be40b9, type: 2}
   sphereCollider: {fileID: 6807191690305646296}
-  spawnManager: {fileID: 0}
 --- !u!1 &7520164206935666322
 GameObject:
   m_ObjectHideFlags: 0
