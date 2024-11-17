@@ -7,8 +7,9 @@ public class P_CoreDump : ProjectileBehaviour
     [SerializeField] private float dumpSpeed = 3.0f;
     [SerializeField] private float dumpRadius = 3.0f;
     [SerializeField] private LayerMask virusLayer;
+    private Vector3 fallingDirection;
 
-    public override void Initialize(int damage)
+    public void Initialize(int damage, Vector3 fallingDirection)
     {
         base.Initialize(damage);
 
@@ -17,6 +18,7 @@ public class P_CoreDump : ProjectileBehaviour
             animator = GetComponent<Animator>();
         }
         animator.SetBool("isGrounded_b", false);
+        this.fallingDirection = fallingDirection;
         StartCoroutine(FallAndExplode());
     }
 
@@ -24,7 +26,7 @@ public class P_CoreDump : ProjectileBehaviour
     {
         while (transform.position.y > 0)
         {
-            transform.Translate(dumpSpeed * Time.deltaTime * Vector3.down, Space.World);
+            transform.Translate(dumpSpeed * Time.deltaTime * fallingDirection, Space.World);
             yield return null;
         }
 
