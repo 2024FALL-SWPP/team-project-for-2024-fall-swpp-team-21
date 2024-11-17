@@ -35,8 +35,10 @@ public class VirusBehaviour : MonoBehaviour
         Vector3 moveDirection = Vector3.ProjectOnPlane(
             (player.transform.position - transform.position).normalized,
             Vector3.up);
-        transform.Translate(virusData.moveSpeed * Time.deltaTime * moveDirection, Space.World);
-        transform.rotation = Quaternion.LookRotation(moveDirection);
+        //transform.Translate(virusData.moveSpeed * Time.deltaTime * moveDirection, Space.World);
+        rb.MovePosition(transform.position + virusData.moveSpeed * Time.deltaTime * moveDirection);
+        //transform.rotation = Quaternion.LookRotation(moveDirection);
+        rb.MoveRotation(Quaternion.LookRotation(moveDirection));
 #endif
     }
 

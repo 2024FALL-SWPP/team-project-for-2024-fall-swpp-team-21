@@ -45,7 +45,7 @@ public class V_Ransomware : VirusBehaviour
         attackActions.Add(FirewallBarricade);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!startAttack)
         {

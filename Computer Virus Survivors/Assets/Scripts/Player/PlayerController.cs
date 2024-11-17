@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         Move();
 
@@ -99,8 +99,10 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("b_IsMoving", moveDirection != Vector3.zero);
 
-        transform.Translate(playerStat.MoveSpeed * Time.deltaTime * moveDirection, Space.World);
-        transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+        //transform.Translate(playerStat.MoveSpeed * Time.deltaTime * moveDirection, Space.World);
+        rb.MovePosition(transform.position + playerStat.MoveSpeed * Time.deltaTime * moveDirection);
+        //transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+        rb.MoveRotation(Quaternion.LookRotation(moveDirection, Vector3.up));
         if (playerStat.MoveSpeed < 0)
         {
             transform.rotation *= Quaternion.Euler(0, 180, 0);
