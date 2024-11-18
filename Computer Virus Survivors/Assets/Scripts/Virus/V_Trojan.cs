@@ -13,7 +13,7 @@ public class V_Trojan : VirusBehaviour
     private bool isAttacking = false;
     private bool doNotTrack = false; // 공격 쿨타임 중에 있음
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!isAttacking)
         {
@@ -37,9 +37,10 @@ public class V_Trojan : VirusBehaviour
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
-            transform.Translate(dashSpeed * Time.deltaTime * Vector3.forward, Space.Self);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            //transform.Translate(dashSpeed * Time.deltaTime * Vector3.forward, Space.Self);
+            rb.MovePosition(rb.position + dashSpeed * Time.deltaTime * transform.forward);
+            elapsedTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
         }
 
         Debug.Log("Trojan dash END");
