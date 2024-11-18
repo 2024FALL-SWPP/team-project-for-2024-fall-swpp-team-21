@@ -12,6 +12,7 @@ public enum PoolType
     Proj_PacketStream,
     Proj_ChainLightning,
     Proj_CoreDump,
+    Proj_Shield,
     DamageIndicator
 }
 
