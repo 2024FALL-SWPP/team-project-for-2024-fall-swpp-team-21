@@ -891,8 +891,14 @@ MonoBehaviour:
   - poolName: 6
     prefab: {fileID: 5823448282571730383, guid: 5d055ad233434496bb110599d264f01a, type: 3}
     initialPoolSize: 10
-  - poolName: 7
+  - poolName: 9
     prefab: {fileID: 7084631532191331932, guid: ba79151a99bf45541ae9e311f351d175, type: 3}
+    initialPoolSize: 10
+  - poolName: 7
+    prefab: {fileID: 6456922764076499848, guid: 42a0b83e04e80a64c9d82bd5ace629a8, type: 3}
+    initialPoolSize: 0
+  - poolName: 8
+    prefab: {fileID: 1757826329766676516, guid: 196f77589c6098649980e9f4bd9830d9, type: 3}
     initialPoolSize: 10
 --- !u!4 &454088697
 Transform:

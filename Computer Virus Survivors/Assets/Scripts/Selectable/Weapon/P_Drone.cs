@@ -8,9 +8,10 @@ using UnityEngine;
 public class P_Drone : ProjectileBehaviour
 {
     [SerializeField] private float tick = 1f;
+    [SerializeField] private PoolType projectileType;
 
     private Coroutine currentCoroutine;
-    private float fireRadius = 5.0f;
+    private float fireRadius;
 
     private Transform hangingTransform;
     private Transform lookAtTransform;
@@ -34,7 +35,10 @@ public class P_Drone : ProjectileBehaviour
     {
         if (hangingTransform != null)
         {
-            transform.position = Vector3.Lerp(transform.position, hangingTransform.position, 0.1f);
+            if (Vector3.Distance(transform.position, hangingTransform.position) > 1f)
+            {
+                transform.position = Vector3.Lerp(transform.position, hangingTransform.position, 0.03f);
+            }
         }
 
         if (lookAtTransform != null)
@@ -68,7 +72,8 @@ public class P_Drone : ProjectileBehaviour
                 yield break;
             }
 
-            target.GetComponent<VirusBehaviour>().GetDamage(damage);
+            P_Beam beam = PoolManager.instance.GetObject(projectileType, transform.position, transform.rotation).GetComponent<P_Beam>();
+            beam.Initialize(damage, target.transform);
             yield return new WaitForSeconds(tick);
         }
     }

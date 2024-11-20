@@ -13,6 +13,7 @@ public enum PoolType
     Proj_ChainLightning,
     Proj_CoreDump,
     Proj_Drone,
+    Proj_Beam,
     DamageIndicator
 }
 

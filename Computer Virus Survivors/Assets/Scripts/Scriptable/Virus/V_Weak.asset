@@ -15,5 +15,5 @@ MonoBehaviour:
   poolType: 1
   maxHP: 10
   moveSpeed: 1.5
-  dropExp: 100
+  dropExp: 10000
   contactDamage: 5

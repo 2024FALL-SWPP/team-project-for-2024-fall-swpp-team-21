@@ -325,6 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   tick: 1
+  projectileType: 8
 --- !u!1 &6563795024481493776
 GameObject:
   m_ObjectHideFlags: 0
