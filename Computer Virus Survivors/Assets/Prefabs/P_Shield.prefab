@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  tick: 0.2
+  spinSpeed: 180
 --- !u!135 &1689623071816036060
 SphereCollider:
   m_ObjectHideFlags: 0

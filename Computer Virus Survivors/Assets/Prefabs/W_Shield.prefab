@@ -61,7 +61,7 @@ MonoBehaviour:
     40 \uC99D\uAC00"
   projectilePoolType: 7
   initialDamage: 5
-  initialMultiProjectile: 1
+  initialMultiProjectile: 4
   initialAttackPeriod: 5
   initialAttackRange: 2
   initialAddiCritProbability: 5

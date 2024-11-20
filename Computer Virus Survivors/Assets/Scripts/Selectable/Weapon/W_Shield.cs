@@ -16,7 +16,7 @@ public class W_Shield : WeaponBehaviour
         {
             foreach (GameObject proj in projs)
             {
-                float angle = proj.GetComponent<P_Shield>().GetCurrentAngle() * Mathf.Deg2Rad;
+                float angle = proj.GetComponent<P_Shield>().GetCurrentAngle();
                 Vector2 circlePoint = finalAttackRange * new Vector2(MathF.Cos(angle), MathF.Sin(angle));
                 proj.transform.position = transform.position + new Vector3(circlePoint.x, shieldHeight, circlePoint.y);
             }
@@ -97,9 +97,10 @@ public class W_Shield : WeaponBehaviour
 
     private void InitializeProjectiles()
     {
+        Debug.Log(finalMultiProjectile);
         if (projs.Count < finalMultiProjectile)
         {
-            for (int i = 0; i < finalMultiProjectile - projs.Count; i++)
+            while (projs.Count < finalMultiProjectile)
             {
                 projs.Add(PoolManager.instance.GetObject(projectilePool, transform.position, Quaternion.identity));
             }
@@ -108,22 +109,15 @@ public class W_Shield : WeaponBehaviour
             {
                 GameObject proj = projs[i];
                 float angle = 2f * MathF.PI / projs.Count * i;
-                //Vector2 circlePoint = GetCirclePoint(finalAttackRange, i, projs.Count);
-                proj.GetComponent<P_Shield>().Initialize(finalDamage, angle, 360f / finalAttackPeriod);
+                proj.GetComponent<P_Shield>().Initialize(finalDamage, angle, 2f * MathF.PI / finalAttackPeriod);
             }
         }
         else
         {
             foreach (GameObject proj in projs)
             {
-                proj.GetComponent<P_Shield>().Initialize(finalDamage, -1, 360f / finalAttackPeriod);
+                proj.GetComponent<P_Shield>().Initialize(finalDamage, -1, 2f * MathF.PI / finalAttackPeriod);
             }
         }
-    }
-
-    private Vector2 GetCirclePoint(float radius, int step, int totalSteps)
-    {
-        float angle = 2f * MathF.PI / totalSteps * step;
-        return radius * new Vector2(MathF.Cos(angle), MathF.Sin(angle));
     }
 }
