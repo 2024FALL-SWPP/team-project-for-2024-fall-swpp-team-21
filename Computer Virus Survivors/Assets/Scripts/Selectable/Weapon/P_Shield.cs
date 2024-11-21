@@ -5,11 +5,9 @@ using UnityEngine;
 
 public class P_Shield : ProjectileBehaviour
 {
-    [SerializeField] private float tick = 0.5f;
-    [SerializeField] private float spinSpeed = 90.0f;
+    [SerializeField] private float spinSpeed;
     private float currentAngle;
     private float rotateSpeed;
-    private bool canDamage = true;
 
     // Angle은 0 이상일 경우만 초기화
     public void Initialize(int damage, float angle, float rotateSpeed)
@@ -38,17 +36,9 @@ public class P_Shield : ProjectileBehaviour
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (canDamage && other.CompareTag("Virus"))
+        if (other.CompareTag("Virus"))
         {
             other.GetComponent<VirusBehaviour>().GetDamage(damage);
-            StartCoroutine(CoolDown());
         }
-    }
-
-    private IEnumerator CoolDown()
-    {
-        canDamage = false;
-        yield return new WaitForSeconds(tick);
-        canDamage = true;
     }
 }
