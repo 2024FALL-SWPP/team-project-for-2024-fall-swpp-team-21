@@ -1,34 +1,35 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using UnityEngine;
 
 
 public class P_Drone : ProjectileBehaviour
 {
-    [SerializeField] private float tick = 1f;
     [SerializeField] private PoolType projectileType;
 
-    private Coroutine currentCoroutine;
     private float fireRadius;
+    private float attackPeriod;
 
     private Transform hangingTransform;
-    private Transform lookAtTransform;
+    private GameObject lookAtTarget;
 
-    public void Initialize(int damage, float radius, Transform transform)
+    public void Initialize(int damage, float radius, Transform transform, float attackPeriod)
     {
         this.damage = damage;
         this.fireRadius = radius;
         this.hangingTransform = transform;
-        currentCoroutine = StartCoroutine(MonsterScanner.SearchEnemyCoroutine(this.transform, fireRadius, EnemyFound));
+        this.attackPeriod = attackPeriod;
+        StartCoroutine(AttackEnemy());
     }
 
-    public void UpgradeDrone(int damage, float radius, Transform transform)
+    public void UpgradeDrone(int damage, float radius, float attackPeriod)
     {
         this.damage = damage;
         this.fireRadius = radius;
-        this.hangingTransform = transform;
+        this.attackPeriod = attackPeriod;
     }
 
     private void Update()
@@ -37,51 +38,43 @@ public class P_Drone : ProjectileBehaviour
         {
             if (Vector3.Distance(transform.position, hangingTransform.position) > 1f)
             {
-                transform.position = Vector3.Lerp(transform.position, hangingTransform.position, 0.03f);
+                transform.position = Vector3.Lerp(transform.position, hangingTransform.position, Time.deltaTime * 2f);
             }
         }
 
-        if (lookAtTransform != null)
+        if (lookAtTarget != null)
         {
-            Vector3 targetDir = Vector3.ProjectOnPlane(lookAtTransform.position - transform.position, Vector3.up).normalized + new Vector3(0, -0.2f, 0);
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetDir), 0.1f);
+            Vector3 targetDir = Vector3.ProjectOnPlane(lookAtTarget.transform.position - transform.position, Vector3.up).normalized + new Vector3(0, -0.2f, 0);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetDir), Time.deltaTime * 10f);
         }
     }
 
-    private void EnemyFound(GameObject target)
+    private IEnumerator AttackEnemy()
     {
-        lookAtTransform = target.transform;
-        target.GetComponent<VirusBehaviour>().OnDie += OnTargetDied;
-        currentCoroutine = StartCoroutine(AttackEnemy(target, EnemyMissed));
-    }
-
-    private void EnemyMissed(GameObject virus)
-    {
-        lookAtTransform = null;
-        virus.GetComponent<VirusBehaviour>().OnDie -= OnTargetDied;
-        currentCoroutine = StartCoroutine(MonsterScanner.SearchEnemyCoroutine(this.transform, fireRadius, EnemyFound));
-    }
-
-    private IEnumerator AttackEnemy(GameObject target, Action<GameObject> callback)
-    {
+        GameObject target = null;
         while (true)
         {
-            if (Vector3.Distance(target.transform.position, transform.position) > fireRadius)
+            bool isFound = false;
+
+            void OnEnemyFound(GameObject t)
             {
-                callback(target);
-                yield break;
+                target = t;
+                isFound = true;
+                lookAtTarget = t;
             }
 
-            P_Beam beam = PoolManager.instance.GetObject(projectileType, transform.position, transform.rotation).GetComponent<P_Beam>();
-            beam.Initialize(damage, target.transform);
-            yield return new WaitForSeconds(tick);
-        }
-    }
+            StartCoroutine(MonsterScanner.SearchEnemyCoroutine(this.transform, fireRadius, OnEnemyFound));
 
-    private void OnTargetDied(VirusBehaviour virus)
-    {
-        StopCoroutine(currentCoroutine);
-        EnemyMissed(virus.gameObject);
+            yield return new WaitUntil(() => isFound);
+
+            if (target != null)
+            {
+                P_Beam beam = PoolManager.instance.GetObject(projectileType, transform.position, transform.rotation).GetComponent<P_Beam>();
+                beam.Initialize(damage, target.transform.position);
+            }
+
+            yield return new WaitForSeconds(attackPeriod);
+        }
     }
 
     protected override void OnTriggerEnter(Collider other)

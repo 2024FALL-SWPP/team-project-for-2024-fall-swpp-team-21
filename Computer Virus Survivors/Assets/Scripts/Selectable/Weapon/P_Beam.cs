@@ -7,10 +7,10 @@ public class P_Beam : ProjectileBehaviour
     [SerializeField] private float speed = 10f;
     private GameObject lightBeam;
     private ParticleSystem particle;
-    private Transform target;
+    private Vector3 targetPos;
     private bool isHit;
 
-    public void Initialize(int damage, Transform target)
+    public void Initialize(int damage, Vector3 target)
     {
         if (lightBeam == null)
         {
@@ -18,30 +18,38 @@ public class P_Beam : ProjectileBehaviour
             particle = GetComponentInChildren<ParticleSystem>();
         }
         this.damage = damage;
-        this.target = target;
+        this.targetPos = target;
         isHit = false;
         lightBeam.SetActive(true);
     }
 
     private void Update()
     {
+        if (targetPos != null)
+        {
+            transform.LookAt(targetPos);
+        }
+
         if (!isHit)
         {
-            transform.LookAt(target);
             transform.Translate(speed * Time.deltaTime * Vector3.forward);
-            if (CheckOutOfScreen())
-            {
-                PoolManager.instance.ReturnObject(PoolType.Proj_Beam, gameObject);
-            }
+        }
+
+        if (CheckOutOfScreen())
+        {
+            PoolManager.instance.ReturnObject(PoolType.Proj_Beam, gameObject);
         }
     }
 
     protected override void OnTriggerEnter(Collider other)
     {
+        if (isHit) return;
+
         if (other.CompareTag("Virus"))
         {
             other.GetComponent<VirusBehaviour>().GetDamage(damage);
         }
+
         isHit = true;
         lightBeam.SetActive(false);
         particle.Play();
@@ -50,6 +58,7 @@ public class P_Beam : ProjectileBehaviour
 
     private IEnumerator Destroy(float duration)
     {
+        Debug.Log("Beam Destroyed after " + duration + " seconds");
         yield return new WaitForSeconds(duration);
         PoolManager.instance.ReturnObject(PoolType.Proj_Beam, gameObject);
     }
