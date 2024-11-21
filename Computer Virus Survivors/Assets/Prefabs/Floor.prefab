@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6206154428084166704}
   - component: {fileID: 6206154428084166719}
   - component: {fileID: 6206154428084166718}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Tile (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 6206154428233665911}
   - component: {fileID: 6206154428233665910}
   - component: {fileID: 6206154428233665909}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Tile (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 6206154428271483059}
   - component: {fileID: 6206154428271483058}
   - component: {fileID: 6206154428271483057}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Tile (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 6206154428347715107}
   - component: {fileID: 6206154428347715106}
   - component: {fileID: 6206154428347715105}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 6206154428780827697}
   - component: {fileID: 6206154428780827696}
   - component: {fileID: 6206154428780827711}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Tile (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +499,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6206154428902362162}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 6206154428971073848}
   - component: {fileID: 6206154428971073831}
   - component: {fileID: 6206154428971073830}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Tile (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -640,7 +640,7 @@ GameObject:
   - component: {fileID: 6206154429293340767}
   - component: {fileID: 6206154429293340766}
   - component: {fileID: 6206154429293340765}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Tile (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -738,7 +738,7 @@ GameObject:
   - component: {fileID: 6206154429467623207}
   - component: {fileID: 6206154429467623206}
   - component: {fileID: 6206154429467623205}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Tile (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -836,7 +836,7 @@ GameObject:
   - component: {fileID: 6206154429655626451}
   - component: {fileID: 6206154429655626450}
   - component: {fileID: 6206154429655626449}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Tile (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
