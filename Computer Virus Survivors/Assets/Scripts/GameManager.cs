@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         Initialize();
         GameStart();
     }
