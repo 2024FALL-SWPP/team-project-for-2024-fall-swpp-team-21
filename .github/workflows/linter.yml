@@ -24,3 +24,5 @@ jobs:
         env:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FIX_MARKDOWN: true
+          FIX_CSHARP: true
