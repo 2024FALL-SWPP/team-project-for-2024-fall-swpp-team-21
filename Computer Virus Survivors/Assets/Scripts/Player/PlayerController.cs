@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         playerStat.Initialize(playerStatData, statEventCaller);
         statEventCaller.StatChangedHandler += OnStatChanged;
 
-        playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour("화염방사기"));
+        playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour("드론"));
         // 경험치 획득 범위 초기화
         //sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = playerStat.ExpGainRange;
