@@ -9,9 +9,22 @@ public class P_CoreDump : ProjectileBehaviour
     [SerializeField] private LayerMask virusLayer;
     private Vector3 fallingDirection;
 
-    public void Initialize(int damage, Vector3 fallingDirection)
+    // public void Initialize(int damage, Vector3 fallingDirection)
+    // {
+    //     base.Initialize(damage);
+
+    //     if (animator == null)
+    //     {
+    //         animator = GetComponent<Animator>();
+    //     }
+    //     animator.SetBool("isGrounded_b", false);
+    //     this.fallingDirection = fallingDirection;
+    //     StartCoroutine(FallAndExplode());
+    // }
+
+    public void Initialize(FinalWeaponData finalWeaponData, Vector3 fallingDirection)
     {
-        base.Initialize(damage);
+        base.Initialize(finalWeaponData);
 
         if (animator == null)
         {
@@ -34,7 +47,7 @@ public class P_CoreDump : ProjectileBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, dumpRadius, virusLayer);
         foreach (Collider collider in colliders)
         {
-            collider.GetComponent<VirusBehaviour>().GetDamage(damage);
+            collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage());
         }
         yield return new WaitForSeconds(1.0f);
         PoolManager.instance.ReturnObject(PoolType.Proj_CoreDump, gameObject);

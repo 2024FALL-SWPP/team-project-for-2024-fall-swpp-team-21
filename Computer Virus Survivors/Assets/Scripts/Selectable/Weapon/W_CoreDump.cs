@@ -7,15 +7,15 @@ public sealed class W_CoreDump : WeaponBehaviour
 
     [SerializeField] private float dumpAreaRadius;
     [SerializeField] private float dumpStartHeight;
-    private Vector3[] fallingDirections = { new Vector3(1, -1, 1).normalized, new Vector3(1, -1, -1).normalized,
-                                            new Vector3(-1, -1, 1).normalized, new Vector3(-1, -1, -1).normalized };
+    private readonly Vector3[] fallingDirections = { new Vector3(1, -1, 1).normalized, new Vector3(1, -1, -1).normalized,
+                                                     new Vector3(-1, -1, 1).normalized, new Vector3(-1, -1, -1).normalized };
 
     protected override IEnumerator Attack()
     {
         while (true)
         {
             StartCoroutine(Dump());
-            yield return new WaitForSeconds(finalAttackPeriod);
+            yield return new WaitForSeconds(finalWeaponData.attackPeriod);
         }
     }
 
@@ -94,12 +94,12 @@ public sealed class W_CoreDump : WeaponBehaviour
     private IEnumerator Dump()
     {
         GameObject proj;
-        for (int i = 0; i < finalMultiProjectile; i++)
+        for (int i = 0; i < finalWeaponData.multiProjectile; i++)
         {
             Vector3 fallingDirection = fallingDirections[Random.Range(0, fallingDirections.Length)];
             Vector3 finalPosition = GetRandomPosition(fallingDirection);
             proj = PoolManager.instance.GetObject(projectilePool, finalPosition, Quaternion.identity);
-            proj.GetComponent<P_CoreDump>().Initialize(finalDamage * (IsCritical() ? finalCritPoint : 100) / 100, fallingDirection);
+            proj.GetComponent<P_CoreDump>().Initialize(finalWeaponData, fallingDirection);
             yield return new WaitForSeconds(0.1f);
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-sealed public class W_PacketStream : WeaponBehaviour
+public sealed class W_PacketStream : WeaponBehaviour
 {
 
     [SerializeField] private GameObject muzzle;
@@ -13,7 +13,7 @@ sealed public class W_PacketStream : WeaponBehaviour
         while (true)
         {
             StartCoroutine(Shoot());
-            yield return new WaitForSeconds(finalAttackPeriod);
+            yield return new WaitForSeconds(finalWeaponData.attackPeriod);
         }
     }
 
@@ -92,11 +92,11 @@ sealed public class W_PacketStream : WeaponBehaviour
     private IEnumerator Shoot()
     {
         GameObject proj;
-        for (int i = 0; i < finalMultiProjectile; i++)
+        for (int i = 0; i < finalWeaponData.multiProjectile; i++)
         {
             Vector3 finalPosition = muzzle.transform.position + FireFluctuation();
             proj = PoolManager.instance.GetObject(projectilePool, finalPosition, muzzle.transform.rotation);
-            proj.GetComponent<ProjectileBehaviour>().Initialize(finalDamage * (IsCritical() ? finalCritPoint : 100) / 100);
+            proj.GetComponent<ProjectileBehaviour>().Initialize(finalWeaponData);
             yield return new WaitForSeconds(0.03f);
         }
     }

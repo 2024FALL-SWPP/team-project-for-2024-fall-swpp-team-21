@@ -20,12 +20,12 @@ public class P_ChainLightning : ProjectileBehaviour
     private int branchCount;
     private VirusBehaviour targetVirus;
 
-    public void Initialize(int damage, int chainID, float chainRange, int chainDepth, int branchCount, VirusBehaviour iniitalVirus = null)
+    public void Initialize(FinalWeaponData finalWeaponData, int chainID, float chainRange, int chainDepth, int branchCount, VirusBehaviour iniitalVirus = null)
     {
+        base.Initialize(finalWeaponData);
         this.chainID = chainID;
         this.chainRange = chainRange;
         this.chainDepth = chainDepth;
-        this.damage = damage;
         this.branchCount = branchCount;
         this.targetVirus = iniitalVirus;
 
@@ -78,7 +78,7 @@ public class P_ChainLightning : ProjectileBehaviour
         {
             GameObject chainLightning = PoolManager.instance.GetObject(PoolType.Proj_ChainLightning, targetVirus.transform.position + chainHitOffset, Quaternion.identity);
             P_ChainLightning chainLightningScript = chainLightning.GetComponent<P_ChainLightning>();
-            chainLightningScript.Initialize(damage, chainID, chainRange, chainDepth - 1, branchCount);
+            chainLightningScript.Initialize(finalWeaponData, chainID, chainRange, chainDepth - 1, branchCount);
         }
 
         // 해당 몬스터를 공격 (애니메이션)
@@ -88,7 +88,7 @@ public class P_ChainLightning : ProjectileBehaviour
         hitEffect.transform.position = chainAnim.EndPosition;
         hitEffect.Play();
         animator.SetBool("LightOn_b", true);
-        targetVirus.GetDamage(damage);
+        targetVirus.GetDamage(finalWeaponData.GetFinalDamage());
         yield return new WaitForSeconds(chainDuration);
         animator.SetBool("LightOn_b", false);
 

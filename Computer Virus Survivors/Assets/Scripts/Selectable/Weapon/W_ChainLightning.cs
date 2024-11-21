@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class W_ChainLightning : WeaponBehaviour
+public sealed class W_ChainLightning : WeaponBehaviour
 {
     [SerializeField] private LayerMask virusLayer;
     [SerializeField] private float attackRadius;
@@ -18,7 +18,7 @@ public class W_ChainLightning : WeaponBehaviour
         {
             Debug.Log("Shoot!");
             StartCoroutine(Shoot());
-            yield return new WaitForSeconds(finalAttackPeriod);
+            yield return new WaitForSeconds(finalWeaponData.attackPeriod);
         }
     }
 
@@ -121,7 +121,7 @@ public class W_ChainLightning : WeaponBehaviour
             Vector3 lightningStart = target.transform.position + lightningStartOffset;
 
             PoolManager.instance.GetObject(PoolType.Proj_ChainLightning, lightningStart, Quaternion.identity)
-                .GetComponent<P_ChainLightning>().Initialize(finalDamage, chainID, chainRadius, chainDepth, branchCount, target);
+                .GetComponent<P_ChainLightning>().Initialize(finalWeaponData, chainID, chainRadius, chainDepth, branchCount, target);
 
             yield return new WaitForSeconds(0.07f);
         }

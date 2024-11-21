@@ -36,7 +36,7 @@ public class P_PacketStream : ProjectileBehaviour
     {
         if (other.CompareTag("Virus"))
         {
-            other.GetComponent<VirusBehaviour>().GetDamage(damage);
+            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage());
             PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
         }
         else
