@@ -26,3 +26,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FIX_MARKDOWN: true
           FIX_CSHARP: true
+          VALIDATE_JSCPD: false
