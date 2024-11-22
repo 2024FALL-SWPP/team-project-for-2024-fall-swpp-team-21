@@ -26,22 +26,13 @@ public class P_PacketStream : ProjectileBehaviour
         }
     }
 
-    private bool CheckOutOfScreen()
-    {
-        Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
-        return viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1;
-    }
-
     protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Virus"))
         {
             other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage());
-            PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
         }
-        else
-        {
-            PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
-        }
+
+        PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
     }
 }

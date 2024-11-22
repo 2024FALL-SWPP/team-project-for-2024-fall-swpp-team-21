@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6779354850601472324}
   - component: {fileID: 7618613668407877345}
   - component: {fileID: 5647012064727919147}
-  m_Layer: 0
+  - component: {fileID: 4948345977801260574}
+  m_Layer: 7
   m_Name: P_Shield_Yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,3 +87,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4948345977801260574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6151578432663473150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d70e9b75f6a1e43871436ac22d8765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
