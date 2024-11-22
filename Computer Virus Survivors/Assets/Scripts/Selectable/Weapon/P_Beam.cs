@@ -33,6 +33,11 @@ public class P_Beam : ProjectileBehaviour
         if (!isHit)
         {
             transform.Translate(speed * Time.deltaTime * Vector3.forward);
+
+            if (transform.position.y < 0)
+            {
+                StartCoroutine(Destroy(particle.main.duration));
+            }
         }
 
         if (CheckOutOfScreen())
@@ -50,15 +55,17 @@ public class P_Beam : ProjectileBehaviour
             other.GetComponent<VirusBehaviour>().GetDamage(damage);
         }
 
-        isHit = true;
-        lightBeam.SetActive(false);
-        particle.Play();
         StartCoroutine(Destroy(particle.main.duration));
     }
 
     private IEnumerator Destroy(float duration)
     {
         Debug.Log("Beam Destroyed after " + duration + " seconds");
+
+        isHit = true;
+        lightBeam.SetActive(false);
+        particle.Play();
+
         yield return new WaitForSeconds(duration);
         PoolManager.instance.ReturnObject(PoolType.Proj_Beam, gameObject);
     }
