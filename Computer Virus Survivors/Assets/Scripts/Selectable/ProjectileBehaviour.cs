@@ -8,7 +8,10 @@ public abstract class ProjectileBehaviour : MonoBehaviour
 
     public virtual void Initialize(FinalWeaponData finalWeaponData)
     {
-        this.finalWeaponData = finalWeaponData;
+        if (this.finalWeaponData == null)
+        {
+            this.finalWeaponData = finalWeaponData;
+        }
     }
 
     protected abstract void OnTriggerEnter(Collider other);

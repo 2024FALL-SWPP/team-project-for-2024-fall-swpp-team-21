@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class W_Shield : WeaponBehaviour
+public class W_VaccineRing : WeaponBehaviour
 {
     [SerializeField] private float shieldHeight;
     private List<GameObject> projs = new List<GameObject>();
@@ -16,8 +16,8 @@ public class W_Shield : WeaponBehaviour
         {
             foreach (GameObject proj in projs)
             {
-                float angle = proj.GetComponent<P_Shield>().GetCurrentAngle();
-                Vector2 circlePoint = finalAttackRange * new Vector2(MathF.Cos(angle), MathF.Sin(angle));
+                float angle = proj.GetComponent<P_VaccineRing>().GetCurrentAngle();
+                Vector2 circlePoint = finalWeaponData.attackRange * new Vector2(MathF.Cos(angle), MathF.Sin(angle));
                 proj.transform.position = transform.position + new Vector3(circlePoint.x, shieldHeight, circlePoint.y);
             }
             yield return null;
@@ -98,10 +98,9 @@ public class W_Shield : WeaponBehaviour
 
     private void InitializeProjectiles()
     {
-        Debug.Log(finalMultiProjectile);
-        if (projs.Count < finalMultiProjectile)
+        if (projs.Count < finalWeaponData.multiProjectile)
         {
-            while (projs.Count < finalMultiProjectile)
+            while (projs.Count < finalWeaponData.multiProjectile)
             {
                 projs.Add(PoolManager.instance.GetObject(projectilePool, transform.position, Quaternion.identity));
             }
@@ -110,14 +109,14 @@ public class W_Shield : WeaponBehaviour
             {
                 GameObject proj = projs[i];
                 float angle = 2f * MathF.PI / projs.Count * i;
-                proj.GetComponent<P_Shield>().Initialize(finalDamage, angle, 2f * MathF.PI / finalAttackPeriod);
+                proj.GetComponent<P_VaccineRing>().Initialize(finalWeaponData, angle);
             }
         }
         else
         {
             foreach (GameObject proj in projs)
             {
-                proj.GetComponent<P_Shield>().Initialize(finalDamage, -1, 2f * MathF.PI / finalAttackPeriod);
+                proj.GetComponent<P_VaccineRing>().Initialize(finalWeaponData, -1);
             }
         }
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5403754762025930220}
   - component: {fileID: 1689623071816036060}
   m_Layer: 7
-  m_Name: P_Shield
+  m_Name: P_VaccineRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

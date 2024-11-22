@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 835744681533526100}
   - component: {fileID: 835744681533526101}
   m_Layer: 0
-  m_Name: W_Shield
+  m_Name: W_VaccineRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5ba7220d60dee4e91a2f622c5d3ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: "\uBC29\uD328"
+  objectName: "\uBC31\uC2E0 \uB9C1"
   maxLevel: 9
   explanations:
   - "\uBC31\uC2E0 \uBC29\uD328\uAC00 \uD50C\uB808\uC774\uC5B4 \uC8FC\uC704\uB97C
