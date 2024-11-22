@@ -7,29 +7,29 @@ using UnityEngine;
 public class P_VaccineRing : ProjectileBehaviour
 {
     [SerializeField] private float spinSpeed;
-    private float currentAngle;
+    private Transform rotationCenter;
+    private float angle;
 
     // Angle은 0 이상일 경우만 초기화
-    public void Initialize(FinalWeaponData finalWeaponData, float angle)
+    public void Initialize(FinalWeaponData finalWeaponData, Transform rotationCenter, float angle)
     {
         base.Initialize(finalWeaponData);
 
-        if (angle >= 0)
+        if (this.rotationCenter == null)
         {
-            currentAngle = angle;
+            this.rotationCenter = rotationCenter;
         }
+        this.angle = angle;
         transform.rotation = Quaternion.identity;
-    }
-
-    public float GetCurrentAngle()
-    {
-        return currentAngle;
     }
 
     private void Update()
     {
-        currentAngle += 2f * MathF.PI / finalWeaponData.attackPeriod * Time.deltaTime;
+        Vector2 circlePoint = finalWeaponData.attackRange * new Vector2(MathF.Cos(angle), MathF.Sin(angle));
+        transform.position = rotationCenter.position + new Vector3(circlePoint.x, 0, circlePoint.y);
         transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime);
+
+        angle += 2f * MathF.PI / finalWeaponData.attackPeriod * Time.deltaTime;
     }
 
     protected override void OnTriggerEnter(Collider other)

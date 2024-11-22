@@ -6,21 +6,25 @@ using UnityEngine;
 
 public class W_VaccineRing : WeaponBehaviour
 {
-    [SerializeField] private float shieldHeight;
+    [SerializeField] private Transform rotationCenter;
     private List<GameObject> projs = new List<GameObject>();
+    private int projCount = 0;
 
     protected override IEnumerator Attack()
     {
-        InitializeProjectiles();
         while (true)
         {
-            foreach (GameObject proj in projs)
-            {
-                float angle = proj.GetComponent<P_VaccineRing>().GetCurrentAngle();
-                Vector2 circlePoint = finalWeaponData.attackRange * new Vector2(MathF.Cos(angle), MathF.Sin(angle));
-                proj.transform.position = transform.position + new Vector3(circlePoint.x, shieldHeight, circlePoint.y);
-            }
-            yield return null;
+            yield return new WaitUntil(() => projCount < finalWeaponData.multiProjectile);
+
+            InitializeProjectiles();
+
+            // foreach (GameObject proj in projs)
+            // {
+            //     float angle = proj.GetComponent<P_VaccineRing>().GetCurrentAngle();
+            //     Vector2 circlePoint = finalWeaponData.attackRange * new Vector2(MathF.Cos(angle), MathF.Sin(angle));
+            //     proj.transform.position = transform.position + new Vector3(circlePoint.x, shieldHeight, circlePoint.y);
+            // }
+            // yield return null;
         }
     }
 
@@ -98,26 +102,17 @@ public class W_VaccineRing : WeaponBehaviour
 
     private void InitializeProjectiles()
     {
-        if (projs.Count < finalWeaponData.multiProjectile)
+        while (projCount < finalWeaponData.multiProjectile)
         {
-            while (projs.Count < finalWeaponData.multiProjectile)
-            {
-                projs.Add(PoolManager.instance.GetObject(projectilePool, transform.position, Quaternion.identity));
-            }
-
-            for (int i = 0; i < projs.Count; i++)
-            {
-                GameObject proj = projs[i];
-                float angle = 2f * MathF.PI / projs.Count * i;
-                proj.GetComponent<P_VaccineRing>().Initialize(finalWeaponData, angle);
-            }
+            projs.Add(PoolManager.instance.GetObject(projectilePool, transform.position, Quaternion.identity));
+            projCount++;
         }
-        else
+
+        for (int i = 0; i < projCount; i++)
         {
-            foreach (GameObject proj in projs)
-            {
-                proj.GetComponent<P_VaccineRing>().Initialize(finalWeaponData, -1);
-            }
+            GameObject proj = projs[i];
+            float angle = 2f * MathF.PI / projCount * i;
+            proj.GetComponent<P_VaccineRing>().Initialize(finalWeaponData, rotationCenter, angle);
         }
     }
 }
