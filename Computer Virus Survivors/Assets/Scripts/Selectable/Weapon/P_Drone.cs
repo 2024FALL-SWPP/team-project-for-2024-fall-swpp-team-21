@@ -27,6 +27,8 @@ public class P_Drone : ProjectileBehaviour
 
     public void Initialize(FinalWeaponData finalWeaponData, Transform transform)
     {
+        base.Initialize(finalWeaponData);
+
         this.hangingTransform = transform;
         StartCoroutine(AttackEnemy());
     }
