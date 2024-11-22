@@ -60,7 +60,7 @@ MonoBehaviour:
   - "\uBC31\uC2E0 \uBC29\uD328 2\uAC1C \uCD94\uAC00"
   projectilePoolType: 9
   initialDamage: 10
-  initialMultiProjectile: 1
+  initialMultiProjectile: 2
   initialAttackPeriod: 3
   initialAttackRange: 2
   initialAddiCritProbability: 5
