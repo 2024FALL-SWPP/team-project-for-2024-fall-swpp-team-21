@@ -14,6 +14,7 @@ public enum PoolType
     Proj_CoreDump,
     Proj_Drone,
     Proj_Beam,
+    Proj_Shield,
     DamageIndicator
 }
 
