@@ -18,6 +18,9 @@ public class P_VaccineRing : ProjectileBehaviour
         if (this.rotationCenter == null)
         {
             this.rotationCenter = rotationCenter;
+
+            SphereCollider collider = GetComponent<SphereCollider>();
+            collider.center = new Vector3(collider.center.x, -rotationCenter.position.y, collider.center.z);
         }
         this.angle = angle;
         transform.rotation = Quaternion.identity;
