@@ -10,13 +10,13 @@ public class P_FlameThrower : ProjectileBehaviour
     [SerializeField] private float tick = 0.5f;
     private ParticleSystem flameParticle;
 
-    private float radius;
+    // private float radius;
 
-    public void Initialize(int damage, float radius)
-    {
-        this.damage = damage;
-        this.radius = radius;
-    }
+    // public void Initialize(int damage, float radius)
+    // {
+    //     this.damage = damage;
+    //     this.radius = radius;
+    // }
 
     public void FireOn(float duration)
     {
@@ -26,6 +26,8 @@ public class P_FlameThrower : ProjectileBehaviour
 
     private IEnumerator Fire(float duration)
     {
+        float radius = finalWeaponData.attackRange;
+
         if (flameParticle == null)
         {
             flameParticle = GetComponent<ParticleSystem>();
@@ -53,7 +55,7 @@ public class P_FlameThrower : ProjectileBehaviour
 
                 if (Vector3.Angle(transform.forward, direction) < (fireAngle * 0.5f))
                 {
-                    collider.GetComponent<VirusBehaviour>().GetDamage(damage);
+                    collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage());
                 }
             }
             yield return new WaitForSeconds(tick);

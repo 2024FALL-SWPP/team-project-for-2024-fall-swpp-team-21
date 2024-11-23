@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-sealed public class W_FlameThrower : WeaponBehaviour
+public sealed class W_FlameThrower : WeaponBehaviour
 {
     [SerializeField] private P_FlameThrower proj;
     [SerializeField] private float totalAttackPeriod; // 공격 시작 ~ 다음 공격 시작
@@ -11,8 +11,8 @@ sealed public class W_FlameThrower : WeaponBehaviour
     {
         while (true)
         {
-            proj.Initialize(finalDamage, finalAttackRange);
-            proj.FireOn(totalAttackPeriod - finalAttackPeriod);
+            proj.Initialize(finalWeaponData);
+            proj.FireOn(totalAttackPeriod - finalWeaponData.attackPeriod);
             yield return new WaitForSeconds(totalAttackPeriod);
         }
     }

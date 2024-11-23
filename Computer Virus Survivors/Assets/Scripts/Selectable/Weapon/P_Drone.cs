@@ -10,27 +10,35 @@ public class P_Drone : ProjectileBehaviour
 {
     [SerializeField] private PoolType projectileType;
 
-    private float fireRadius;
-    private float attackPeriod;
+    // private float fireRadius;
+    // private float attackPeriod;
 
     private Transform hangingTransform;
     private GameObject lookAtTarget;
 
-    public void Initialize(int damage, float radius, Transform transform, float attackPeriod)
+    // public void Initialize(int damage, float radius, Transform transform, float attackPeriod)
+    // {
+    //     this.damage = damage;
+    //     this.fireRadius = radius;
+    //     this.hangingTransform = transform;
+    //     this.attackPeriod = attackPeriod;
+    //     StartCoroutine(AttackEnemy());
+    // }
+
+    public void Initialize(FinalWeaponData finalWeaponData, Transform transform)
     {
-        this.damage = damage;
-        this.fireRadius = radius;
+        base.Initialize(finalWeaponData);
+
         this.hangingTransform = transform;
-        this.attackPeriod = attackPeriod;
         StartCoroutine(AttackEnemy());
     }
 
-    public void UpgradeDrone(int damage, float radius, float attackPeriod)
-    {
-        this.damage = damage;
-        this.fireRadius = radius;
-        this.attackPeriod = attackPeriod;
-    }
+    // public void UpgradeDrone(int damage, float radius, float attackPeriod)
+    // {
+    //     this.damage = damage;
+    //     this.fireRadius = radius;
+    //     this.attackPeriod = attackPeriod;
+    // }
 
     private void Update()
     {
@@ -63,17 +71,17 @@ public class P_Drone : ProjectileBehaviour
                 lookAtTarget = t;
             }
 
-            StartCoroutine(MonsterScanner.SearchEnemyCoroutine(this.transform, fireRadius, OnEnemyFound));
+            StartCoroutine(MonsterScanner.SearchEnemyCoroutine(this.transform, finalWeaponData.attackRange, OnEnemyFound));
 
             yield return new WaitUntil(() => isFound);
 
             if (target != null)
             {
                 P_Beam beam = PoolManager.instance.GetObject(projectileType, transform.position, transform.rotation).GetComponent<P_Beam>();
-                beam.Initialize(damage, target.transform.position);
+                beam.Initialize(finalWeaponData, target.transform.position);
             }
 
-            yield return new WaitForSeconds(attackPeriod);
+            yield return new WaitForSeconds(finalWeaponData.attackPeriod);
         }
     }
 

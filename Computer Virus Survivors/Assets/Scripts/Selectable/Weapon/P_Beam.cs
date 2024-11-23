@@ -10,14 +10,28 @@ public class P_Beam : ProjectileBehaviour
     private Vector3 targetPos;
     private bool isHit;
 
-    public void Initialize(int damage, Vector3 target)
+    // public void Initialize(int damage, Vector3 target)
+    // {
+    //     if (lightBeam == null)
+    //     {
+    //         lightBeam = GetComponentInChildren<MeshRenderer>().gameObject;
+    //         particle = GetComponentInChildren<ParticleSystem>();
+    //     }
+    //     this.damage = damage;
+    //     this.targetPos = target;
+    //     isHit = false;
+    //     lightBeam.SetActive(true);
+    // }
+
+    public void Initialize(FinalWeaponData finalWeaponData, Vector3 target)
     {
+        base.Initialize(finalWeaponData);
+
         if (lightBeam == null)
         {
             lightBeam = GetComponentInChildren<MeshRenderer>().gameObject;
             particle = GetComponentInChildren<ParticleSystem>();
         }
-        this.damage = damage;
         this.targetPos = target;
         isHit = false;
         lightBeam.SetActive(true);
@@ -52,7 +66,7 @@ public class P_Beam : ProjectileBehaviour
 
         if (other.CompareTag("Virus"))
         {
-            other.GetComponent<VirusBehaviour>().GetDamage(damage);
+            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage());
         }
 
         StartCoroutine(Destroy(particle.main.duration));

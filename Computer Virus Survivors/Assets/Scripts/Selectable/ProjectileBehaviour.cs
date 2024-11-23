@@ -4,11 +4,14 @@ using UnityEngine;
 public abstract class ProjectileBehaviour : MonoBehaviour
 {
     [SerializeField] protected Animator animator;
-    protected int damage;
+    protected FinalWeaponData finalWeaponData;
 
-    public virtual void Initialize(int damage)
+    public virtual void Initialize(FinalWeaponData finalWeaponData)
     {
-        this.damage = damage;
+        if (this.finalWeaponData == null)
+        {
+            this.finalWeaponData = finalWeaponData;
+        }
     }
 
     protected abstract void OnTriggerEnter(Collider other);

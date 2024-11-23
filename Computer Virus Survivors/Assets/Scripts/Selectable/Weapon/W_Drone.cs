@@ -8,14 +8,14 @@ public class W_Drone : WeaponBehaviour
 {
     [SerializeField] private float altitude = 3f;
     [SerializeField] private float dronePosRadius = 1f;
-    private List<GameObject> hangingPoints = new List<GameObject>();
-    private List<P_Drone> drones = new List<P_Drone>();
+    private readonly List<GameObject> hangingPoints = new List<GameObject>();
+    private readonly List<P_Drone> drones = new List<P_Drone>();
     private int droneCount = 0;
     protected override IEnumerator Attack()
     {
         while (true)
         {
-            yield return new WaitUntil(() => droneCount < finalMultiProjectile);
+            yield return new WaitUntil(() => droneCount < finalWeaponData.multiProjectile);
 
             SpawnDrone();
 
@@ -31,7 +31,7 @@ public class W_Drone : WeaponBehaviour
         ReplaceHangingPoints();
 
         GameObject newDrone = PoolManager.instance.GetObject(projectilePool, transform.position, transform.rotation);
-        newDrone.GetComponent<P_Drone>().Initialize(finalDamage, finalAttackRange, newPoint.transform, finalAttackPeriod);
+        newDrone.GetComponent<P_Drone>().Initialize(finalWeaponData, newPoint.transform);
         drones.Add(newDrone.GetComponent<P_Drone>());
 
         droneCount++;
@@ -55,13 +55,13 @@ public class W_Drone : WeaponBehaviour
         }
     }
 
-    private void UpdateDrone()
-    {
-        for (int i = 0; i < droneCount; i++)
-        {
-            drones[i].UpgradeDrone(finalDamage, finalAttackRange, finalAttackPeriod);
-        }
-    }
+    // private void UpdateDrone()
+    // {
+    //     for (int i = 0; i < droneCount; i++)
+    //     {
+    //         drones[i].UpgradeDrone(finalDamage, finalAttackRange, finalAttackPeriod);
+    //     }
+    // }
 
     protected override void LevelUpEffect(int level)
     {
@@ -99,7 +99,7 @@ public class W_Drone : WeaponBehaviour
                 break;
         }
 
-        UpdateDrone();
+        // UpdateDrone();
     }
 
     protected override void InitExplanation()
