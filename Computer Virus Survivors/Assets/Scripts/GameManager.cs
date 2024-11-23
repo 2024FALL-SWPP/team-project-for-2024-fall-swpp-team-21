@@ -58,7 +58,17 @@ public class GameManager : Singleton<GameManager>
     public void GameClear()
     {
         Debug.Log("GameClear");
-        Time.timeScale = 0;
-        // TODO
+        StartCoroutine(TimeScaleSlowDown());
+        // TODO: GameClear UI
+    }
+
+    private IEnumerator TimeScaleSlowDown()
+    {
+        // reduce time scale to 0
+        while (Time.timeScale > 0)
+        {
+            Time.timeScale = Mathf.Max(0, Time.timeScale - 0.1f);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
