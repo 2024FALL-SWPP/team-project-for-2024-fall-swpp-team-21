@@ -63,13 +63,13 @@ MonoBehaviour:
   virusData: {fileID: 11400000, guid: 4e31145e2971a3a4cb327071c2866e24, type: 2}
   attackPeriod: 10
   attackDelay: 0.5
-  encryptionSpikePf: {fileID: 4781995489149523057, guid: 35afae6966cb0bf46ab26a94f15acfba, type: 3}
+  eSPrefab: {fileID: 4781995489149523057, guid: 35afae6966cb0bf46ab26a94f15acfba, type: 3}
   eSDamage: 10
   eSSpeed: 10
   eSDebuffDegree: 0.5
   eSDebuffDuration: 3
-  uIJamDuration: 10
-  corruptedZonePf: {fileID: 1655612863757766388, guid: 3429dd7bf9531e147b3a1fc8d79bc75c, type: 3}
+  uJDuration: 10
+  cZPrefab: {fileID: 1655612863757766388, guid: 3429dd7bf9531e147b3a1fc8d79bc75c, type: 3}
   cZRange: {x: 15, y: 15}
   cZDamage: 1
   cZSpeed: 10
@@ -77,9 +77,8 @@ MonoBehaviour:
   cZExistDuration: 5
   cZDebuffDegree: 0.5
   cZDebuffDuration: 5
-  firewallBarricadePf: {fileID: 3215036191945827932, guid: fac226a846178e245bd6562da76acf30, type: 3}
+  fBPrefab: {fileID: 3215036191945827932, guid: fac226a846178e245bd6562da76acf30, type: 3}
   fBDuration: 7
-  stage1Piece: {fileID: 7915093155573058931, guid: aecce38bf1ce09442a20ace24204cce1, type: 3}
 --- !u!54 &1093182472011093825
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -9,15 +9,18 @@ public class V_Ransomware : VirusBehaviour
     [SerializeField] private float attackPeriod = 5.0f;
     [SerializeField] private float attackDelay = 0.5f;
 
-    [SerializeField] private GameObject encryptionSpikePf;
+    [Header("Encryption Spike: 플레이어에게 큰 탄환 발사")]
+    [SerializeField] private GameObject eSPrefab;
     [SerializeField] private int eSDamage = 10;
     [SerializeField] private float eSSpeed = 10.0f;
     [SerializeField] private float eSDebuffDegree = 0.5f;
     [SerializeField] private float eSDebuffDuration = 3.0f;
 
-    [SerializeField] private float uIJamDuration = 10.0f;
+    [Header("UI Jam: 방향키 반전")]
+    [SerializeField] private float uJDuration = 10.0f;
 
-    [SerializeField] private GameObject corruptedZonePf;
+    [Header("Corrupted Zone: 데미지/디버프 장판 생성")]
+    [SerializeField] private GameObject cZPrefab;
     [SerializeField] private Vector2 cZRange = new Vector2(15.0f, 15.0f);
     [SerializeField] private int cZDamage = 1;
     [SerializeField] private float cZSpeed = 10.0f;
@@ -26,13 +29,11 @@ public class V_Ransomware : VirusBehaviour
     [SerializeField] private float cZDebuffDegree = 0.5f;
     [SerializeField] private float cZDebuffDuration = 5.0f;
 
-    [SerializeField] private GameObject firewallBarricadePf;
+    [Header("Firewall Barricade: 방어막 생성")]
+    [SerializeField] private GameObject fBPrefab;
     [SerializeField] private float fBDuration = 7.0f;
 
-    [SerializeField] private GameObject stage1Piece;
-
     private readonly List<Action> attackActions = new List<Action>();
-    // or List<IEnumerator>
     private bool startAttack = false;
 
     protected override void Start()
@@ -69,14 +70,14 @@ public class V_Ransomware : VirusBehaviour
     private void EncryptionSpike()
     {
         Debug.Log("Encryption Spike!");
-        GameObject pf = Instantiate(encryptionSpikePf, transform.position, transform.rotation);
+        GameObject pf = Instantiate(eSPrefab, transform.position, transform.rotation);
         pf.GetComponent<VP_EncryptionSpike>().Initialize(transform.forward, eSDamage, eSSpeed, eSDebuffDegree, eSDebuffDuration);
     }
 
     private void UIJam()
     {
         Debug.Log("UI Jam!");
-        playerController.BuffMoveSpeed(-1, uIJamDuration);
+        playerController.BuffMoveSpeed(-1, uJDuration);
     }
 
     private void CorruptedZone()
@@ -87,7 +88,7 @@ public class V_Ransomware : VirusBehaviour
             float x = UnityEngine.Random.Range(-cZRange.x, cZRange.x);
             float z = UnityEngine.Random.Range(-cZRange.y, cZRange.y);
             Vector3 position = player.transform.position + new Vector3(x, 0.0f, z);
-            GameObject cZ = Instantiate(corruptedZonePf, position, corruptedZonePf.transform.rotation);
+            GameObject cZ = Instantiate(cZPrefab, position, cZPrefab.transform.rotation);
             cZ.GetComponent<VP_CorruptedZone>().Initialize(cZDamage, cZSpeed, cZMaxScale, cZExistDuration, cZDebuffDegree, cZDebuffDuration);
         }
     }
@@ -100,17 +101,16 @@ public class V_Ransomware : VirusBehaviour
 
     private IEnumerator FirewallBarricadeCoroutine()
     {
-        GameObject barricade = Instantiate(firewallBarricadePf, transform);
+        GameObject barricade = Instantiate(fBPrefab, transform);
         yield return new WaitForSeconds(fBDuration);
         Destroy(barricade);
     }
 
-    // 죽을 때 세미콜론 아이템 드롭
+
     protected override void Die()
     {
-        base.Die();  // exp gem 드롭 안할거면 이부분 지우고 새로 써야함
-        Instantiate(stage1Piece, transform.position, stage1Piece.transform.rotation);
-        Stage1Goal.instance.OnBossDead();
-        // TODO: 퍼즐 올라옴
+        // TODO: Die animation
+        PoolManager.instance.ReturnObject(virusData.poolType, gameObject);
+        GameManager.instance.GameClear();
     }
 }
