@@ -46,6 +46,12 @@ public class V_Ransomware : VirusBehaviour
         attackActions.Add(FirewallBarricade);
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        SpawnManager.instance.SpawnTurret();
+    }
+
     private void FixedUpdate()
     {
         if (!startAttack)
