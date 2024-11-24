@@ -23,7 +23,7 @@ public class VirusBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         currentHP = virusData.maxHP;
     }

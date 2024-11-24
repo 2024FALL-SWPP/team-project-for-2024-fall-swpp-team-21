@@ -781,7 +781,7 @@ MonoBehaviour:
     initialPoolSize: 10
   - poolName: 2
     prefab: {fileID: 5841041427378954025, guid: 201474e5e0f694042a381edadef11a79, type: 3}
-    initialPoolSize: 10
+    initialPoolSize: 0
   - poolName: 3
     prefab: {fileID: 3856008618962738718, guid: bcf6e312db7ceec45bcd085d523da0a8, type: 3}
     initialPoolSize: 0
@@ -804,8 +804,14 @@ MonoBehaviour:
     prefab: {fileID: 5403754762025930223, guid: d3bfff4a62624ee4cb9062c7f1e71026, type: 3}
     initialPoolSize: 5
   - poolName: 10
+    prefab: {fileID: 809982886830519327, guid: 7187f8aa8d499b64087a8c82eb876697, type: 3}
+    initialPoolSize: 5
+  - poolName: 11
     prefab: {fileID: 7084631532191331932, guid: ba79151a99bf45541ae9e311f351d175, type: 3}
     initialPoolSize: 10
+  - poolName: 12
+    prefab: {fileID: 6193209051861997650, guid: a7a5dc3dce03d4a4b834923b828121fb, type: 3}
+    initialPoolSize: 0
 --- !u!4 &454088697
 Transform:
   m_ObjectHideFlags: 0
@@ -3884,7 +3890,7 @@ MonoBehaviour:
   spawnRange: {x: 20, y: 10}
   maxVirusNum: 100
   spawnPatterns:
-  - spawnTimeRange: {x: 180, y: 181}
+  - spawnTimeRange: {x: 1, y: 2}
     spawnPeriod: 5
     virusID: 2
     spawnMonsterNum: 1
