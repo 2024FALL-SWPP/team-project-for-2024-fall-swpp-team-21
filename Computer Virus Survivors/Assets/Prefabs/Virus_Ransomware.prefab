@@ -65,20 +65,20 @@ MonoBehaviour:
   attackDelay: 0.5
   eSPrefab: {fileID: 4781995489149523057, guid: 35afae6966cb0bf46ab26a94f15acfba, type: 3}
   eSDamage: 10
-  eSSpeed: 10
+  eSSpeed: 20
   eSDebuffDegree: 0.5
   eSDebuffDuration: 3
   uJDuration: 10
+  uJCooltime: 31
   cZPrefab: {fileID: 1655612863757766388, guid: 3429dd7bf9531e147b3a1fc8d79bc75c, type: 3}
-  cZRange: {x: 15, y: 15}
+  cZRange: {x: 7, y: 4}
+  cZNum: 5
   cZDamage: 1
-  cZSpeed: 10
+  cZSpeed: 5
   cZMaxScale: 6
   cZExistDuration: 5
   cZDebuffDegree: 0.5
   cZDebuffDuration: 5
-  fBPrefab: {fileID: 3215036191945827932, guid: fac226a846178e245bd6562da76acf30, type: 3}
-  fBDuration: 7
 --- !u!54 &1093182472011093825
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class V_Ransomware : VirusBehaviour
 {
-    [SerializeField] private float attackPeriod = 5.0f;
+    [SerializeField] private float attackPeriod = 10.0f;
     [SerializeField] private float attackDelay = 0.5f;
 
     [Header("Encryption Spike: 플레이어에게 큰 탄환 발사")]
@@ -17,21 +17,19 @@ public class V_Ransomware : VirusBehaviour
     [SerializeField] private float eSDebuffDuration = 3.0f;
 
     [Header("UI Jam: 방향키 반전")]
-    [SerializeField] private float uJDuration = 10.0f;
+    [SerializeField] private float uJDuration = 5.0f;
+    [SerializeField] private float uJCooltime = 31.0f;
 
     [Header("Corrupted Zone: 데미지/디버프 장판 생성")]
     [SerializeField] private GameObject cZPrefab;
     [SerializeField] private Vector2 cZRange = new Vector2(15.0f, 15.0f);
+    [SerializeField] private int cZNum = 3;
     [SerializeField] private int cZDamage = 1;
     [SerializeField] private float cZSpeed = 10.0f;
     [SerializeField] private float cZMaxScale = 6.0f;
     [SerializeField] private float cZExistDuration = 5.0f;
     [SerializeField] private float cZDebuffDegree = 0.5f;
     [SerializeField] private float cZDebuffDuration = 5.0f;
-
-    [Header("Firewall Barricade: 방어막 생성")]
-    [SerializeField] private GameObject fBPrefab;
-    [SerializeField] private float fBDuration = 7.0f;
 
     private readonly List<Action> attackActions = new List<Action>();
     private bool startAttack = false;
@@ -43,7 +41,6 @@ public class V_Ransomware : VirusBehaviour
         attackActions.Add(EncryptionSpike);
         attackActions.Add(UIJam);
         attackActions.Add(CorruptedZone);
-        attackActions.Add(FirewallBarricade);
     }
 
     protected override void OnEnable()
@@ -69,7 +66,7 @@ public class V_Ransomware : VirusBehaviour
             startAttack = true;
             yield return new WaitForSeconds(attackDelay);
             startAttack = false;
-            attackActions[UnityEngine.Random.Range(0, attackActions.Count)]();
+            attackActions[2]();//UnityEngine.Random.Range(0, attackActions.Count)]();
         }
     }
 
@@ -84,12 +81,13 @@ public class V_Ransomware : VirusBehaviour
     {
         Debug.Log("UI Jam!");
         playerController.BuffMoveSpeed(-1, uJDuration);
+        StartCoroutine(CoolDown());
     }
 
     private void CorruptedZone()
     {
         Debug.Log("Corrupted Zone!");
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < cZNum; i++)
         {
             float x = UnityEngine.Random.Range(-cZRange.x, cZRange.x);
             float z = UnityEngine.Random.Range(-cZRange.y, cZRange.y);
@@ -99,17 +97,12 @@ public class V_Ransomware : VirusBehaviour
         }
     }
 
-    private void FirewallBarricade()
+    private IEnumerator CoolDown()
     {
-        Debug.Log("Firewall Barricade!");
-        StartCoroutine(FirewallBarricadeCoroutine());
-    }
-
-    private IEnumerator FirewallBarricadeCoroutine()
-    {
-        GameObject barricade = Instantiate(fBPrefab, transform);
-        yield return new WaitForSeconds(fBDuration);
-        Destroy(barricade);
+        attackActions.Remove(UIJam);
+        Debug.Log(attackActions.Count);
+        yield return new WaitForSeconds(uJCooltime);
+        attackActions.Add(UIJam);
     }
 
 
