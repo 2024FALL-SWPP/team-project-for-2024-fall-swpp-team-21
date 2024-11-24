@@ -15,7 +15,9 @@ public enum PoolType
     Proj_Drone,
     Proj_Beam,
     Proj_VaccineRing,
-    DamageIndicator
+    VProj_Beam,
+    DamageIndicator,
+    Turret
 }
 
 public class PoolManager : Singleton<PoolManager>

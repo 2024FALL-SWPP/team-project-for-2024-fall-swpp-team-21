@@ -155,6 +155,18 @@ public class SpawnManager : Singleton<SpawnManager>
         virus.OnDie -= OnVirusDestroyed;
         currentVirusNum--;  // synchronization issue?
     }
+
+    public void SpawnTurret()
+    {
+        Vector3 spawnPosition = new Vector3(0, -4f, 0);
+
+        PoolManager.instance.GetObject
+        (
+            PoolType.Turret,
+            spawnPosition,
+            Quaternion.identity
+        );
+    }
 }
 
 

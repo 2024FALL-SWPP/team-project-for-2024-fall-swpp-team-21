@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class V_Trojan : VirusBehaviour
@@ -12,6 +13,12 @@ public class V_Trojan : VirusBehaviour
 
     private bool isAttacking = false;
     private bool doNotTrack = false; // 공격 쿨타임 중에 있음
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        SpawnManager.instance.SpawnTurret();
+    }
 
     private void FixedUpdate()
     {
