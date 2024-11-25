@@ -9,15 +9,15 @@ public class V_Ransomware : VirusBehaviour
     [SerializeField] private float attackPeriod = 10.0f;
     [SerializeField] private float attackDelay = 0.5f;
 
-    [Header("Encryption Spike: 플레이어에게 큰 탄환 발사")]
+    /* 공격 패턴들을 위한 변수 */
+    [Header("Encryption Spike: 나선형 탄막 패턴")]
     [SerializeField] private GameObject eSPrefab;
     [SerializeField] private int eSNum = 6;
     [SerializeField] private float eSHeight = 0.7f;
-    [SerializeField] private float eSRadius = 1.0f;
+    [SerializeField] private float eSOffset = 1.0f;
     [SerializeField] private int eSDamage = 10;
     [SerializeField] private float eSSpeed = 10.0f;
-    [SerializeField] private float eSDebuffDegree = 0.5f;
-    [SerializeField] private float eSDebuffDuration = 3.0f;
+    [SerializeField] private float eSRotateSpeed = 180.0f;
 
     [Header("UI Jam: 방향키 반전")]
     [SerializeField] private float uJDuration = 5.0f;
@@ -27,12 +27,31 @@ public class V_Ransomware : VirusBehaviour
     [SerializeField] private GameObject cZPrefab;
     [SerializeField] private Vector2 cZRange = new Vector2(15.0f, 15.0f);
     [SerializeField] private int cZNum = 3;
-    [SerializeField] private int cZDamage = 1;
+    [SerializeField] private int cZDamage = 2;
     [SerializeField] private float cZSpeed = 10.0f;
     [SerializeField] private float cZMaxScale = 6.0f;
     [SerializeField] private float cZExistDuration = 5.0f;
     [SerializeField] private float cZDebuffDegree = 0.5f;
-    [SerializeField] private float cZDebuffDuration = 5.0f;
+    [SerializeField] private float cZDotDamagePeriod = 0.1f;
+
+    [Header("Tracking Bolt: 플레이어를 빠르게 추적하는 번개 느낌의 무언가")]
+    [SerializeField] private GameObject tBPrefab;
+    [SerializeField] private float tBSpawnDistance = 1.0f;
+    [SerializeField] private int tBDamage = 10;
+    [SerializeField] private float tBSpeed = 10.0f;
+    [SerializeField] private float tBExistDuration = 5.0f;
+
+    [Header("Data Burst: 플레이어를 향해 연속해서 빠르게 탄막 발사")]
+    [SerializeField] private GameObject dBPrefab;
+    [SerializeField] private float dBPeriod = 0.5f;
+    [SerializeField] private int dBNum = 10;
+    [SerializeField] private float dBHeight = 0.7f;
+    [SerializeField] private float dBOffset = 1.0f;
+    [SerializeField] private int dBDamage = 10;
+    [SerializeField] private float dBInitialSpeed = 5f;
+    [SerializeField] private float dBAcceleration = 0.2f;
+
+    // 이 외에 생각한 패턴: 광역 원 범위 패턴
 
     private readonly List<Action> attackActions = new List<Action>();
     private bool startAttack = false;
@@ -44,6 +63,8 @@ public class V_Ransomware : VirusBehaviour
         attackActions.Add(EncryptionSpike);
         attackActions.Add(UIJam);
         attackActions.Add(CorruptedZone);
+        attackActions.Add(TrackingBolt);
+        attackActions.Add(DataBurst);
     }
 
     protected override void OnEnable()
@@ -69,7 +90,7 @@ public class V_Ransomware : VirusBehaviour
             startAttack = true;
             yield return new WaitForSeconds(attackDelay);
             startAttack = false;
-            attackActions[0]();//UnityEngine.Random.Range(0, attackActions.Count)]();
+            attackActions[UnityEngine.Random.Range(0, attackActions.Count)]();
         }
     }
 
@@ -80,23 +101,29 @@ public class V_Ransomware : VirusBehaviour
         float angle = 2 * Mathf.PI / eSNum;
         for (int i = 0; i < eSNum; i++)
         {
-            float x = eSRadius * Mathf.Cos(angle * i);
-            float z = eSRadius * Mathf.Sin(angle * i);
+            float x = eSOffset * Mathf.Cos(angle * i);
+            float z = eSOffset * Mathf.Sin(angle * i);
             Vector3 spikePosition = transform.position + new Vector3(x, eSHeight, z);
             Vector3 direction = new Vector3(x, 0, z).normalized;
             GameObject pf = Instantiate(eSPrefab, spikePosition, Quaternion.LookRotation(direction, Vector3.up));
-            pf.GetComponent<VP_EncryptionSpike>().Initialize(eSDamage, eSSpeed, eSDebuffDegree, eSDebuffDuration);
+            pf.GetComponent<VP_EncryptionSpike>().Initialize(eSDamage, eSSpeed, eSRotateSpeed, eSOffset);
         }
-        //GameObject pf = Instantiate(eSPrefab, transform.position, transform.rotation);
-        //pf.GetComponent<VP_EncryptionSpike>().Initialize(transform.forward, eSDamage, eSSpeed, eSDebuffDegree, eSDebuffDuration);
     }
 
     private void UIJam()
     {
         Debug.Log("UI Jam!");
-        playerController.BuffMoveSpeed(-1, uJDuration);
-        StartCoroutine(CoolDown());
+        playerController.ReverseSpeed(uJDuration);
+        StartCoroutine(UIJamCoolDown());
     }
+
+    private IEnumerator UIJamCoolDown()
+    {
+        attackActions.Remove(UIJam);
+        yield return new WaitForSeconds(uJCooltime);
+        attackActions.Add(UIJam);
+    }
+
 
     private void CorruptedZone()
     {
@@ -107,18 +134,35 @@ public class V_Ransomware : VirusBehaviour
             float z = UnityEngine.Random.Range(-cZRange.y, cZRange.y);
             Vector3 position = player.transform.position + new Vector3(x, 0.0f, z);
             GameObject cZ = Instantiate(cZPrefab, position, cZPrefab.transform.rotation);
-            cZ.GetComponent<VP_CorruptedZone>().Initialize(cZDamage, cZSpeed, cZMaxScale, cZExistDuration, cZDebuffDegree, cZDebuffDuration);
+            cZ.GetComponent<VP_CorruptedZone>().Initialize(cZDamage, cZSpeed, cZMaxScale, cZExistDuration, cZDebuffDegree, cZDotDamagePeriod);
         }
     }
 
-    private IEnumerator CoolDown()
+    private void TrackingBolt()
     {
-        attackActions.Remove(UIJam);
-        Debug.Log(attackActions.Count);
-        yield return new WaitForSeconds(uJCooltime);
-        attackActions.Add(UIJam);
+        Debug.Log("Tracking Bolt!");
+        Vector3 spawnPosition = player.transform.position + tBSpawnDistance * UnityEngine.Random.insideUnitSphere;
+        GameObject tB = Instantiate(tBPrefab, spawnPosition, Quaternion.identity);
+        tB.GetComponent<VP_TrackingBolt>().Initialize(tBDamage, tBSpeed, tBExistDuration);
     }
 
+    private void DataBurst()
+    {
+        Debug.Log("Data Burst!");
+        StartCoroutine(DataBurstCoroutine());
+    }
+
+    private IEnumerator DataBurstCoroutine()
+    {
+        for (int i = 0; i < dBNum; i++)
+        {
+            Vector3 direction = (player.transform.position - transform.position).normalized;
+            Vector3 position = transform.position + dBHeight * Vector3.up + dBOffset * direction;
+            GameObject dB = Instantiate(dBPrefab, position, Quaternion.LookRotation(direction, Vector3.up));
+            dB.GetComponent<VP_DataBurst>().Initialize(dBDamage, dBInitialSpeed, dBAcceleration);
+            yield return new WaitForSeconds(dBPeriod);
+        }
+    }
 
     protected override void Die()
     {

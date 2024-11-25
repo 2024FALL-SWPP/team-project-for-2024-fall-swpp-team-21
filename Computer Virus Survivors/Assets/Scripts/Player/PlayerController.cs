@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private bool isInvincible = false;
 
+    private int debuffNum = 0;
+    private float debuffDegree = 1.0f;
+
     public void Initialize()
     {
         playerStat.Initialize(playerStatData, statEventCaller);
@@ -100,7 +103,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("b_IsMoving", moveDirection != Vector3.zero);
 
         //transform.Translate(playerStat.MoveSpeed * Time.deltaTime * moveDirection, Space.World);
-        rb.MovePosition(transform.position + playerStat.MoveSpeed * Time.deltaTime * moveDirection);
+        rb.MovePosition(transform.position + playerStat.MoveSpeed * debuffDegree * Time.deltaTime * moveDirection);
         //transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
         if (playerStat.MoveSpeed >= 0)
         {
@@ -166,15 +169,31 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void BuffMoveSpeed(float value, float duration)
+    public void DebuffMoveSpeed(float value)
     {
-        StartCoroutine(BuffMoveSpeedCoroutine(value, duration));
+        debuffNum++;
+        debuffDegree = value;
     }
 
-    private IEnumerator BuffMoveSpeedCoroutine(float value, float duration)
+    public void RestoreMoveSpeed()
     {
-        playerStat.MoveSpeed *= value;
+        debuffNum--;
+        if (debuffNum <= 0)
+        {
+            debuffNum = 0;
+            debuffDegree = 1.0f;
+        }
+    }
+
+    public void ReverseSpeed(float duration)
+    {
+        StartCoroutine(BuffMoveSpeedCoroutine(duration));
+    }
+
+    private IEnumerator BuffMoveSpeedCoroutine(float duration)
+    {
+        playerStat.MoveSpeed *= -1;
         yield return new WaitForSeconds(duration);
-        playerStat.MoveSpeed /= value;
+        playerStat.MoveSpeed *= -1;
     }
 }

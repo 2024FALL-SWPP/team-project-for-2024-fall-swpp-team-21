@@ -63,22 +63,37 @@ MonoBehaviour:
   virusData: {fileID: 11400000, guid: 4e31145e2971a3a4cb327071c2866e24, type: 2}
   attackPeriod: 10
   attackDelay: 0.5
-  eSPrefab: {fileID: 4781995489149523057, guid: 35afae6966cb0bf46ab26a94f15acfba, type: 3}
+  eSPrefab: {fileID: 2412301682625758825, guid: 35afae6966cb0bf46ab26a94f15acfba, type: 3}
+  eSNum: 8
+  eSHeight: 0.7
+  eSOffset: 1
   eSDamage: 10
   eSSpeed: 20
-  eSDebuffDegree: 0.5
-  eSDebuffDuration: 3
+  eSRotateSpeed: 180
   uJDuration: 10
   uJCooltime: 31
-  cZPrefab: {fileID: 1655612863757766388, guid: 3429dd7bf9531e147b3a1fc8d79bc75c, type: 3}
-  cZRange: {x: 7, y: 4}
-  cZNum: 5
-  cZDamage: 1
+  cZPrefab: {fileID: 2409557264342324043, guid: 3429dd7bf9531e147b3a1fc8d79bc75c, type: 3}
+  cZRange: {x: 10, y: 7}
+  cZNum: 4
+  cZDamage: 2
   cZSpeed: 5
   cZMaxScale: 6
   cZExistDuration: 5
   cZDebuffDegree: 0.5
-  cZDebuffDuration: 5
+  cZDotDamagePeriod: 0.1
+  tBPrefab: {fileID: 4634925082971677323, guid: 728ef33a0ea90904ab798080b884f17a, type: 3}
+  tBSpawnDistance: 1
+  tBDamage: 10
+  tBSpeed: 4.9
+  tBExistDuration: 5
+  dBPrefab: {fileID: 9176116870765596754, guid: 7060b05f0a508d04b8633c72adff5c6b, type: 3}
+  dBPeriod: 0.5
+  dBNum: 10
+  dBHeight: 0.7
+  dBOffset: 1
+  dBDamage: 10
+  dBInitialSpeed: 5
+  dBAcceleration: 50
 --- !u!54 &1093182472011093825
 Rigidbody:
   m_ObjectHideFlags: 0
