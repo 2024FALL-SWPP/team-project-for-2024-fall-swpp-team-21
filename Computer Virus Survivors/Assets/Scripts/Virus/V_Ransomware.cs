@@ -11,6 +11,9 @@ public class V_Ransomware : VirusBehaviour
 
     [Header("Encryption Spike: 플레이어에게 큰 탄환 발사")]
     [SerializeField] private GameObject eSPrefab;
+    [SerializeField] private int eSNum = 6;
+    [SerializeField] private float eSHeight = 0.7f;
+    [SerializeField] private float eSRadius = 1.0f;
     [SerializeField] private int eSDamage = 10;
     [SerializeField] private float eSSpeed = 10.0f;
     [SerializeField] private float eSDebuffDegree = 0.5f;
@@ -66,15 +69,26 @@ public class V_Ransomware : VirusBehaviour
             startAttack = true;
             yield return new WaitForSeconds(attackDelay);
             startAttack = false;
-            attackActions[2]();//UnityEngine.Random.Range(0, attackActions.Count)]();
+            attackActions[0]();//UnityEngine.Random.Range(0, attackActions.Count)]();
         }
     }
 
     private void EncryptionSpike()
     {
         Debug.Log("Encryption Spike!");
-        GameObject pf = Instantiate(eSPrefab, transform.position, transform.rotation);
-        pf.GetComponent<VP_EncryptionSpike>().Initialize(transform.forward, eSDamage, eSSpeed, eSDebuffDegree, eSDebuffDuration);
+        List<GameObject> pfs = new List<GameObject>();
+        float angle = 2 * Mathf.PI / eSNum;
+        for (int i = 0; i < eSNum; i++)
+        {
+            float x = eSRadius * Mathf.Cos(angle * i);
+            float z = eSRadius * Mathf.Sin(angle * i);
+            Vector3 spikePosition = transform.position + new Vector3(x, eSHeight, z);
+            Vector3 direction = new Vector3(x, 0, z).normalized;
+            GameObject pf = Instantiate(eSPrefab, spikePosition, Quaternion.LookRotation(direction, Vector3.up));
+            pf.GetComponent<VP_EncryptionSpike>().Initialize(eSDamage, eSSpeed, eSDebuffDegree, eSDebuffDuration);
+        }
+        //GameObject pf = Instantiate(eSPrefab, transform.position, transform.rotation);
+        //pf.GetComponent<VP_EncryptionSpike>().Initialize(transform.forward, eSDamage, eSSpeed, eSDebuffDegree, eSDebuffDuration);
     }
 
     private void UIJam()

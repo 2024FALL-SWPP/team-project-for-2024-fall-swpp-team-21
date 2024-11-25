@@ -59,4 +59,12 @@ public class VP_CorruptedZone : MonoBehaviour
             other.GetComponent<PlayerController>().GetDamage(damage);
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerController>().BuffMoveSpeed(1 / debuffDegree, debuffDuration);
+        }
+    }
 }

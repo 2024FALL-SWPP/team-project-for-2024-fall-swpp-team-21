@@ -102,10 +102,13 @@ public class PlayerController : MonoBehaviour
         //transform.Translate(playerStat.MoveSpeed * Time.deltaTime * moveDirection, Space.World);
         rb.MovePosition(transform.position + playerStat.MoveSpeed * Time.deltaTime * moveDirection);
         //transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-        rb.MoveRotation(Quaternion.LookRotation(moveDirection, Vector3.up));
-        if (playerStat.MoveSpeed < 0)
+        if (playerStat.MoveSpeed >= 0)
         {
-            transform.rotation *= Quaternion.Euler(0, 180, 0);
+            rb.MoveRotation(Quaternion.LookRotation(moveDirection, Vector3.up));
+        }
+        else
+        {
+            rb.MoveRotation(Quaternion.LookRotation(-moveDirection, Vector3.up));
         }
     }
 
