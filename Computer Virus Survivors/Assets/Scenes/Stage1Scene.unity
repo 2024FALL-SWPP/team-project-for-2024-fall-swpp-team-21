@@ -3892,7 +3892,7 @@ MonoBehaviour:
   spawnPatterns:
   - spawnTimeRange: {x: 1, y: 2}
     spawnPeriod: 5
-    virusID: 2
+    virusID: 3
     spawnMonsterNum: 1
     ignoreMaxVirusNum: 1
     isSpawnPointRandom: 0

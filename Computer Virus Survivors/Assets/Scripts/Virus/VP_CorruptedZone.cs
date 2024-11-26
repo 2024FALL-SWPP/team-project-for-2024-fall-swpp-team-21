@@ -9,26 +9,28 @@ public class VP_CorruptedZone : MonoBehaviour
     private float maxScale;
     private float existDuration;
     private float debuffDegree;
-    private float debuffDuration;
+    private float dotDamagePeriod;
 
-    public void Initialize(int damage, float speed, float maxScale, float existDuration, float debuffDegree, float debuffDuration)
+    private Coroutine dotDamageCoroutine = null;
+
+    public void Initialize(int damage, float speed, float maxScale, float existDuration, float debuffDegree, float dotDamagePeriod)
     {
         this.damage = damage;
         this.speed = speed;
         this.maxScale = maxScale;
         this.existDuration = existDuration;
         this.debuffDegree = debuffDegree;
-        this.debuffDuration = debuffDuration;
+        this.dotDamagePeriod = dotDamagePeriod;
     }
 
     // Start is called before the first frame update
     private void Start()
     {
         transform.localScale = new Vector3(0.0f, 0.01f, 0.0f);
-        StartCoroutine(GetBigger());
+        StartCoroutine(GetBiggerAndSmaller());
     }
 
-    private IEnumerator GetBigger()
+    private IEnumerator GetBiggerAndSmaller()
     {
         while (true)
         {
@@ -40,6 +42,18 @@ public class VP_CorruptedZone : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(existDuration);
+
+        while (true)
+        {
+            transform.localScale -= speed * Time.deltaTime * new Vector3(1.0f, 0.0f, 1.0f);
+            if (transform.localScale.x <= 0.0f)
+            {
+                break;
+            }
+            yield return null;
+        }
+
+        GameManager.instance.Player.GetComponent<PlayerController>().RestoreMoveSpeed();
         Destroy(gameObject);
     }
 
@@ -47,16 +61,29 @@ public class VP_CorruptedZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //other.GetComponent<PlayerController>().GetDamage(damage);
-            other.GetComponent<PlayerController>().BuffMoveSpeed(debuffDegree, debuffDuration);
+            Debug.Log("Player entered corrupted zone");
+            other.GetComponent<PlayerController>().DebuffMoveSpeed(debuffDegree);
+            dotDamageCoroutine = StartCoroutine(GiveDotDamage(other.GetComponent<PlayerController>()));
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerController>().GetDamage(damage);
+            Debug.Log("Player exited corrupted zone");
+            other.GetComponent<PlayerController>().RestoreMoveSpeed();
+            StopCoroutine(dotDamageCoroutine);
+        }
+    }
+
+    private IEnumerator GiveDotDamage(PlayerController playerController)
+    {
+        while (true)
+        {
+            Debug.Log("Player got damage from corrupted zone");
+            playerController.GetDamage(damage);
+            yield return new WaitForSeconds(dotDamagePeriod);
         }
     }
 }

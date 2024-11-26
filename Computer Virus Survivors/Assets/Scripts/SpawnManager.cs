@@ -49,7 +49,7 @@ public class SpawnManager : Singleton<SpawnManager>
     public override void Initialize()
     {
         player = GameManager.instance.Player;
-        LoadSpawnPattern();
+        //LoadSpawnPattern();
         spawnPatterns.Sort((a, b) => a.spawnTimeRange.x.CompareTo(b.spawnTimeRange.x));
     }
 
