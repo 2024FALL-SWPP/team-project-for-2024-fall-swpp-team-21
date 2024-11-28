@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VP_TrackingBolt : MonoBehaviour
+public class VP_TrackingBolt : VirusProjectileBehaviour
 {
     private GameObject player;
-    private int damage;
     private float speed;
     private float existDuration;
     private bool canDamage = false;
 
     public void Initialize(int damage, float speed, float existDuration)
     {
+        base.Initialize(damage);
+
         player = GameManager.instance.Player;
-        this.damage = damage;
         this.speed = speed;
         this.existDuration = existDuration;
 
@@ -41,7 +41,7 @@ public class VP_TrackingBolt : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && canDamage)
         {

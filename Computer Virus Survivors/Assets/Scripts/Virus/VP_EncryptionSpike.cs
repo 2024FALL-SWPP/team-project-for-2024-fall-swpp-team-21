@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VP_EncryptionSpike : MonoBehaviour
+public class VP_EncryptionSpike : VirusProjectileBehaviour
 {
-    private int damage;
     private float speed;
     private float rotateSpeed;
     private float startOffset;
@@ -13,7 +12,8 @@ public class VP_EncryptionSpike : MonoBehaviour
 
     public void Initialize(int damage, float speed, float rotateSpeed, float startOffset)
     {
-        this.damage = damage;
+        base.Initialize(damage);
+
         this.speed = speed;
         this.rotateSpeed = rotateSpeed;
         this.startOffset = startOffset;
@@ -41,7 +41,7 @@ public class VP_EncryptionSpike : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && canDamage)
         {

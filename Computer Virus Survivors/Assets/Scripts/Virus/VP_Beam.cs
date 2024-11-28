@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VP_Beam : MonoBehaviour
+public class VP_Beam : VirusProjectileBehaviour
 {
     private float speed;
-    private int damage;
     private GameObject lightBeam;
     private ParticleSystem particle;
     private Vector3 targetPos;
@@ -13,6 +12,8 @@ public class VP_Beam : MonoBehaviour
 
     public void Initialize(Vector3 target, float speed, int damage)
     {
+        base.Initialize(damage);
+
         if (lightBeam == null)
         {
             lightBeam = GetComponentInChildren<MeshRenderer>().gameObject;
@@ -20,7 +21,6 @@ public class VP_Beam : MonoBehaviour
         }
         this.targetPos = target;
         this.speed = speed;
-        this.damage = damage;
 
         isHit = false;
         lightBeam.SetActive(true);
@@ -40,7 +40,7 @@ public class VP_Beam : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (isHit || other.CompareTag("Magnet") || other.CompareTag("Virus"))
         {

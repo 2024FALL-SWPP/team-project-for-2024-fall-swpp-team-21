@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class P_VaccineRing : ProjectileBehaviour
+public class P_VaccineRing : PlayerProjectileBehaviour
 {
     [SerializeField] private float spinSpeed;
     private Transform rotationCenter;
