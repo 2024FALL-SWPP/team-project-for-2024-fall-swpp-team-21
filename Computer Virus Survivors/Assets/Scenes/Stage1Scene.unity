@@ -3956,7 +3956,7 @@ MonoBehaviour:
   spawnRange: {x: 20, y: 10}
   maxVirusNum: 100
   spawnPatterns:
-  - spawnTimeRange: {x: 180, y: 181}
+  - spawnTimeRange: {x: 1, y: 2}
     spawnPeriod: 5
     virusID: 11
     spawnMonsterNum: 1
