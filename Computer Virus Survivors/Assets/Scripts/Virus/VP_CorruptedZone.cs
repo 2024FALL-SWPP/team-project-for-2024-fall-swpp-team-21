@@ -54,7 +54,13 @@ public class VP_CorruptedZone : VirusProjectileBehaviour
         }
 
         GameManager.instance.Player.GetComponent<PlayerController>().RestoreMoveSpeed();
-        Destroy(gameObject);
+
+        if (dotDamageCoroutine != null)
+        {
+            StopCoroutine(dotDamageCoroutine);
+            dotDamageCoroutine = null;
+        }
+        PoolManager.instance.ReturnObject(PoolType.VProj_CorruptedZone, gameObject);
     }
 
     protected override void OnTriggerEnter(Collider other)

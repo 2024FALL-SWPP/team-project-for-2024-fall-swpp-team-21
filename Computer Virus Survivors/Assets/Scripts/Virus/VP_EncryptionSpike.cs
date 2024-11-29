@@ -9,6 +9,7 @@ public class VP_EncryptionSpike : VirusProjectileBehaviour
     private float startOffset;
 
     private bool canDamage = false;
+    private Coroutine attackCoroutine = null;
 
     public void Initialize(int damage, float speed, float rotateSpeed, float startOffset)
     {
@@ -22,7 +23,7 @@ public class VP_EncryptionSpike : VirusProjectileBehaviour
         float offsetY = -transform.position.y / transform.lossyScale.y;
         collider.center = new Vector3(collider.center.x, offsetY, collider.center.z);
 
-        StartCoroutine(Attack());
+        attackCoroutine = StartCoroutine(Attack());
     }
 
     private IEnumerator Attack()
@@ -38,7 +39,7 @@ public class VP_EncryptionSpike : VirusProjectileBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        Destroy(gameObject);
+        PoolManager.instance.ReturnObject(PoolType.VProj_EncryptionSpike, gameObject);
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -46,7 +47,13 @@ public class VP_EncryptionSpike : VirusProjectileBehaviour
         if (other.CompareTag("Player") && canDamage)
         {
             other.GetComponent<PlayerController>().GetDamage(damage);
-            Destroy(gameObject);
+
+            if (attackCoroutine != null)
+            {
+                StopCoroutine(attackCoroutine);
+                attackCoroutine = null;
+            }
+            PoolManager.instance.ReturnObject(PoolType.VProj_EncryptionSpike, gameObject);
         }
     }
 }

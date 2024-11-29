@@ -16,6 +16,10 @@ public enum PoolType
     Proj_Beam,
     Proj_VaccineRing,
     VProj_Beam,
+    VProj_EncryptionSpike,
+    VProj_CorruptedZone,
+    VProj_TrackingBolt,
+    VProj_DataBurst,
     DamageIndicator,
     Turret
 }

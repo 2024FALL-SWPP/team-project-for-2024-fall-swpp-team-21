@@ -26,7 +26,7 @@ public class VP_DataBurst : VirusProjectileBehaviour
 
         if (CheckOutOfScreen())
         {
-            Destroy(gameObject);
+            PoolManager.instance.ReturnObject(PoolType.VProj_DataBurst, gameObject);
         }
     }
 
@@ -35,7 +35,7 @@ public class VP_DataBurst : VirusProjectileBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerController>().GetDamage(damage);
-            Destroy(gameObject);
+            PoolManager.instance.ReturnObject(PoolType.VProj_DataBurst, gameObject);
         }
     }
 }

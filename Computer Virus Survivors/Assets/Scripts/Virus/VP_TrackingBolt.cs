@@ -9,6 +9,8 @@ public class VP_TrackingBolt : VirusProjectileBehaviour
     private float existDuration;
     private bool canDamage = false;
 
+    private Coroutine moveCoroutine = null;
+
     public void Initialize(int damage, float speed, float existDuration)
     {
         base.Initialize(damage);
@@ -17,7 +19,7 @@ public class VP_TrackingBolt : VirusProjectileBehaviour
         this.speed = speed;
         this.existDuration = existDuration;
 
-        StartCoroutine(Move());
+        moveCoroutine = StartCoroutine(Move());
     }
 
     private IEnumerator Move()
@@ -38,7 +40,7 @@ public class VP_TrackingBolt : VirusProjectileBehaviour
             yield return null;
         }
 
-        Destroy(gameObject);
+        PoolManager.instance.ReturnObject(PoolType.VProj_TrackingBolt, gameObject);
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -46,7 +48,13 @@ public class VP_TrackingBolt : VirusProjectileBehaviour
         if (other.CompareTag("Player") && canDamage)
         {
             other.GetComponent<PlayerController>().GetDamage(damage);
-            Destroy(gameObject);
+
+            if (moveCoroutine != null)
+            {
+                StopCoroutine(moveCoroutine);
+                moveCoroutine = null;
+            }
+            PoolManager.instance.ReturnObject(PoolType.VProj_TrackingBolt, gameObject);
         }
     }
 }
