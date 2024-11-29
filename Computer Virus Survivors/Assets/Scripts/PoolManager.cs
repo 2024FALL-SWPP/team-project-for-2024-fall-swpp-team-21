@@ -6,8 +6,16 @@ using UnityEngine;
 public enum PoolType
 {
     ExpGem,
-    Virus_Weak,
+    Virus_Chip,
+    Virus_Chip_Angry,
+    Virus_Corona,
+    Virus_Corona_Angry,
+    Virus_Worm,
+    Virus_Worm_Angry,
+    Virus_Adware,
+    Virus_Adware_Angry,
     Virus_Trojan,
+    Virus_Worm_Big,
     Virus_Ransomware,
     Proj_PacketStream,
     Proj_ChainLightning,
