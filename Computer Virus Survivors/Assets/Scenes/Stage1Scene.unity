@@ -888,13 +888,8 @@ MonoBehaviour:
     prefab: {fileID: 7084631532191331932, guid: ba79151a99bf45541ae9e311f351d175, type: 3}
     initialPoolSize: 10
   - poolName: 24
-    initialPoolSize: 0
-  - poolName: 25
-    prefab: {fileID: 7084631532191331932, guid: ba79151a99bf45541ae9e311f351d175, type: 3}
-    initialPoolSize: 10
-  - poolName: 26
     prefab: {fileID: 6193209051861997650, guid: a7a5dc3dce03d4a4b834923b828121fb, type: 3}
-    initialPoolSize: 1
+    initialPoolSize: 0
 --- !u!4 &454088697
 Transform:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3813b8a75afeea143976a2d10aa03fb1, type: 3}
   m_Name: Turret
   m_EditorClassIdentifier: 
-  poolType: 21
+  poolType: 24
   maxHP: 5000
   moveSpeed: 0
   dropExp: 0

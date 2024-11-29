@@ -293,11 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8649405861224589403}
   m_Layer: 0
-<<<<<<<< HEAD:Computer Virus Survivors/Assets/Prefabs/potap.prefab
-  m_Name: potap
-========
   m_Name: Turret_Big
->>>>>>>> dev:Computer Virus Survivors/Assets/Prefabs/Turret_Big.prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
