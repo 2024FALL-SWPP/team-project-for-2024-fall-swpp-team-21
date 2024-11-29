@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager>
     {
         Application.targetFrameRate = -1;
         Initialize();
+        CanvasManager.instance.GameStart();
         GameStart();
     }
 
@@ -30,10 +31,10 @@ public class GameManager : Singleton<GameManager>
     {
         PoolManager.instance.Initialize();
         Debug.Log("PoolManager Initialized");
-        SpawnManager.instance.Initialize();
-        Debug.Log("SpawnManager Initialized");
         CanvasManager.instance.Initialize();
         Debug.Log("CanvasManager Initialized");
+        SpawnManager.instance.Initialize();
+        Debug.Log("SpawnManager Initialized");
         SelectableManager.instance.Initialize();
         Debug.Log("SelectableManager Initialized");
         CameraController.instance.Initialize();
@@ -46,6 +47,7 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("GameStart");
         SpawnManager.instance.StartSpawnManager();
         player.GetComponent<PlayerController>().Initialize();
+        gameTime = 0;
     }
 
     public void GameOver()

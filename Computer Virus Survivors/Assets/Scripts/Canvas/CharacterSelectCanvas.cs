@@ -2,19 +2,26 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CharacterSelectCanvas : Singleton<CharacterSelectCanvas>, IState
+public class CharacterSelectCanvas : CanvasBase
 {
 
-    [SerializeField] private List<PlayerController> players;
+
     [SerializeField] private GameObject playerTrailCircle;
+    [SerializeField] private float playerTrailCircleRadius;
     [SerializeField] private GameObject baseSpecObject;
+    [SerializeField] private List<GameObject> players;
+    [SerializeField] private List<PlayerStatData> playerStatDatas;
+    [SerializeField] private TextMeshProUGUI playerNameField;
+    [SerializeField] private Button selectButton;
 
     public event Action GotoPreviousHandler;
-    public event Action<PlayerController> CharacterSelectedHandler;
+    public event Action<GameObject> CharacterSelectedHandler;
 
     private int selectedPlayerIndex;
     private Dictionary<string, SingleSpec> singleSpecs;
+    private List<Vector3> playerPlaces;
 
     /// <summary>
     /// 초기화
@@ -22,10 +29,27 @@ public class CharacterSelectCanvas : Singleton<CharacterSelectCanvas>, IState
     public override void Initialize()
     {
         selectedPlayerIndex = 0;
+        ReplacePlayers();
         InitializeSingleSpecs();
+        UpdatePlayerInfo();
         gameObject.SetActive(false);
     }
 
+    private void Update()
+    {
+        for (int i = 0; i < players.Count; i++)
+        {
+            GameObject player = players[i];
+            player.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1));
+
+            // 원판 돌리기
+            // 생각해보니 이렇게 구현할 필요가 없었음
+            float targetAngle = Mathf.Atan2(playerPlaces[i].x, playerPlaces[i].z) * Mathf.Rad2Deg;
+            Vector3 currentVector = player.transform.position - playerTrailCircle.transform.position;
+            float deltaAngle = Mathf.Deg2Rad * Mathf.LerpAngle(Mathf.Atan2(currentVector.x, currentVector.z) * Mathf.Rad2Deg, targetAngle, Time.deltaTime * 8f);
+            player.transform.position = playerTrailCircle.transform.position + new Vector3(playerTrailCircleRadius * Mathf.Sin(deltaAngle), 0, playerTrailCircleRadius * Mathf.Cos(deltaAngle));
+        }
+    }
 
     /// <summary>
     /// 캐릭터 선택 완료
@@ -43,6 +67,7 @@ public class CharacterSelectCanvas : Singleton<CharacterSelectCanvas>, IState
     public void OnRightPlayerClicked()
     {
         selectedPlayerIndex = (selectedPlayerIndex + 1 + players.Count) % players.Count;
+        ReplacePlayers();
         UpdatePlayerInfo();
     }
 
@@ -53,6 +78,7 @@ public class CharacterSelectCanvas : Singleton<CharacterSelectCanvas>, IState
     public void OnLeftPlayerClicked()
     {
         selectedPlayerIndex = (selectedPlayerIndex - 1 + players.Count) % players.Count;
+        ReplacePlayers();
         UpdatePlayerInfo();
     }
 
@@ -67,13 +93,62 @@ public class CharacterSelectCanvas : Singleton<CharacterSelectCanvas>, IState
 
 
     /// <summary>
+    /// 플레이어 회전초밥 만들기
+    /// </summary>
+    private void ReplacePlayers()
+    {
+        if (playerPlaces == null)
+        {
+            playerPlaces = new List<Vector3>();
+            for (int i = 0; i < players.Count; i++)
+            {
+                float angle = 360f / players.Count;
+                playerPlaces.Add(new Vector3(playerTrailCircleRadius * Mathf.Sin(Mathf.Deg2Rad * angle * i), 0, playerTrailCircleRadius * Mathf.Cos(Mathf.Deg2Rad * angle * i)));
+            }
+        }
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            int j = (selectedPlayerIndex + i) % players.Count;
+            float angle = 360f / players.Count;
+            playerPlaces[i] = new Vector3(playerTrailCircleRadius * Mathf.Sin(Mathf.Deg2Rad * angle * j), 0, playerTrailCircleRadius * Mathf.Cos(Mathf.Deg2Rad * angle * j));
+        }
+    }
+
+
+    /// <summary>
     /// 왼쪽 스탯 패널에 선택된 캐릭터의 기본 스펙 표시
     /// </summary>
     private void UpdatePlayerInfo()
     {
-        PlayerStatData currentPlayerStatData = players[selectedPlayerIndex].playerStatData;
+        PlayerStatData currentPlayerStatData = playerStatDatas[selectedPlayerIndex];
+
+        playerNameField.text = currentPlayerStatData.characterName;
+        selectButton.interactable = !currentPlayerStatData.characterName.Equals("???");
+
+        if (currentPlayerStatData.characterName.Equals("???"))
+        {
+            foreach (var spec in singleSpecs)
+            {
+                spec.Value.UpdateValue(SingleSpec.UNDEFINED);
+            }
+            return;
+        }
 
         // 플레이어 정보 업데이트
+        singleSpecs[nameof(PlayerStat.MaxHP)].UpdateValue(currentPlayerStatData.maxHP);
+        singleSpecs[nameof(PlayerStat.HealthRezenPer10)].UpdateValue(currentPlayerStatData.healthRezenPer10);
+        singleSpecs[nameof(PlayerStat.DefencePoint)].UpdateValue(currentPlayerStatData.defencePoint);
+        singleSpecs[nameof(PlayerStat.EvadeProbability)].UpdateValue(currentPlayerStatData.evadeProbability);
+        singleSpecs[nameof(PlayerStat.AttackPoint)].UpdateValue(currentPlayerStatData.attackPoint);
+        singleSpecs[nameof(PlayerStat.MultiProjectile)].UpdateValue(currentPlayerStatData.multiProjectile);
+        singleSpecs[nameof(PlayerStat.AttackSpeed)].UpdateValue(currentPlayerStatData.attackSpeed);
+        singleSpecs[nameof(PlayerStat.AttackRange)].UpdateValue(currentPlayerStatData.attackRange);
+        singleSpecs[nameof(PlayerStat.CritProbability)].UpdateValue(currentPlayerStatData.critProbability);
+        singleSpecs[nameof(PlayerStat.CritPoint)].UpdateValue(currentPlayerStatData.critPoint);
+        singleSpecs[nameof(PlayerStat.ExpGainRatio)].UpdateValue(currentPlayerStatData.expGainRatio);
+        singleSpecs[nameof(PlayerStat.ExpGainRange)].UpdateValue((int) currentPlayerStatData.expGainRange);
+        singleSpecs[nameof(PlayerStat.MoveSpeed)].UpdateValue((int) currentPlayerStatData.moveSpeed);
 
     }
 
@@ -82,20 +157,19 @@ public class CharacterSelectCanvas : Singleton<CharacterSelectCanvas>, IState
     /// 캐릭터 선택 화면으로 이동되었을 때 실행
     /// </summary>
     /// <exception cref="System.NotImplementedException"></exception>
-    public void OnEnter()
+    public override void OnEnter()
     {
         // 카메라를 캐릭터 선택 룸으로 이동
-        throw new System.NotImplementedException();
+        // TODO :
     }
 
 
     /// <summary>
     /// 캐릭터 선택 화면에서 나갈 때 실행
     /// </summary>
-    public void OnExit()
+    public override void OnExit()
     {
         // 카메라를 원래 위치로 이동
-        gameObject.SetActive(false);
     }
 
 
@@ -157,6 +231,8 @@ public class CharacterSelectCanvas : Singleton<CharacterSelectCanvas>, IState
     /// </summary>
     private class SingleSpec
     {
+        public const int UNDEFINED = -1234567890;
+
         public string key;
 
         private readonly TextMeshProUGUI labelField;
@@ -176,14 +252,28 @@ public class CharacterSelectCanvas : Singleton<CharacterSelectCanvas>, IState
             this.value = value;
             this.unit = unit;
             labelField.text = label;
-            valueField.text = value.ToString();
+            if (value == UNDEFINED)
+            {
+                valueField.text = "???";
+            }
+            else
+            {
+                valueField.text = value.ToString();
+            }
             unitField.text = unit;
         }
 
         public void UpdateValue(int value)
         {
             this.value = value;
-            valueField.text = value.ToString();
+            if (value == UNDEFINED)
+            {
+                valueField.text = "???";
+            }
+            else
+            {
+                valueField.text = value.ToString();
+            }
         }
     }
 }

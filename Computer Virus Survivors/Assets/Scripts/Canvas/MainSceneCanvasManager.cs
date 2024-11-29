@@ -4,28 +4,44 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Rendering.HybridV2;
+using UnityEngine.UI;
+
+public abstract class CanvasBase : Singleton<CanvasBase>, IState
+{
+    public virtual void OnEnter() { }
+
+    public virtual void OnExit() { }
+
+    public override void Initialize() { }
+}
+
 
 public class MainSceneCanvasManager : Singleton<MainSceneCanvasManager>
 {
 
-    [SerializeField] private readonly MainSceneCanvas mainSceneCanvas;
-    [SerializeField] private readonly CharacterSelectCanvas characterSelectCanvas;
-    // [SerializeField] private StageSelectCanvas stageSelectCanvas;
+    [SerializeField] private TitleCanvasManager titleSceneCanvas;
+    [SerializeField] private CharacterSelectCanvas characterSelectCanvas;
+    [SerializeField] private StageSelectCanvasManager stageSelectCanvas;
 
-    private IState mainSceneState;
-    private IState characterSelectState;
-    private IState stageSelectState;
-    private IState playingState;
-    private IState currentState;
+    private CanvasBase playingState;
+    private CanvasBase currentState;
 
-    private PlayerStatData selectedPlayer;
+    private GameObject selectedPlayer;
     private string selectedStageName;
+
+
+    private void Awake()
+    {
+        Initialize();
+    }
 
     public override void Initialize()
     {
-        mainSceneCanvas.Initialize();
+        titleSceneCanvas.Initialize();
         characterSelectCanvas.Initialize();
-        mainSceneCanvas.BtnCliked += (index) =>
+        stageSelectCanvas.Initialize();
+        titleSceneCanvas.BtnCliked += (index) =>
         {
             if (index == 0)
             {
@@ -40,11 +56,25 @@ public class MainSceneCanvasManager : Singleton<MainSceneCanvasManager>
         {
             StateMachine(Signal.OnGotoPreviousClicked);
         };
+        characterSelectCanvas.CharacterSelectedHandler += (player) =>
+        {
+            selectedPlayer = player;
+            StateMachine(Signal.OnCharacterSelectDone);
+        };
+        stageSelectCanvas.GotoPreviousHandler += () =>
+        {
+            StateMachine(Signal.OnGotoPreviousClicked);
+        };
+        stageSelectCanvas.StageSelectedHandler += (stageName) =>
+        {
+            selectedStageName = stageName;
+            StateMachine(Signal.OnStageSelectDone);
+        };
 
-        // TODO : characterSelectState, stageSelectState 초기화
-        mainSceneState = mainSceneCanvas;
-        currentState = mainSceneState;
-        characterSelectState = characterSelectCanvas;
+        playingState = new GameObject("PlayingState").AddComponent<PlayingState>();
+        playingState.Initialize();
+
+        currentState = titleSceneCanvas;
     }
 
 
@@ -60,20 +90,24 @@ public class MainSceneCanvasManager : Singleton<MainSceneCanvasManager>
 
     private void StateMachine(Signal signal)
     {
-        void SetState(IState state)
+        void SetState(CanvasBase state)
         {
             currentState.OnExit();
+            currentState.gameObject?.SetActive(false);
+
             currentState = state;
+            Debug.Log("State Change : " + state);
+
+            currentState.gameObject?.SetActive(true);
             currentState.OnEnter();
         }
 
-        if (currentState == mainSceneState)
+        if (currentState == titleSceneCanvas)
         {
             switch (signal)
             {
                 case Signal.OnGameStartClicked:
-                    characterSelectCanvas.gameObject.SetActive(true);
-                    SetState(characterSelectState);
+                    SetState(characterSelectCanvas);
                     break;
                 case Signal.OnExitClicked:
 #if UNITY_EDITOR
@@ -84,21 +118,19 @@ public class MainSceneCanvasManager : Singleton<MainSceneCanvasManager>
                     break;
             }
         }
-        else if (currentState == characterSelectState)
+        else if (currentState == characterSelectCanvas)
         {
             switch (signal)
             {
                 case Signal.OnCharacterSelectDone:
-                    // stageSelectCanvas.gameObject.SetActive(true);
-                    SetState(stageSelectState);
+                    SetState(stageSelectCanvas);
                     break;
                 case Signal.OnGotoPreviousClicked:
-                    mainSceneCanvas.gameObject.SetActive(true);
-                    SetState(mainSceneState);
+                    SetState(titleSceneCanvas);
                     break;
             }
         }
-        else if (currentState == stageSelectState)
+        else if (currentState == stageSelectCanvas)
         {
             switch (signal)
             {
@@ -106,8 +138,7 @@ public class MainSceneCanvasManager : Singleton<MainSceneCanvasManager>
                     SetState(playingState);
                     break;
                 case Signal.OnGotoPreviousClicked:
-                    characterSelectCanvas.gameObject.SetActive(true);
-                    SetState(characterSelectState);
+                    SetState(characterSelectCanvas);
                     break;
             }
         }
@@ -116,7 +147,7 @@ public class MainSceneCanvasManager : Singleton<MainSceneCanvasManager>
             switch (signal)
             {
                 case Signal.OnGameCleared:
-                    SetState(mainSceneState);
+                    SetState(titleSceneCanvas);
                     break;
             }
         }
@@ -127,53 +158,51 @@ public class MainSceneCanvasManager : Singleton<MainSceneCanvasManager>
         return selectedStageName;
     }
 
-    private class PlayingState : IState
+    private class PlayingState : CanvasBase
     {
-        public void OnEnter()
+
+        private GameObject fadeImage;
+        private float fadeTime = 2f;
+
+        public override void Initialize()
         {
-            // fade out
-
-            // 씬 전환
-            SceneManager.LoadScene(MainSceneCanvasManager.instance.GetSelectedStageName());
-
+            fadeImage = new GameObject("FadeImage", typeof(Image));
+            fadeImage.transform.SetParent(MainSceneCanvasManager.instance.transform);
+            RectTransform rect = fadeImage.GetComponent<RectTransform>();
+            rect.anchorMax = new Vector2(1, 1);
+            rect.anchorMin = new Vector2(0, 0);
+            rect.offsetMax = new Vector2(0, 0);
+            rect.offsetMin = new Vector2(0, 0);
+            Image image = fadeImage.GetComponent<Image>();
+            image.color = new Color(0, 0, 0, 0);
+            fadeImage.transform.SetAsFirstSibling();
+            gameObject.SetActive(false);
         }
 
-        public void OnExit()
+        public override void OnEnter()
+        {
+            // 씬 전환
+            StartCoroutine(StageLoad());
+        }
+
+        private IEnumerator StageLoad()
+        {
+            float elpasedTime = 0;
+            Image image = fadeImage.GetComponent<Image>();
+            while (elpasedTime < fadeTime)
+            {
+                elpasedTime += Time.deltaTime;
+                image.color = new Color(0, 0, 0, elpasedTime / 2f);
+                yield return null;
+            }
+            SceneManager.LoadScene(MainSceneCanvasManager.instance.GetSelectedStageName());
+        }
+
+        public override void OnExit()
         {
             ;
         }
     }
 }
 
-public class MainSceneCanvas : Singleton<MainSceneCanvas>, IState
-{
 
-    public event Action<int> BtnCliked;
-
-    public override void Initialize()
-    {
-        // TODO : 초기화
-        // 배경음악 재생
-    }
-
-    public void OnGameStartClicked()
-    {
-        BtnCliked?.Invoke(0);
-    }
-
-    public void OnExitClicked()
-    {
-        BtnCliked?.Invoke(1);
-    }
-
-    public void OnEnter()
-    {
-        // TODO : 메인화면 진입하면 하는것? 애니메이션 정도?
-        ;
-    }
-
-    public void OnExit()
-    {
-        gameObject.SetActive(false);
-    }
-}

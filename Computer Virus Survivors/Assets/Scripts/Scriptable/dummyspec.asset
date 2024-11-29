@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24532904a5cd5ee43b6a4bd01661fb3c, type: 3}
-  m_Name: Character1
+  m_Name: dummyspec
   m_EditorClassIdentifier: 
-  characterName: Um. Lab U3
-  maxHP: 100
-  currentHP: 100
-  healthRezenPer10: 0
-  defencePoint: 0
-  evadeProbability: 0
-  invincibleFrame: 20
-  attackPoint: 100
-  multiProjectile: 0
-  attackSpeed: 100
-  attackRange: 100
-  critProbability: 0
-  critPoint: 0
-  expGainRatio: 100
+  characterName: ???
+  maxHP: 1
+  currentHP: 1
+  healthRezenPer10: 1
+  defencePoint: 1
+  evadeProbability: 1
+  invincibleFrame: 1
+  attackPoint: 1
+  multiProjectile: 1
+  attackSpeed: 1
+  attackRange: 1
+  critProbability: 1
+  critPoint: 1
+  expGainRatio: 1
   playerLevel: 1
-  currentExp: 0
-  expGainRange: 0.707
-  moveSpeed: 5
+  currentExp: 1
+  expGainRange: 1
+  moveSpeed: 1
