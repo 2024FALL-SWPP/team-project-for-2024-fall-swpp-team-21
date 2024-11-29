@@ -6,6 +6,8 @@ using UnityEngine;
 public enum PoolType
 {
     ExpGem,
+    HealPack,
+    ExpMagnet,
     Virus_Weak,
     Virus_Trojan,
     Virus_Ransomware,

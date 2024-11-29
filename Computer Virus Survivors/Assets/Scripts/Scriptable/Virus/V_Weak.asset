@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3813b8a75afeea143976a2d10aa03fb1, type: 3}
   m_Name: V_Weak
   m_EditorClassIdentifier: 
-  poolType: 1
+  poolType: 3
   maxHP: 10
   moveSpeed: 1.5
   dropExp: 100

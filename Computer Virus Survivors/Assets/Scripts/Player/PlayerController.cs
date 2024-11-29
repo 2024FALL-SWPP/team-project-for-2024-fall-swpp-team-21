@@ -137,6 +137,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void GetHeal(int heal)
+    {
+        playerStat.CurrentHP += heal;
+    }
+
     public void GetSelectable()
     {
 

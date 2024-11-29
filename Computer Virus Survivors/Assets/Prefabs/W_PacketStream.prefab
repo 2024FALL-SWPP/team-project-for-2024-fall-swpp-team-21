@@ -116,7 +116,7 @@ MonoBehaviour:
   - "\uAE30\uBCF8 \uB370\uBBF8\uC9C0 10 \uC99D\uAC00"
   - "\uACF5\uACA9 \uC18D\uB3C4 40% \uC99D\uAC00, \uAE30\uBCF8 \uB370\uBBF8\uC9C0
     10 \uC99D\uAC00"
-  projectilePoolType: 4
+  projectilePoolType: 6
   initialDamage: 10
   initialMultiProjectile: 1
   initialAttackPeriod: 0.5
