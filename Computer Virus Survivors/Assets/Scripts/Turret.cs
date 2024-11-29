@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Turret : VirusBehaviour
 {
+    [SerializeField] private GameObject upperBody;
     [SerializeField] private Transform muzzle;
     [SerializeField] private float aimToBeamPeriod;
     [SerializeField] private float beamToAimPeriod;
-    [SerializeField] private GameObject beamPf;
     [SerializeField] private float beamArriveTime; // time to reach the player
     [SerializeField] private int beamDamage;
     [SerializeField] private float upSpeed;
@@ -66,6 +66,9 @@ public class Turret : VirusBehaviour
                 {
                     // muzzle에서 player 방향으로 조준선 그리기
                     targetPos = player.transform.position + new Vector3(0, targetYOffset, 0);
+                    Vector3 lookDir = Vector3.ProjectOnPlane(targetPos - muzzle.position, Vector3.up);
+                    upperBody.transform.rotation = Quaternion.LookRotation(lookDir, Vector3.up);
+
                     lineRenderer.SetPosition(0, muzzle.position);
                     lineRenderer.SetPosition(1, targetPos);
 

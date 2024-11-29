@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3813b8a75afeea143976a2d10aa03fb1, type: 3}
-  m_Name: V_Weak
+  m_Name: V_Worm
   m_EditorClassIdentifier: 
-  poolType: 1
+  poolType: 5
   maxHP: 10
-  moveSpeed: 1.5
+  moveSpeed: 0.5
   dropExp: 100
   contactDamage: 5

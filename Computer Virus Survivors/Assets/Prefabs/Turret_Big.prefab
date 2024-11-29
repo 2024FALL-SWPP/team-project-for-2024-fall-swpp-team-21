@@ -293,7 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8649405861224589403}
   m_Layer: 0
-  m_Name: P_potap
+  m_Name: Turret_Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
