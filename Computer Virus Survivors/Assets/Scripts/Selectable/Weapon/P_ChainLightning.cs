@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Linq;
 
 
-public class P_ChainLightning : ProjectileBehaviour
+public class P_ChainLightning : PlayerProjectileBehaviour
 {
     [SerializeField] private LayerMask virusLayer;
     [SerializeField] private float chainInterval;

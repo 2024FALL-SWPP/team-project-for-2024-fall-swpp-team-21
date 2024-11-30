@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VP_CorruptedZone : MonoBehaviour
+public class VP_CorruptedZone : VirusProjectileBehaviour
 {
-    private int damage;
     private float speed;
     private float maxScale;
     private float existDuration;
@@ -15,7 +14,8 @@ public class VP_CorruptedZone : MonoBehaviour
 
     public void Initialize(int damage, float speed, float maxScale, float existDuration, float debuffDegree, float dotDamagePeriod)
     {
-        this.damage = damage;
+        base.Initialize(damage);
+
         this.speed = speed;
         this.maxScale = maxScale;
         this.existDuration = existDuration;
@@ -54,10 +54,16 @@ public class VP_CorruptedZone : MonoBehaviour
         }
 
         GameManager.instance.Player.GetComponent<PlayerController>().RestoreMoveSpeed();
-        Destroy(gameObject);
+
+        if (dotDamageCoroutine != null)
+        {
+            StopCoroutine(dotDamageCoroutine);
+            dotDamageCoroutine = null;
+        }
+        PoolManager.instance.ReturnObject(PoolType.VProj_CorruptedZone, gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {

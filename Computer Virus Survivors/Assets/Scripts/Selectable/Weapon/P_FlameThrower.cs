@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P_FlameThrower : ProjectileBehaviour
+public class P_FlameThrower : PlayerProjectileBehaviour
 {
     [SerializeField] private LayerMask virusLayer;
     [SerializeField] private float fireAngle = 120.0f;

@@ -871,13 +871,25 @@ MonoBehaviour:
     initialPoolSize: 0
   - poolName: 18
     prefab: {fileID: 809982886830519327, guid: 7187f8aa8d499b64087a8c82eb876697, type: 3}
-    initialPoolSize: 0
+    initialPoolSize: 5
   - poolName: 19
+    prefab: {fileID: 2412301682625758825, guid: 35afae6966cb0bf46ab26a94f15acfba, type: 3}
+    initialPoolSize: 0
+  - poolName: 20
+    prefab: {fileID: 2409557264342324043, guid: 3429dd7bf9531e147b3a1fc8d79bc75c, type: 3}
+    initialPoolSize: 0
+  - poolName: 21
+    prefab: {fileID: 4634925082971677323, guid: 728ef33a0ea90904ab798080b884f17a, type: 3}
+    initialPoolSize: 0
+  - poolName: 22
+    prefab: {fileID: 9176116870765596754, guid: 7060b05f0a508d04b8633c72adff5c6b, type: 3}
+    initialPoolSize: 0
+  - poolName: 23
     prefab: {fileID: 7084631532191331932, guid: ba79151a99bf45541ae9e311f351d175, type: 3}
     initialPoolSize: 10
-  - poolName: 20
+  - poolName: 24
     prefab: {fileID: 6193209051861997650, guid: a7a5dc3dce03d4a4b834923b828121fb, type: 3}
-    initialPoolSize: 1
+    initialPoolSize: 0
 --- !u!4 &454088697
 Transform:
   m_ObjectHideFlags: 0

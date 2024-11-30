@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P_Beam : ProjectileBehaviour
+public class P_Beam : PlayerProjectileBehaviour
 {
     [SerializeField] private float speed = 10f;
     private GameObject lightBeam;
