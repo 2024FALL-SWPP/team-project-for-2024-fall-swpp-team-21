@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class P_PacketStream : ProjectileBehaviour
+public class P_PacketStream : PlayerProjectileBehaviour
 {
     [SerializeField] private float bulletSpeed;
 

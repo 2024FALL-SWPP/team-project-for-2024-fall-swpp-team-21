@@ -211,7 +211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6206154428902362162, guid: c8feb58484ba4904694cdfd2ed2d1e09, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6206154428902362162, guid: c8feb58484ba4904694cdfd2ed2d1e09, type: 3}
       propertyPath: m_LocalPosition.x
@@ -834,45 +834,60 @@ MonoBehaviour:
     prefab: {fileID: 6057365657162441225, guid: 3a49f03556e48894b95c1bc201b28741, type: 3}
     initialPoolSize: 10
   - poolName: 1
-    prefab: {fileID: 3336213741251519826, guid: f690dd2750367cd458d398879af9a3b0, type: 3}
-    initialPoolSize: 0
-  - poolName: 2
-    prefab: {fileID: 3334565163449244760, guid: f0ac473acc6064b4f8eb39d15a46529d, type: 3}
-    initialPoolSize: 0
+    prefab: {fileID: 4803730998459571024, guid: e029d2ba27a21424fb11fabff733338b, type: 3}
+    initialPoolSize: 10
   - poolName: 3
-    prefab: {fileID: 2474614017452228050, guid: a82ddbdaf462fc2408f9698e5ef33f29, type: 3}
+    prefab: {fileID: 6224139200178080771, guid: 9b4bbc6aa8bdad74e85eb18e5c9efaa4, type: 3}
     initialPoolSize: 10
   - poolName: 4
-    prefab: {fileID: 5841041427378954025, guid: 201474e5e0f694042a381edadef11a79, type: 3}
-    initialPoolSize: 0
+    prefab: {fileID: 9182261137655057790, guid: 704ac625c02abfb40bae0442491a4d35, type: 3}
+    initialPoolSize: 10
   - poolName: 5
-    prefab: {fileID: 3856008618962738718, guid: bcf6e312db7ceec45bcd085d523da0a8, type: 3}
-    initialPoolSize: 0
-  - poolName: 6
-    prefab: {fileID: 4615468010908761814, guid: eb99a0df550d7b443853a49b027c28d5, type: 3}
-    initialPoolSize: 10
-  - poolName: 7
-    prefab: {fileID: 7199673527555716025, guid: 68913c5fa631af84cba23249894555ab, type: 3}
-    initialPoolSize: 10
-  - poolName: 8
-    prefab: {fileID: 5823448282571730383, guid: 5d055ad233434496bb110599d264f01a, type: 3}
-    initialPoolSize: 10
-  - poolName: 10
-    prefab: {fileID: 1757826329766676516, guid: 196f77589c6098649980e9f4bd9830d9, type: 3}
+    prefab: {fileID: 1774318923070823006, guid: 4e65a992162678a42998d656634bfd64, type: 3}
     initialPoolSize: 10
   - poolName: 9
-    prefab: {fileID: 6456922764076499848, guid: 42a0b83e04e80a64c9d82bd5ace629a8, type: 3}
+    prefab: {fileID: 5841041427378954025, guid: 201474e5e0f694042a381edadef11a79, type: 3}
     initialPoolSize: 0
   - poolName: 11
-    prefab: {fileID: 5403754762025930223, guid: d3bfff4a62624ee4cb9062c7f1e71026, type: 3}
-    initialPoolSize: 5
+    prefab: {fileID: 3856008618962738718, guid: bcf6e312db7ceec45bcd085d523da0a8, type: 3}
+    initialPoolSize: 0
   - poolName: 12
+    prefab: {fileID: 4615468010908761814, guid: eb99a0df550d7b443853a49b027c28d5, type: 3}
+    initialPoolSize: 10
+  - poolName: 13
+    prefab: {fileID: 7199673527555716025, guid: 68913c5fa631af84cba23249894555ab, type: 3}
+    initialPoolSize: 0
+  - poolName: 14
+    prefab: {fileID: 5823448282571730383, guid: 5d055ad233434496bb110599d264f01a, type: 3}
+    initialPoolSize: 0
+  - poolName: 15
+    prefab: {fileID: 6456922764076499848, guid: 42a0b83e04e80a64c9d82bd5ace629a8, type: 3}
+    initialPoolSize: 0
+  - poolName: 16
+    prefab: {fileID: 1757826329766676516, guid: 196f77589c6098649980e9f4bd9830d9, type: 3}
+    initialPoolSize: 0
+  - poolName: 17
+    prefab: {fileID: 5403754762025930223, guid: d3bfff4a62624ee4cb9062c7f1e71026, type: 3}
+    initialPoolSize: 0
+  - poolName: 18
     prefab: {fileID: 809982886830519327, guid: 7187f8aa8d499b64087a8c82eb876697, type: 3}
     initialPoolSize: 5
-  - poolName: 13
+  - poolName: 19
+    prefab: {fileID: 2412301682625758825, guid: 35afae6966cb0bf46ab26a94f15acfba, type: 3}
+    initialPoolSize: 0
+  - poolName: 20
+    prefab: {fileID: 2409557264342324043, guid: 3429dd7bf9531e147b3a1fc8d79bc75c, type: 3}
+    initialPoolSize: 0
+  - poolName: 21
+    prefab: {fileID: 4634925082971677323, guid: 728ef33a0ea90904ab798080b884f17a, type: 3}
+    initialPoolSize: 0
+  - poolName: 22
+    prefab: {fileID: 9176116870765596754, guid: 7060b05f0a508d04b8633c72adff5c6b, type: 3}
+    initialPoolSize: 0
+  - poolName: 23
     prefab: {fileID: 7084631532191331932, guid: ba79151a99bf45541ae9e311f351d175, type: 3}
     initialPoolSize: 10
-  - poolName: 14
+  - poolName: 24
     prefab: {fileID: 6193209051861997650, guid: a7a5dc3dce03d4a4b834923b828121fb, type: 3}
     initialPoolSize: 0
 --- !u!4 &454088697
@@ -2283,7 +2298,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 130, y: -49.99994}
+  m_AnchoredPosition: {x: 130, y: -50}
   m_SizeDelta: {x: 400, y: -300}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1118748773
@@ -2827,11 +2842,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7502863983212605459, guid: f82963c28ec86f54e879794097c4525b, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7502863983212605459, guid: f82963c28ec86f54e879794097c4525b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.561
       objectReference: {fileID: 0}
     - target: {fileID: 7502863983212605459, guid: f82963c28ec86f54e879794097c4525b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3953,9 +3968,9 @@ MonoBehaviour:
   spawnRange: {x: 20, y: 10}
   maxVirusNum: 100
   spawnPatterns:
-  - spawnTimeRange: {x: 1, y: 2}
+  - spawnTimeRange: {x: 180, y: 181}
     spawnPeriod: 5
-    virusID: 5
+    virusID: 9
     spawnMonsterNum: 1
     ignoreMaxVirusNum: 1
     isSpawnPointRandom: 0
@@ -3974,7 +3989,7 @@ MonoBehaviour:
     spawnPoints: []
   - spawnTimeRange: {x: 25, y: 60}
     spawnPeriod: 2
-    virusID: 3
+    virusID: 5
     spawnMonsterNum: 5
     ignoreMaxVirusNum: 0
     isSpawnPointRandom: 1
@@ -3994,7 +4009,7 @@ MonoBehaviour:
     - {x: 0, y: 10}
   - spawnTimeRange: {x: 120, y: 180}
     spawnPeriod: 2
-    virusID: 3
+    virusID: 4
     spawnMonsterNum: 10
     ignoreMaxVirusNum: 0
     isSpawnPointRandom: 1

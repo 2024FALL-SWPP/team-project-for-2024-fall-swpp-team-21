@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P_CoreDump : ProjectileBehaviour
+public class P_CoreDump : PlayerProjectileBehaviour
 {
     [SerializeField] private float dumpSpeed = 3.0f;
     [SerializeField] private float dumpRadius = 3.0f;

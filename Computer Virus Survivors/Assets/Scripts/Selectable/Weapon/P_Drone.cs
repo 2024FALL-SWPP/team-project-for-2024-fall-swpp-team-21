@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 
-public class P_Drone : ProjectileBehaviour
+public class P_Drone : PlayerProjectileBehaviour
 {
     [SerializeField] private PoolType projectileType;
 

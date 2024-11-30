@@ -59,7 +59,7 @@ MonoBehaviour:
   - "\uB5A8\uC5B4\uC9C0\uB294 \uCF54\uC5B4 1\uAC1C \uCD94\uAC00"
   - "\uB5A8\uC5B4\uC9C0\uB294 \uCF54\uC5B4 1\uAC1C \uC99D\uAC00, \uAE30\uBCF8 \uB370\uBBF8\uC9C0
     40 \uC99D\uAC00"
-  projectilePoolType: 8
+  projectilePoolType: 14
   initialDamage: 20
   initialMultiProjectile: 1
   initialAttackPeriod: 5

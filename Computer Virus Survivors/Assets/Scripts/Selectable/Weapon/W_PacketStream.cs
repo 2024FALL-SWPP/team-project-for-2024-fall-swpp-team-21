@@ -96,7 +96,7 @@ public sealed class W_PacketStream : WeaponBehaviour
         {
             Vector3 finalPosition = muzzle.transform.position + FireFluctuation();
             proj = PoolManager.instance.GetObject(projectilePool, finalPosition, muzzle.transform.rotation);
-            proj.GetComponent<ProjectileBehaviour>().Initialize(finalWeaponData);
+            proj.GetComponent<PlayerProjectileBehaviour>().Initialize(finalWeaponData);
             yield return new WaitForSeconds(0.03f);
         }
     }

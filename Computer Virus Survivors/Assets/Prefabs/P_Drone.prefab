@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  projectileType: 10
+  projectileType: 16
 --- !u!1 &6563795024481493776
 GameObject:
   m_ObjectHideFlags: 0

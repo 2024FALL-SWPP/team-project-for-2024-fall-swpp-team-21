@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VP_DataBurst : MonoBehaviour
+public class VP_DataBurst : VirusProjectileBehaviour
 {
-
-    private int damage;
     private float speed;
     private float acceleration;
 
     public void Initialize(int damage, float initialSpeed, float acceleration)
     {
-        this.damage = damage;
+        base.Initialize(damage);
+
         speed = initialSpeed;
         this.acceleration = acceleration;
 
@@ -24,19 +23,19 @@ public class VP_DataBurst : MonoBehaviour
     {
         transform.Translate(speed * Time.deltaTime * Vector3.forward, Space.Self);
         speed += acceleration * Time.deltaTime;
+
+        if (CheckOutOfScreen())
+        {
+            PoolManager.instance.ReturnObject(PoolType.VProj_DataBurst, gameObject);
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerController>().GetDamage(damage);
-            Destroy(gameObject);
+            PoolManager.instance.ReturnObject(PoolType.VProj_DataBurst, gameObject);
         }
-    }
-
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
     }
 }
