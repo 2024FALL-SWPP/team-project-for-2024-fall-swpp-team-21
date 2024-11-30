@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3813b8a75afeea143976a2d10aa03fb1, type: 3}
   m_Name: V_Corona
   m_EditorClassIdentifier: 
-  poolType: 3
+  poolType: 5
   maxHP: 10
   moveSpeed: 1
   dropExp: 100

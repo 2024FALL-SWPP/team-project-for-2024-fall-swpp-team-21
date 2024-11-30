@@ -10,10 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3813b8a75afeea143976a2d10aa03fb1, type: 3}
-  m_Name: Turret
+  m_Name: V_TrashCan
   m_EditorClassIdentifier: 
-  poolType: 26
-  maxHP: 5000
+  poolType: 27
+  maxHP: 1
   moveSpeed: 0
+  dropTable:
+    dropElements:
+    - dropItem: 1
+      dropRate: 5
+    - dropItem: 2
+      dropRate: 1
   dropExp: 0
   contactDamage: 0
