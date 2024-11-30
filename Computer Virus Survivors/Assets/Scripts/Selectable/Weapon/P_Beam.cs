@@ -66,7 +66,7 @@ public class P_Beam : PlayerProjectileBehaviour
 
         if (other.CompareTag("Virus"))
         {
-            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage());
+            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
         }
 
         StartCoroutine(Destroy(particle.main.duration));

@@ -55,7 +55,7 @@ public class P_FlameThrower : PlayerProjectileBehaviour
 
                 if (Vector3.Angle(transform.forward, direction) < (fireAngle * 0.5f))
                 {
-                    collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage());
+                    collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
                 }
             }
             yield return new WaitForSeconds(tick);

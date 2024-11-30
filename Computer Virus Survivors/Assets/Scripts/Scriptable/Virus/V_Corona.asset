@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: V_Corona
   m_EditorClassIdentifier: 
   poolType: 5
-  maxHP: 10
+  maxHP: 20
   moveSpeed: 1
+  dropTable:
+    dropElements: []
   dropExp: 100
   contactDamage: 5
+  knockbackSpeed: 15

@@ -4936,5 +4936,6 @@ MonoBehaviour:
   initialAttackRange: 3
   initialAddiCritProbability: 5
   initialAddiCritPoint: 0
+  knockbackTime: 0.05
   proj: {fileID: 379219242}
   totalAttackPeriod: 15

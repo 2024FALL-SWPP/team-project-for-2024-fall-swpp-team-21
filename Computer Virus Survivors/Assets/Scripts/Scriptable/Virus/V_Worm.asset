@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: V_Worm
   m_EditorClassIdentifier: 
   poolType: 7
-  maxHP: 10
+  maxHP: 30
   moveSpeed: 0.5
+  dropTable:
+    dropElements: []
   dropExp: 100
   contactDamage: 5
+  knockbackSpeed: 5
