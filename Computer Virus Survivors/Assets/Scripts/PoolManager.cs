@@ -31,7 +31,8 @@ public enum PoolType
     VProj_TrackingBolt,
     VProj_DataBurst,
     DamageIndicator,
-    Turret
+    Turret,
+    Virus_TrashCan
 }
 
 public class PoolManager : Singleton<PoolManager>

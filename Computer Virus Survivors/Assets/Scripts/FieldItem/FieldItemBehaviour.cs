@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class FieldItemBehaviour : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5.5f;  // player보다 빨라야 함
+    [SerializeField] private float acceleration = 1.0f;
     [SerializeField] private PoolType poolType;
 
     protected GameObject player;
@@ -52,6 +53,7 @@ public abstract class FieldItemBehaviour : MonoBehaviour
         while (true)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+            moveSpeed += acceleration * Time.deltaTime;
             yield return null;
         }
     }

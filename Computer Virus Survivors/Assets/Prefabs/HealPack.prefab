@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3336213741251519831}
   m_Layer: 11
   m_Name: HealPack
-  m_TagString: Untagged
+  m_TagString: ExpGem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

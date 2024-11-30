@@ -14,6 +14,9 @@ public class VirusData : ScriptableObject
     [Header("이동 속도")]
     [SerializeField] public float moveSpeed;
 
+    [Header("드랍 테이블")]
+    [SerializeField] public DropTable dropTable;
+
     [Header("드랍 경험치")]
     [SerializeField] public int dropExp;
 
