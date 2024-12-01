@@ -64,8 +64,8 @@ MonoBehaviour:
   initialMultiProjectile: 1
   initialAttackPeriod: 0.8
   initialAttackRange: 5
-  initialAddiCritProbability: 0
-  initialAddiCritPoint: 0
+  initialAddiCritProbability: 5
+  initialAddiCritPoint: 200
   knockbackTime: 0.1
   altitude: 3
   dronePosRadius: 1

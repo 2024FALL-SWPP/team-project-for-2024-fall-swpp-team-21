@@ -65,7 +65,8 @@ MonoBehaviour:
   initialAttackPeriod: 5
   initialAttackRange: 0
   initialAddiCritProbability: 5
-  initialAddiCritPoint: 0
+  initialAddiCritPoint: 200
+  knockbackTime: 0
   virusLayer:
     serializedVersion: 2
     m_Bits: 256
