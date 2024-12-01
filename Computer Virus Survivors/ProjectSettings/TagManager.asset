@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Virus
   - Magnet
+  - ExpGem
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Virus
   - Virus_Projectile
   - Terrain
-  - Exp
+  - FieldItem
   - 
   - 
   - 

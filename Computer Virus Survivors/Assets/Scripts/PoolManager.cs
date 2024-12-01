@@ -6,8 +6,18 @@ using UnityEngine;
 public enum PoolType
 {
     ExpGem,
-    Virus_Weak,
+    HealPack,
+    ExpMagnet,
+    Virus_Chip,
+    Virus_Chip_Angry,
+    Virus_Corona,
+    Virus_Corona_Angry,
+    Virus_Worm,
+    Virus_Worm_Angry,
+    Virus_Adware,
+    Virus_Adware_Angry,
     Virus_Trojan,
+    Virus_Worm_Big,
     Virus_Ransomware,
     Proj_PacketStream,
     Proj_ChainLightning,
@@ -16,8 +26,13 @@ public enum PoolType
     Proj_Beam,
     Proj_VaccineRing,
     VProj_Beam,
+    VProj_EncryptionSpike,
+    VProj_CorruptedZone,
+    VProj_TrackingBolt,
+    VProj_DataBurst,
     DamageIndicator,
-    Turret
+    Turret,
+    Virus_TrashCan
 }
 
 public class PoolManager : Singleton<PoolManager>

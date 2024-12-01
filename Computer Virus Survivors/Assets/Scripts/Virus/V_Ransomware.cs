@@ -105,7 +105,7 @@ public class V_Ransomware : VirusBehaviour
             float z = eSOffset * Mathf.Sin(angle * i);
             Vector3 spikePosition = transform.position + new Vector3(x, eSHeight, z);
             Vector3 direction = new Vector3(x, 0, z).normalized;
-            GameObject pf = Instantiate(eSPrefab, spikePosition, Quaternion.LookRotation(direction, Vector3.up));
+            GameObject pf = PoolManager.instance.GetObject(PoolType.VProj_EncryptionSpike, spikePosition, Quaternion.LookRotation(direction, Vector3.up));
             pf.GetComponent<VP_EncryptionSpike>().Initialize(eSDamage, eSSpeed, eSRotateSpeed, eSOffset);
         }
     }
@@ -133,7 +133,7 @@ public class V_Ransomware : VirusBehaviour
             float x = UnityEngine.Random.Range(-cZRange.x, cZRange.x);
             float z = UnityEngine.Random.Range(-cZRange.y, cZRange.y);
             Vector3 position = player.transform.position + new Vector3(x, 0.0f, z);
-            GameObject cZ = Instantiate(cZPrefab, position, cZPrefab.transform.rotation);
+            GameObject cZ = PoolManager.instance.GetObject(PoolType.VProj_CorruptedZone, position, cZPrefab.transform.rotation);
             cZ.GetComponent<VP_CorruptedZone>().Initialize(cZDamage, cZSpeed, cZMaxScale, cZExistDuration, cZDebuffDegree, cZDotDamagePeriod);
         }
     }
@@ -142,7 +142,7 @@ public class V_Ransomware : VirusBehaviour
     {
         Debug.Log("Tracking Bolt!");
         Vector3 spawnPosition = player.transform.position + tBSpawnDistance * UnityEngine.Random.insideUnitSphere;
-        GameObject tB = Instantiate(tBPrefab, spawnPosition, Quaternion.identity);
+        GameObject tB = PoolManager.instance.GetObject(PoolType.VProj_TrackingBolt, spawnPosition, Quaternion.identity);
         tB.GetComponent<VP_TrackingBolt>().Initialize(tBDamage, tBSpeed, tBExistDuration);
     }
 
@@ -158,7 +158,7 @@ public class V_Ransomware : VirusBehaviour
         {
             Vector3 direction = (player.transform.position - transform.position).normalized;
             Vector3 position = transform.position + dBHeight * Vector3.up + dBOffset * direction;
-            GameObject dB = Instantiate(dBPrefab, position, Quaternion.LookRotation(direction, Vector3.up));
+            GameObject dB = PoolManager.instance.GetObject(PoolType.VProj_DataBurst, position, Quaternion.LookRotation(direction, Vector3.up));
             dB.GetComponent<VP_DataBurst>().Initialize(dBDamage, dBInitialSpeed, dBAcceleration);
             yield return new WaitForSeconds(dBPeriod);
         }

@@ -2,22 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VP_TrackingBolt : MonoBehaviour
+public class VP_TrackingBolt : VirusProjectileBehaviour
 {
     private GameObject player;
-    private int damage;
     private float speed;
     private float existDuration;
     private bool canDamage = false;
 
+    private Coroutine moveCoroutine = null;
+
     public void Initialize(int damage, float speed, float existDuration)
     {
+        base.Initialize(damage);
+
         player = GameManager.instance.Player;
-        this.damage = damage;
         this.speed = speed;
         this.existDuration = existDuration;
 
-        StartCoroutine(Move());
+        moveCoroutine = StartCoroutine(Move());
     }
 
     private IEnumerator Move()
@@ -38,15 +40,21 @@ public class VP_TrackingBolt : MonoBehaviour
             yield return null;
         }
 
-        Destroy(gameObject);
+        PoolManager.instance.ReturnObject(PoolType.VProj_TrackingBolt, gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && canDamage)
         {
             other.GetComponent<PlayerController>().GetDamage(damage);
-            Destroy(gameObject);
+
+            if (moveCoroutine != null)
+            {
+                StopCoroutine(moveCoroutine);
+                moveCoroutine = null;
+            }
+            PoolManager.instance.ReturnObject(PoolType.VProj_TrackingBolt, gameObject);
         }
     }
 }

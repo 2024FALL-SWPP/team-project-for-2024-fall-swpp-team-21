@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         // Temp: 스폰 임시로 구현
         if (Input.GetKey(KeyCode.Alpha1))
         {
-            SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Weak);
+            SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Corona);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -135,6 +135,11 @@ public class PlayerController : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void GetHeal(int heal)
+    {
+        playerStat.CurrentHP += heal;
     }
 
     public void GetSelectable()

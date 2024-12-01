@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P_Beam : ProjectileBehaviour
+public class P_Beam : PlayerProjectileBehaviour
 {
     [SerializeField] private float speed = 10f;
     private GameObject lightBeam;
@@ -66,7 +66,7 @@ public class P_Beam : ProjectileBehaviour
 
         if (other.CompareTag("Virus"))
         {
-            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage());
+            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
         }
 
         StartCoroutine(Destroy(particle.main.duration));

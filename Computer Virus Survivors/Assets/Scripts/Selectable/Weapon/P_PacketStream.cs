@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class P_PacketStream : ProjectileBehaviour
+public class P_PacketStream : PlayerProjectileBehaviour
 {
     [SerializeField] private float bulletSpeed;
 
@@ -30,7 +30,7 @@ public class P_PacketStream : ProjectileBehaviour
     {
         if (other.CompareTag("Virus"))
         {
-            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage());
+            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
         }
 
         PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);

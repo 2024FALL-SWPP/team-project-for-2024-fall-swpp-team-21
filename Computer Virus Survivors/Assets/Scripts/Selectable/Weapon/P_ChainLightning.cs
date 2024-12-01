@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Linq;
 
 
-public class P_ChainLightning : ProjectileBehaviour
+public class P_ChainLightning : PlayerProjectileBehaviour
 {
     [SerializeField] private LayerMask virusLayer;
     [SerializeField] private float chainInterval;
@@ -88,7 +88,7 @@ public class P_ChainLightning : ProjectileBehaviour
         hitEffect.transform.position = chainAnim.EndPosition;
         hitEffect.Play();
         animator.SetBool("LightOn_b", true);
-        targetVirus.GetDamage(finalWeaponData.GetFinalDamage());
+        targetVirus.GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
         yield return new WaitForSeconds(chainDuration);
         animator.SetBool("LightOn_b", false);
 

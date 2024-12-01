@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P_CoreDump : ProjectileBehaviour
+public class P_CoreDump : PlayerProjectileBehaviour
 {
     [SerializeField] private float dumpSpeed = 3.0f;
     [SerializeField] private float dumpRadius = 3.0f;
@@ -47,7 +47,7 @@ public class P_CoreDump : ProjectileBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, dumpRadius, virusLayer);
         foreach (Collider collider in colliders)
         {
-            collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage());
+            collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
         }
         yield return new WaitForSeconds(1.0f);
         PoolManager.instance.ReturnObject(PoolType.Proj_CoreDump, gameObject);

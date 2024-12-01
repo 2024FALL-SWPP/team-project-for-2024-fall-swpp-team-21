@@ -48,6 +48,10 @@ public class PlayerStat : IPlayerStatObserver
             {
                 currentHP = 0;
             }
+            else if (currentHP > maxHP)
+            {
+                currentHP = maxHP;
+            }
             statEventCaller.Invoke(nameof(CurrentHP), currentHP);
         }
     }

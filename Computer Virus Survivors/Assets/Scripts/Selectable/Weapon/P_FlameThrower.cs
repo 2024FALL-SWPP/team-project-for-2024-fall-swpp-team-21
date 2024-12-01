@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P_FlameThrower : ProjectileBehaviour
+public class P_FlameThrower : PlayerProjectileBehaviour
 {
     [SerializeField] private LayerMask virusLayer;
     [SerializeField] private float fireAngle = 120.0f;
@@ -55,7 +55,7 @@ public class P_FlameThrower : ProjectileBehaviour
 
                 if (Vector3.Angle(transform.forward, direction) < (fireAngle * 0.5f))
                 {
-                    collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage());
+                    collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
                 }
             }
             yield return new WaitForSeconds(tick);

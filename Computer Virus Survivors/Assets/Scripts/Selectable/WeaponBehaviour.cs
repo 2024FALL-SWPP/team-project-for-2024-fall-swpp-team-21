@@ -40,6 +40,10 @@ public abstract class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     [SerializeField]
     private int initialAddiCritPoint;    // 기본 치명타 공격 대미지 배율
 
+    [Header("넉백 시간(float)")]
+    [SerializeField]
+    private float knockbackTime;    // 넉백 시간
+
 
 
 
@@ -193,6 +197,8 @@ public abstract class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
         BasicAttackRange = initialAttackRange;
         BasicAdditionalCritProbability = initialAddiCritProbability;
         BasicAdditionalCritPoint = initialAddiCritPoint;
+
+        finalWeaponData.knockbackTime = knockbackTime;
     }
 
 

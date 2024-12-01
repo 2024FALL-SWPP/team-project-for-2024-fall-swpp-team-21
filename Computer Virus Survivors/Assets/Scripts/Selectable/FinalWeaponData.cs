@@ -8,6 +8,7 @@ public class FinalWeaponData
     public float attackRange;   // 최종 공격 범위
     public int critPoint;       // 최종 치명타 공격 대미지 배율
     public int critProbability;  // 최종 치명타 공격 확률
+    public float knockbackTime; // 넉백 시간
 
     // 치명타 여부를 판단하고 최종 공격력을 반환
     public int GetFinalDamage()
