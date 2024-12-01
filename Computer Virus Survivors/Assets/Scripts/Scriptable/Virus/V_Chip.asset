@@ -19,3 +19,4 @@ MonoBehaviour:
     dropElements: []
   dropExp: 100
   contactDamage: 5
+  knockbackSpeed: 10

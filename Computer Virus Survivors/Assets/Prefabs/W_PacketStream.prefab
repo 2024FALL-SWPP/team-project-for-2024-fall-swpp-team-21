@@ -118,11 +118,12 @@ MonoBehaviour:
     10 \uC99D\uAC00"
   projectilePoolType: 14
   initialDamage: 10
-  initialMultiProjectile: 1
+  initialMultiProjectile: 2
   initialAttackPeriod: 0.5
   initialAttackRange: 0
-  initialAddiCritProbability: 0
-  initialAddiCritPoint: 0
+  initialAddiCritProbability: 5
+  initialAddiCritPoint: 200
+  knockbackTime: 0.1
   muzzle: {fileID: 4708726180739756513}
   fluctuationRadius: 0.3
 --- !u!1 &3432674243412946918

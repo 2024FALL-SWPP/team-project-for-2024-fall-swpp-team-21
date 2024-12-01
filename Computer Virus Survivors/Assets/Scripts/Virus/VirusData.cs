@@ -23,4 +23,6 @@ public class VirusData : ScriptableObject
     [Header("접촉시 데미지")]
     [SerializeField] public int contactDamage;
 
+    [Header("넉백 속도")]
+    [SerializeField] public float knockbackSpeed;
 }

@@ -15,6 +15,7 @@ public class VirusBehaviour : MonoBehaviour
 
 
     protected int currentHP;
+    private float knockbackTime = 0f;
 
     protected virtual void Start()
     {
@@ -26,19 +27,28 @@ public class VirusBehaviour : MonoBehaviour
     protected virtual void OnEnable()
     {
         currentHP = virusData.maxHP;
+        knockbackTime = 0f;
     }
 
 
     protected void Move()
     {
 #if !WEAPON_LAB
-        Vector3 moveDirection = Vector3.ProjectOnPlane(
-            (player.transform.position - transform.position).normalized,
-            Vector3.up);
-        //transform.Translate(virusData.moveSpeed * Time.deltaTime * moveDirection, Space.World);
-        rb.MovePosition(transform.position + virusData.moveSpeed * Time.deltaTime * moveDirection);
-        //transform.rotation = Quaternion.LookRotation(moveDirection);
-        rb.MoveRotation(Quaternion.LookRotation(moveDirection));
+        if (knockbackTime <= 0)
+        {
+            Vector3 moveDirection = Vector3.ProjectOnPlane(
+                (player.transform.position - transform.position).normalized,
+                Vector3.up);
+            //transform.Translate(virusData.moveSpeed * Time.deltaTime * moveDirection, Space.World);
+            rb.MovePosition(transform.position + virusData.moveSpeed * Time.fixedDeltaTime * moveDirection);
+            //transform.rotation = Quaternion.LookRotation(moveDirection);
+            rb.MoveRotation(Quaternion.LookRotation(moveDirection));
+        }
+        else // Knockback
+        {
+            rb.MovePosition(transform.position + virusData.knockbackSpeed * Time.fixedDeltaTime * -transform.forward);
+            knockbackTime = Math.Max(knockbackTime - Time.fixedDeltaTime, 0);
+        }
 #endif
     }
 
@@ -67,7 +77,7 @@ public class VirusBehaviour : MonoBehaviour
         return transform.position + new Vector3(circlePoint.x, 0, circlePoint.y).normalized * randomRadius;
     }
 
-    public void GetDamage(int damage)
+    public void GetDamage(int damage, float knockbackTime = 0)
     {
         if (damage != 0)
         {
@@ -79,7 +89,10 @@ public class VirusBehaviour : MonoBehaviour
             {
                 Die();
             }
-
+            else if (virusData.knockbackSpeed > 0)
+            {
+                this.knockbackTime += knockbackTime;
+            }
         }
     }
 

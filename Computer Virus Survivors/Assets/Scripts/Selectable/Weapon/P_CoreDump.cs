@@ -47,7 +47,7 @@ public class P_CoreDump : PlayerProjectileBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, dumpRadius, virusLayer);
         foreach (Collider collider in colliders)
         {
-            collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage());
+            collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
         }
         yield return new WaitForSeconds(1.0f);
         PoolManager.instance.ReturnObject(PoolType.Proj_CoreDump, gameObject);
