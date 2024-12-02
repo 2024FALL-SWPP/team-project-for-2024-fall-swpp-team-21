@@ -173,6 +173,7 @@ public class MainSceneCanvasManager : Singleton<MainSceneCanvasManager>
             rect.anchorMin = new Vector2(0, 0);
             rect.offsetMax = new Vector2(0, 0);
             rect.offsetMin = new Vector2(0, 0);
+            rect.localScale = Vector3.one;
             Image image = fadeImage.GetComponent<Image>();
             image.color = new Color(0, 0, 0, 0);
             fadeImage.transform.SetAsFirstSibling();

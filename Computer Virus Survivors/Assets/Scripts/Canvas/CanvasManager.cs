@@ -200,6 +200,7 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
             rect.anchorMin = new Vector2(0, 0);
             rect.offsetMax = new Vector2(0, 0);
             rect.offsetMin = new Vector2(0, 0);
+            rect.localScale = Vector3.one;
             Image image = fadeImage.GetComponent<Image>();
             image.color = new Color(0, 0, 0, 1);
             fadeImage.transform.SetAsFirstSibling();
