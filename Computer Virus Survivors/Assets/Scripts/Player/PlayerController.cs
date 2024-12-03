@@ -117,7 +117,8 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        // TODO: Game Over
+        statEventCaller.ClearSubscribers();
+        GameManager.instance.GameOver();
     }
 
     public void GetDamage(int damage)
