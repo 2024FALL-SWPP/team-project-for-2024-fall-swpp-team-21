@@ -164,10 +164,10 @@ public class V_Ransomware : VirusBehaviour
         }
     }
 
-    protected override void Die()
+    protected override void Die(string weaponName = null)
     {
         // TODO: Die animation
-        PoolManager.instance.ReturnObject(virusData.poolType, gameObject);
+        base.Die(weaponName);
         GameManager.instance.GameClear();
     }
 }

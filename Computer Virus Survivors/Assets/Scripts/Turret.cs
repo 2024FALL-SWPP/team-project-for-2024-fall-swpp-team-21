@@ -29,11 +29,6 @@ public class Turret : VirusBehaviour
         StartCoroutine(GoUp());
     }
 
-    protected override void Die()
-    {
-        PoolManager.instance.ReturnObject(virusData.poolType, gameObject);
-    }
-
     // 밑에서 지상으로 올라옴
     private IEnumerator GoUp()
     {

@@ -160,7 +160,7 @@ public abstract class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// <summary>
     /// 최종 값
     /// </summary>
-    /// 
+    ///
     // protected int finalDamage { get; private set; }  // 최종 공격력
     // protected int finalMultiProjectile { get; private set; } // 최종 다중 발사체 수
     // protected float finalAttackPeriod { get; private set; }  // 최종 공격 주기
@@ -199,6 +199,9 @@ public abstract class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
         BasicAdditionalCritPoint = initialAddiCritPoint;
 
         finalWeaponData.knockbackTime = knockbackTime;
+        finalWeaponData.weaponName = ObjectName;
+        finalWeaponData.stat_totalDamage = 0;
+        finalWeaponData.stat_killcount = 0;
     }
 
 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class VirusBehaviour : MonoBehaviour
 {
 
-    public event Action<VirusBehaviour> OnDie;
+    public event Action<VirusDieEventArgs> OnDie;
 
     [SerializeField] protected VirusData virusData;
     protected GameObject player;
@@ -52,9 +52,9 @@ public class VirusBehaviour : MonoBehaviour
 #endif
     }
 
-    protected virtual void Die()
+    protected virtual void Die(string weaponName = null)
     {
-        OnDie?.Invoke(this);
+        OnDie?.Invoke(new VirusDieEventArgs(weaponName, this));
 
         if (virusData.dropExp > 0)
         {
@@ -77,7 +77,12 @@ public class VirusBehaviour : MonoBehaviour
         return transform.position + new Vector3(circlePoint.x, 0, circlePoint.y).normalized * randomRadius;
     }
 
-    public void GetDamage(int damage, float knockbackTime = 0)
+    public void GetDamage(DamageData damageData)
+    {
+        GetDamage(damageData.finalDamage, damageData.knockbackTime, damageData.weaponName);
+    }
+
+    public void GetDamage(int damage, float knockbackTime = 0, string weaponName = null)
     {
         if (damage != 0)
         {
@@ -87,7 +92,7 @@ public class VirusBehaviour : MonoBehaviour
                 .GetComponent<DamageIndicator>().Initialize(damage, transform.position);
             if (currentHP <= 0)
             {
-                Die();
+                Die(weaponName);
             }
             else if (virusData.knockbackSpeed > 0)
             {
@@ -150,5 +155,17 @@ public class DropTable
     public bool IsEmpty()
     {
         return dropElements.Length == 0;
+    }
+}
+
+public class VirusDieEventArgs
+{
+    public string weaponName;
+    public VirusBehaviour sender;
+
+    public VirusDieEventArgs(string weaponName, VirusBehaviour sender)
+    {
+        this.weaponName = weaponName;
+        this.sender = sender;
     }
 }

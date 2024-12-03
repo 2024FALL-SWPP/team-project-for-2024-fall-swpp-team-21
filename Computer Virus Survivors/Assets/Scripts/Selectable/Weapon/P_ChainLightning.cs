@@ -88,7 +88,9 @@ public class P_ChainLightning : PlayerProjectileBehaviour
         hitEffect.transform.position = chainAnim.EndPosition;
         hitEffect.Play();
         animator.SetBool("LightOn_b", true);
-        targetVirus.GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
+
+        // targetVirus.GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
+        targetVirus.GetDamage(finalWeaponData.GetDamageData());
         yield return new WaitForSeconds(chainDuration);
         animator.SetBool("LightOn_b", false);
 
@@ -172,7 +174,7 @@ public class ChainLightningMarker : MonoBehaviour
         this.chainID.Remove(chainID);
     }
 
-    public void OnVirusDied(VirusBehaviour virus)
+    public void OnVirusDied(VirusDieEventArgs virusDieEventArgs)
     {
         StopAllCoroutines();
         chainID.Clear();
