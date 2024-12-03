@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2048844315129647144
+--- !u!1 &8802164690623530422
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1667780607105682066}
-  - component: {fileID: 2344966061731792183}
-  - component: {fileID: 535375836397580797}
+  - component: {fileID: 8172980588230893324}
+  - component: {fileID: 4389613477706047733}
+  - component: {fileID: 8567812383522294105}
   m_Layer: 0
   m_Name: Virus_Adware
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1667780607105682066
+--- !u!4 &8172980588230893324
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2048844315129647144}
+  m_GameObject: {fileID: 8802164690623530422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,21 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2344966061731792183
-MeshFilter:
+--- !u!137 &4389613477706047733
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2048844315129647144}
-  m_Mesh: {fileID: -8136279419178345350, guid: 939fb8eb4295c1e40b30dd84906e04c9, type: 3}
---- !u!23 &535375836397580797
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2048844315129647144}
+  m_GameObject: {fileID: 8802164690623530422}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -56,14 +48,14 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 3
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5125955998383885961, guid: 939fb8eb4295c1e40b30dd84906e04c9, type: 3}
-  - {fileID: -9103484930961366303, guid: 939fb8eb4295c1e40b30dd84906e04c9, type: 3}
-  - {fileID: -2998385779178818937, guid: 939fb8eb4295c1e40b30dd84906e04c9, type: 3}
+  - {fileID: -2998385779178818937, guid: ebe6302d4e7ef704d865a03d0bf18dc9, type: 3}
+  - {fileID: 5125955998383885961, guid: ebe6302d4e7ef704d865a03d0bf18dc9, type: 3}
+  - {fileID: -9103484930961366303, guid: ebe6302d4e7ef704d865a03d0bf18dc9, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,4 +76,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 1
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -8136279419178345350, guid: ebe6302d4e7ef704d865a03d0bf18dc9, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.010731578, y: 0.92555964, z: -0.038910374}
+    m_Extent: {x: 0.568119, y: 0.9321413, z: 0.44810057}
+  m_DirtyAABB: 0
+--- !u!95 &8567812383522294105
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8802164690623530422}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 02929cd0ac4f46f45af501bfa38ee0ef, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
