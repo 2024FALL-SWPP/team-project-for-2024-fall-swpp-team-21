@@ -65,10 +65,17 @@ public class PlayerGUI : MonoBehaviour, IPlayerStatObserver
     [SerializeField] private PlayerStatEventCaller playerStatEventCaller;
     [SerializeField] private HPGroup hpGroup;
     [SerializeField] private EXPGroup expGroup;
+    [SerializeField] private TextMeshProUGUI gameTime;
 
     public void Initialize()
     {
         playerStatEventCaller.StatChangedHandler += OnStatChanged;
+    }
+
+    private void Update()
+    {
+        float time = GameManager.instance.gameTime;
+        gameTime.text = $"{(int) time / 60}:{(int) time % 60}";
     }
 
 
