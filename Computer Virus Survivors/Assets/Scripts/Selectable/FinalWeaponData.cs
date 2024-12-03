@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class FinalWeaponData
@@ -20,12 +21,19 @@ public class FinalWeaponData
         return damage * (IsCritical() ? critPoint : 100) / 100;
     }
 
+    public DamageData GetDamageData()
+    {
         return new DamageData(this);
     }
 
     private bool IsCritical()
     {
-        return Random.Range(0, 100) < critProbability;
+        return UnityEngine.Random.Range(0, 100) < critProbability;
+    }
+
+    public void IncrementKillCount()
+    {
+        stat_killcount++;
     }
 
 }
@@ -36,6 +44,8 @@ public class DamageData
     public int finalDamage;
     public float knockbackTime;
     public string weaponName;
+    public bool isCritical;
+    public Action incrementKillCount;
 
     public DamageData(FinalWeaponData finalWeaponData)
     {
@@ -43,5 +53,9 @@ public class DamageData
         this.knockbackTime = finalWeaponData.knockbackTime;
         this.weaponName = finalWeaponData.weaponName;
         finalWeaponData.stat_totalDamage += finalDamage;
+        isCritical = finalDamage > finalWeaponData.damage;
+        incrementKillCount = finalWeaponData.IncrementKillCount;
     }
+
+
 }
