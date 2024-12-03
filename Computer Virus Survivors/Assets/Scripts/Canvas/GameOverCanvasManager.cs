@@ -13,35 +13,38 @@ public class GameOverCanvasManager : Singleton<GameOverCanvasManager>, IState
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gotoHomeBtn;
 
-    private TextMeshProUGUI youdiedText;
-    private Image gameoverImage;
-    private Color textColor;
+    // private TextMeshProUGUI youdiedText;
+    // private Image gameoverImage;
+    // private Color textColor;
+
+    private Animator animator;
 
     public override void Initialize()
     {
-        gameoverImage = gameOverPanel.GetComponent<Image>();
-        youdiedText = gameOverPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        textColor = youdiedText.color;
+        animator = GetComponent<Animator>();
+        // gameoverImage = gameOverPanel.GetComponent<Image>();
+        // youdiedText = gameOverPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        // textColor = youdiedText.color;
         gotoHomeBtn.SetActive(false);
         gameObject.SetActive(false);
     }
 
-    private IEnumerator ShowYouDied()
-    {
-        float timeElapsed = 0f;
-        while (timeElapsed < 1f)
-        {
-            timeElapsed += Time.unscaledDeltaTime;
+    // private IEnumerator ShowYouDied()
+    // {
+    //     float timeElapsed = 0f;
+    //     while (timeElapsed < 1f)
+    //     {
+    //         timeElapsed += Time.unscaledDeltaTime;
 
-            gameoverImage.color = new Color(0, 0, 0, timeElapsed);
-            youdiedText.color = new Color(textColor.r, textColor.g, textColor.b, timeElapsed);
-            yield return null;
-        }
+    //         gameoverImage.color = new Color(0, 0, 0, timeElapsed);
+    //         youdiedText.color = new Color(textColor.r, textColor.g, textColor.b, timeElapsed);
+    //         yield return null;
+    //     }
 
-        yield return new WaitForSecondsRealtime(1f);
+    //     yield return new WaitForSecondsRealtime(1f);
 
-        ShowGotoHomeBtn();
-    }
+    //     ShowGotoHomeBtn();
+    // }
 
     private void ShowGotoHomeBtn()
     {
@@ -56,7 +59,8 @@ public class GameOverCanvasManager : Singleton<GameOverCanvasManager>, IState
     public void OnEnter()
     {
         transform.SetAsLastSibling();
-        StartCoroutine(ShowYouDied());
+        // StartCoroutine(ShowYouDied());
+        animator.SetBool("b_GameOver", true);
     }
 
     public void OnExit()
