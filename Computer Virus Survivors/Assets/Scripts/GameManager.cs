@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
+    public event Action GameOverHandler;
 
-    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject playerPrefab;
+
+    private GameObject player;
 
     public float gameTime = 0;
     public GameObject Player
@@ -15,6 +19,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+        player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         Application.targetFrameRate = -1;
         Initialize();
         CanvasManager.instance.GameStart();
@@ -53,8 +58,7 @@ public class GameManager : Singleton<GameManager>
     public void GameOver()
     {
         Debug.Log("GameOver");
-        Time.timeScale = 0;
-        // TODO
+        GameOverHandler?.Invoke();
     }
 
     public void GameClear()

@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public interface IState
@@ -20,6 +22,7 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
     [SerializeField] private ItemSelectCanvasManager itemSelectCanvas;
     [SerializeField] private PauseCanvas pauseCanvas;
     [SerializeField] private PlayerGUI playerGUI;
+    [SerializeField] private GameOverCanvasManager gameOverCanvas;
 
     private ReadyState readyState;
     private IState playingState;
@@ -36,6 +39,7 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
         itemSelectCanvas.Initialize();
         pauseCanvas.Initialize();
         playerGUI.Initialize();
+        gameOverCanvas.Initialize();
 
         playerStatEventCaller.StatChangedHandler += OnStatChanged;
         itemSelectCanvas.SelectionHandler += (selectableBehaviour) =>
@@ -46,11 +50,19 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
         {
             StateMachine(Signal.OnResumeClicked);
         };
+        gameOverCanvas.GotoHomeBtnHandler += () =>
+        {
+            StateMachine(Signal.GotoMainClicked);
+        };
+        GameManager.instance.GameOverHandler += () =>
+        {
+            StateMachine(Signal.GameOver);
+        };
 
         playingState = new PlayingState();
         itemSelectState = itemSelectCanvas;
         pausedState = pauseCanvas;
-        // TODO : gameOverState 초기화
+        gameOverState = gameOverCanvas;
         currentState = readyState;
         isItemSelecting = false;
     }
@@ -69,7 +81,8 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
         GameOver,
         OnPauseClicked,
         OnResumeClicked,
-        OnItemSelectDone
+        OnItemSelectDone,
+        GotoMainClicked
     }
 
     public void OnPauseBtnClicked()
@@ -117,9 +130,10 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
                     isItemSelecting = true;
                     SetState(itemSelectState);
                     break;
-                // case Signal.GameOver:
-                //     SetState(gameOverState);
-                //     break;
+                case Signal.GameOver:
+                    gameOverCanvas.gameObject.SetActive(true);
+                    SetState(gameOverState);
+                    break;
                 case Signal.OnPauseClicked:
                     pauseCanvas.gameObject.SetActive(true);
                     SetState(pausedState);
@@ -164,10 +178,19 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
                     //     throw new Exception("Unresolved Signal : " + nameof(signal));
             }
         }
-        // else if (currentState == gameOverState)
-        // {
-        //     // TODO : GameOverState에서의 Signal 처리
-        // }
+        else if (currentState == gameOverState)
+        {
+            switch (signal)
+            {
+                case Signal.GotoMainClicked:
+                    StartCoroutine(readyState.FadeOut(() =>
+                    {
+                        Time.timeScale = 1;
+                        SceneManager.LoadScene("MainScene");
+                    }));
+                    break;
+            }
+        }
     }
 
     private class PlayingState : IState
@@ -193,17 +216,29 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
 
         public void Initialize()
         {
-            fadeImage = new GameObject("FadeImage", typeof(Image));
-            fadeImage.transform.SetParent(CanvasManager.instance.transform);
-            RectTransform rect = fadeImage.GetComponent<RectTransform>();
+            Canvas canvas = new GameObject("FadeCanvas", typeof(Canvas)).GetComponent<Canvas>();
+            canvas.transform.SetParent(CanvasManager.instance.transform);
+            canvas.overrideSorting = true;
+            canvas.sortingOrder = 100;
+            RectTransform rect = canvas.GetComponent<RectTransform>();
             rect.anchorMax = new Vector2(1, 1);
             rect.anchorMin = new Vector2(0, 0);
             rect.offsetMax = new Vector2(0, 0);
             rect.offsetMin = new Vector2(0, 0);
             rect.localScale = Vector3.one;
+
+            fadeImage = new GameObject("FadeImage", typeof(Image));
+            fadeImage.transform.SetParent(canvas.transform);
+            rect = fadeImage.GetComponent<RectTransform>();
+            rect.anchorMax = new Vector2(1, 1);
+            rect.anchorMin = new Vector2(0, 0);
+            rect.offsetMax = new Vector2(0, 0);
+            rect.offsetMin = new Vector2(0, 0);
+            rect.localScale = Vector3.one;
+
             Image image = fadeImage.GetComponent<Image>();
             image.color = new Color(0, 0, 0, 1);
-            fadeImage.transform.SetAsFirstSibling();
+            canvas.transform.SetAsFirstSibling();
             gameObject.SetActive(true);
         }
 
@@ -213,10 +248,23 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
             Image image = fadeImage.GetComponent<Image>();
             while (elpasedTime < fadeTime)
             {
-                elpasedTime += Time.deltaTime;
+                elpasedTime += Time.unscaledDeltaTime;
                 image.color = new Color(0, 0, 0, 1 - elpasedTime);
                 yield return null;
             }
+        }
+
+        public IEnumerator FadeOut(Action callback)
+        {
+            float elpasedTime = 0;
+            Image image = fadeImage.GetComponent<Image>();
+            while (elpasedTime < fadeTime)
+            {
+                elpasedTime += Time.unscaledDeltaTime;
+                image.color = new Color(0, 0, 0, elpasedTime);
+                yield return null;
+            }
+            callback();
         }
 
         public void OnEnter()
