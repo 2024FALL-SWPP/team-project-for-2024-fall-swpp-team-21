@@ -150,9 +150,9 @@ public class SpawnManager : Singleton<SpawnManager>
         return new Vector2(x, y);
     }
 
-    public void OnVirusDestroyed(VirusDieEventArgs virusDieEventArgs)
+    public void OnVirusDestroyed(VirusBehaviour virus)
     {
-        virusDieEventArgs.sender.OnDie -= OnVirusDestroyed;
+        virus.OnDie -= OnVirusDestroyed;
         currentVirusNum--;  // synchronization issue?
     }
 

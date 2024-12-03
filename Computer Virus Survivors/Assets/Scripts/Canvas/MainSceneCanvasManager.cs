@@ -75,6 +75,8 @@ public class MainSceneCanvasManager : Singleton<MainSceneCanvasManager>
         playingState.Initialize();
 
         currentState = titleSceneCanvas;
+
+        StartCoroutine(((PlayingState) playingState).FadeIn());
     }
 
 
@@ -166,18 +168,42 @@ public class MainSceneCanvasManager : Singleton<MainSceneCanvasManager>
 
         public override void Initialize()
         {
-            fadeImage = new GameObject("FadeImage", typeof(Image));
-            fadeImage.transform.SetParent(MainSceneCanvasManager.instance.transform);
-            RectTransform rect = fadeImage.GetComponent<RectTransform>();
+            // fadeImage = new GameObject("FadeImage", typeof(Image));
+            // fadeImage.transform.SetParent(MainSceneCanvasManager.instance.transform);
+            // RectTransform rect = fadeImage.GetComponent<RectTransform>();
+            // rect.anchorMax = new Vector2(1, 1);
+            // rect.anchorMin = new Vector2(0, 0);
+            // rect.offsetMax = new Vector2(0, 0);
+            // rect.offsetMin = new Vector2(0, 0);
+            // rect.localScale = Vector3.one;
+            // Image image = fadeImage.GetComponent<Image>();
+            // image.color = new Color(0, 0, 0, 0);
+            // fadeImage.transform.SetAsFirstSibling();
+            // gameObject.SetActive(false);
+            Canvas canvas = new GameObject("FadeCanvas", typeof(Canvas)).GetComponent<Canvas>();
+            canvas.transform.SetParent(MainSceneCanvasManager.instance.transform);
+            canvas.overrideSorting = true;
+            canvas.sortingOrder = 100;
+            RectTransform rect = canvas.GetComponent<RectTransform>();
             rect.anchorMax = new Vector2(1, 1);
             rect.anchorMin = new Vector2(0, 0);
             rect.offsetMax = new Vector2(0, 0);
             rect.offsetMin = new Vector2(0, 0);
             rect.localScale = Vector3.one;
+
+            fadeImage = new GameObject("FadeImage", typeof(Image));
+            fadeImage.transform.SetParent(canvas.transform);
+            rect = fadeImage.GetComponent<RectTransform>();
+            rect.anchorMax = new Vector2(1, 1);
+            rect.anchorMin = new Vector2(0, 0);
+            rect.offsetMax = new Vector2(0, 0);
+            rect.offsetMin = new Vector2(0, 0);
+            rect.localScale = Vector3.one;
+
             Image image = fadeImage.GetComponent<Image>();
-            image.color = new Color(0, 0, 0, 0);
-            fadeImage.transform.SetAsFirstSibling();
-            gameObject.SetActive(false);
+            image.color = new Color(0, 0, 0, 1);
+            canvas.transform.SetAsFirstSibling();
+            gameObject.SetActive(true);
         }
 
         public override void OnEnter()
@@ -193,10 +219,23 @@ public class MainSceneCanvasManager : Singleton<MainSceneCanvasManager>
             while (elpasedTime < fadeTime)
             {
                 elpasedTime += Time.deltaTime;
-                image.color = new Color(0, 0, 0, elpasedTime / 2f);
+                image.color = new Color(0, 0, 0, elpasedTime / fadeTime);
                 yield return null;
             }
             SceneManager.LoadScene(MainSceneCanvasManager.instance.GetSelectedStageName());
+        }
+
+        public IEnumerator FadeIn()
+        {
+            float elpasedTime = 0;
+            Image image = fadeImage.GetComponent<Image>();
+            yield return new WaitForSeconds(2.0f);
+            while (elpasedTime < fadeTime)
+            {
+                elpasedTime += Time.deltaTime;
+                image.color = new Color(0, 0, 0, 1 - elpasedTime / fadeTime);
+                yield return null;
+            }
         }
 
         public override void OnExit()

@@ -8,9 +8,10 @@ public class DamageIndicator : MonoBehaviour
     [SerializeField] private float displayDuration = 1f;
     [SerializeField] private float moveupSpeed = 0.3f;
     [SerializeField] private static Vector3 offset = new Vector3(0, 1, 0);
+    [SerializeField] private Material[] materials = new Material[2];
+
     private Vector3 worldPosition;
     private RectTransform rectTransform;
-
     private void OnEnable()
     {
         if (textMesh == null)
@@ -20,23 +21,26 @@ public class DamageIndicator : MonoBehaviour
         }
     }
 
-    public void Initialize(int damage, Vector3 virusPosition)
+    public void Initialize(int damage, Vector3 virusPosition, bool isCritical = false)
     {
         worldPosition = virusPosition + offset;
-        SetDamage(damage);
+        SetDamage(damage, isCritical);
         transform.SetParent(CanvasManager.instance.transform);
     }
 
-    private void SetDamage(int damage)
+    private void SetDamage(int damage, bool isCritical)
     {
         textMesh.text = damage.ToString();
+        textMesh.fontMaterial = isCritical ? materials[1] : materials[0];
         StartCoroutine(DisplayDamage());
     }
 
     private IEnumerator DisplayDamage()
     {
         yield return new WaitForSeconds(displayDuration);
+
         PoolManager.instance.ReturnObject(PoolType.DamageIndicator, gameObject);
+
     }
 
     private void Update()

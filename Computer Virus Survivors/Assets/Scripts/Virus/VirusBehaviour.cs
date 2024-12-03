@@ -6,7 +6,7 @@ using UnityEngine;
 public class VirusBehaviour : MonoBehaviour
 {
 
-    public event Action<VirusDieEventArgs> OnDie;
+    public event Action<VirusBehaviour> OnDie;
 
     [SerializeField] protected VirusData virusData;
     protected GameObject player;
@@ -52,9 +52,9 @@ public class VirusBehaviour : MonoBehaviour
 #endif
     }
 
-    protected virtual void Die(string weaponName = null)
+    protected virtual void Die()
     {
-        OnDie?.Invoke(new VirusDieEventArgs(weaponName, this));
+        OnDie?.Invoke(this);
 
         if (virusData.dropExp > 0)
         {
@@ -77,26 +77,27 @@ public class VirusBehaviour : MonoBehaviour
         return transform.position + new Vector3(circlePoint.x, 0, circlePoint.y).normalized * randomRadius;
     }
 
+    // public void GetDamage(DamageData damageData)
+    // {
+    //     GetDamage(damageData.finalDamage, damageData.knockbackTime, damageData.weaponName);
+    // }
+
     public void GetDamage(DamageData damageData)
     {
-        GetDamage(damageData.finalDamage, damageData.knockbackTime, damageData.weaponName);
-    }
-
-    public void GetDamage(int damage, float knockbackTime = 0, string weaponName = null)
-    {
-        if (damage != 0)
+        if (damageData.finalDamage != 0)
         {
 
-            currentHP -= damage;
+            currentHP -= damageData.finalDamage;
             PoolManager.instance.GetObject(PoolType.DamageIndicator)
-                .GetComponent<DamageIndicator>().Initialize(damage, transform.position);
+                .GetComponent<DamageIndicator>().Initialize(damageData.finalDamage, transform.position, damageData.isCritical);
             if (currentHP <= 0)
             {
-                Die(weaponName);
+                damageData.incrementKillCount();
+                Die();
             }
             else if (virusData.knockbackSpeed > 0)
             {
-                this.knockbackTime += knockbackTime;
+                this.knockbackTime += damageData.knockbackTime;
             }
         }
     }
@@ -155,17 +156,5 @@ public class DropTable
     public bool IsEmpty()
     {
         return dropElements.Length == 0;
-    }
-}
-
-public class VirusDieEventArgs
-{
-    public string weaponName;
-    public VirusBehaviour sender;
-
-    public VirusDieEventArgs(string weaponName, VirusBehaviour sender)
-    {
-        this.weaponName = weaponName;
-        this.sender = sender;
     }
 }

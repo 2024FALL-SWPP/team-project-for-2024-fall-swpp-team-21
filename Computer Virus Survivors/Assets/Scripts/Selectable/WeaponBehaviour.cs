@@ -202,6 +202,8 @@ public abstract class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
         finalWeaponData.weaponName = ObjectName;
         finalWeaponData.stat_totalDamage = 0;
         finalWeaponData.stat_killcount = 0;
+
+        GameManager.instance.AddWeaponData(finalWeaponData);
     }
 
 

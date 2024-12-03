@@ -32,7 +32,7 @@ public enum PoolType
     VProj_DataBurst,
     DamageIndicator,
     Turret,
-    Virus_TrashCan
+    Virus_TrashCan,
 }
 
 public class PoolManager : Singleton<PoolManager>

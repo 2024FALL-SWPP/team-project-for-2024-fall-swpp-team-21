@@ -164,10 +164,10 @@ public class V_Ransomware : VirusBehaviour
         }
     }
 
-    protected override void Die(string weaponName = null)
+    protected override void Die()
     {
         // TODO: Die animation
-        base.Die(weaponName);
+        base.Die();
         GameManager.instance.GameClear();
     }
 }

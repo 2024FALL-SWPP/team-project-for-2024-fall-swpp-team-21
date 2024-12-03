@@ -174,7 +174,7 @@ public class ChainLightningMarker : MonoBehaviour
         this.chainID.Remove(chainID);
     }
 
-    public void OnVirusDied(VirusDieEventArgs virusDieEventArgs)
+    public void OnVirusDied(VirusBehaviour virus)
     {
         StopAllCoroutines();
         chainID.Clear();
