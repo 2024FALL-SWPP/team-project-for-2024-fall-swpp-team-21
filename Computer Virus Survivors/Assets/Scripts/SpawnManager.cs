@@ -71,15 +71,20 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         Vector3 spawnPosition = player.transform.position + new Vector3(x, 0, z);
 
-        GameObject virus = PoolManager.instance.GetObject
-        (
-            index,
-            spawnPosition,
-            Quaternion.LookRotation(player.transform.position - spawnPosition)
-        );
+        // GameObject virus = PoolManager.instance.GetObject
+        // (
+        //     index,
+        //     spawnPosition,
+        //     Quaternion.LookRotation(player.transform.position - spawnPosition)
+        // );
 
-        virus.GetComponent<VirusBehaviour>().OnDie += OnVirusDestroyed;
-        currentVirusNum++;  // synchronization issue?
+        // virus.GetComponent<VirusBehaviour>().OnDie += OnVirusDestroyed;
+
+        VirusSpawnFactory.instance.SpawnVirus(index, spawnPosition, (VirusBehaviour virus) =>
+        {
+            virus.OnDie += OnVirusDestroyed;
+            currentVirusNum++; // synchronization issue?
+        });
     }
 
 

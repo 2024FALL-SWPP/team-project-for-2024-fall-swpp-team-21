@@ -33,6 +33,7 @@ public enum PoolType
     DamageIndicator,
     Turret,
     Virus_TrashCan,
+    Virus_SpawnEffect
 }
 
 public class PoolManager : Singleton<PoolManager>
