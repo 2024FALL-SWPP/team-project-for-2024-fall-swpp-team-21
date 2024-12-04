@@ -75,7 +75,7 @@ public class PlayerGUI : MonoBehaviour, IPlayerStatObserver
     private void Update()
     {
         float time = GameManager.instance.gameTime;
-        gameTime.text = $"{(int) time / 60}:{(int) time % 60}";
+        gameTime.text = $"{((int) time / 60):D2}:{((int) time % 60):D2}";
     }
 
 
