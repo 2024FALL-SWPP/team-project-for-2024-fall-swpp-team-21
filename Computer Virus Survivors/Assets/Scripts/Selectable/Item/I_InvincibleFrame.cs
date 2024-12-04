@@ -1,4 +1,4 @@
-public class I_InvinsibleFrame : ItemBehaviour
+public class I_InvincibleFrame : ItemBehaviour
 {
 
     protected override void LevelUpEffect(int level)
