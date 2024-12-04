@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: V_Ransomware
   m_EditorClassIdentifier: 
   poolType: 13
-  maxHP: 90000
+  maxHP: 1
   moveSpeed: 1
+  dropTable:
+    dropElements: []
   dropExp: 0
   contactDamage: 90
+  knockbackSpeed: 0

@@ -122,7 +122,7 @@ MonoBehaviour:
   initialAttackPeriod: 0.5
   initialAttackRange: 0
   initialAddiCritProbability: 5
-  initialAddiCritPoint: 200
+  initialAddiCritPoint: 0
   knockbackTime: 0.1
   muzzle: {fileID: 4708726180739756513}
   fluctuationRadius: 0.3

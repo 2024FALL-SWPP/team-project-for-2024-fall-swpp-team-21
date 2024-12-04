@@ -96,6 +96,6 @@ MonoBehaviour:
   initialAttackPeriod: 3
   initialAttackRange: 2
   initialAddiCritProbability: 5
-  initialAddiCritPoint: 200
+  initialAddiCritPoint: 0
   knockbackTime: 0.1
   rotationCenter: {fileID: 1622876701}
