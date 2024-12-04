@@ -2655,6 +2655,9 @@ MonoBehaviour:
   - poolName: 26
     prefab: {fileID: 6193209051861997650, guid: a7a5dc3dce03d4a4b834923b828121fb, type: 3}
     initialPoolSize: 0
+  - poolName: 28
+    prefab: {fileID: 2420052466213075684, guid: 24ebce3db3c7d854482eb65877981a4e, type: 3}
+    initialPoolSize: 10
 --- !u!4 &454088697
 Transform:
   m_ObjectHideFlags: 0
