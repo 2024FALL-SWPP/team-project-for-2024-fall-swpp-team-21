@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject playerPrefab;
 
     private GameObject player;
+    private WeaponStatistics weaponStatistics;
 
     public float gameTime = 0;
     public GameObject Player
@@ -19,6 +20,9 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+
+        weaponStatistics = new WeaponStatistics();
+
         player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         Application.targetFrameRate = -1;
         Initialize();
@@ -76,5 +80,54 @@ public class GameManager : Singleton<GameManager>
             Time.timeScale = Mathf.Max(0, Time.timeScale - 0.1f);
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    public void AddWeaponData(FinalWeaponData weaponData)
+    {
+        weaponStatistics.AddWeaponData(weaponData);
+    }
+
+    public List<WeaponStatistic> GetWeaponStatistics()
+    {
+        return weaponStatistics.GetWeaponStatistics();
+    }
+
+    public class WeaponStatistics
+    {
+        private List<FinalWeaponData> weaponDatas;
+
+        public WeaponStatistics()
+        {
+            weaponDatas = new List<FinalWeaponData>();
+        }
+
+        public void AddWeaponData(FinalWeaponData weaponData)
+        {
+            weaponDatas.Add(weaponData);
+        }
+
+        public List<WeaponStatistic> GetWeaponStatistics()
+        {
+            List<WeaponStatistic> weaponStatistics = new List<WeaponStatistic>();
+            foreach (FinalWeaponData weaponData in weaponDatas)
+            {
+                weaponStatistics.Add(new WeaponStatistic(weaponData.weaponName, weaponData.stat_totalDamage, weaponData.stat_killcount));
+            }
+            return weaponStatistics;
+        }
+    }
+}
+
+public class WeaponStatistic
+{
+    public string weaponName;
+    public int totalDamage;
+    public int killCount;
+
+    public WeaponStatistic(string weaponName, int totalDamage, int killCount)
+    {
+        this.weaponName = weaponName;
+        this.totalDamage = totalDamage;
+        this.killCount = killCount;
     }
 }

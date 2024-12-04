@@ -39,7 +39,8 @@ public class P_VaccineRing : PlayerProjectileBehaviour
     {
         if (other.CompareTag("Virus"))
         {
-            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
+            // other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
+            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetDamageData());
         }
     }
 }

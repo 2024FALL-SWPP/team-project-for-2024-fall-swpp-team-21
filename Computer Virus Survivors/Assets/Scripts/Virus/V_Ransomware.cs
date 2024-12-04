@@ -167,7 +167,7 @@ public class V_Ransomware : VirusBehaviour
     protected override void Die()
     {
         // TODO: Die animation
-        PoolManager.instance.ReturnObject(virusData.poolType, gameObject);
+        base.Die();
         GameManager.instance.GameClear();
     }
 }

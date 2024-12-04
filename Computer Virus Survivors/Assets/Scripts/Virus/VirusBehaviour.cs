@@ -77,21 +77,27 @@ public class VirusBehaviour : MonoBehaviour
         return transform.position + new Vector3(circlePoint.x, 0, circlePoint.y).normalized * randomRadius;
     }
 
-    public void GetDamage(int damage, float knockbackTime = 0)
+    // public void GetDamage(DamageData damageData)
+    // {
+    //     GetDamage(damageData.finalDamage, damageData.knockbackTime, damageData.weaponName);
+    // }
+
+    public void GetDamage(DamageData damageData)
     {
-        if (damage != 0)
+        if (damageData.finalDamage != 0)
         {
 
-            currentHP -= damage;
+            currentHP -= damageData.finalDamage;
             PoolManager.instance.GetObject(PoolType.DamageIndicator)
-                .GetComponent<DamageIndicator>().Initialize(damage, transform.position);
+                .GetComponent<DamageIndicator>().Initialize(damageData.finalDamage, transform.position, damageData.isCritical);
             if (currentHP <= 0)
             {
+                damageData.incrementKillCount();
                 Die();
             }
             else if (virusData.knockbackSpeed > 0)
             {
-                this.knockbackTime += knockbackTime;
+                this.knockbackTime += damageData.knockbackTime;
             }
         }
     }

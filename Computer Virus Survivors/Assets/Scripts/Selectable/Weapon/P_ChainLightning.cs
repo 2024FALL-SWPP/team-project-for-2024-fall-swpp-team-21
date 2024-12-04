@@ -88,7 +88,9 @@ public class P_ChainLightning : PlayerProjectileBehaviour
         hitEffect.transform.position = chainAnim.EndPosition;
         hitEffect.Play();
         animator.SetBool("LightOn_b", true);
-        targetVirus.GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
+
+        // targetVirus.GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
+        targetVirus.GetDamage(finalWeaponData.GetDamageData());
         yield return new WaitForSeconds(chainDuration);
         animator.SetBool("LightOn_b", false);
 
