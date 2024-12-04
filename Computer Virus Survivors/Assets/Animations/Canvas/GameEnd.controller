@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GameOver
+  m_Name: GameEnd
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -32,10 +32,10 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GameOver
+  m_Name: GameEnd
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: b_GameOver
+  - m_Name: b_GameEnd
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0

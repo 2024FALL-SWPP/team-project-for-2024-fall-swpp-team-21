@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public event Action GameOverHandler;
-
+    public event Action GameClearHandler;
     [SerializeField] private GameObject playerPrefab;
 
     private GameObject player;
@@ -62,24 +62,33 @@ public class GameManager : Singleton<GameManager>
     public void GameOver()
     {
         Debug.Log("GameOver");
-        GameOverHandler?.Invoke();
+        player.GetComponent<PlayerController>().statEventCaller.ClearSubscribers();
+        StartCoroutine(TimeScaleSlowDown(() =>
+        {
+            GameOverHandler?.Invoke();
+        }));
     }
 
     public void GameClear()
     {
         Debug.Log("GameClear");
-        StartCoroutine(TimeScaleSlowDown());
-        // TODO: GameClear UI
+        player.GetComponent<PlayerController>().statEventCaller.ClearSubscribers();
+        StartCoroutine(TimeScaleSlowDown(() =>
+        {
+            GameClearHandler?.Invoke();
+        }));
+
     }
 
-    private IEnumerator TimeScaleSlowDown()
+    private IEnumerator TimeScaleSlowDown(Action callback)
     {
         // reduce time scale to 0
         while (Time.timeScale > 0)
         {
             Time.timeScale = Mathf.Max(0, Time.timeScale - 0.1f);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSecondsRealtime(0.1f);
         }
+        callback();
     }
 
     public void AddWeaponData(FinalWeaponData weaponData)
