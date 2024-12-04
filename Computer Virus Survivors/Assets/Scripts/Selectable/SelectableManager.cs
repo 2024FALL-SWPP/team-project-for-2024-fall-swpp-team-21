@@ -254,6 +254,10 @@ public class SelectableManager : Singleton<SelectableManager>
                 }
                 else if (prefab != null && prefab.GetComponent<ItemBehaviour>() != null)
                 {
+                    if (prefab.name == "I_ItemBase")
+                    {
+                        continue;
+                    }
                     manager.itemPrefabs.Add(prefab);
                 }
             }

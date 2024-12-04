@@ -24,7 +24,7 @@ MonoBehaviour:
   attackSpeed: 100
   attackRange: 100
   critProbability: 0
-  critPoint: 0
+  critPoint: 150
   expGainRatio: 100
   playerLevel: 1
   currentExp: 0
