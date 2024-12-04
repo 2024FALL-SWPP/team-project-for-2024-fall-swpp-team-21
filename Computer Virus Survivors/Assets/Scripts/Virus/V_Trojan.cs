@@ -20,6 +20,11 @@ public class V_Trojan : VirusBehaviour
         SpawnManager.instance.SpawnTurret();
     }
 
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     private void FixedUpdate()
     {
         if (!isAttacking)
