@@ -5,12 +5,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameOverCanvasManager : Singleton<GameOverCanvasManager>, IState
+public class GameEndCanvasManager : Singleton<GameEndCanvasManager>, IState
 {
 
     public event Action GotoHomeBtnHandler;
 
-    [SerializeField] private GameObject gameOverPanel;
+    // [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gotoHomeBtn;
     [SerializeField] private GameObject weaponStatisticsPanel;
     [SerializeField] private GameObject playerInfoPanel;
@@ -108,7 +108,7 @@ public class GameOverCanvasManager : Singleton<GameOverCanvasManager>, IState
     {
         transform.SetAsLastSibling();
         // StartCoroutine(ShowYouDied());
-        animator.SetBool("b_GameOver", true);
+        animator.SetBool("b_GameEnd", true);
         InitializeStatistics();
     }
 

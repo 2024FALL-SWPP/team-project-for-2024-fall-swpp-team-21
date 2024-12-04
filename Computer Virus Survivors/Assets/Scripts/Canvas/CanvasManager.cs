@@ -22,13 +22,15 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
     [SerializeField] private ItemSelectCanvasManager itemSelectCanvas;
     [SerializeField] private PauseCanvas pauseCanvas;
     [SerializeField] private PlayerGUI playerGUI;
-    [SerializeField] private GameOverCanvasManager gameOverCanvas;
+    [SerializeField] private GameEndCanvasManager gameOverCanvas;
+    [SerializeField] private GameEndCanvasManager gameClearCanvas;
 
     private ReadyState readyState;
     private IState playingState;
     private IState itemSelectState;
     private IState pausedState;
     private IState gameOverState;
+    private IState gameClearState;
     private IState currentState;
     private bool isItemSelecting;
 
@@ -40,6 +42,7 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
         pauseCanvas.Initialize();
         playerGUI.Initialize();
         gameOverCanvas.Initialize();
+        gameClearCanvas.Initialize();
 
         playerStatEventCaller.StatChangedHandler += OnStatChanged;
         itemSelectCanvas.SelectionHandler += (selectableBehaviour) =>
@@ -54,15 +57,24 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
         {
             StateMachine(Signal.GotoMainClicked);
         };
+        gameClearCanvas.GotoHomeBtnHandler += () =>
+        {
+            StateMachine(Signal.GotoMainClicked);
+        };
         GameManager.instance.GameOverHandler += () =>
         {
             StateMachine(Signal.GameOver);
+        };
+        GameManager.instance.GameClearHandler += () =>
+        {
+            StateMachine(Signal.GameClear);
         };
 
         playingState = new PlayingState();
         itemSelectState = itemSelectCanvas;
         pausedState = pauseCanvas;
         gameOverState = gameOverCanvas;
+        gameClearState = gameClearCanvas;
         currentState = readyState;
         isItemSelecting = false;
     }
@@ -79,6 +91,7 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
         GameStart,
         LevelUp,
         GameOver,
+        GameClear,
         OnPauseClicked,
         OnResumeClicked,
         OnItemSelectDone,
@@ -133,6 +146,10 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
                 case Signal.GameOver:
                     gameOverCanvas.gameObject.SetActive(true);
                     SetState(gameOverState);
+                    break;
+                case Signal.GameClear:
+                    gameClearCanvas.gameObject.SetActive(true);
+                    SetState(gameClearState);
                     break;
                 case Signal.OnPauseClicked:
                     pauseCanvas.gameObject.SetActive(true);
@@ -190,6 +207,20 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
                     }));
                     break;
             }
+        }
+        else if (currentState == gameClearState)
+        {
+            switch (signal)
+            {
+                case Signal.GotoMainClicked:
+                    StartCoroutine(readyState.FadeOut(() =>
+                    {
+                        Time.timeScale = 1;
+                        SceneManager.LoadScene("MainScene");
+                    }));
+                    break;
+            }
+
         }
     }
 
