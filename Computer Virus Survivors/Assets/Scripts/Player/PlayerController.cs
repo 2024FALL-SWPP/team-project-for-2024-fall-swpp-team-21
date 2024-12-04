@@ -117,7 +117,6 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        statEventCaller.ClearSubscribers();
         GameManager.instance.GameOver();
     }
 

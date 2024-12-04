@@ -62,6 +62,7 @@ public class GameManager : Singleton<GameManager>
     public void GameOver()
     {
         Debug.Log("GameOver");
+        player.GetComponent<PlayerController>().statEventCaller.ClearSubscribers();
         StartCoroutine(TimeScaleSlowDown(() =>
         {
             GameOverHandler?.Invoke();
@@ -71,6 +72,7 @@ public class GameManager : Singleton<GameManager>
     public void GameClear()
     {
         Debug.Log("GameClear");
+        player.GetComponent<PlayerController>().statEventCaller.ClearSubscribers();
         StartCoroutine(TimeScaleSlowDown(() =>
         {
             GameClearHandler?.Invoke();
