@@ -16,12 +16,14 @@ public class VirusBehaviour : MonoBehaviour
 
     protected int currentHP;
     private float knockbackTime = 0f;
+    private HitEffect hitEffect;
 
     protected virtual void Start()
     {
         player = GameManager.instance.Player;
         playerController = player.GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody>();
+        hitEffect = new HitEffect(gameObject);
     }
 
     protected virtual void OnEnable()
@@ -90,6 +92,7 @@ public class VirusBehaviour : MonoBehaviour
             currentHP -= damageData.finalDamage;
             PoolManager.instance.GetObject(PoolType.DamageIndicator)
                 .GetComponent<DamageIndicator>().Initialize(damageData.finalDamage, transform.position, damageData.isCritical);
+            hitEffect.Play();
             if (currentHP <= 0)
             {
                 damageData.incrementKillCount();
