@@ -10600,7 +10600,7 @@ MonoBehaviour:
     spawnRange: {x: 5, y: 10}
     spawnPoints: []
   - spawnTimeRange: {x: 60, y: 120}
-    spawnPeriod: 6
+    spawnPeriod: 5
     virusID: 9
     spawnMonsterNum: 2
     ignoreMaxVirusNum: 0
