@@ -2610,6 +2610,9 @@ MonoBehaviour:
   - poolName: 7
     prefab: {fileID: 1774318923070823006, guid: 4e65a992162678a42998d656634bfd64, type: 3}
     initialPoolSize: 10
+  - poolName: 9
+    prefab: {fileID: 1992768152550641778, guid: a0429e4b6303fff4899467b8d011bdd7, type: 3}
+    initialPoolSize: 10
   - poolName: 11
     prefab: {fileID: 5841041427378954025, guid: 201474e5e0f694042a381edadef11a79, type: 3}
     initialPoolSize: 0
@@ -2649,6 +2652,9 @@ MonoBehaviour:
   - poolName: 24
     prefab: {fileID: 9176116870765596754, guid: 7060b05f0a508d04b8633c72adff5c6b, type: 3}
     initialPoolSize: 0
+  - poolName: 29
+    prefab: {fileID: 4741988858553335623, guid: 908ed0f4324cc864e93e8afc317042b5, type: 3}
+    initialPoolSize: 10
   - poolName: 25
     prefab: {fileID: 7084631532191331932, guid: ba79151a99bf45541ae9e311f351d175, type: 3}
     initialPoolSize: 10
@@ -10573,7 +10579,7 @@ MonoBehaviour:
     ignoreMaxVirusNum: 0
     isSpawnPointRandom: 1
     offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 10, y: 15}
+    spawnRange: {x: 5, y: 10}
     spawnPoints: []
   - spawnTimeRange: {x: 25, y: 60}
     spawnPeriod: 2
@@ -10583,8 +10589,7 @@ MonoBehaviour:
     isSpawnPointRandom: 1
     offsetFromPlayer: {x: 0, y: 0}
     spawnRange: {x: 5, y: 10}
-    spawnPoints:
-    - {x: 0, y: 10}
+    spawnPoints: []
   - spawnTimeRange: {x: 60, y: 120}
     spawnPeriod: 3
     virusID: 5
@@ -10593,8 +10598,16 @@ MonoBehaviour:
     isSpawnPointRandom: 1
     offsetFromPlayer: {x: 0, y: 0}
     spawnRange: {x: 5, y: 10}
-    spawnPoints:
-    - {x: 0, y: 10}
+    spawnPoints: []
+  - spawnTimeRange: {x: 60, y: 120}
+    spawnPeriod: 5
+    virusID: 9
+    spawnMonsterNum: 2
+    ignoreMaxVirusNum: 0
+    isSpawnPointRandom: 1
+    offsetFromPlayer: {x: 0, y: 0}
+    spawnRange: {x: 10, y: 15}
+    spawnPoints: []
   - spawnTimeRange: {x: 120, y: 180}
     spawnPeriod: 2
     virusID: 6
@@ -10603,8 +10616,7 @@ MonoBehaviour:
     isSpawnPointRandom: 1
     offsetFromPlayer: {x: 0, y: 0}
     spawnRange: {x: 5, y: 10}
-    spawnPoints:
-    - {x: 0, y: 10}
+    spawnPoints: []
 --- !u!4 &2094598314
 Transform:
   m_ObjectHideFlags: 0

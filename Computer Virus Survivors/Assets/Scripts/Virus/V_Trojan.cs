@@ -11,8 +11,9 @@ public class V_Trojan : VirusBehaviour
     [SerializeField] private float dashDelay = 0.3f;
     [SerializeField] private float dashDuration = 0.5f;
 
+    private bool canAttack = false;
     private bool isAttacking = false;
-    private bool doNotTrack = false; // 공격 쿨타임 중에 있음
+    private float attackTimer = 0.0f;
 
     protected override void OnEnable()
     {
@@ -20,17 +21,33 @@ public class V_Trojan : VirusBehaviour
         SpawnManager.instance.SpawnTurret();
     }
 
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     private void FixedUpdate()
     {
         if (!isAttacking)
         {
-            Move();
-        }
+            if (canAttack && Vector3.Distance(player.transform.position, transform.position) < attackRange)
+            {
+                isAttacking = true;
+                StartCoroutine(AttackCoroutine());
+            }
+            else
+            {
+                Move();
 
-        if (!isAttacking && !doNotTrack && Vector3.Distance(player.transform.position, transform.position) < attackRange)
-        {
-            isAttacking = true;
-            StartCoroutine(AttackCoroutine());
+                if (!canAttack)
+                {
+                    attackTimer += Time.deltaTime;
+                    if (attackTimer >= attackPeriod)
+                    {
+                        canAttack = true;
+                    }
+                }
+            }
         }
 
         rb.velocity = Vector3.zero;
@@ -56,19 +73,14 @@ public class V_Trojan : VirusBehaviour
     // TODO: 애니메이션 이용해서 구현
     private IEnumerator AttackCoroutine()
     {
-        // Maybe only use x and z
-        if (Vector3.Distance(player.transform.position, transform.position) < attackRange)
-        {
-            Debug.Log("Trojan is attacking");
+        isAttacking = true;
+        canAttack = false;
 
-            yield return new WaitForSeconds(dashDelay); // 잠시 멈춤
-            yield return StartCoroutine(Dash(dashDuration)); // 대시
-            yield return new WaitForSeconds(dashDelay); // 잠시 멈춤
-            isAttacking = false;
+        yield return new WaitForSeconds(dashDelay); // 잠시 멈춤
+        yield return StartCoroutine(Dash(dashDuration)); // 대시
+        yield return new WaitForSeconds(dashDelay); // 잠시 멈춤
 
-            doNotTrack = true;
-            yield return new WaitForSeconds(attackPeriod);
-            doNotTrack = false;
-        }
+        attackTimer = 0.0f;
+        isAttacking = false;
     }
 }
