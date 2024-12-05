@@ -70,7 +70,13 @@ public class V_Ransomware : VirusBehaviour
     protected override void OnEnable()
     {
         base.OnEnable();
-        SpawnManager.instance.SpawnTurret();
+        startAttack = false;
+        // SpawnManager.instance.SpawnTurret();
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     private void FixedUpdate()

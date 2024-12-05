@@ -12,8 +12,14 @@ public class V_Adware : VirusBehaviour
     [SerializeField] private float projHeight;
 
     private bool canAttack = false;
-    // private bool isAttacking = false;
     private float attackTimer = 0.0f;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        canAttack = false;
+        attackTimer = 0.0f;
+    }
 
     private void FixedUpdate()
     {
