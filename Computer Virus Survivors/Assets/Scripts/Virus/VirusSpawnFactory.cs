@@ -24,23 +24,23 @@ public class VirusSpawnFactory : Singleton<VirusSpawnFactory>
 
     private IEnumerator SpawnStart(PoolType index, Vector3 position, Action<VirusBehaviour> callbackOnCreated)
     {
-        Vector3 effectOffset = new Vector3(0, 0.5f, 0);
-        VirusSpawnEffect spawnEffect = PoolManager.instance.GetObject(PoolType.Virus_SpawnEffect, position + effectOffset, Quaternion.identity).GetComponent<VirusSpawnEffect>();
-        float spawnDuration = spawnEffect.GetComponent<ParticleSystem>().main.duration;
-
-        yield return new WaitForSeconds(spawnDuration / 2f);
-
-        Spawn(index, position, callbackOnCreated);
-    }
-
-    private void Spawn(PoolType index, Vector3 position, Action<VirusBehaviour> callbackOnCreated)
-    {
         VirusBehaviour virus = PoolManager.instance.GetObject
         (
             index,
             position,
             Quaternion.identity
         ).GetComponent<VirusBehaviour>();
+        float virusSize = virus.GetVirusSize();
+
+        virus.gameObject.SetActive(false);
+
+        VirusSpawnEffect spawnEffect = PoolManager.instance.GetObject(PoolType.Virus_SpawnEffect, position, Quaternion.identity).GetComponent<VirusSpawnEffect>();
+
+        spawnEffect.SetVirusSize(virusSize);
+
+        yield return spawnEffect.PlayAndWaitUntilEffectPeak();
+
+        virus.gameObject.SetActive(true);
 
         callbackOnCreated(virus);
 
