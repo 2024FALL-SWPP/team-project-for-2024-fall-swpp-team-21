@@ -8,11 +8,14 @@ public class VP_Mail : VirusProjectileBehaviour
     private float speed;
     private Vector3 direction;
 
-    public void Initialize(int damage, float speed, Vector3 direction)
+    public void Initialize(int damage, float speed, Vector3 direction, float height)
     {
         base.Initialize(damage);
         this.speed = speed;
         this.direction = direction;
+
+        SphereCollider collider = GetComponent<SphereCollider>();
+        collider.center = new Vector3(collider.center.x, -height, collider.center.z);
     }
 
     private void Update()

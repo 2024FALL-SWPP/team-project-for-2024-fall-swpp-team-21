@@ -10573,13 +10573,13 @@ MonoBehaviour:
     spawnPoints:
     - {x: 0, y: 10}
   - spawnTimeRange: {x: 0, y: 30}
-    spawnPeriod: 5
+    spawnPeriod: 1
     virusID: 5
     spawnMonsterNum: 2
     ignoreMaxVirusNum: 0
     isSpawnPointRandom: 1
     offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 10, y: 15}
+    spawnRange: {x: 5, y: 10}
     spawnPoints: []
   - spawnTimeRange: {x: 25, y: 60}
     spawnPeriod: 2
@@ -10589,18 +10589,25 @@ MonoBehaviour:
     isSpawnPointRandom: 1
     offsetFromPlayer: {x: 0, y: 0}
     spawnRange: {x: 5, y: 10}
-    spawnPoints:
-    - {x: 0, y: 10}
+    spawnPoints: []
   - spawnTimeRange: {x: 60, y: 120}
-    spawnPeriod: 4
+    spawnPeriod: 3
+    virusID: 5
+    spawnMonsterNum: 10
+    ignoreMaxVirusNum: 0
+    isSpawnPointRandom: 1
+    offsetFromPlayer: {x: 0, y: 0}
+    spawnRange: {x: 5, y: 10}
+    spawnPoints: []
+  - spawnTimeRange: {x: 60, y: 120}
+    spawnPeriod: 6
     virusID: 9
     spawnMonsterNum: 2
     ignoreMaxVirusNum: 0
     isSpawnPointRandom: 1
     offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 5, y: 10}
-    spawnPoints:
-    - {x: 0, y: 10}
+    spawnRange: {x: 10, y: 15}
+    spawnPoints: []
   - spawnTimeRange: {x: 120, y: 180}
     spawnPeriod: 2
     virusID: 6
@@ -10609,8 +10616,7 @@ MonoBehaviour:
     isSpawnPointRandom: 1
     offsetFromPlayer: {x: 0, y: 0}
     spawnRange: {x: 5, y: 10}
-    spawnPoints:
-    - {x: 0, y: 10}
+    spawnPoints: []
 --- !u!4 &2094598314
 Transform:
   m_ObjectHideFlags: 0

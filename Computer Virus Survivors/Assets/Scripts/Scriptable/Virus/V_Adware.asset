@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 9
   maxHP: 40
-  moveSpeed: 1
+  moveSpeed: 0.5
   dropTable:
     dropElements: []
   dropExp: 100

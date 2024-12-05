@@ -6,51 +6,48 @@ public class V_Adware : VirusBehaviour
 {
     [SerializeField] private float attackPeriod;
     [SerializeField] private float attackRange;
-    [SerializeField] private float attackDelay;
+    // [SerializeField] private float attackDelay;
     [SerializeField] private int attackDamage;
     [SerializeField] private float projSpeed;
     [SerializeField] private float projHeight;
 
-    private bool isAttacking = false;
-    private bool doNotTrack = false; // 공격 쿨타임 중에 있음
+    private bool canAttack = false;
+    // private bool isAttacking = false;
+    private float attackTimer = 0.0f;
 
     private void FixedUpdate()
     {
-        if (!isAttacking)
+        if (canAttack && Vector3.Distance(player.transform.position, transform.position) < attackRange)
+        {
+            Attack();
+        }
+        else
         {
             Move();
-        }
 
-        if (!isAttacking && !doNotTrack && Vector3.Distance(player.transform.position, transform.position) < attackRange)
-        {
-            isAttacking = true;
-            StartCoroutine(AttackCoroutine());
+            if (!canAttack)
+            {
+                attackTimer += Time.deltaTime;
+                if (attackTimer >= attackPeriod)
+                {
+                    canAttack = true;
+                }
+            }
         }
 
         rb.velocity = Vector3.zero;
     }
 
-    private IEnumerator AttackCoroutine()
+    private void Attack()
     {
-        // Maybe only use x and z
-        if (Vector3.Distance(player.transform.position, transform.position) < attackRange)
-        {
-            Debug.Log("Adware attack START");
+        canAttack = false;
 
-            yield return new WaitForSeconds(attackDelay); // 잠시 멈춤
+        Vector3 projPos = new Vector3(transform.position.x, projHeight, transform.position.z);
+        Vector3 projDir = (player.transform.position - transform.position).normalized;
 
-            Vector3 projPos = new Vector3(transform.position.x, projHeight, transform.position.z);
-            Vector3 projDir = (player.transform.position - transform.position).normalized;
+        GameObject proj = PoolManager.instance.GetObject(PoolType.VProj_Mail, projPos, Quaternion.LookRotation(projDir));
+        proj.GetComponent<VP_Mail>().Initialize(attackDamage, projSpeed, projDir, projHeight);
 
-            GameObject proj = PoolManager.instance.GetObject(PoolType.VProj_Mail, projPos, Quaternion.identity);
-            proj.GetComponent<VP_Mail>().Initialize(attackDamage, projSpeed, projDir);
-
-            yield return new WaitForSeconds(attackDelay); // 잠시 멈춤
-            isAttacking = false;
-
-            doNotTrack = true;
-            yield return new WaitForSeconds(attackPeriod);
-            doNotTrack = false;
-        }
+        attackTimer = 0.0f;
     }
 }
