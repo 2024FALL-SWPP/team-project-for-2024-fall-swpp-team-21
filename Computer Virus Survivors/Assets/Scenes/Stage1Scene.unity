@@ -10617,6 +10617,15 @@ MonoBehaviour:
     offsetFromPlayer: {x: 0, y: 0}
     spawnRange: {x: 5, y: 10}
     spawnPoints: []
+  - spawnTimeRange: {x: 0, y: 180}
+    spawnPeriod: 60
+    virusID: 27
+    spawnMonsterNum: 2
+    ignoreMaxVirusNum: 0
+    isSpawnPointRandom: 1
+    offsetFromPlayer: {x: 0, y: 0}
+    spawnRange: {x: 0, y: 30}
+    spawnPoints: []
 --- !u!4 &2094598314
 Transform:
   m_ObjectHideFlags: 0
