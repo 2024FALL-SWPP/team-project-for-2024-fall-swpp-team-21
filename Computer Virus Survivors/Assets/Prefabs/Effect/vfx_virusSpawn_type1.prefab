@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 763281695338473544}
   - component: {fileID: 763281695338473547}
   - component: {fileID: 763281695338473546}
+  - component: {fileID: 7597363187356602015}
   m_Layer: 0
   m_Name: vfx_virusSpawn_type1
   m_TagString: Untagged
@@ -43,7 +44,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 2
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4092,7 +4093,7 @@ ParticleSystem:
     primitives: []
   SubModule:
     serializedVersion: 2
-    enabled: 1
+    enabled: 0
     subEmitters:
     - serializedVersion: 3
       emitter: {fileID: 0}
@@ -5100,3 +5101,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7597363187356602015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763281695338473549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b86cdf755c646a4e93777b914b3b686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultEffectSize: 0.7
