@@ -6223,7 +6223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a20ea0676805b44e85e66aaa19af5bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virusSizeCache: {fileID: 0}
+  virusSizeCache: {fileID: 11400000, guid: e67c2d6977ea5c64097615bd6e9faadc, type: 2}
 --- !u!1 &1182242819
 GameObject:
   m_ObjectHideFlags: 0
@@ -10516,7 +10516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd97c1703d029ea478df939187d140c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chachePrefabs:
+  cachePrefabs:
   - {fileID: 5812908780914094057, guid: 1c8336cfcd8d52d4caa1c4d86cd08f56, type: 3}
   - {fileID: 6193209051861997650, guid: a7a5dc3dce03d4a4b834923b828121fb, type: 3}
   - {fileID: 1992768152550641778, guid: a0429e4b6303fff4899467b8d011bdd7, type: 3}
