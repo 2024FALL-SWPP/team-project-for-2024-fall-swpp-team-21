@@ -52,6 +52,15 @@ public class VirusBehaviour : MonoBehaviour
 #endif
     }
 
+    public PoolType GetPoolType()
+    {
+        if (virusData != null)
+        {
+            return virusData.poolType;
+        }
+        return PoolType.None;
+    }
+
     public virtual float GetVirusSize()
     {
         Collider coll = GetComponent<Collider>();

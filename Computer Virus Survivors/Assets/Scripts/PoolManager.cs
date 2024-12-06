@@ -34,7 +34,9 @@ public enum PoolType
     Turret,
     Virus_TrashCan,
     Virus_SpawnEffect,
-    VProj_Mail
+    VProj_Mail,
+    None = -1,
+
 }
 
 public class PoolManager : Singleton<PoolManager>
