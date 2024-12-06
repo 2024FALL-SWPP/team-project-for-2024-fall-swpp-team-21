@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
-public sealed class VirusSizeCache : ChacheInfo<VirusSizeCache>
+public sealed class VirusSizeCache : CacheInfo<VirusSizeCache>
 {
     [Serializable]
     public struct KeyValPair

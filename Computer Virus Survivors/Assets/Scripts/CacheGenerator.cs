@@ -3,7 +3,7 @@ using UnityEditor;
 using System.Collections.Generic;
 using System;
 
-public abstract class ChacheInfo<T> : ScriptableObject where T : ChacheInfo<T>
+public abstract class CacheInfo<T> : ScriptableObject where T : CacheInfo<T>
 {
     public static T GenerateChecheFromPrefab(List<GameObject> prefab)
     {
@@ -15,19 +15,19 @@ public abstract class ChacheInfo<T> : ScriptableObject where T : ChacheInfo<T>
 
 }
 
-public abstract class ChacheGenerator<T> : MonoBehaviour where T : ChacheInfo<T>
+public abstract class CacheGenerator<T> : MonoBehaviour where T : CacheInfo<T>
 {
-    public List<GameObject> chachePrefabs;
+    public List<GameObject> cachePrefabs;
     protected string cacheSavePath;
 
     protected abstract void SetCacheSavePath();
 
-    public void GenerateChaches()
+    public void GenerateCaches()
     {
 #if UNITY_EDITOR
-        if (chachePrefabs != null)
+        if (cachePrefabs != null)
         {
-            T cachedInfo = ChacheInfo<T>.GenerateChecheFromPrefab(chachePrefabs);
+            T cachedInfo = CacheInfo<T>.GenerateChecheFromPrefab(cachePrefabs);
             AssetDatabase.CreateAsset(cachedInfo, cacheSavePath);
             AssetDatabase.SaveAssets();
         }
@@ -40,7 +40,7 @@ public abstract class ChacheGenerator<T> : MonoBehaviour where T : ChacheInfo<T>
     // 아래의 코드는 각 캐시 생성기마다 다르기 때문에 각각의 캐시 생성기에서 구현해야함
 
     // [CustomEditor(typeof(__구현_클래스_이름__))]
-    // public class ChacheGeneratorEditor : Editor
+    // public class CacheGeneratorEditor : Editor
     // {
     //     public override void OnInspectorGUI()
     //     {
@@ -51,25 +51,25 @@ public abstract class ChacheGenerator<T> : MonoBehaviour where T : ChacheInfo<T>
     //             LoadVirusPrefabs();
     //         }
 
-    //         if (GUILayout.Button("Generate Chaches"))
+    //         if (GUILayout.Button("Generate Caches"))
     //         {
-    //             GenerateChaches();
+    //             GenerateCaches();
     //         }
     //     }
 
     //     private void LoadVirusPrefabs()
     //     {
-    //         ChacheGenerator<T> manager = (ChacheGenerator<T>) target;
+    //         CacheGenerator<T> manager = (CacheGenerator<T>) target;
     //         manager.SetCacheSavePath();
     //         manager.LoadGameObjects();
 
     //     }
 
-    //     private void GenerateChaches()
+    //     private void GenerateCaches()
     //     {
-    //         ChacheGenerator<T> manager = (ChacheGenerator<T>) target;
+    //         CacheGenerator<T> manager = (CacheGenerator<T>) target;
     //         manager.SetCacheSavePath();
-    //         manager.GenerateChaches();
+    //         manager.GenerateCaches();
 
     //     }
 

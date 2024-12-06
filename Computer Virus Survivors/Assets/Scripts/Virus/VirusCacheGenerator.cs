@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public sealed class VirusChacheGenerator : ChacheGenerator<VirusSizeCache>
+public sealed class VirusCacheGenerator : CacheGenerator<VirusSizeCache>
 {
     protected override void SetCacheSavePath()
     {
@@ -11,7 +11,7 @@ public sealed class VirusChacheGenerator : ChacheGenerator<VirusSizeCache>
 
     public override void LoadGameObjects()
     {
-        chachePrefabs = new List<GameObject>();
+        cachePrefabs = new List<GameObject>();
 
         string[] prefabGuids = AssetDatabase.FindAssets("t:Prefab", new[] { "Assets/Prefabs" });
 
@@ -22,7 +22,7 @@ public sealed class VirusChacheGenerator : ChacheGenerator<VirusSizeCache>
 
             if (prefab != null && prefab.GetComponent<VirusBehaviour>() != null)
             {
-                chachePrefabs.Add(prefab);
+                cachePrefabs.Add(prefab);
             }
         }
 
@@ -35,8 +35,8 @@ public sealed class VirusChacheGenerator : ChacheGenerator<VirusSizeCache>
     /// 인스펙터 창에서 자동으로 선택 오브젝트를 로드하는 버튼을 추가
     /// 캐시 생성 버튼을 추가
     /// </summary>
-    [CustomEditor(typeof(VirusChacheGenerator))]
-    public class VirusChacheGeneratorEditor : Editor
+    [CustomEditor(typeof(VirusCacheGenerator))]
+    public class VirusCacheGeneratorEditor : Editor
     {
         public override void OnInspectorGUI()
         {
@@ -47,25 +47,25 @@ public sealed class VirusChacheGenerator : ChacheGenerator<VirusSizeCache>
                 LoadVirusPrefabs();
             }
 
-            if (GUILayout.Button("Generate Chaches"))
+            if (GUILayout.Button("Generate Caches"))
             {
-                GenerateChaches();
+                GenerateCaches();
             }
         }
 
         private void LoadVirusPrefabs()
         {
-            VirusChacheGenerator manager = (VirusChacheGenerator) target;
+            VirusCacheGenerator manager = (VirusCacheGenerator) target;
             manager.SetCacheSavePath();
             manager.LoadGameObjects();
 
         }
 
-        private void GenerateChaches()
+        private void GenerateCaches()
         {
-            VirusChacheGenerator manager = (VirusChacheGenerator) target;
+            VirusCacheGenerator manager = (VirusCacheGenerator) target;
             manager.SetCacheSavePath();
-            manager.GenerateChaches();
+            manager.GenerateCaches();
 
         }
 
