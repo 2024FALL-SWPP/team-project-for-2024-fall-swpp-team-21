@@ -163,13 +163,16 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public void SpawnTurret()
     {
+        // TODO : 터렛 위치 조정
         Vector3 spawnPosition = new Vector3(0, -4f, 0);
+        Quaternion spawnRotation = Quaternion.Euler(0, -135, 0);
 
+        Debug.Log("Turret Spawned");
         PoolManager.instance.GetObject
         (
             PoolType.Turret,
             spawnPosition,
-            Quaternion.identity
+            spawnRotation
         );
     }
 }

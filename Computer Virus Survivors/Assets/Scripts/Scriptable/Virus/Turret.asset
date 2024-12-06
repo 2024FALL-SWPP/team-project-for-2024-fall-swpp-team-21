@@ -15,5 +15,8 @@ MonoBehaviour:
   poolType: 26
   maxHP: 5000
   moveSpeed: 0
+  dropTable:
+    dropElements: []
   dropExp: 0
   contactDamage: 0
+  knockbackSpeed: 0
