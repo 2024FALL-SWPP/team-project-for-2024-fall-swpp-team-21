@@ -19,9 +19,23 @@ public class VirusSpawnFactory : Singleton<VirusSpawnFactory>
     /// <param name="index">생성할 바이러스의 풀타입</param>
     /// <param name="position">바이러스를 생성할 위치</param>
     /// <param name="callbackOnCreated">바이러스 스폰 직후 호출할 콜백. 인자엔 호출된 바이러스가 들어감.</param>
-    public void SpawnVirus(PoolType index, Vector3 position, Action<VirusBehaviour> callbackOnCreated)
+    public void SpawnVirus(PoolType index, Vector3 position, bool withEffect, Action<VirusBehaviour> callbackOnCreated)
     {
-        StartCoroutine(SpawnStart(index, position, callbackOnCreated));
+        if (withEffect)
+        {
+            StartCoroutine(SpawnStart(index, position, callbackOnCreated));
+        }
+        else
+        {
+            VirusBehaviour virus = PoolManager.instance.GetObject
+            (
+                index,
+                position,
+                Quaternion.identity
+            ).GetComponent<VirusBehaviour>();
+
+            callbackOnCreated(virus);
+        }
     }
 
     private IEnumerator SpawnStart(PoolType index, Vector3 position, Action<VirusBehaviour> callbackOnCreated)
