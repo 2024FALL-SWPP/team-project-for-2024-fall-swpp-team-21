@@ -18,6 +18,9 @@ public class V_Trojan : VirusBehaviour
     protected override void OnEnable()
     {
         base.OnEnable();
+        canAttack = false;
+        isAttacking = false;
+        attackTimer = 0.0f;
         SpawnManager.instance.SpawnTurret();
     }
 

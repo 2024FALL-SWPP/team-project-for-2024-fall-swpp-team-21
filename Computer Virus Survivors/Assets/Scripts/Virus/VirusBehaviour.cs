@@ -54,6 +54,39 @@ public class VirusBehaviour : MonoBehaviour
 #endif
     }
 
+    public PoolType GetPoolType()
+    {
+        if (virusData != null)
+        {
+            return virusData.poolType;
+        }
+        return PoolType.None;
+    }
+
+    public virtual float GetVirusSize()
+    {
+        Collider coll = GetComponent<Collider>();
+
+        if (coll is SphereCollider)
+        {
+            return ((SphereCollider) coll).radius * transform.localScale.x * 2;
+        }
+        else if (coll is CapsuleCollider)
+        {
+            CapsuleCollider capsule = (CapsuleCollider) coll;
+            return Mathf.Max(capsule.radius, capsule.height / 2) * transform.localScale.x * 2;
+        }
+        else if (coll is BoxCollider)
+        {
+            BoxCollider box = (BoxCollider) coll;
+            return Mathf.Max(box.size.x, box.size.z) * transform.localScale.x;
+        }
+        else
+        {
+            throw new Exception("Collider Type Error");
+        }
+    }
+
     protected virtual void Die()
     {
         OnDie?.Invoke(this);
