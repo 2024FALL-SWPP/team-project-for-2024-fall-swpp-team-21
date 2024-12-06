@@ -1,15 +1,17 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class VirusSpawnFactory : Singleton<VirusSpawnFactory>
 {
 
+    [SerializeField] private VirusSizeCache virusSizeCache;
+
     public override void Initialize()
     {
 
     }
-
 
     /// <summary>
     /// 바이러스를 생성합니다.
@@ -24,23 +26,19 @@ public class VirusSpawnFactory : Singleton<VirusSpawnFactory>
 
     private IEnumerator SpawnStart(PoolType index, Vector3 position, Action<VirusBehaviour> callbackOnCreated)
     {
+
+        VirusSpawnEffect spawnEffect = PoolManager.instance.GetObject(PoolType.Virus_SpawnEffect, position, Quaternion.identity).GetComponent<VirusSpawnEffect>();
+
+        spawnEffect.SetVirusSize(virusSizeCache.GetVirusSize(index));
+
+        yield return spawnEffect.PlayAndWaitUntilEffectPeak();
+
         VirusBehaviour virus = PoolManager.instance.GetObject
         (
             index,
             position,
             Quaternion.identity
         ).GetComponent<VirusBehaviour>();
-        float virusSize = virus.GetVirusSize();
-
-        virus.gameObject.SetActive(false);
-
-        VirusSpawnEffect spawnEffect = PoolManager.instance.GetObject(PoolType.Virus_SpawnEffect, position, Quaternion.identity).GetComponent<VirusSpawnEffect>();
-
-        spawnEffect.SetVirusSize(virusSize);
-
-        yield return spawnEffect.PlayAndWaitUntilEffectPeak();
-
-        virus.gameObject.SetActive(true);
 
         callbackOnCreated(virus);
 
