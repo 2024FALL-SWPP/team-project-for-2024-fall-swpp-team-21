@@ -23,7 +23,7 @@ public class VirusBehaviour : MonoBehaviour
         player = GameManager.instance.Player;
         playerController = player.GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody>();
-        hitEffect = new HitEffect(gameObject);
+        hitEffect = new HitEffect(gameObject, virusData.knockbackColor);
     }
 
     protected virtual void OnEnable()
