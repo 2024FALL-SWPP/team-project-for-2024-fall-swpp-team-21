@@ -54,7 +54,11 @@ public class VirusBehaviour : MonoBehaviour
 
     public PoolType GetPoolType()
     {
-        return virusData.poolType;
+        if (virusData != null)
+        {
+            return virusData.poolType;
+        }
+        return PoolType.None;
     }
 
     public virtual float GetVirusSize()

@@ -5,13 +5,74 @@ using System;
 
 public sealed class VirusSizeCache : ChacheInfo<VirusSizeCache>
 {
-    public Dictionary<PoolType, float> virusSizes;
+    [Serializable]
+    public struct KeyValPair
+    {
+        public PoolType poolType;
+        public float size;
+
+        public KeyValPair(PoolType poolType, float size)
+        {
+            this.poolType = poolType;
+            this.size = size;
+        }
+
+        // public KeyValPair(KeyValPair other)
+        // {
+        //     poolType = other.poolType;
+        //     size = other.size;
+        // }
+    }
+
+    [Serializable]
+    public class Dict
+    {
+        public List<KeyValPair> list;
+        private static KeyValPairComparer comparer = new KeyValPairComparer();
+
+        public Dict()
+        {
+            list = new List<KeyValPair>();
+        }
+
+        public void Add(PoolType poolType, float size)
+        {
+            list.Add(new KeyValPair(poolType, size));
+            list.Sort(comparer);
+        }
+
+        public float Get(PoolType poolType)
+        {
+            int index = list.BinarySearch(new KeyValPair(poolType, 0), comparer);
+            if (index >= 0)
+            {
+                return list[index].size;
+            }
+            return 0;
+        }
+
+        private class KeyValPairComparer : IComparer<KeyValPair>
+        {
+            public int Compare(KeyValPair x, KeyValPair y)
+            {
+                return x.poolType.CompareTo(y.poolType);
+            }
+        }
+    }
+
+    [SerializeField]
+    private Dict virusSizes;
+
+    public float GetVirusSize(PoolType poolType)
+    {
+        return virusSizes.Get(poolType);
+    }
 
     protected override VirusSizeCache Generate(List<GameObject> prefabs)
     {
 #if UNITY_EDITOR
         VirusSizeCache info = CreateInstance<VirusSizeCache>();
-        info.virusSizes = new Dictionary<PoolType, float>();
+        info.virusSizes = new Dict();
         foreach (var prefab in prefabs)
         {
             GameObject prefabInstance = PrefabUtility.LoadPrefabContents(AssetDatabase.GetAssetPath(prefab));
