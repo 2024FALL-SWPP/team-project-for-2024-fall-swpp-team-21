@@ -35,7 +35,7 @@ public class V_Worm_Big : VirusBehaviour
         {
             float x = transform.position.x + Random.Range(-spawnRange, spawnRange);
             float z = transform.position.z + Random.Range(-spawnRange, spawnRange);
-            SpawnManager.instance.Spawn(PoolType.Virus_Worm, x, z, false, false);
+            SpawnManager.instance.Spawn(PoolType.Virus_Worm, x, z, false);
         }
     }
 }
