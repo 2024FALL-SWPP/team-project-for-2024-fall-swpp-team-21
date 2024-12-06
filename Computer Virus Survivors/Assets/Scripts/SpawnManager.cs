@@ -67,9 +67,13 @@ public class SpawnManager : Singleton<SpawnManager>
     }
 
     // (x, z) 위치에 바이러스 스폰
-    public void Spawn(PoolType index, float x, float z)
+    public void Spawn(PoolType index, float x, float z, bool fromPlayer = true, bool withEffect = true)
     {
-        Vector3 spawnPosition = player.transform.position + new Vector3(x, 0, z);
+        Vector3 spawnPosition = new Vector3(x, 0, z);
+        if (fromPlayer)
+        {
+            spawnPosition += player.transform.position;
+        }
 
         // GameObject virus = PoolManager.instance.GetObject
         // (
@@ -80,7 +84,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
         // virus.GetComponent<VirusBehaviour>().OnDie += OnVirusDestroyed;
 
-        VirusSpawnFactory.instance.SpawnVirus(index, spawnPosition, (VirusBehaviour virus) =>
+        VirusSpawnFactory.instance.SpawnVirus(index, spawnPosition, withEffect, (VirusBehaviour virus) =>
         {
             virus.OnDie += OnVirusDestroyed;
             currentVirusNum++; // synchronization issue?

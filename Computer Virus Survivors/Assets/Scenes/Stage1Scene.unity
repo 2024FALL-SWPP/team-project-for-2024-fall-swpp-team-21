@@ -2616,6 +2616,9 @@ MonoBehaviour:
   - poolName: 11
     prefab: {fileID: 5841041427378954025, guid: 201474e5e0f694042a381edadef11a79, type: 3}
     initialPoolSize: 0
+  - poolName: 12
+    prefab: {fileID: 7793444045799942127, guid: c538b1f898962444fa13158c2caf1865, type: 3}
+    initialPoolSize: 0
   - poolName: 13
     prefab: {fileID: 3856008618962738718, guid: bcf6e312db7ceec45bcd085d523da0a8, type: 3}
     initialPoolSize: 0
@@ -10527,6 +10530,7 @@ MonoBehaviour:
   - {fileID: 5841041427378954025, guid: 201474e5e0f694042a381edadef11a79, type: 3}
   - {fileID: 2474614017452228050, guid: a82ddbdaf462fc2408f9698e5ef33f29, type: 3}
   - {fileID: 1774318923070823006, guid: 4e65a992162678a42998d656634bfd64, type: 3}
+  - {fileID: 7793444045799942127, guid: c538b1f898962444fa13158c2caf1865, type: 3}
 --- !u!1 &2074115299
 GameObject:
   m_ObjectHideFlags: 0
