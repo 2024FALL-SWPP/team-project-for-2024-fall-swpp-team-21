@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : VirusBehaviour
+public class V_Turret : VirusBehaviour
 {
     [SerializeField] private GameObject upperBody;
     [SerializeField] private Transform muzzle;
@@ -15,32 +15,23 @@ public class Turret : VirusBehaviour
     [SerializeField] private float upSpeed;
     [SerializeField] private float targetYOffset;
 
-    [Header("스폰 시간 - 보스 스폰 시간과 동일하게 설정")]
-    [SerializeField] private float spawnTime;
     private LineRenderer lineRenderer;
 
     protected override void Start()
     {
         base.Start();
-        // Add a LineRenderer component to the GameObject
         lineRenderer = GetComponent<LineRenderer>();
-        StartCoroutine(WaitUntilSpawn());
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
+        StartCoroutine(GoUp());
     }
 
     private void OnDisable()
     {
         StopAllCoroutines();
-    }
-
-    private IEnumerator WaitUntilSpawn()
-    {
-        yield return new WaitUntil(() => GameManager.instance.gameTime >= spawnTime);
-        StartCoroutine(GoUp());
     }
 
     // 밑에서 지상으로 올라옴
@@ -68,7 +59,7 @@ public class Turret : VirusBehaviour
             float elapsedTime = 0f;
             Vector3 targetPos = player.transform.position + new Vector3(0, targetYOffset, 0);
             lineRenderer.enabled = true;
-            Coroutine pulseCoroutine = null;
+            Coroutine flickerCoroutine = null;
             while (elapsedTime < aimToBeamPeriod)
             {
                 // 일시정지 시에도 조준선이 깜빡거리는 현상 방지
@@ -82,9 +73,9 @@ public class Turret : VirusBehaviour
                     lineRenderer.SetPosition(0, muzzle.position);
                     lineRenderer.SetPosition(1, targetPos);
 
-                    if (elapsedTime >= aimToBeamPeriod - flickerToBeamPeriod && pulseCoroutine == null)
+                    if (elapsedTime >= aimToBeamPeriod - flickerToBeamPeriod && flickerCoroutine == null)
                     {
-                        pulseCoroutine = StartCoroutine(Flicker());
+                        flickerCoroutine = StartCoroutine(Flicker());
                     }
 
                     elapsedTime += Time.deltaTime;
@@ -93,7 +84,7 @@ public class Turret : VirusBehaviour
             }
 
             // 빔 발사
-            StopCoroutine(pulseCoroutine);
+            StopCoroutine(flickerCoroutine);
             lineRenderer.enabled = false;
             float beamSpeed = Vector3.Distance(muzzle.position, targetPos) / beamArriveTime;
             GameObject beam = PoolManager.instance.GetObject(PoolType.VProj_Beam, muzzle.position, Quaternion.identity);

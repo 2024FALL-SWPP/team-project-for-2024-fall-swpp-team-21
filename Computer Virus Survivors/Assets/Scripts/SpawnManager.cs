@@ -161,18 +161,20 @@ public class SpawnManager : Singleton<SpawnManager>
         currentVirusNum--;  // synchronization issue?
     }
 
-    // public void SpawnTurret()
-    // {
-    //     Vector3 spawnPosition = new Vector3(0, -4f, 0);
+    public void SpawnTurret()
+    {
+        // TODO : 터렛 위치 조정
+        Vector3 spawnPosition = new Vector3(0, -4f, 0);
+        Quaternion spawnRotation = Quaternion.Euler(0, -135, 0);
 
-    //     Debug.Log("Turret Spawned");
-    //     PoolManager.instance.GetObject
-    //     (
-    //         PoolType.Turret,
-    //         spawnPosition,
-    //         Quaternion.identity
-    //     );
-    // }
+        Debug.Log("Turret Spawned");
+        PoolManager.instance.GetObject
+        (
+            PoolType.Turret,
+            spawnPosition,
+            spawnRotation
+        );
+    }
 }
 
 

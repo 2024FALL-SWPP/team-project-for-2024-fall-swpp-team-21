@@ -11,7 +11,6 @@ public class V_Ransomware : VirusBehaviour
 
     /* 공격 패턴들을 위한 변수 */
     [Header("Encryption Spike: 나선형 탄막 패턴")]
-    [SerializeField] private GameObject eSPrefab;
     [SerializeField] private int eSNum = 6;
     [SerializeField] private float eSHeight = 0.7f;
     [SerializeField] private float eSOffset = 1.0f;
@@ -24,7 +23,6 @@ public class V_Ransomware : VirusBehaviour
     [SerializeField] private float uJCooltime = 31.0f;
 
     [Header("Corrupted Zone: 데미지/디버프 장판 생성")]
-    [SerializeField] private GameObject cZPrefab;
     [SerializeField] private Vector2 cZRange = new Vector2(15.0f, 15.0f);
     [SerializeField] private int cZNum = 3;
     [SerializeField] private int cZDamage = 2;
@@ -35,14 +33,12 @@ public class V_Ransomware : VirusBehaviour
     [SerializeField] private float cZDotDamagePeriod = 0.1f;
 
     [Header("Tracking Bolt: 플레이어를 빠르게 추적하는 번개 느낌의 무언가")]
-    [SerializeField] private GameObject tBPrefab;
     [SerializeField] private float tBSpawnDistance = 1.0f;
     [SerializeField] private int tBDamage = 10;
     [SerializeField] private float tBSpeed = 10.0f;
     [SerializeField] private float tBExistDuration = 5.0f;
 
     [Header("Data Burst: 플레이어를 향해 연속해서 빠르게 탄막 발사")]
-    [SerializeField] private GameObject dBPrefab;
     [SerializeField] private float dBPeriod = 0.5f;
     [SerializeField] private int dBNum = 10;
     [SerializeField] private float dBHeight = 0.7f;
@@ -71,7 +67,7 @@ public class V_Ransomware : VirusBehaviour
     {
         base.OnEnable();
         startAttack = false;
-        // SpawnManager.instance.SpawnTurret();
+        SpawnManager.instance.SpawnTurret();
     }
 
     private void OnDisable()
@@ -139,7 +135,7 @@ public class V_Ransomware : VirusBehaviour
             float x = UnityEngine.Random.Range(-cZRange.x, cZRange.x);
             float z = UnityEngine.Random.Range(-cZRange.y, cZRange.y);
             Vector3 position = player.transform.position + new Vector3(x, 0.0f, z);
-            GameObject cZ = PoolManager.instance.GetObject(PoolType.VProj_CorruptedZone, position, cZPrefab.transform.rotation);
+            GameObject cZ = PoolManager.instance.GetObject(PoolType.VProj_CorruptedZone, position, Quaternion.identity);
             cZ.GetComponent<VP_CorruptedZone>().Initialize(cZDamage, cZSpeed, cZMaxScale, cZExistDuration, cZDebuffDegree, cZDotDamagePeriod);
         }
     }
