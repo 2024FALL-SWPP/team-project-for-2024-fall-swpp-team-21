@@ -45,11 +45,17 @@ public class P_CoreDump : PlayerProjectileBehaviour
 
         animator.SetBool("isGrounded_b", true);
         Collider[] colliders = Physics.OverlapSphere(transform.position, dumpRadius, virusLayer);
+        bool criticalExist = false;
         foreach (Collider collider in colliders)
         {
             // collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
-            collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetDamageData());
+            collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetDamageData(out bool isCritical));
+            if (isCritical)
+            {
+                criticalExist = true;
+            }
         }
+        PlayAttackEffect(transform.position, Quaternion.identity, criticalExist);
         yield return new WaitForSeconds(1.0f);
         PoolManager.instance.ReturnObject(PoolType.Proj_CoreDump, gameObject);
     }

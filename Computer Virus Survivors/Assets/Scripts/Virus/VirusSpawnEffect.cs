@@ -35,7 +35,7 @@ public class VirusSpawnEffect : MonoBehaviour
     private void OnParticleSystemStopped()
     {
         effectSize = defaultEffectSize;
-        PoolManager.instance.ReturnObject(PoolType.Virus_SpawnEffect, gameObject);
+        PoolManager.instance.ReturnObject(PoolType.VFX_Virus_SpawnEffect, gameObject);
     }
 
 }

@@ -26,6 +26,13 @@ public class FinalWeaponData
         return new DamageData(this);
     }
 
+    public DamageData GetDamageData(out bool isCritical)
+    {
+        DamageData damageData = new DamageData(this);
+        isCritical = damageData.isCritical;
+        return damageData;
+    }
+
     private bool IsCritical()
     {
         return UnityEngine.Random.Range(0, 100) < critProbability;

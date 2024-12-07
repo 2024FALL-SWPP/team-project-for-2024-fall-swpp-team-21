@@ -30,7 +30,8 @@ public class P_PacketStream : PlayerProjectileBehaviour
     {
         if (other.CompareTag("Virus"))
         {
-            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetDamageData());
+            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetDamageData(out bool isCritical));
+            PlayAttackEffect(other.ClosestPoint(transform.position) + new Vector3(0, transform.position.y, 0), Quaternion.identity, isCritical);
         }
 
         PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
