@@ -25,4 +25,7 @@ public class VirusData : ScriptableObject
 
     [Header("넉백 속도")]
     [SerializeField] public float knockbackSpeed;
+
+    [Header("넉백 색상")]
+    [SerializeField] public Material knockbackColor;
 }
