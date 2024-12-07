@@ -41,6 +41,7 @@ public class P_VaccineRing : PlayerProjectileBehaviour
         {
             // other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
             other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetDamageData());
+            PlayAttackEffect(other.ClosestPoint(transform.position));
         }
     }
 }

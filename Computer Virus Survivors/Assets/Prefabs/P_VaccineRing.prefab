@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d70e9b75f6a1e43871436ac22d8765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackEffectType: 6
   animator: {fileID: 0}
   spinSpeed: 180
 --- !u!135 &1689623071816036060

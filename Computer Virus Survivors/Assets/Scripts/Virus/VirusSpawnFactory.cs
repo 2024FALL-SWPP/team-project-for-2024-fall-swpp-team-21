@@ -27,7 +27,7 @@ public class VirusSpawnFactory : Singleton<VirusSpawnFactory>
     private IEnumerator SpawnStart(PoolType index, Vector3 position, Action<VirusBehaviour> callbackOnCreated)
     {
 
-        VirusSpawnEffect spawnEffect = PoolManager.instance.GetObject(PoolType.Virus_SpawnEffect, position, Quaternion.identity).GetComponent<VirusSpawnEffect>();
+        VirusSpawnEffect spawnEffect = PoolManager.instance.GetObject(PoolType.VFX_Virus_SpawnEffect, position, Quaternion.identity).GetComponent<VirusSpawnEffect>();
 
         spawnEffect.SetVirusSize(virusSizeCache.GetVirusSize(index));
 

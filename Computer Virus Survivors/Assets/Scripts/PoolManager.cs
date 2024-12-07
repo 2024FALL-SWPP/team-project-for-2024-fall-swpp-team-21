@@ -33,8 +33,15 @@ public enum PoolType
     DamageIndicator,
     Turret,
     Virus_TrashCan,
-    Virus_SpawnEffect,
+    VFX_Virus_SpawnEffect,
     VProj_Mail,
+    VFX_BasicHit1,
+    VFX_BasicHit2,
+    VFX_BasicHit3,
+    VFX_Explosion,
+    VFX_IceHit,
+    VFX_LightningHit,
+    VFX_MagicHit,
     None = -1,
 
 }

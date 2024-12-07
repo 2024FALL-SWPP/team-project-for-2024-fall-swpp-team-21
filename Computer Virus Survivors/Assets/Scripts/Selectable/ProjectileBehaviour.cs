@@ -4,6 +4,13 @@ using UnityEngine;
 public abstract class ProjectileBehaviour : MonoBehaviour
 {
     protected abstract void OnTriggerEnter(Collider other);
+    private AttackEffect attackEffect = new AttackEffect();
+    [SerializeField] private AttackEffectType attackEffectType;
+
+    protected virtual void PlayAttackEffect(Vector3 hitPosition, Quaternion rotation = default)
+    {
+        attackEffect.Play(hitPosition, rotation, attackEffectType);
+    }
 
     protected bool CheckOutOfScreen()
     {

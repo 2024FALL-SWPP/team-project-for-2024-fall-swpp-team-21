@@ -6,7 +6,7 @@ public class P_Beam : PlayerProjectileBehaviour
 {
     [SerializeField] private float speed = 10f;
     private GameObject lightBeam;
-    private ParticleSystem particle;
+    // private ParticleSystem particle;
     private Vector3 targetPos;
     private bool isHit;
 
@@ -30,7 +30,7 @@ public class P_Beam : PlayerProjectileBehaviour
         if (lightBeam == null)
         {
             lightBeam = GetComponentInChildren<MeshRenderer>().gameObject;
-            particle = GetComponentInChildren<ParticleSystem>();
+            // particle = GetComponentInChildren<ParticleSystem>();
         }
         this.targetPos = target;
         isHit = false;
@@ -48,10 +48,10 @@ public class P_Beam : PlayerProjectileBehaviour
         {
             transform.Translate(speed * Time.deltaTime * Vector3.forward);
 
-            if (transform.position.y < 0)
-            {
-                StartCoroutine(Destroy(particle.main.duration));
-            }
+            // if (transform.position.y < 0)
+            // {
+            //     StartCoroutine(Destroy(particle.main.duration));
+            // }
         }
 
         if (CheckOutOfScreen())
@@ -70,18 +70,18 @@ public class P_Beam : PlayerProjectileBehaviour
             other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetDamageData());
         }
 
-        StartCoroutine(Destroy(particle.main.duration));
+        // StartCoroutine(Destroy(particle.main.duration));
     }
 
-    private IEnumerator Destroy(float duration)
-    {
-        Debug.Log("Beam Destroyed after " + duration + " seconds");
+    // private IEnumerator Destroy(float duration)
+    // {
+    //     Debug.Log("Beam Destroyed after " + duration + " seconds");
 
-        isHit = true;
-        lightBeam.SetActive(false);
-        particle.Play();
+    //     isHit = true;
+    //     lightBeam.SetActive(false);
+    //     particle.Play();
 
-        yield return new WaitForSeconds(duration);
-        PoolManager.instance.ReturnObject(PoolType.Proj_Beam, gameObject);
-    }
+    //     yield return new WaitForSeconds(duration);
+    //     PoolManager.instance.ReturnObject(PoolType.Proj_Beam, gameObject);
+    // }
 }
