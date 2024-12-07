@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f46048b717d854188008b734b0fca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackEffectType: 5
   animator: {fileID: 0}
   virusLayer:
     serializedVersion: 2
