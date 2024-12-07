@@ -691,7 +691,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiElement: {fileID: 147051637}
-  startPosition: {x: 0, y: 0, z: 0}
   sensitivity: 0.05
 --- !u!1 &158686378
 GameObject:
@@ -1836,7 +1835,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiElement: {fileID: 394002312}
-  startPosition: {x: 0, y: 0, z: 0}
   sensitivity: 0.05
 --- !u!1 &414770146
 GameObject:
@@ -3366,7 +3364,6 @@ GameObject:
   - component: {fileID: 788084430}
   - component: {fileID: 788084429}
   - component: {fileID: 788084428}
-  - component: {fileID: 788084431}
   m_Layer: 5
   m_Name: btn_Exit
   m_TagString: Untagged
@@ -3489,21 +3486,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788084426}
   m_CullTransparentMesh: 1
---- !u!114 &788084431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788084426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d9a3b68278b4e70a116af45d0d897e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiElement: {fileID: 788084427}
-  startPosition: {x: 0, y: 0, z: 0}
-  sensitivity: 0.025
 --- !u!1 &798133830
 GameObject:
   m_ObjectHideFlags: 0
@@ -5054,7 +5036,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiElement: {fileID: 1227289798}
-  startPosition: {x: 0, y: 0, z: 0}
   sensitivity: 0.05
 --- !u!1 &1246674612
 GameObject:
@@ -5665,7 +5646,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1427607677}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5835,7 +5816,6 @@ RectTransform:
   - {fileID: 1560606191}
   - {fileID: 258954316}
   - {fileID: 1908733188}
-  - {fileID: 1804552706}
   - {fileID: 1326092103}
   m_Father: {fileID: 501806963}
   m_RootOrder: 0
@@ -6459,7 +6439,6 @@ GameObject:
   - component: {fileID: 1580289254}
   - component: {fileID: 1580289257}
   - component: {fileID: 1580289256}
-  - component: {fileID: 1580289258}
   - component: {fileID: 1580289255}
   m_Layer: 5
   m_Name: btn_GameStart
@@ -6583,21 +6562,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580289253}
   m_CullTransparentMesh: 1
---- !u!114 &1580289258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580289253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d9a3b68278b4e70a116af45d0d897e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiElement: {fileID: 1580289254}
-  startPosition: {x: 0, y: 0, z: 0}
-  sensitivity: 0.025
 --- !u!1 &1635745456
 GameObject:
   m_ObjectHideFlags: 0
@@ -7290,19 +7254,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804552705}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1580289254}
   - {fileID: 788084427}
-  m_Father: {fileID: 1427607677}
-  m_RootOrder: 3
+  m_Father: {fileID: 1908733188}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -645, y: 279}
+  m_AnchoredPosition: {x: -645, y: -395.93225}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1804552707
@@ -7628,6 +7592,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1729799580}
+  - {fileID: 1804552706}
   m_Father: {fileID: 1427607677}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7687,8 +7652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiElement: {fileID: 1908733188}
-  startPosition: {x: 0, y: 0, z: 0}
-  sensitivity: 0.05
+  sensitivity: 0.025
 --- !u!1 &1915560638
 GameObject:
   m_ObjectHideFlags: 0
