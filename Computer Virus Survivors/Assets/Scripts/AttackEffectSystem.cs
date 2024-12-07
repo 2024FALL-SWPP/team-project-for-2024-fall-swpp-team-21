@@ -64,6 +64,12 @@ public class AttackEffectSystem : MonoBehaviour
     private void Awake()
     {
         particle = GetComponent<ParticleSystem>();
+        ParticleSystem[] particleSystems = GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem ps in particleSystems)
+        {
+            ps.collision.SetPlane(0, GameObject.Find("Floor").transform);
+        }
+
     }
 
     private void OnParticleSystemStopped()

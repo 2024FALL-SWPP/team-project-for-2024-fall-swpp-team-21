@@ -5,11 +5,11 @@ public abstract class ProjectileBehaviour : MonoBehaviour
 {
     protected abstract void OnTriggerEnter(Collider other);
     private AttackEffect attackEffect = new AttackEffect();
-    [SerializeField] private AttackEffectType attackEffectType;
+    [SerializeField] private AttackEffectType attackEffectType = AttackEffectType.Basic;
 
-    protected virtual void PlayAttackEffect(Vector3 hitPosition, Quaternion rotation = default)
+    protected virtual void PlayAttackEffect(Vector3 hitPosition, Quaternion rotation, bool isCritical = false)
     {
-        attackEffect.Play(hitPosition, rotation, attackEffectType);
+        attackEffect.Play(hitPosition, rotation, attackEffectType, isCritical);
     }
 
     protected bool CheckOutOfScreen()
