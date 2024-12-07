@@ -4905,7 +4905,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6871036690342335571
 Transform:
   m_ObjectHideFlags: 0
@@ -5111,7 +5111,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.28025985, g: 0.5423942, b: 0.8867924, a: 1}
+      maxColor: {r: 1, g: 0.015686274, b: 0.61257976, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9982,7 +9982,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.94509804, g: 0.37647057, b: 0.75401807, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14651,7 +14651,7 @@ GameObject:
   - component: {fileID: 1148153646561574513}
   - component: {fileID: -8963244168020143318}
   m_Layer: 0
-  m_Name: vfx_attack_lightning
+  m_Name: vfx_attack_lightning_crit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14865,7 +14865,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.28025985, g: 0.5423942, b: 0.8867924, a: 1}
+      maxColor: {r: 1, g: 0.02352941, b: 0.59028083, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -19584,4 +19584,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectType: 5
-  isCriticalEffect: 0
+  isCriticalEffect: 1

@@ -42,6 +42,13 @@ public enum PoolType
     VFX_IceHit,
     VFX_LightningHit,
     VFX_MagicHit,
+    VFX_BasicHit1_Crit,
+    VFX_BasicHit2_Crit,
+    VFX_BasicHit3_Crit,
+    VFX_Explosion_Crit,
+    VFX_IceHit_Crit,
+    VFX_LightningHit_Crit,
+    VFX_MagicHit_Crit,
     None = -1,
 
 }
