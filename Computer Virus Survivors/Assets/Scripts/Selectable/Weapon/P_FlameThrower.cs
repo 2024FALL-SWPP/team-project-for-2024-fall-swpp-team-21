@@ -56,7 +56,8 @@ public class P_FlameThrower : PlayerProjectileBehaviour
                 if (Vector3.Angle(transform.forward, direction) < (fireAngle * 0.5f))
                 {
                     // collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
-                    collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetDamageData());
+                    collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetDamageData(out bool isCritical));
+                    PlayAttackEffect(collider.ClosestPoint(transform.position) + new Vector3(0, transform.position.y, 0), Quaternion.identity, isCritical);
                 }
             }
             yield return new WaitForSeconds(tick);

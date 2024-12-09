@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class P_VaccineRing : PlayerProjectileBehaviour
 {
@@ -40,7 +41,8 @@ public class P_VaccineRing : PlayerProjectileBehaviour
         if (other.CompareTag("Virus"))
         {
             // other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
-            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetDamageData());
+            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetDamageData(out bool isCritical));
+            PlayAttackEffect(other.ClosestPoint(transform.position) + new Vector3(0, transform.position.y, 0), Quaternion.identity, isCritical);
         }
     }
 }

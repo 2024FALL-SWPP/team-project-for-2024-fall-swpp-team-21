@@ -13,7 +13,7 @@ public class P_ChainLightning : PlayerProjectileBehaviour
     [SerializeField] private Vector3 chainHitOffset;
 
     private LightningBoltScript chainAnim;
-    private ParticleSystem hitEffect;
+    // private ParticleSystem hitEffect;
     private int chainID;
     private int chainDepth;
     private float chainRange;
@@ -33,7 +33,7 @@ public class P_ChainLightning : PlayerProjectileBehaviour
         {
             animator = GetComponent<Animator>();
             chainAnim = GetComponentInChildren<LightningBoltScript>();
-            hitEffect = GetComponentInChildren<ParticleSystem>();
+            // hitEffect = GetComponentInChildren<ParticleSystem>();
         }
 
         chainAnim.StartPosition = transform.position;
@@ -84,13 +84,15 @@ public class P_ChainLightning : PlayerProjectileBehaviour
         // 해당 몬스터를 공격 (애니메이션)
         chainAnim.EndPosition = targetVirus.transform.position + chainHitOffset;
         Vector3 emissionDirection = transform.position - targetVirus.transform.position;
-        hitEffect.transform.rotation = Quaternion.LookRotation(emissionDirection);
-        hitEffect.transform.position = chainAnim.EndPosition;
-        hitEffect.Play();
+        // hitEffect.transform.rotation = Quaternion.LookRotation(emissionDirection);
+        // hitEffect.transform.position = chainAnim.EndPosition;
+        // hitEffect.Play();
         animator.SetBool("LightOn_b", true);
 
         // targetVirus.GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
-        targetVirus.GetDamage(finalWeaponData.GetDamageData());
+        targetVirus.GetDamage(finalWeaponData.GetDamageData(out bool isCritical));
+        Collider vcollider = targetVirus.GetComponent<Collider>();
+        PlayAttackEffect(vcollider.ClosestPoint(transform.position), Quaternion.identity, isCritical);
         yield return new WaitForSeconds(chainDuration);
         animator.SetBool("LightOn_b", false);
 
