@@ -48,9 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virusData: {fileID: 11400000, guid: 06f60cd9b30b5564293d0cc50222f212, type: 2}
-  attackPeriod: 3
+  attackPeriod: 4
   attackRange: 10
   attackDamage: 15
+  projType: 44
   projSpeed: 4
   projHeight: 0.5
 --- !u!135 &1317087348404408480

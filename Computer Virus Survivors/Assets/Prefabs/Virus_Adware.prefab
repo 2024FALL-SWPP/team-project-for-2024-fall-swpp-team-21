@@ -51,6 +51,7 @@ MonoBehaviour:
   attackPeriod: 6
   attackRange: 10
   attackDamage: 10
+  projType: 29
   projSpeed: 4
   projHeight: 0.5
 --- !u!135 &4087557200810422000
