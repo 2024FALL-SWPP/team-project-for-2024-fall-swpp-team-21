@@ -77,9 +77,9 @@ GameObject:
   - component: {fileID: 6820095463432671813}
   - component: {fileID: 1892690135408736411}
   - component: {fileID: 467334971846860382}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Virus_Worm_Angry
-  m_TagString: Untagged
+  m_TagString: Virus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ Animator:
   m_GameObject: {fileID: 1272462011019170432}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3f1ff8bcd031dca47aaeac485d2d8385, type: 2}
+  m_Controller: {fileID: 9100000, guid: 82c708c7f0ef30a48af63b30c6b4f291, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c847345dc6adf4694d3a3c6122f6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virusData: {fileID: 11400000, guid: d3fb1c4c04b320140ad66c52a1ddc967, type: 2}
+  virusData: {fileID: 11400000, guid: 9a14e1bfa206e8547be1d971e56e72bd, type: 2}
 --- !u!54 &1892690135408736411
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -348,7 +348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5691730772536619348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0015985426, y: 0.2845661, z: -0.7071226}
+  m_LocalPosition: {x: -0.021598542, y: 0.2845661, z: -0.7071226}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -413,7 +413,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8571832444332496866}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.02, y: 0, z: 0}
   m_LocalScale: {x: 130, y: 130, z: 110}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -503,7 +503,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8992702030075581166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.02, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:

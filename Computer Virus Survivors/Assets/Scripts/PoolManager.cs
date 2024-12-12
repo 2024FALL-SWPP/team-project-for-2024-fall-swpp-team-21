@@ -49,6 +49,7 @@ public enum PoolType
     VFX_IceHit_Crit,
     VFX_LightningHit_Crit,
     VFX_MagicHit_Crit,
+    VProj_Mail_Angry,
     None = -1,
 
 }

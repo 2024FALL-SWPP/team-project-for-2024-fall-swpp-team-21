@@ -24,7 +24,11 @@ MonoBehaviour:
       size: 1.2
     - poolType: 7
       size: 1.7
+    - poolType: 8
+      size: 1.7
     - poolType: 9
+      size: 1.2
+    - poolType: 10
       size: 1.2
     - poolType: 11
       size: 3.1367903
