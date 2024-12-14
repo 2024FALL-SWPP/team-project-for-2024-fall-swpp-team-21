@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3743628884550129100}
   - component: {fileID: 7921192481243179869}
   m_Layer: 0
-  m_Name: V_Chip03_C
+  m_Name: V_Chip01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5065823160995398749}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.1253319, y: -0.00000047683716, z: 7.417821}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -80,7 +80,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6561298423462336463}
   m_LocalRotation: {x: 6.123234e-17, y: 1, z: -6.123234e-17, w: 0.0000000754979}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: -0.6, y: -0.1827808, z: -0.48842755}
   m_ConstrainProportionsScale: 1
   m_Children: []
