@@ -10,6 +10,7 @@ public class V_Trojan : VirusBehaviour
     [SerializeField] private float dashSpeed = 15.0f;
     [SerializeField] private float dashDelay = 0.3f;
     [SerializeField] private float dashDuration = 0.5f;
+    [SerializeField] private LayerMask obstacleLayerMask;
 
     private bool canAttack = false;
     private bool isAttacking = false;
@@ -65,10 +66,15 @@ public class V_Trojan : VirusBehaviour
         while (elapsedTime < duration)
         {
             //transform.Translate(dashSpeed * Time.deltaTime * Vector3.forward, Space.Self);
-            rb.MovePosition(rb.position + dashSpeed * Time.deltaTime * transform.forward);
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, dashSpeed * Time.fixedDeltaTime, obstacleLayerMask))
+            {
+                break;
+            }
+            rb.MovePosition(rb.position + dashSpeed * Time.fixedDeltaTime * transform.forward);
             elapsedTime += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
+        yield return new WaitForSeconds(duration - elapsedTime);
 
         Debug.Log("Trojan dash END");
     }

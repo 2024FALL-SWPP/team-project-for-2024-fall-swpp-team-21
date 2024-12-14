@@ -53,6 +53,9 @@ MonoBehaviour:
   dashSpeed: 25
   dashDelay: 0.3
   dashDuration: 0.5
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!54 &5841041427378954022
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -80,8 +83,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6737604, y: 3.873436, z: 3.1367903}
-  m_Center: {x: -0.0059695244, y: 1.936718, z: 0.20566207}
+  m_Size: {x: 1.6737604, y: 2, z: 3.1367903}
+  m_Center: {x: -0.0059695244, y: 0, z: 0.20566207}
 --- !u!1001 &2764496335513087531
 PrefabInstance:
   m_ObjectHideFlags: 0
