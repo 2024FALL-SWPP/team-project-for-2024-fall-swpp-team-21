@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class V_Ransomware : VirusBehaviour
 {
+    [SerializeField] private Animator animator;
     [SerializeField] private float attackPeriod = 10.0f;
     [SerializeField] private float attackDelay = 0.5f;
 
@@ -90,6 +91,7 @@ public class V_Ransomware : VirusBehaviour
         {
             yield return new WaitForSeconds(attackPeriod);
             startAttack = true;
+            animator.SetTrigger("t_Attack");
             yield return new WaitForSeconds(attackDelay);
             startAttack = false;
             attackActions[UnityEngine.Random.Range(0, attackActions.Count)]();
