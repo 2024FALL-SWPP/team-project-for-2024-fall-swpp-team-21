@@ -28,7 +28,7 @@ public sealed class VirusSizeCache : CacheInfo<VirusSizeCache>
     public class Dict
     {
         public List<KeyValPair> list;
-        private static KeyValPairComparer comparer = new KeyValPairComparer();
+        private static KeyValPairComparer _comparer = new KeyValPairComparer();
 
         public Dict()
         {
@@ -38,12 +38,12 @@ public sealed class VirusSizeCache : CacheInfo<VirusSizeCache>
         public void Add(PoolType poolType, float size)
         {
             list.Add(new KeyValPair(poolType, size));
-            list.Sort(comparer);
+            list.Sort(_comparer);
         }
 
         public float Get(PoolType poolType)
         {
-            int index = list.BinarySearch(new KeyValPair(poolType, 0), comparer);
+            int index = list.BinarySearch(new KeyValPair(poolType, 0), _comparer);
             if (index >= 0)
             {
                 return list[index].size;
@@ -87,6 +87,8 @@ public sealed class VirusSizeCache : CacheInfo<VirusSizeCache>
             PrefabUtility.UnloadPrefabContents(prefabInstance);
         }
         return info;
+#else
+        return null;
 #endif
     }
 }

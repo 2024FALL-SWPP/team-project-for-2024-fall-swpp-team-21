@@ -1,4 +1,3 @@
-using UnityEditor;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -217,11 +216,13 @@ public class SelectableManager : Singleton<SelectableManager>
     }
 
 
+#if UNITY_EDITOR
+
     /// <summary>
     /// 인스펙터 창에서 자동으로 선택 가능한 오브젝트를 로드하는 버튼을 추가
     /// </summary>
-    [CustomEditor(typeof(SelectableManager))]
-    public class SelectableManagerEditor : Editor
+    [UnityEditor.CustomEditor(typeof(SelectableManager))]
+    public class SelectableManagerEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
@@ -241,12 +242,12 @@ public class SelectableManager : Singleton<SelectableManager>
             manager.weaponPrefabs = new List<GameObject>();
             manager.itemPrefabs = new List<GameObject>();
 
-            string[] prefabGuids = AssetDatabase.FindAssets("t:Prefab", new[] { "Assets/Prefabs" });
+            string[] prefabGuids = UnityEditor.AssetDatabase.FindAssets("t:Prefab", new[] { "Assets/Prefabs" });
 
             foreach (string guid in prefabGuids)
             {
-                string assetPath = AssetDatabase.GUIDToAssetPath(guid);
-                GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
+                string assetPath = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
+                GameObject prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
 
                 if (prefab != null && prefab.GetComponent<WeaponBehaviour>() != null)
                 {
@@ -264,7 +265,6 @@ public class SelectableManager : Singleton<SelectableManager>
 
         }
     }
-
-
+#endif
 
 }

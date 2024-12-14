@@ -1,6 +1,7 @@
+#if UNITY_EDITOR
+using UnityEditor;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 public sealed class VirusCacheGenerator : CacheGenerator<VirusSizeCache>
 {
@@ -71,3 +72,4 @@ public sealed class VirusCacheGenerator : CacheGenerator<VirusSizeCache>
 
     }
 }
+#endif
