@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dbac11b46ffd85a43a881ee936ecf2d1
+guid: 60a64ee3603aa4b4298f91de74ebaede
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -66,7 +66,7 @@ ModelImporter:
       takeName: Forward
       internalID: 8618492759471452794
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 18
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

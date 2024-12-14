@@ -39,9 +39,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.3223477
   m_TransitionOffset: 0
-  m_ExitTime: 0.8451753
+  m_ExitTime: 0.77282757
   m_HasExitTime: 1
   m_HasFixedDuration: 0
   m_InterruptionSource: 0
@@ -55,7 +55,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Forward
-  m_Speed: 1
+  m_Speed: 0.8
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -67,7 +67,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 8618492759471452794, guid: dbac11b46ffd85a43a881ee936ecf2d1, type: 3}
+  m_Motion: {fileID: 8618492759471452794, guid: 60a64ee3603aa4b4298f91de74ebaede, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -81,13 +81,7 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Trojan
   serializedVersion: 5
-  m_AnimatorParameters:
-  - m_Name: TransitionDelay
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+  m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -122,7 +116,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 6894425703694348042, guid: dbac11b46ffd85a43a881ee936ecf2d1, type: 3}
+  m_Motion: {fileID: 6894425703694348042, guid: 60a64ee3603aa4b4298f91de74ebaede, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
