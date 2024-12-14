@@ -26,6 +26,17 @@ public static class MonsterScanner
         return nearestMonster;
     }
 
+    public static GameObject ScanRandomObject(Vector3 position, float radius, LayerMask layerMask)
+    {
+        Collider[] colliders = Physics.OverlapSphere(position, radius, layerMask);
+        if (colliders.Length == 0)
+        {
+            return null;
+        }
+
+        return colliders[UnityEngine.Random.Range(0, colliders.Length)].gameObject;
+    }
+
     public static IEnumerator SearchEnemyCoroutine(Transform origin, float radius, Action<GameObject> callbackOnEnemyFound, LayerMask layerMask)
     {
         const float searchTick = 0.2f;

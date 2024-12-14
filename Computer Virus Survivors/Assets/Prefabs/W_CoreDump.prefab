@@ -63,7 +63,7 @@ MonoBehaviour:
   initialDamage: 20
   initialMultiProjectile: 1
   initialAttackPeriod: 5
-  initialAttackRange: 0
+  initialAttackRange: 3
   initialAddiCritProbability: 5
   initialAddiCritPoint: 0
   knockbackTime: 0

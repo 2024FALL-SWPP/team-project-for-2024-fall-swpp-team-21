@@ -97,7 +97,16 @@ public sealed class W_CoreDump : WeaponBehaviour
         for (int i = 0; i < finalWeaponData.multiProjectile; i++)
         {
             Vector3 fallingDirection = fallingDirections[Random.Range(0, fallingDirections.Length)];
-            Vector3 finalPosition = GetRandomPosition(fallingDirection);
+            GameObject randomTargetVirus = MonsterScanner.ScanRandomObject(transform.position, dumpAreaRadius, LayerMask.GetMask("Virus"));
+            Vector3 finalPosition;
+            if (randomTargetVirus != null)
+            {
+                finalPosition = randomTargetVirus.transform.position - fallingDirection * dumpStartHeight;
+            }
+            else
+            {
+                finalPosition = GetRandomPosition(fallingDirection);
+            }
             proj = PoolManager.instance.GetObject(projectilePool, finalPosition, Quaternion.identity);
             proj.GetComponent<P_CoreDump>().Initialize(finalWeaponData, fallingDirection);
             yield return new WaitForSeconds(0.1f);

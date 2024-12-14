@@ -7,9 +7,9 @@ public abstract class ProjectileBehaviour : MonoBehaviour
     private AttackEffect attackEffect = new AttackEffect();
     [SerializeField] private AttackEffectType attackEffectType = AttackEffectType.Basic;
 
-    protected virtual void PlayAttackEffect(Vector3 hitPosition, Quaternion rotation, bool isCritical = false)
+    protected virtual void PlayAttackEffect(Vector3 hitPosition, Quaternion rotation, bool isCritical = false, float scale = 1.0f)
     {
-        attackEffect.Play(hitPosition, rotation, attackEffectType, isCritical);
+        attackEffect.Play(hitPosition, rotation, attackEffectType, isCritical, scale);
     }
 
     protected bool CheckOutOfScreen()
