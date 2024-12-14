@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -5,6 +6,13 @@ using UnityEngine;
 
 public class ExpGem : FieldItemBehaviour
 {
+    [SerializeField] private Renderer cubeRenderer;
+
+    [Header("색상 범위 설정용 변수")]
+    [SerializeField] private Color startColor;
+    [SerializeField] private Color endColor;
+    [SerializeField] private int startExp;
+    [SerializeField] private int endExp;
     private int exp;
 
     public void Initialize(int exp)
@@ -20,9 +28,10 @@ public class ExpGem : FieldItemBehaviour
         playerController.GetExp(exp);
     }
 
-    // TODO : exp에 따라 mesh 변경 // color만 변경하면 될 것 같기도
+    // exp에 따라 mesh 변경
     private void MeshChange()
     {
-
+        float invLerp = Mathf.InverseLerp(startExp, endExp, exp);
+        cubeRenderer.material.color = Color.Lerp(startColor, endColor, invLerp);
     }
 }
