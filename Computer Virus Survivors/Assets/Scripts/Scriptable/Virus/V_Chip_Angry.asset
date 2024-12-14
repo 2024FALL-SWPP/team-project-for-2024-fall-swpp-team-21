@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3813b8a75afeea143976a2d10aa03fb1, type: 3}
-  m_Name: V_Chip
+  m_Name: V_Chip_Angry
   m_EditorClassIdentifier: 
-  poolType: 3
-  maxHP: 30
+  poolType: 4
+  maxHP: 70
   moveSpeed: 1
   dropTable:
     dropElements: []
-  dropExp: 100
-  contactDamage: 5
+  dropExp: 200
+  contactDamage: 10
   knockbackSpeed: 10
   knockbackColor: {fileID: 0}
