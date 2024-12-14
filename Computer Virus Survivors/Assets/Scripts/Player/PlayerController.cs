@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private int debuffNum = 0;
     private float debuffDegree = 1.0f;
 
+    private bool isGameOver = false;
+
     public void Initialize()
     {
         playerStat.Initialize(playerStatData, statEventCaller);
@@ -58,6 +60,10 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        if (isGameOver)
+        {
+            return;
+        }
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -117,7 +123,19 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
+        isGameOver = true;
+        StartCoroutine(PlayDeathAnimation());
         GameManager.instance.GameOver();
+    }
+
+    private IEnumerator PlayDeathAnimation()
+    {
+        animator.Play("Dead");
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f) // While animation isn't finished
+        {
+            animator.Update(Time.unscaledDeltaTime); // Update manually
+            yield return null; // Wait for the next frame
+        }
     }
 
     public void GetDamage(int damage)

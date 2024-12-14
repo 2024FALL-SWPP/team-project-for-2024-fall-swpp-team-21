@@ -88,6 +88,7 @@ public class GameManager : Singleton<GameManager>
             Time.timeScale = Mathf.Max(0, Time.timeScale - 0.1f);
             yield return new WaitForSecondsRealtime(0.1f);
         }
+        yield return new WaitForSecondsRealtime(2.0f);
         callback();
     }
 

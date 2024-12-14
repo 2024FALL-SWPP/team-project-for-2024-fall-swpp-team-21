@@ -11625,7 +11625,7 @@ MonoBehaviour:
     - {x: 0, y: 10}
   - spawnTimeRange: {x: 0, y: 30}
     spawnPeriod: 1
-    virusID: 4
+    virusID: 5
     spawnMonsterNum: 2
     ignoreMaxVirusNum: 0
     randomAroundPlayer: 1
