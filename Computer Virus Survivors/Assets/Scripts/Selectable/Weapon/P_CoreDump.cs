@@ -5,9 +5,9 @@ using UnityEngine;
 public class P_CoreDump : PlayerProjectileBehaviour
 {
     [SerializeField] private float dumpSpeed = 3.0f;
-    [SerializeField] private float dumpRadius = 3.0f;
     [SerializeField] private LayerMask virusLayer;
     private Vector3 fallingDirection;
+    private float dumpRadius;
 
     // public void Initialize(int damage, Vector3 fallingDirection)
     // {
@@ -25,7 +25,7 @@ public class P_CoreDump : PlayerProjectileBehaviour
     public void Initialize(FinalWeaponData finalWeaponData, Vector3 fallingDirection)
     {
         base.Initialize(finalWeaponData);
-
+        dumpRadius = finalWeaponData.attackRange;
         if (animator == null)
         {
             animator = GetComponent<Animator>();
@@ -55,7 +55,7 @@ public class P_CoreDump : PlayerProjectileBehaviour
                 criticalExist = true;
             }
         }
-        PlayAttackEffect(transform.position, Quaternion.identity, criticalExist);
+        PlayAttackEffect(transform.position, Quaternion.identity, criticalExist, dumpRadius);
         yield return new WaitForSeconds(1.0f);
         PoolManager.instance.ReturnObject(PoolType.Proj_CoreDump, gameObject);
     }

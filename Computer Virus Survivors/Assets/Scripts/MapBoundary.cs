@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapBoundary : Singleton<MapBoundary>
@@ -75,6 +72,7 @@ public class MapBoundary : Singleton<MapBoundary>
 }
 
 
+#if UNITY_EDITOR
 [UnityEditor.CustomEditor(typeof(MapBoundary))]
 public class MapBoundaryEditor : UnityEditor.Editor
 {
@@ -90,3 +88,4 @@ public class MapBoundaryEditor : UnityEditor.Editor
         }
     }
 }
+#endif

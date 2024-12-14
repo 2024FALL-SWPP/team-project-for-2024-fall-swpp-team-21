@@ -3,7 +3,9 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 [Serializable]
 public class SpawnPattern
@@ -224,7 +226,7 @@ public class SpawnManager : Singleton<SpawnManager>
 }
 
 
-
+#if UNITY_EDITOR
 /// <summary>
 /// JSON 파일로 저장 및 로드하는 에디터
 /// </summary>
@@ -277,3 +279,4 @@ public class SpawnManagerEditor : Editor
         }
     }
 }
+#endif

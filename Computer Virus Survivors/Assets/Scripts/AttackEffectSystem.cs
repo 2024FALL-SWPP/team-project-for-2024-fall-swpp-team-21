@@ -16,19 +16,21 @@ public enum AttackEffectType
 public class AttackEffect
 {
 
-    public void Play(Vector3 position, AttackEffectType type = AttackEffectType.Basic, bool isCritical = false)
+    public void Play(Vector3 position, AttackEffectType type = AttackEffectType.Basic, bool isCritical = false, float scale = 1.0f)
     {
-        PlayEffect(position, Quaternion.identity, type, isCritical);
+        PlayEffect(position, Quaternion.identity, type, isCritical, scale);
     }
 
-    public void Play(Vector3 position, Quaternion rotation, AttackEffectType type, bool isCritical = false)
+    public void Play(Vector3 position, Quaternion rotation, AttackEffectType type, bool isCritical = false, float scale = 1.0f)
     {
-        PlayEffect(position, rotation, type, isCritical);
+        PlayEffect(position, rotation, type, isCritical, scale);
     }
 
-    private void PlayEffect(Vector3 position, Quaternion rotation, AttackEffectType type, bool isCritical)
+    private void PlayEffect(Vector3 position, Quaternion rotation, AttackEffectType type, bool isCritical, float scale = 1.0f)
     {
         GameObject effect = PoolManager.instance.GetObject(PoolMapping(type, isCritical), position, rotation);
+        Vector3 originalScale = effect.transform.localScale;
+        effect.transform.localScale = originalScale * scale;
         effect.GetComponent<ParticleSystem>().Play();
     }
 
