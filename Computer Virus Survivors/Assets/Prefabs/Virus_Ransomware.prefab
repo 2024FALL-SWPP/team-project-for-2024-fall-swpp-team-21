@@ -61,16 +61,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virusData: {fileID: 11400000, guid: 4e31145e2971a3a4cb327071c2866e24, type: 2}
-  attackPeriod: 10
-  attackDelay: 0.5
-  eSNum: 8
+  animator: {fileID: 6885319965651779700}
+  attackPeriod: 5
+  attackDelay: 1
+  eSNum: 6
   eSHeight: 0.7
   eSOffset: 1
   eSDamage: 10
-  eSSpeed: 20
+  eSSpeed: 15
   eSRotateSpeed: 180
   uJDuration: 10
-  uJCooltime: 31
+  uJCooltime: 41
   cZRange: {x: 10, y: 7}
   cZNum: 4
   cZDamage: 2
@@ -79,7 +80,7 @@ MonoBehaviour:
   cZExistDuration: 5
   cZDebuffDegree: 0.5
   cZDotDamagePeriod: 0.1
-  tBSpawnDistance: 1
+  tBSpawnDistance: 2
   tBDamage: 10
   tBSpeed: 4.9
   tBExistDuration: 5
@@ -182,5 +183,10 @@ PrefabInstance:
 --- !u!4 &6343086403750537113 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4465405056052960907, guid: c6d35598b12478b488347c4ab68f2bff, type: 3}
+  m_PrefabInstance: {fileID: 7349704473640188178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6885319965651779700 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4211700456314403174, guid: c6d35598b12478b488347c4ab68f2bff, type: 3}
   m_PrefabInstance: {fileID: 7349704473640188178}
   m_PrefabAsset: {fileID: 0}

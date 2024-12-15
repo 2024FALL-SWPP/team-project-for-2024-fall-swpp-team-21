@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private float debuffDegree = 1.0f;
 
     private PlayerHitEffect playerHitEffect;
+    private bool isGameOver = false;
 
     public void Initialize()
     {
@@ -62,6 +63,10 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        if (isGameOver)
+        {
+            return;
+        }
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -121,6 +126,9 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
+        isGameOver = true;
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        animator.Play("Dead");
         GameManager.instance.GameOver();
     }
 

@@ -22,7 +22,7 @@ public class V_Trojan : VirusBehaviour
         canAttack = false;
         isAttacking = false;
         attackTimer = 0.0f;
-        SpawnManager.instance.SpawnTurret();
+        SpawnManager.instance.SpawnTurret(1);
     }
 
     private void OnDisable()
