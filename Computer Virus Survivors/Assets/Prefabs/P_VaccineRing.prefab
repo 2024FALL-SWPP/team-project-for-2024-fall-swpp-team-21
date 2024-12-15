@@ -60,7 +60,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &5403754761692952376
 PrefabInstance:
@@ -69,6 +69,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5403754762025930221}
     m_Modifications:
+    - target: {fileID: 5647012064727919147, guid: a707b3d05638aa242973847b60be8ab9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4e12e0a9a93b2294f8413a60b5abb7da, type: 2}
+    - target: {fileID: 5647012064727919147, guid: a707b3d05638aa242973847b60be8ab9, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 589702e9ddf63ad47a1d6bbf9ec9a786, type: 2}
+    - target: {fileID: 5647012064727919147, guid: a707b3d05638aa242973847b60be8ab9, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7376e9c2e2002b045819a8bc736d1ece, type: 2}
+    - target: {fileID: 5647012064727919147, guid: a707b3d05638aa242973847b60be8ab9, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: b5736cee3e9b7ec4e8de002b625a9e0c, type: 2}
     - target: {fileID: 6151578432663473150, guid: a707b3d05638aa242973847b60be8ab9, type: 3}
       propertyPath: m_Name
       value: P_Shield_Yellow

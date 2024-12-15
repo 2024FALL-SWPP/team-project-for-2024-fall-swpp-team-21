@@ -17,25 +17,25 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.050980393, g: 0, b: 0.083759665, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.16
+  m_FogDensity: 0.17
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.101295285, g: 0.05847276, b: 0.16981131, a: 1}
+  m_AmbientSkyColor: {r: 0.20410636, g: 0.11031505, b: 0.3490566, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 8
   m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.2987141, g: 0.20425418, b: 0.3207547, a: 1}
-  m_SkyboxMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_HaloStrength: 0.5
+  m_SubtractiveShadowColor: {r: 0.20595454, g: 0.12922749, b: 0.2264151, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 0c4ef7df3529cd64fb80ced832922ab7, type: 2}
+  m_HaloStrength: 0.501
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
-  m_HaloTexture: {fileID: 2800000, guid: 974d80522ed4bd64c9bfaf94a3d5039f, type: 3}
+  m_HaloTexture: {fileID: 2800000, guid: 5d0d4925b5ae28742a5f03b7600cd91e, type: 3}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 1
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -1755,7 +1755,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 40, y: -20}
+  m_AnchoredPosition: {x: 40, y: -20.00003}
   m_SizeDelta: {x: 370, y: -280}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &394002313
@@ -1847,6 +1847,7 @@ GameObject:
   - component: {fileID: 414770149}
   - component: {fileID: 414770148}
   - component: {fileID: 414770147}
+  - component: {fileID: 414770150}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1920,6 +1921,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 5.105, y: 180, z: 0}
+--- !u!114 &414770150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414770146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &422882265
 GameObject:
   m_ObjectHideFlags: 0
@@ -4290,6 +4324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 981415810}
   - component: {fileID: 981415811}
+  - component: {fileID: 981415812}
   m_Layer: 0
   m_Name: Roof light (1)
   m_TagString: Untagged
@@ -4323,8 +4358,8 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.84313726, g: 1, b: 0.93140316, a: 1}
-  m_Intensity: 3
+  m_Color: {r: 0.32551616, g: 0.8962264, b: 0.6536746, a: 1}
+  m_Intensity: 350
   m_Range: 16.89
   m_SpotAngle: 50
   m_InnerSpotAngle: 5
@@ -4366,7 +4401,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -4374,6 +4409,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &981415812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981415809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &987244352
 GameObject:
   m_ObjectHideFlags: 0
@@ -4606,6 +4661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1132345496}
   - component: {fileID: 1132345497}
+  - component: {fileID: 1132345498}
   m_Layer: 0
   m_Name: Roof light
   m_TagString: Untagged
@@ -4639,20 +4695,20 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.82287663, g: 0.7688679, b: 1, a: 1}
-  m_Intensity: 6
+  m_Color: {r: 0.74456346, g: 0.6650944, b: 1, a: 1}
+  m_Intensity: 350
   m_Range: 14
-  m_SpotAngle: 44
+  m_SpotAngle: 50.594734
   m_InnerSpotAngle: 5
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.6
+    m_Strength: 0.544
     m_Bias: 0
     m_NormalBias: 0.36
-    m_NearPlane: 0.32
+    m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -4682,7 +4738,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -4690,6 +4746,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1132345498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132345495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1144927924
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ using UnityEngine;
 /// </summary>
 public class HitEffect
 {
-    private static float _effectFrame = 4f;
+    private static float _effectFrame = 6f;
     private static Material _hitMaterial;
     private MonoBehaviour ownerMonoBehaviour;
     private Renderer[] renderers;
@@ -36,8 +36,12 @@ public class HitEffect
         {
             if (_hitMaterial == null)
             {
-                _hitMaterial = new Material(Shader.Find("Unlit/Color"));
-                _hitMaterial.color = Color.white;
+                _hitMaterial = new Material(Shader.Find("Universal Render Pipeline/Particles/Unlit"));
+                _hitMaterial.SetColor("_BaseColor", Color.white);
+                _hitMaterial.SetColor("_EmissionColor", Color.white);
+                _hitMaterial.EnableKeyword("_EMISSION");
+                _hitMaterial.globalIlluminationFlags = MaterialGlobalIlluminationFlags.BakedEmissive;
+                _hitMaterial.SetFloat("_EmissionLuminance", 2f);
             }
             return _hitMaterial;
         }
