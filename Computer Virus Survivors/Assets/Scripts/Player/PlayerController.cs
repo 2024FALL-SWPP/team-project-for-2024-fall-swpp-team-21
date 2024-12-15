@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private int debuffNum = 0;
     private float debuffDegree = 1.0f;
 
+    private PlayerHitEffect playerHitEffect;
     private bool isGameOver = false;
 
     public void Initialize()
@@ -34,6 +35,8 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+
+        playerHitEffect = new PlayerHitEffect(gameObject);
     }
 
 

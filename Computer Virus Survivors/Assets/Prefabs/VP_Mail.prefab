@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c238bf063672fee48a2473f46f273093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackEffectType: 0
   spinSpeed: 90
 --- !u!135 &2572005539513884994
 SphereCollider:
@@ -58,7 +59,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.32
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8716738151859932788
 GameObject:
@@ -122,7 +123,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -7805965318761107941, guid: 2ea777ee39c2117488ce4f6e312ab1e4, type: 3}
-  - {fileID: 5125955998383885961, guid: 2ea777ee39c2117488ce4f6e312ab1e4, type: 3}
+  - {fileID: 2100000, guid: 9b08cf6f9c030954b8fa132086c0ea1c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

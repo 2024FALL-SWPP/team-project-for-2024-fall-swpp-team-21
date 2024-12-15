@@ -5095,3 +5095,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b86cdf755c646a4e93777b914b3b686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultEffectSize: 0.6

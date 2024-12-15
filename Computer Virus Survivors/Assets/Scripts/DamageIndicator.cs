@@ -7,7 +7,7 @@ public class DamageIndicator : MonoBehaviour
     private TextMeshProUGUI textMesh;
     [SerializeField] private float displayDuration = 1f;
     [SerializeField] private float moveupSpeed = 0.3f;
-    [SerializeField] private static Vector3 offset = new Vector3(0, 1, 0);
+    [SerializeField] private static Vector3 _offset = new Vector3(0, 2, 0);
     [SerializeField] private Material[] materials = new Material[2];
 
     private Vector3 worldPosition;
@@ -23,7 +23,7 @@ public class DamageIndicator : MonoBehaviour
 
     public void Initialize(int damage, Vector3 virusPosition, bool isCritical = false)
     {
-        worldPosition = virusPosition + offset;
+        worldPosition = virusPosition + _offset;
         SetDamage(damage, isCritical);
         transform.SetParent(CanvasManager.instance.transform);
     }
@@ -43,7 +43,7 @@ public class DamageIndicator : MonoBehaviour
 
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         worldPosition += Vector3.up * moveupSpeed * Time.deltaTime;
         //transform.position = Camera.main.WorldToScreenPoint(worldPosition);
