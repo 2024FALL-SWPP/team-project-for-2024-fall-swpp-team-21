@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
 {
     public event Action GameOverHandler;
     public event Action GameClearHandler;
+    public event Action GotoMainSceneHandler;
     [SerializeField] private GameObject playerPrefab;
 
     private GameObject player;
@@ -77,7 +78,12 @@ public class GameManager : Singleton<GameManager>
         {
             GameClearHandler?.Invoke();
         }));
+    }
 
+    public void GotoMainScene()
+    {
+        player.GetComponent<PlayerController>().statEventCaller.ClearSubscribers();
+        GotoMainSceneHandler?.Invoke();
     }
 
     private IEnumerator TimeScaleSlowDown(Action callback)

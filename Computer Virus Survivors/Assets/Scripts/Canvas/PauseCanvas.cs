@@ -9,7 +9,6 @@ public class PauseCanvas : Singleton<PauseCanvas>, IState, IPlayerStatObserver
 {
 
     public event Action ResumeHandler;
-    public event Action GotoMainHandler;
 
     [SerializeField] private PlayerStatEventCaller playerStatEventCaller;
     [SerializeField] private GameObject baseSpecObject;
@@ -33,7 +32,7 @@ public class PauseCanvas : Singleton<PauseCanvas>, IState, IPlayerStatObserver
 
     public void OnGotoMainClicked()
     {
-        GotoMainHandler?.Invoke();
+        GameManager.instance.GotoMainScene();
     }
 
     public void OnExitClicked()

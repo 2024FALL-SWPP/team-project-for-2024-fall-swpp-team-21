@@ -49,15 +49,7 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
         {
             StateMachine(Signal.OnResumeClicked);
         };
-        pauseCanvas.GotoMainHandler += () =>
-        {
-            StateMachine(Signal.GotoMainClicked);
-        };
         gameOverCanvas.GotoHomeBtnHandler += () =>
-        {
-            StateMachine(Signal.GotoMainClicked);
-        };
-        gameClearCanvas.GotoHomeBtnHandler += () =>
         {
             StateMachine(Signal.GotoMainClicked);
         };
@@ -68,6 +60,10 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
         GameManager.instance.GameClearHandler += () =>
         {
             StateMachine(Signal.GameClear);
+        };
+        GameManager.instance.GotoMainSceneHandler += () =>
+        {
+            StateMachine(Signal.GotoMainClicked);
         };
 
         playingState = new PlayingState();
