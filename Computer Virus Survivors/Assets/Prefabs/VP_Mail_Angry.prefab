@@ -59,7 +59,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.32
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5388487572533225293
 GameObject:
@@ -122,7 +122,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5125955998383885961, guid: db09d4386df7b8c4b82a8eb358d9391f, type: 3}
+  - {fileID: 2100000, guid: 9b08cf6f9c030954b8fa132086c0ea1c, type: 2}
   - {fileID: -7805965318761107941, guid: db09d4386df7b8c4b82a8eb358d9391f, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0

@@ -92,6 +92,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5841041427378954019}
     m_Modifications:
+    - target: {fileID: 808989276620289628, guid: ab88033d37f6de246868e651dc241f21, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 189acbdfe4b50f644835ff76013ee938, type: 2}
     - target: {fileID: 1169501065316587401, guid: ab88033d37f6de246868e651dc241f21, type: 3}
       propertyPath: m_Name
       value: Pfb_TrojanHorse
