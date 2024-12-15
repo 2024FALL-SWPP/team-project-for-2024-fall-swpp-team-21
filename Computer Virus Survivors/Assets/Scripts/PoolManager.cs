@@ -50,6 +50,7 @@ public enum PoolType
     VFX_LightningHit_Crit,
     VFX_MagicHit_Crit,
     VProj_Mail_Angry,
+    RedZone,
     None = -1,
 
 }

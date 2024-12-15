@@ -17,15 +17,16 @@ public class V_Turret : VirusBehaviour
 
     private LineRenderer lineRenderer;
 
-    protected override void Start()
+    private void Awake()
     {
-        base.Start();
         lineRenderer = GetComponent<LineRenderer>();
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
+        lineRenderer.enabled = false;
+        upperBody.transform.localRotation = Quaternion.identity;
         StartCoroutine(GoUp());
     }
 
