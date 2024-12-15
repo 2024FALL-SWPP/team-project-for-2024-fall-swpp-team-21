@@ -44,6 +44,7 @@ public class SpawnManager : Singleton<SpawnManager>
     [SerializeField] private Vector2 spawnRange;  // for test: 플레이어 주위 스폰 범위
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private int maxVirusNum = 100;
+    [SerializeField] private GameObject turretPoints;
     public List<SpawnPattern> spawnPatterns;
 
     private GameObject player;
@@ -209,18 +210,16 @@ public class SpawnManager : Singleton<SpawnManager>
         currentVirusNum--;  // synchronization issue?
     }
 
-    public void SpawnTurret()
+    public void SpawnTurret(int idx)
     {
-        // TODO : 터렛 위치 조정
-        Vector3 spawnPosition = new Vector3(0, -4f, 0);
-        Quaternion spawnRotation = Quaternion.Euler(0, -135, 0);
+        Transform turretPoint = turretPoints.transform.GetChild(idx);
 
         Debug.Log("Turret Spawned");
         PoolManager.instance.GetObject
         (
-            PoolType.Turret,
-            spawnPosition,
-            spawnRotation
+            PoolType.RedZone,
+            turretPoint.position,
+            turretPoint.rotation
         );
     }
 }

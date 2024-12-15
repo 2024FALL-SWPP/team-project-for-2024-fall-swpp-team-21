@@ -67,7 +67,7 @@ public class V_Ransomware : VirusBehaviour
     {
         base.OnEnable();
         startAttack = false;
-        SpawnManager.instance.SpawnTurret();
+        SpawnManager.instance.SpawnTurret(2);
     }
 
     private void OnDisable()

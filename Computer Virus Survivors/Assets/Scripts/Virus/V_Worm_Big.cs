@@ -14,7 +14,7 @@ public class V_Worm_Big : VirusBehaviour
     {
         base.OnEnable();
         attackTimer = 0.0f;
-        SpawnManager.instance.SpawnTurret();
+        SpawnManager.instance.SpawnTurret(0);
     }
 
     private void FixedUpdate()
