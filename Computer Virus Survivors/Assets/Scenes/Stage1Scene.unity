@@ -9388,7 +9388,16 @@ MonoBehaviour:
   - {fileID: 2549643050272070597, guid: 7ae1688fda32f48d2866bb5f9586ee4f, type: 3}
   - {fileID: 835744681533526102, guid: 267239254684e1046b941498b538d6af, type: 3}
   itemPrefabs:
+  - {fileID: 7749885784722313653, guid: 564c9617fd4aabc43a37df38dfc04fe2, type: 3}
+  - {fileID: 2844120089101344663, guid: 1cade1e11676c374bab78052c33cc62b, type: 3}
+  - {fileID: 2795667744615645165, guid: a9bc1bcc5fa0a4246a93d4da64afaf97, type: 3}
+  - {fileID: 4409495226019107240, guid: 0d4973c892d07ec4bb8a94050450404d, type: 3}
+  - {fileID: 6380360671076609130, guid: aa092a83a977bbe4cacd90019981522a, type: 3}
+  - {fileID: 2723410603292946947, guid: d6e6f8936d931454992265ebb84d5d26, type: 3}
+  - {fileID: 7510037406760784858, guid: c944c83701469a547bb4fc26140669c7, type: 3}
+  - {fileID: 7849132757852708455, guid: 72b7aaf259b973b43a864b6ff680ec63, type: 3}
   - {fileID: 8084648258450572112, guid: b87a10d89b6e7bc49bb1e6b53e47e54a, type: 3}
+  - {fileID: 7080718593660756452, guid: 386f1e01f3f6a404894d74edd802f533, type: 3}
   - {fileID: 5337172507349020482, guid: 136fd2db766dad54da08c99cafb48077, type: 3}
   - {fileID: 5279996990134477508, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
   - {fileID: 732008657286886299, guid: 6dfe305c66b63d04bb02487ae3d5f351, type: 3}
@@ -13032,76 +13041,45 @@ MonoBehaviour:
   maxVirusNum: 100
   turretPoints: {fileID: 95660060}
   spawnPatterns:
-  - spawnTimeRange: {x: 180, y: 181}
-    spawnPeriod: 5
-    virusID: 11
-    spawnMonsterNum: 1
+  - spawnTimeRange: {x: 60, y: 1500}
+    spawnPeriod: 120
+    virusID: 27
+    spawnMonsterNum: 2
     ignoreMaxVirusNum: 1
     randomAroundPlayer: 0
-    randomAllOverMap: 0
+    randomAllOverMap: 1
     offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 5, y: 10}
-    spawnPoints:
-    - {x: 0, y: 10}
-  - spawnTimeRange: {x: 0, y: 30}
-    spawnPeriod: 1
-    virusID: 5
-    spawnMonsterNum: 2
-    ignoreMaxVirusNum: 0
-    randomAroundPlayer: 1
-    randomAllOverMap: 0
-    offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 5, y: 10}
+    spawnRange: {x: 0, y: 0}
     spawnPoints: []
-  - spawnTimeRange: {x: 25, y: 60}
-    spawnPeriod: 2
-    virusID: 7
+  - spawnTimeRange: {x: 0, y: 60}
+    spawnPeriod: 4
+    virusID: 5
     spawnMonsterNum: 5
     ignoreMaxVirusNum: 0
     randomAroundPlayer: 1
     randomAllOverMap: 0
     offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 5, y: 10}
+    spawnRange: {x: 10, y: 12}
     spawnPoints: []
   - spawnTimeRange: {x: 60, y: 120}
-    spawnPeriod: 3
+    spawnPeriod: 4
     virusID: 5
-    spawnMonsterNum: 10
+    spawnMonsterNum: 3
     ignoreMaxVirusNum: 0
     randomAroundPlayer: 1
     randomAllOverMap: 0
     offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 5, y: 10}
+    spawnRange: {x: 10, y: 12}
     spawnPoints: []
-  - spawnTimeRange: {x: 0, y: 120}
-    spawnPeriod: 5
-    virusID: 9
-    spawnMonsterNum: 2
+  - spawnTimeRange: {x: 60, y: 120}
+    spawnPeriod: 4
+    virusID: 3
+    spawnMonsterNum: 3
     ignoreMaxVirusNum: 0
     randomAroundPlayer: 1
     randomAllOverMap: 0
     offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 10, y: 15}
-    spawnPoints: []
-  - spawnTimeRange: {x: 0, y: 180}
-    spawnPeriod: 2
-    virusID: 6
-    spawnMonsterNum: 10
-    ignoreMaxVirusNum: 0
-    randomAroundPlayer: 1
-    randomAllOverMap: 0
-    offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 5, y: 10}
-    spawnPoints: []
-  - spawnTimeRange: {x: 60, y: 180}
-    spawnPeriod: 60
-    virusID: 27
-    spawnMonsterNum: 2
-    ignoreMaxVirusNum: 0
-    randomAroundPlayer: 0
-    randomAllOverMap: 1
-    offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 0, y: 30}
+    spawnRange: {x: 10, y: 12}
     spawnPoints: []
 --- !u!4 &2094598314
 Transform:
