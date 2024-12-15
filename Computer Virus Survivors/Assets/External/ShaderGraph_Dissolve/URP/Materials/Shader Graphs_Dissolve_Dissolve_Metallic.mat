@@ -47,19 +47,35 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Dissolve: 0.347
+    - _Dissolve: 0.442
     - _EdgeColorIntensity: 1
     - _EdgeWidth: 0.05
+    - _EmissionToggle: 0
     - _Metallic: 0.337
     - _NoiseScale: 50
     - _NormalScale: 1
     - _OcclusionStrength: 1
+    - _QueueControl: 0
+    - _QueueOffset: 0
     - _Smoothness: 0.932
     m_Colors:
     - _BaseColor: {r: 0.74108934, g: 0.36779106, b: 0.8962264, a: 1}
     - _EdgeColor: {r: 0.9494723, g: 3.9999995, b: 0, a: 0}
+    - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _NoiseUVSpeed: {r: 0, g: 0, b: 0, a: 0}
     - _Offest: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}

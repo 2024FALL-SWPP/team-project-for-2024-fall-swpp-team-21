@@ -11,7 +11,6 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 479a3a5ebe2be224c9db1e0fd92977df, type: 3}
   m_ValidKeywords:
   - BOOLEAN_USE_WROLDSPACE_ON
-  - BOOLEAN_WORLDORIGIN_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -36,6 +35,18 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - BOOLEAN_DIRECTION_FROM_EULERANGLE: 0
@@ -50,6 +61,8 @@ Material:
     - _NoiseScale: 60.1
     - _NormalScale: 1
     - _OcclusionStrength: 1
+    - _QueueControl: 0
+    - _QueueOffset: 0
     - _Smoothness: 0.974
     m_Colors:
     - _BaseColor: {r: 1, g: 0, b: 0, a: 1}
