@@ -31,7 +31,7 @@ public class AttackEffect
         GameObject effect = PoolManager.instance.GetObject(PoolMapping(type, isCritical), position, rotation);
         Vector3 originalScale = effect.transform.localScale;
         effect.transform.localScale = originalScale * scale;
-        effect.GetComponent<ParticleSystem>().Play();
+        // effect.GetComponent<ParticleSystem>().Play();
     }
 
     public static PoolType PoolMapping(AttackEffectType type, bool isCritical)
@@ -63,8 +63,10 @@ public class AttackEffectSystem : MonoBehaviour
     private ParticleSystem particle;
     [SerializeField] private AttackEffectType effectType;
     [SerializeField] private bool isCriticalEffect;
+    private Vector3 originalScale;
     private void Awake()
     {
+        originalScale = transform.localScale;
         particle = GetComponent<ParticleSystem>();
         ParticleSystem[] particleSystems = GetComponentsInChildren<ParticleSystem>();
         foreach (ParticleSystem ps in particleSystems)
@@ -76,6 +78,7 @@ public class AttackEffectSystem : MonoBehaviour
 
     private void OnParticleSystemStopped()
     {
+        transform.localScale = originalScale;
         PoolManager.instance.ReturnObject(AttackEffect.PoolMapping(effectType, isCriticalEffect), gameObject);
     }
 }
