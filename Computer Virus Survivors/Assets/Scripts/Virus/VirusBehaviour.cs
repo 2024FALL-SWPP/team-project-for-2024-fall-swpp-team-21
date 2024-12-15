@@ -13,23 +13,32 @@ public class VirusBehaviour : MonoBehaviour
     protected PlayerController playerController;
     protected Rigidbody rb;
 
-
     protected int currentHP;
     private float knockbackTime = 0f;
     private HitEffect hitEffect;
+    private DissolveEffect dissolveEffect;
+    private bool isDead;
+
+    protected virtual void Awake()
+    {
+        hitEffect = new HitEffect(gameObject, virusData.knockbackColor);
+        dissolveEffect = new DissolveEffect(gameObject);
+    }
 
     protected virtual void Start()
     {
         player = GameManager.instance.Player;
         playerController = player.GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody>();
-        hitEffect = new HitEffect(gameObject, virusData.knockbackColor);
     }
 
     protected virtual void OnEnable()
     {
         currentHP = virusData.maxHP;
         knockbackTime = 0f;
+        isDead = false;
+        dissolveEffect.Reset();
+        gameObject.layer = LayerMask.NameToLayer("Virus");
     }
 
 
@@ -38,13 +47,16 @@ public class VirusBehaviour : MonoBehaviour
 #if !WEAPON_LAB
         if (knockbackTime <= 0)
         {
-            Vector3 moveDirection = Vector3.ProjectOnPlane(
+            if (!isDead)
+            {
+                Vector3 moveDirection = Vector3.ProjectOnPlane(
                 (player.transform.position - transform.position).normalized,
                 Vector3.up);
             //transform.Translate(virusData.moveSpeed * Time.deltaTime * moveDirection, Space.World);
             rb.MovePosition(transform.position + virusData.moveSpeed * Time.fixedDeltaTime * moveDirection);
             //transform.rotation = Quaternion.LookRotation(moveDirection);
             rb.MoveRotation(Quaternion.LookRotation(moveDirection));
+            }
         }
         else // Knockback
         {
@@ -89,6 +101,8 @@ public class VirusBehaviour : MonoBehaviour
 
     protected virtual void Die()
     {
+        isDead = true;
+        gameObject.layer = LayerMask.NameToLayer("Ghost");
         OnDie?.Invoke(this);
 
         if (virusData.dropExp > 0)
@@ -102,7 +116,13 @@ public class VirusBehaviour : MonoBehaviour
             PoolManager.instance.GetObject(virusData.dropTable.GetDropItem(), GetRandomPosition(), transform.rotation);
         }
 
-        PoolManager.instance.ReturnObject(virusData.poolType, gameObject);
+        OnDie = null;
+
+        dissolveEffect.Play(() =>
+        {
+            PoolManager.instance.ReturnObject(virusData.poolType, gameObject);
+        });
+
     }
 
     private Vector3 GetRandomPosition()
@@ -131,7 +151,7 @@ public class VirusBehaviour : MonoBehaviour
                 damageData.incrementKillCount();
                 Die();
             }
-            else if (virusData.knockbackSpeed > 0)
+            if (virusData.knockbackSpeed > 0)
             {
                 this.knockbackTime += damageData.knockbackTime;
             }
