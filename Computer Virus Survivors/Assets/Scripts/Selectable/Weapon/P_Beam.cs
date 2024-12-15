@@ -27,6 +27,11 @@ public class P_Beam : PlayerProjectileBehaviour
             transform.LookAt(targetPos);
         }
 
+        if (transform.position.y < 0)
+        {
+            PoolManager.instance.ReturnObject(PoolType.Proj_Beam, gameObject);
+        }
+
         transform.Translate(speed * Time.deltaTime * Vector3.forward);
 
         if (CheckOutOfScreen())
