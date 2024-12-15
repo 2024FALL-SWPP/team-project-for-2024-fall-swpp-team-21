@@ -49,6 +49,10 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
         {
             StateMachine(Signal.OnResumeClicked);
         };
+        pauseCanvas.GotoMainHandler += () =>
+        {
+            StateMachine(Signal.GotoMainClicked);
+        };
         gameOverCanvas.GotoHomeBtnHandler += () =>
         {
             StateMachine(Signal.GotoMainClicked);
@@ -169,6 +173,13 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
                     {
                         SetState(playingState);
                     }
+                    break;
+                case Signal.GotoMainClicked:
+                    StartCoroutine(readyState.FadeOut(() =>
+                    {
+                        Time.timeScale = 1;
+                        SceneManager.LoadScene("MainScene");
+                    }));
                     break;
                     // default:
                     //     throw new Exception("Unresolved Signal : " + nameof(signal));
