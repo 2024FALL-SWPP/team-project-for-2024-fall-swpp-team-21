@@ -112,7 +112,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Dissolve: 0.404
+    - _Dissolve: 0.428
     - _DstBlend: 0
     - _EdgeColorIntensity: 1
     - _EdgeWidth: 0.08
@@ -124,6 +124,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _NoiseScale: 30
+    - _NoiseSeed: 0.59
     - _NormalScale: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -141,7 +142,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.95728916, g: 0.9730373, b: 1, a: 1}
     - _Color: {r: 0.95728916, g: 0.9730373, b: 1, a: 1}
-    - _EdgeColor: {r: 0.30261838, g: 0.43711543, b: 8.574187, a: 0}
+    - _EdgeColor: {r: 0, g: 3.890196, b: 4, a: 0}
     - _Emission: {r: 0.6320754, g: 0.40846384, b: 0.40846384, a: 0}
     - _EmissionColor: {r: 1.5157166, g: 0, b: 0, a: 0}
     - _NoiseUVSpeed: {r: 0, g: 0, b: 0, a: 0}
