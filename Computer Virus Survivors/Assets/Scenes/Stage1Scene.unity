@@ -11612,9 +11612,9 @@ MonoBehaviour:
     m_Bits: 4096
   maxVirusNum: 100
   spawnPatterns:
-  - spawnTimeRange: {x: 1, y: 2}
+  - spawnTimeRange: {x: 180, y: 181}
     spawnPeriod: 5
-    virusID: 13
+    virusID: 11
     spawnMonsterNum: 1
     ignoreMaxVirusNum: 1
     randomAroundPlayer: 0
