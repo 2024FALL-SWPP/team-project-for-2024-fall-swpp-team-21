@@ -124,18 +124,9 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         isGameOver = true;
-        StartCoroutine(PlayDeathAnimation());
-        GameManager.instance.GameOver();
-    }
-
-    private IEnumerator PlayDeathAnimation()
-    {
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         animator.Play("Dead");
-        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f) // While animation isn't finished
-        {
-            animator.Update(Time.unscaledDeltaTime); // Update manually
-            yield return null; // Wait for the next frame
-        }
+        GameManager.instance.GameOver();
     }
 
     public void GetDamage(int damage)
