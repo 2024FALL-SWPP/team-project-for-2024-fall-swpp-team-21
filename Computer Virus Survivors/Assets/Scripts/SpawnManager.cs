@@ -206,7 +206,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public void OnVirusDestroyed(VirusBehaviour virus)
     {
-        virus.OnDie -= OnVirusDestroyed;
+        // virus.OnDie -= OnVirusDestroyed;
         currentVirusNum--;  // synchronization issue?
     }
 
