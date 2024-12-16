@@ -19,7 +19,8 @@ public class SpawnPattern
     public bool randomAllOverMap;  // 맵 경계 내부 전체에서 랜덤하게 스폰
 
     [Header("Random Around Player인 경우만")]
-    public Vector2 offsetFromPlayer;
+    //public Vector2 offsetFromPlayer;
+    public float offsetFromPlayer;
     public Vector2 spawnRange;
 
     [Header("랜덤이 아닌 경우만 (Spawn Monster Num만큼 필요)")]
@@ -110,6 +111,8 @@ public class SpawnManager : Singleton<SpawnManager>
         PoolType virusPoolType = spawnPattern.virusID;
         while (GameManager.instance.gameTime <= spawnPattern.spawnTimeRange.y)
         {
+            Vector2 offsetPoint = GetOffsetPoint(spawnPattern.offsetFromPlayer);
+
             for (int i = 0; i < spawnPattern.spawnMonsterNum; i++)
             {
                 if (currentVirusNum >= maxVirusNum && !spawnPattern.ignoreMaxVirusNum)
@@ -119,8 +122,8 @@ public class SpawnManager : Singleton<SpawnManager>
 
                 Vector2 randomPoint = spawnPattern.randomAllOverMap ? GetRandomPointAllOverMap() :
                     (spawnPattern.randomAroundPlayer ?
-                    GetRandomPointAroundPlayer(spawnPattern.spawnRange.x, spawnPattern.spawnRange.y, spawnPattern.offsetFromPlayer) :
-                    spawnPattern.spawnPoints[i] + spawnPattern.offsetFromPlayer);
+                    GetRandomPointAroundPlayer(spawnPattern.spawnRange.x, spawnPattern.spawnRange.y, offsetPoint) :
+                    spawnPattern.spawnPoints[i]);
                 // float x = randomPoint.x + spawnPattern.offsetFromPlayer.x;
                 // float z = randomPoint.y + spawnPattern.offsetFromPlayer.y;
 
@@ -181,6 +184,34 @@ public class SpawnManager : Singleton<SpawnManager>
             if (IsValidPoint(point))
             {
                 return point;
+            }
+        }
+
+        Debug.LogWarning("Failed to find a valid point in 100 attempts");
+        return Vector2.zero;
+    }
+
+    private Vector2 GetOffsetPoint(float radius)
+    {
+        if (radius == 0)
+        {
+            return Vector2.zero;
+        }
+
+        for (int i = 0; i < 100; i++)
+        {
+            // Random angle in radians
+            float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2);
+
+            // Convert polar coordinates to Cartesian coordinates
+            Vector2 circlePoint = radius * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            float x = circlePoint.x + player.transform.position.x;
+            float y = circlePoint.y + player.transform.position.z;
+            Vector2 point = new Vector2(x, y);
+
+            if (IsValidPoint(point))
+            {
+                return circlePoint;
             }
         }
 

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: V_Corona_Angry
   m_EditorClassIdentifier: 
   poolType: 6
-  maxHP: 50
+  maxHP: 70
   moveSpeed: 1.5
   dropTable:
     dropElements: []
   dropExp: 100
   contactDamage: 5
-  knockbackSpeed: 5
+  knockbackSpeed: 10
+  knockbackColor: {fileID: 0}

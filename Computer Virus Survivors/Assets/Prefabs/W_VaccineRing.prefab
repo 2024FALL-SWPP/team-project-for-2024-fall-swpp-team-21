@@ -93,7 +93,7 @@ MonoBehaviour:
   projectilePoolType: 19
   initialDamage: 10
   initialMultiProjectile: 2
-  initialAttackPeriod: 3
+  initialAttackPeriod: 4
   initialAttackRange: 2
   initialAddiCritProbability: 5
   initialAddiCritPoint: 0
