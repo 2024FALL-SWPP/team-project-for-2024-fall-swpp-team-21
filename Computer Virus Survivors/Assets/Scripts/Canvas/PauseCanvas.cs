@@ -12,11 +12,16 @@ public class PauseCanvas : Singleton<PauseCanvas>, IState, IPlayerStatObserver
 
     [SerializeField] private PlayerStatEventCaller playerStatEventCaller;
     [SerializeField] private GameObject baseSpecObject;
+    [SerializeField] private GameObject weaponStatisticsPanel;
     private Dictionary<string, SingleSpec> singleSpecs;
+
+    private GameObject weaponSingleStat;
+    private bool initialized = false;
     public override void Initialize()
     {
         InitializeSingleSpecs();
         playerStatEventCaller.StatChangedHandler += OnStatChanged;
+        weaponSingleStat = weaponStatisticsPanel.transform.GetChild(0).gameObject;
         gameObject.SetActive(false);
     }
 
@@ -25,8 +30,23 @@ public class PauseCanvas : Singleton<PauseCanvas>, IState, IPlayerStatObserver
         ResumeHandler?.Invoke();
     }
 
+    public void OnGotoMainClicked()
+    {
+        GameManager.instance.GotoMainScene();
+    }
+
+    public void OnExitClicked()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
     public void OnEnter()
     {
+        UpdateStatistics();
         transform.SetAsLastSibling();
     }
 
@@ -49,6 +69,53 @@ public class PauseCanvas : Singleton<PauseCanvas>, IState, IPlayerStatObserver
             }
         }
 
+    }
+
+    private void InitializeStatistics()
+    {
+
+
+        List<WeaponStatistic> weaponDatas = GameManager.instance.GetWeaponStatistics();
+
+        for (int i = 0; i < weaponDatas.Count; i++)
+        {
+            GameObject weaponStat = Instantiate(weaponSingleStat, weaponStatisticsPanel.transform);
+            TextMeshProUGUI weaponName = weaponStat.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI weaponKillCount = weaponStat.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI weaponDamage = weaponStat.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+
+            weaponName.text = weaponDatas[i].weaponName;
+            weaponKillCount.text = weaponDatas[i].killCount.ToString();
+            weaponDamage.text = weaponDatas[i].totalDamage.ToString();
+
+        }
+
+    }
+
+    private void UpdateStatistics()
+    {
+
+        if (!initialized)
+        {
+            initialized = true;
+            InitializeStatistics();
+            return;
+        }
+
+        List<WeaponStatistic> weaponDatas = GameManager.instance.GetWeaponStatistics();
+
+        for (int i = 0; i < weaponDatas.Count; i++)
+        {
+            GameObject weaponStat = transform.GetChild(i).gameObject;
+            TextMeshProUGUI weaponName = weaponStat.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI weaponKillCount = weaponStat.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI weaponDamage = weaponStat.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+
+            weaponName.text = weaponDatas[i].weaponName;
+            weaponKillCount.text = weaponDatas[i].killCount.ToString();
+            weaponDamage.text = weaponDatas[i].totalDamage.ToString();
+
+        }
     }
 
     private void InitializeSingleSpecs()
