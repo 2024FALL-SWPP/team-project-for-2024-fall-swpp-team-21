@@ -84,7 +84,7 @@ public class RedZone : MonoBehaviour
 
     private void OnTurretDestroyed(VirusBehaviour turret)
     {
-        turret.OnDie -= OnTurretDestroyed;
+        // turret.OnDie -= OnTurretDestroyed;
         StartCoroutine(RedZoneFadeOut());
     }
 }
