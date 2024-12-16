@@ -134,6 +134,7 @@ MonoBehaviour:
   moveSpeed: 5.5
   acceleration: 1
   poolType: 2
+  getSFX: {fileID: 11400000, guid: cc74eb6609482e74095442eeaebf5902, type: 2}
   layerMask:
     serializedVersion: 2
     m_Bits: 2048

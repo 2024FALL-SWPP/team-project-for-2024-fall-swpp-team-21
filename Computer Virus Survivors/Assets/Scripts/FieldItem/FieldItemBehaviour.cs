@@ -7,6 +7,7 @@ public abstract class FieldItemBehaviour : MonoBehaviour
     [SerializeField] private float moveSpeed = 5.5f;  // player보다 빨라야 함
     [SerializeField] private float acceleration = 1.0f;
     [SerializeField] private PoolType poolType;
+    [SerializeField] protected SFXPreset getSFX;
 
     protected GameObject player;
     protected PlayerController playerController;
