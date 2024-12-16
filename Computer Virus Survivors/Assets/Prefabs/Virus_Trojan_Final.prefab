@@ -92,6 +92,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5841041427378954019}
     m_Modifications:
+    - target: {fileID: 2989993802188782441, guid: f86237c14dd8bf648b3a8db13011cd3b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f9db991809e1f784eb0fea6e94ad52ff, type: 2}
+    - target: {fileID: 2989993802188782441, guid: f86237c14dd8bf648b3a8db13011cd3b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: edd6682bb94bcdf44a356a09da1e2b5a, type: 2}
     - target: {fileID: 5014246167324518633, guid: f86237c14dd8bf648b3a8db13011cd3b, type: 3}
       propertyPath: m_Name
       value: Virus_Trojan_Anim

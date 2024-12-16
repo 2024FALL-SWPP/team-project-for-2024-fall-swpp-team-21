@@ -7,14 +7,19 @@ namespace DissolveExample
     public class DissolveChilds : MonoBehaviour
     {
         // Start is called before the first frame update
-        List<Material> materials = new List<Material>();
-        bool PingPong = false;
-        void Start()
+        private List<Material> materials = new List<Material>();
+
+        private void Start()
         {
             var renders = GetComponentsInChildren<Renderer>();
             for (int i = 0; i < renders.Length; i++)
             {
                 materials.AddRange(renders[i].materials);
+            }
+
+            for (int i = 0; i < materials.Count; i++)
+            {
+                materials[i].SetFloat("_NoiseSeed", Random.value);
             }
         }
 
@@ -25,7 +30,7 @@ namespace DissolveExample
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
 
             var value = Mathf.PingPong(Time.time * 0.5f, 1f);

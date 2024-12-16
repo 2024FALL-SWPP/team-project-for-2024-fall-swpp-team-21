@@ -53,7 +53,7 @@ public class DissolveEffect
     {
         for (int i = 0; i < materials.Count; i++)
         {
-            materials[i].SetFloat("_Seed", UnityEngine.Random.Range(0, 1000));
+            materials[i].SetFloat("_NoiseSeed", UnityEngine.Random.Range(0, 1000));
         }
     }
 

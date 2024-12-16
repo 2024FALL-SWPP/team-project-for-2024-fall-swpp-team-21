@@ -3997,7 +3997,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 50.0,
+    "m_Value": 30.0,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -4277,7 +4277,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "e3cc243235f94ca6a8f17b088b772c4a",
     "m_Id": 0,
-    "m_DisplayName": "EmissionToggle",
+    "m_DisplayName": "Emission",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -4778,10 +4778,10 @@
     "m_Guid": {
         "m_GuidSerialized": "0ef9bc38-42e3-4b45-be76-0e97b70ff8f7"
     },
-    "m_Name": "EmissionToggle",
+    "m_Name": "Emission",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "EmissionToggle",
-    "m_DefaultReferenceName": "_EmissionToggle",
+    "m_RefNameGeneratedByDisplayName": "Emission",
+    "m_DefaultReferenceName": "_Emission",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
