@@ -8,7 +8,7 @@ public class BtnSoundManager : Singleton<BtnSoundManager>
     {
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
-        audioSource.outputAudioMixerGroup = AudioManager.instance.audioMixer.FindMatchingGroups("UI")[0];
+        audioSource.outputAudioMixerGroup = AudioManager.instance.audioMixer.FindMatchingGroups("BTN")[0];
     }
 
     public void PlaySound(AudioClip clip)
