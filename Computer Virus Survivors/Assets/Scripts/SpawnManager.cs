@@ -15,16 +15,12 @@ public class SpawnPattern
     public PoolType virusID;
     public int spawnMonsterNum;
     public bool ignoreMaxVirusNum;  // true일 경우 maxVirusNum을 넘더라도 무시하고 스폰 (ex: 보스)
-    public bool randomAroundPlayer;
     public bool randomAllOverMap;  // 맵 경계 내부 전체에서 랜덤하게 스폰
 
-    [Header("Random Around Player인 경우만")]
+    [Header("Random All Over Map이 아닌 경우만")]
     //public Vector2 offsetFromPlayer;
     public float offsetFromPlayer;
     public Vector2 spawnRange;
-
-    [Header("랜덤이 아닌 경우만 (Spawn Monster Num만큼 필요)")]
-    public List<Vector2> spawnPoints;
 }
 
 public class SpawnPatternList
@@ -121,9 +117,7 @@ public class SpawnManager : Singleton<SpawnManager>
                 }
 
                 Vector2 randomPoint = spawnPattern.randomAllOverMap ? GetRandomPointAllOverMap() :
-                    (spawnPattern.randomAroundPlayer ?
-                    GetRandomPointAroundPlayer(spawnPattern.spawnRange.x, spawnPattern.spawnRange.y, offsetPoint) :
-                    spawnPattern.spawnPoints[i]);
+                    GetRandomPointAroundPlayer(spawnPattern.spawnRange.x, spawnPattern.spawnRange.y, offsetPoint);
                 // float x = randomPoint.x + spawnPattern.offsetFromPlayer.x;
                 // float z = randomPoint.y + spawnPattern.offsetFromPlayer.y;
 

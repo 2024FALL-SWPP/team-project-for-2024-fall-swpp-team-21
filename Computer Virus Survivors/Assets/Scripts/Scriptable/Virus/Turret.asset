@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Turret
   m_EditorClassIdentifier: 
   poolType: 26
-  maxHP: 5000
+  maxHP: 4000
   moveSpeed: 0
   dropTable:
     dropElements: []
   dropExp: 0
   contactDamage: 0
   knockbackSpeed: 0
+  knockbackColor: {fileID: 0}

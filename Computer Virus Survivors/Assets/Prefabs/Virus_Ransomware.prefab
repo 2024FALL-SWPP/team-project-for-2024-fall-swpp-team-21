@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   virusData: {fileID: 11400000, guid: 4e31145e2971a3a4cb327071c2866e24, type: 2}
   animator: {fileID: 6885319965651779700}
-  attackPeriod: 5
+  attackPeriod: 15
   attackDelay: 1
   eSNum: 6
   eSHeight: 0.7
@@ -71,7 +71,7 @@ MonoBehaviour:
   eSSpeed: 15
   eSRotateSpeed: 180
   uJDuration: 10
-  uJCooltime: 41
+  uJCooltime: 46
   cZRange: {x: 10, y: 7}
   cZNum: 4
   cZDamage: 2
@@ -80,17 +80,13 @@ MonoBehaviour:
   cZExistDuration: 5
   cZDebuffDegree: 0.5
   cZDotDamagePeriod: 0.1
-  tBSpawnDistance: 2
-  tBDamage: 10
-  tBSpeed: 4.9
-  tBExistDuration: 5
   dBPeriod: 0.5
   dBNum: 10
   dBHeight: 0.7
   dBOffset: 1
   dBDamage: 10
-  dBInitialSpeed: 5
-  dBAcceleration: 50
+  dBInitialSpeed: 3
+  dBAcceleration: 30
 --- !u!54 &1093182472011093825
 Rigidbody:
   m_ObjectHideFlags: 0

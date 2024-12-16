@@ -48,10 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virusData: {fileID: 11400000, guid: ec44fba017adaf74fb16cefd9ec3d13f, type: 2}
-  attackPeriod: 4
-  attackRange: 10
+  attackPeriod: 6
+  attackRange: 8
   dashSpeed: 25
-  dashDelay: 0.3
+  dashDelay: 1
   dashDuration: 0.5
   obstacleLayerMask:
     serializedVersion: 2

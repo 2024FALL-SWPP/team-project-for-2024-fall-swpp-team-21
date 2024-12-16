@@ -17,7 +17,7 @@ MonoBehaviour:
   moveSpeed: 1.5
   dropTable:
     dropElements: []
-  dropExp: 100
+  dropExp: 300
   contactDamage: 5
   knockbackSpeed: 10
   knockbackColor: {fileID: 0}

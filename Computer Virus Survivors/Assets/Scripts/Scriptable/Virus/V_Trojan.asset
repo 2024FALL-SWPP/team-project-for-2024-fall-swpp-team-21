@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: V_Trojan
   m_EditorClassIdentifier: 
   poolType: 11
-  maxHP: 20000
+  maxHP: 12000
   moveSpeed: 2.5
   dropTable:
     dropElements: []
-  dropExp: 2500
-  contactDamage: 30
+  dropExp: 15000
+  contactDamage: 25
   knockbackSpeed: 0
   knockbackColor: {fileID: 0}
