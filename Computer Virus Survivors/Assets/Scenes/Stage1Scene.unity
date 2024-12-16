@@ -13441,7 +13441,7 @@ MonoBehaviour:
     randomAllOverMap: 0
     offsetFromPlayer: 0
     spawnRange: {x: 5, y: 12}
-  - spawnTimeRange: {x: 1440, y: 9999}
+  - spawnTimeRange: {x: 1600, y: 9999}
     spawnPeriod: 10
     virusID: 10
     spawnMonsterNum: 2
