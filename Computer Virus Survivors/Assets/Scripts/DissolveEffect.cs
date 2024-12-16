@@ -7,13 +7,11 @@ public class DissolveEffect
     private List<Material> materials = new List<Material>();
     private GameObject ownerObject;
     private float effectTime;
-    private bool randomSeed;
 
-    public DissolveEffect(GameObject gameObject, float effectTime = 1f, bool randomSeed = true)
+    public DissolveEffect(GameObject gameObject, float effectTime = 1f)
     {
         ownerObject = gameObject;
         this.effectTime = effectTime;
-        this.randomSeed = randomSeed;
         var renders = gameObject.GetComponentsInChildren<Renderer>();
         for (int i = 0; i < renders.Length; i++)
         {
@@ -28,10 +26,7 @@ public class DissolveEffect
 
     public void Play(Action callback = null)
     {
-        if (randomSeed)
-        {
-            SetRandomSeed();
-        }
+        SetRandomSeed();
         ownerObject.GetComponent<MonoBehaviour>().StartCoroutine(PlayDissolveEffect(callback));
     }
 
@@ -62,6 +57,27 @@ public class DissolveEffect
         for (int i = 0; i < materials.Count; i++)
         {
             materials[i].SetFloat("_Dissolve", value);
+        }
+    }
+
+    public void SetEdgeWidth(float width)
+    {
+        if (width < 0 || width > 1)
+        {
+            throw new Exception("Edge width must be between 0 and 1");
+        }
+
+        for (int i = 0; i < materials.Count; i++)
+        {
+            materials[i].SetFloat("_EdgeWidth", width);
+        }
+    }
+
+    public void SetEdgeColor(Color color)
+    {
+        for (int i = 0; i < materials.Count; i++)
+        {
+            materials[i].SetColor("_EdgeColor", color);
         }
     }
 }
