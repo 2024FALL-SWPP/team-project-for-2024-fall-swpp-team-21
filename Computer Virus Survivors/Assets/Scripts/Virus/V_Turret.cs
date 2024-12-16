@@ -17,8 +17,9 @@ public class V_Turret : VirusBehaviour
 
     private LineRenderer lineRenderer;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         lineRenderer = GetComponent<LineRenderer>();
     }
 

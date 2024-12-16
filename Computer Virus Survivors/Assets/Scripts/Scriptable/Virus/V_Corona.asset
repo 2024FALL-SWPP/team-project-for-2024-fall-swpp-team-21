@@ -20,4 +20,4 @@ MonoBehaviour:
   dropExp: 100
   contactDamage: 5
   knockbackSpeed: 15
-  knockbackColor: {fileID: 2100000, guid: 6a893e713c6f3a4418746328872df68b, type: 2}
+  knockbackColor: {fileID: 0}
