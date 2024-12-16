@@ -5114,3 +5114,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultEffectSize: 0.7
+  spawnEffectSound: {fileID: 11400000, guid: cc322d8116c200c4d86fa23dad26b8fe, type: 2}

@@ -24,6 +24,10 @@ public class SFXManager : Singleton<SFXManager>
 
     private TimeScaledAudioSource GetAudioSource()
     {
+        if (audioSourcePool == null)
+        {
+            audioSourcePool = new List<TimeScaledAudioSource>();
+        }
         foreach (var audioSource in audioSourcePool)
         {
             if (!audioSource.isPlaying)

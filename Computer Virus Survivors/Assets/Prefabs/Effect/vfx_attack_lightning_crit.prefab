@@ -19586,6 +19586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectType: 5
   isCriticalEffect: 1
+  sfx: {fileID: 11400000, guid: b5b64cc1087fa054782fbb59eded2fd8, type: 2}
 --- !u!1 &8922223086339252602
 GameObject:
   m_ObjectHideFlags: 0

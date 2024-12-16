@@ -75,3 +75,4 @@ MonoBehaviour:
   chainDepth: 2
   branchCount: 2
   lightningStartOffset: {x: 0, y: 10, z: 0}
+  shootSFX: {fileID: 11400000, guid: 1126ffd2c1e58b640a9508731b7c43f6, type: 2}

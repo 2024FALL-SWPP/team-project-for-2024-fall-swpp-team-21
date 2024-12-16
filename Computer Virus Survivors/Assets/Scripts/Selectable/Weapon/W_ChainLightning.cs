@@ -11,6 +11,7 @@ public sealed class W_ChainLightning : WeaponBehaviour
     [SerializeField] private int chainDepth;
     [SerializeField] private int branchCount;
     [SerializeField] private Vector3 lightningStartOffset;
+    [SerializeField] private SFXPreset shootSFX;
 
     protected override IEnumerator Attack()
     {
@@ -122,7 +123,7 @@ public sealed class W_ChainLightning : WeaponBehaviour
 
             PoolManager.instance.GetObject(PoolType.Proj_ChainLightning, lightningStart, Quaternion.identity)
                 .GetComponent<P_ChainLightning>().Initialize(finalWeaponData, chainID, chainRadius, chainDepth, branchCount, target);
-
+            shootSFX?.Play();
             yield return new WaitForSeconds(0.07f);
         }
     }

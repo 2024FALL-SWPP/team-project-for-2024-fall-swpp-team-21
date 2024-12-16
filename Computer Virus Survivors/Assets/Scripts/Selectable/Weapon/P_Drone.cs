@@ -9,6 +9,7 @@ using UnityEngine;
 public class P_Drone : PlayerProjectileBehaviour
 {
     [SerializeField] private PoolType projectileType;
+    [SerializeField] private SFXPreset shootSFX;
 
     // private float fireRadius;
     // private float attackPeriod;
@@ -79,6 +80,7 @@ public class P_Drone : PlayerProjectileBehaviour
             {
                 P_Beam beam = PoolManager.instance.GetObject(projectileType, transform.position, transform.rotation).GetComponent<P_Beam>();
                 beam.Initialize(finalWeaponData, target.transform.position);
+                shootSFX?.Play();
             }
 
             yield return new WaitForSeconds(finalWeaponData.attackPeriod);

@@ -13419,7 +13419,7 @@ MonoBehaviour:
     offsetFromPlayer: {x: 0, y: 0}
     spawnRange: {x: 5, y: 10}
     spawnPoints: []
-  - spawnTimeRange: {x: 0, y: 120}
+  - spawnTimeRange: {x: 90, y: 120}
     spawnPeriod: 5
     virusID: 9
     spawnMonsterNum: 2
@@ -13429,7 +13429,7 @@ MonoBehaviour:
     offsetFromPlayer: {x: 0, y: 0}
     spawnRange: {x: 10, y: 15}
     spawnPoints: []
-  - spawnTimeRange: {x: 0, y: 180}
+  - spawnTimeRange: {x: 120, y: 180}
     spawnPeriod: 2
     virusID: 6
     spawnMonsterNum: 10

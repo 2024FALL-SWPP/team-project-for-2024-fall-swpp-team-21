@@ -7,6 +7,7 @@ public sealed class W_CoreDump : WeaponBehaviour
 
     [SerializeField] private float dumpAreaRadius;
     [SerializeField] private float dumpStartHeight;
+    [SerializeField] private SFXPreset shootSFX;
     private readonly Vector3[] fallingDirections = { new Vector3(1, -1, 1).normalized, new Vector3(1, -1, -1).normalized,
                                                      new Vector3(-1, -1, 1).normalized, new Vector3(-1, -1, -1).normalized };
 
@@ -109,6 +110,7 @@ public sealed class W_CoreDump : WeaponBehaviour
             }
             proj = PoolManager.instance.GetObject(projectilePool, finalPosition, Quaternion.identity);
             proj.GetComponent<P_CoreDump>().Initialize(finalWeaponData, fallingDirection);
+            shootSFX?.Play();
             yield return new WaitForSeconds(0.1f);
         }
     }

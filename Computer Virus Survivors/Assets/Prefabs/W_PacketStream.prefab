@@ -126,6 +126,7 @@ MonoBehaviour:
   knockbackTime: 0.1
   muzzle: {fileID: 4708726180739756513}
   fluctuationRadius: 0.3
+  shootSFX: {fileID: 11400000, guid: 7961cda9fdc7c814289dd64619ed93fe, type: 2}
 --- !u!1 &3432674243412946918
 GameObject:
   m_ObjectHideFlags: 0

@@ -63,7 +63,7 @@ public class AttackEffectSystem : MonoBehaviour
     private ParticleSystem particle;
     [SerializeField] private AttackEffectType effectType;
     [SerializeField] private bool isCriticalEffect;
-    [SerializeField] private AudioClip attackSound;
+    [SerializeField] private SFXPreset sfx;
 
     private Vector3 originalScale;
 
@@ -82,10 +82,7 @@ public class AttackEffectSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        if (attackSound != null)
-        {
-            SFXManager.instance.PlaySound(attackSound);
-        }
+        sfx?.Play();
     }
 
     private void OnParticleSystemStopped()

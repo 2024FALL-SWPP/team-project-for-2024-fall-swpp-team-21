@@ -137,6 +137,7 @@ MonoBehaviour:
   endColor: {r: 1, g: 0, b: 0, a: 0}
   startExp: 100
   endExp: 500
+  expGetSFX: {fileID: 11400000, guid: cc74eb6609482e74095442eeaebf5902, type: 2}
 --- !u!135 &3863375471013688993
 SphereCollider:
   m_ObjectHideFlags: 0
