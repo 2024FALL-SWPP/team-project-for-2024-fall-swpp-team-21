@@ -63,17 +63,29 @@ public class AttackEffectSystem : MonoBehaviour
     private ParticleSystem particle;
     [SerializeField] private AttackEffectType effectType;
     [SerializeField] private bool isCriticalEffect;
+    [SerializeField] private AudioClip attackSound;
+
     private Vector3 originalScale;
+
     private void Awake()
     {
         originalScale = transform.localScale;
         particle = GetComponent<ParticleSystem>();
+
         ParticleSystem[] particleSystems = GetComponentsInChildren<ParticleSystem>();
         foreach (ParticleSystem ps in particleSystems)
         {
             ps.collision.SetPlane(0, GameObject.Find("Floor").transform);
         }
 
+    }
+
+    private void OnEnable()
+    {
+        if (attackSound != null)
+        {
+            SFXManager.instance.PlaySound(attackSound);
+        }
     }
 
     private void OnParticleSystemStopped()

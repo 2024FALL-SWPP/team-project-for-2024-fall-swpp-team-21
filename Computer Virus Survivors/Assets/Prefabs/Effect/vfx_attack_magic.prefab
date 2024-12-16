@@ -4888,6 +4888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectType: 6
   isCriticalEffect: 0
+  attackSound: {fileID: 8300000, guid: e2a915bbc58734650bd17de4e87a001c, type: 3}
 --- !u!1 &1424636119582809629
 GameObject:
   m_ObjectHideFlags: 0
