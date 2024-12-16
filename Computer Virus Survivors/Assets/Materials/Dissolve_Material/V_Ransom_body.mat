@@ -112,7 +112,7 @@ Material:
     - _DstBlend: 0
     - _EdgeColorIntensity: 1
     - _EdgeWidth: 0.05
-    - _Emission: 0
+    - _Emission: 1
     - _EmissionToggle: 1
     - _EnvironmentReflections: 1
     - _GlossMapScale: 1
