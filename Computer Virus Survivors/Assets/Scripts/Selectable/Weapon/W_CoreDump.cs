@@ -47,11 +47,11 @@ public sealed class W_CoreDump : WeaponBehaviour
                 BasicMultiProjectile += 1;
                 break;
             case 8:
-                BasicDamage += 20;
+                BasicDamage += 15;
                 break;
             case 9:
                 BasicMultiProjectile += 1;
-                BasicDamage += 30;
+                BasicDamage += 15;
                 break;
             default:
                 break;
@@ -84,10 +84,10 @@ public sealed class W_CoreDump : WeaponBehaviour
                 explanations[6] = "떨어지는 코어 <color=#FF00C7>1</color>개 추가";
                 goto case 6;
             case 8:
-                explanations[7] = "기본 데미지 <color=#FF00C7>20</color> 증가";
+                explanations[7] = "기본 데미지 <color=#FF00C7>15</color> 증가";
                 goto case 7;
             case 9:
-                explanations[8] = "떨어지는 코어 <color=#FF00C7>1</color>개 추가, 기본 데미지 <color=#FF00C7>30</color> 증가";
+                explanations[8] = "떨어지는 코어 <color=#FF00C7>1</color>개 추가, 기본 데미지 <color=#FF00C7>15</color> 증가";
                 goto case 8;
         }
     }
