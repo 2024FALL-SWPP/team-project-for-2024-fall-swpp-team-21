@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2555cc7b0b6c1e4c930ea4941b5be69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: "<\uC784\uC2DC>\uBC29\uC5B4\uB825 \uC99D\uAC00"
+  objectName: TPM 2.0
   maxLevel: 9
   explanations:
   - "\uBC31\uC2E0 \uCF54\uB4DC\uB97C \uC5C5\uB370\uC774\uD2B8\uD558\uC5EC \uBC14\uC774\uB7EC\uC2A4\uAC00

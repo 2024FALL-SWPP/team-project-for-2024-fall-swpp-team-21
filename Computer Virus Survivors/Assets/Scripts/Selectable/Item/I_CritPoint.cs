@@ -28,25 +28,26 @@ public class I_CritPoint : ItemBehaviour
 
     protected override void InitExplanation()
     {
+
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "백신이 바이러스의 취약점을 더 강하게 공격합니다\n치명타 데미지 15% 증가";
+                explanations[0] = "바이러스 행동 패턴을 저장하여 더 확실하게 공격할 수 있게 됩니다\n\n치명타 데미지 <color=#FF00C7>15%</color> 증가";
                 break;
             case 2:
-                explanations[1] = "치명타 데미지 15% 증가";
+                explanations[1] = "치명타 데미지 <color=#FF00C7>15%</color> 증가";
                 goto case 1;
             case 3:
-                explanations[2] = "치명타 데미지 15% 증가";
+                explanations[2] = "치명타 데미지 <color=#FF00C7>15%</color> 증가";
                 goto case 2;
             case 4:
-                explanations[3] = "치명타 데미지 15% 증가";
+                explanations[3] = "치명타 데미지 <color=#FF00C7>15%</color> 증가";
                 goto case 3;
             case 5:
-                explanations[4] = "치명타 데미지 20% 증가";
+                explanations[4] = "치명타 데미지 <color=#FF00C7>20%</color> 증가";
                 goto case 4;
             case 6:
-                explanations[5] = "치명타 데미지 20% 증가";
+                explanations[5] = "치명타 데미지 <color=#FF00C7>20%</color> 증가";
                 goto case 5;
         }
     }

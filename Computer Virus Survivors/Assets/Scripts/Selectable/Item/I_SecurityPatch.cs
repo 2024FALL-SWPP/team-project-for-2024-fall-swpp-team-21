@@ -40,31 +40,31 @@ public class I_SecurityPatch : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "최신 보안 패치를 적용하여 바이러스를 식별하고 공격하기 쉬워집니다\n데미지를 10% 증가시킵니다";
+                explanations[0] = "최신 보안 패치를 적용하여 바이러스를 식별하고 공격하기 쉬워집니다\n\n데미지를 <color=#FF00C7>10%</color> 증가시킵니다";
                 break;
             case 2:
-                explanations[1] = "데미지 10% 증가";
+                explanations[1] = "데미지 <color=#FF00C7>10%</color> 증가";
                 goto case 1;
             case 3:
-                explanations[2] = "데미지 10% 증가";
+                explanations[2] = "데미지 <color=#FF00C7>10%</color> 증가";
                 goto case 2;
             case 4:
-                explanations[3] = "데미지 10% 증가";
+                explanations[3] = "데미지 <color=#FF00C7>10%</color> 증가";
                 goto case 3;
             case 5:
-                explanations[4] = "데미지 10% 증가";
+                explanations[4] = "데미지 <color=#FF00C7>10%</color> 증가";
                 goto case 4;
             case 6:
-                explanations[5] = "데미지 10% 증가";
+                explanations[5] = "데미지 <color=#FF00C7>10%</color> 증가";
                 goto case 5;
             case 7:
-                explanations[6] = "데미지 10% 증가";
+                explanations[6] = "데미지 <color=#FF00C7>10%</color> 증가";
                 goto case 6;
             case 8:
-                explanations[7] = "데미지 10% 증가";
+                explanations[7] = "데미지 <color=#FF00C7>10%</color> 증가";
                 goto case 7;
             case 9:
-                explanations[8] = "데미지 20% 증가";
+                explanations[8] = "데미지 <color=#FF00C7>20%</color> 증가";
                 goto case 8;
         }
     }

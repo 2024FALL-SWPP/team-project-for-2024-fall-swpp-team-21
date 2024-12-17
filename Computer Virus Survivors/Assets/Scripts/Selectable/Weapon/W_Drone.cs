@@ -107,31 +107,31 @@ public class W_Drone : WeaponBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "플레이어를 따라다니는 드론을 소환합니다. 드론은 가장 가까운 적을 자동 공격합니다.";
+                explanations[0] = "드론의 형상을 띈 백신 쓰레드를 만들어냅니다\n드론은 가장 가까운 바이러스를 자동으로 공격합니다";
                 break;
             case 2:
-                explanations[1] = "드론 데미지 5 증가";
+                explanations[1] = "드론 데미지 <color=#FF00C7>5</color> 증가";
                 goto case 1;
             case 3:
-                explanations[2] = "드론 공격 주기 30% 감소";
+                explanations[2] = "드론 공격 주기 <color=#FF00C7>30%</color> 감소";
                 goto case 2;
             case 4:
-                explanations[3] = "드론 공격 반경 50% 증가";
+                explanations[3] = "드론 공격 반경 <color=#FF00C7>50%</color> 증가";
                 goto case 3;
             case 5:
-                explanations[4] = "드론 데미지 10 증가";
+                explanations[4] = "드론 데미지 <color=#FF00C7>10</color> 증가";
                 goto case 4;
             case 6:
-                explanations[5] = "드론 1기 추가";
+                explanations[5] = "드론 <color=#FF00C7>1</color>기 추가";
                 goto case 5;
             case 7:
-                explanations[6] = "드론 공격 주기 30% 감소";
+                explanations[6] = "드론 공격 주기 <color=#FF00C7>30%</color> 감소";
                 goto case 6;
             case 8:
-                explanations[7] = "드론 데미지 10 증가.\n드론 공격 반경 50% 증가";
+                explanations[7] = "드론 데미지 <color=#FF00C7>10</color> 증가.\n드론 공격 반경 <color=#FF00C7>50%</color> 증가";
                 goto case 7;
             case 9:
-                explanations[8] = "드론 1기 추가";
+                explanations[8] = "드론 <color=#FF00C7>1</color>기 추가";
                 goto case 8;
         }
     }

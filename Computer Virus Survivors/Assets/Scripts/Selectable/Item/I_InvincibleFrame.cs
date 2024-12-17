@@ -28,19 +28,19 @@ public class I_InvincibleFrame : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "백신이 바이러스의 공격을 받았을 때 무적 상태가 더 오래 지속됩니다\n무적 시간 4프레임 증가";
+                explanations[0] = "커널 레벨에서 백신을 보호해 바이러스가 백신을 발견하기 어려워집니다\n\n무적 시간 <color=#FF00C7>4</color>프레임 증가";
                 break;
             case 2:
-                explanations[1] = "무적 시간 4프레임 증가";
+                explanations[1] = "무적 시간 <color=#FF00C7>4</color>프레임 증가";
                 goto case 1;
             case 3:
-                explanations[2] = "무적 시간 4프레임 증가";
+                explanations[2] = "무적 시간 <color=#FF00C7>4</color>프레임 증가";
                 goto case 2;
             case 4:
-                explanations[3] = "무적 시간 4프레임 증가";
+                explanations[3] = "무적 시간 <color=#FF00C7>4</color>프레임 증가";
                 goto case 3;
             case 5:
-                explanations[4] = "무적 시간 4프레임 증가";
+                explanations[4] = "무적 시간 <color=#FF00C7>4</color>프레임 증가";
                 goto case 4;
         }
     }

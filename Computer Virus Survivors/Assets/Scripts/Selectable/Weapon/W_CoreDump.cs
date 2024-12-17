@@ -63,31 +63,31 @@ public sealed class W_CoreDump : WeaponBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "랜덤한 위치에 코어가 떨어집니다.\n떨어진 위치 주변의 바이러스들은 피해를 입습니다.";
+                explanations[0] = "데이터 코어가 메모리 공간을 백업한 뒤 삭제합니다\n떨어진 위치 주변의 바이러스들을 공격합니다";
                 break;
             case 2:
-                explanations[1] = "떨어지는 코어 1개 추가";
+                explanations[1] = "떨어지는 코어 <color=#FF00C7>1</color>개 추가";
                 goto case 1;
             case 3:
-                explanations[2] = "공격 주기 15% 감소";
+                explanations[2] = "공격 주기 <color=#FF00C7>15%</color> 감소";
                 goto case 2;
             case 4:
-                explanations[3] = "공격 주기 15% 감소";
+                explanations[3] = "공격 주기 <color=#FF00C7>15%</color> 감소";
                 goto case 3;
             case 5:
-                explanations[4] = "떨어지는 코어 1개 추가";
+                explanations[4] = "떨어지는 코어 <color=#FF00C7>1</color>개 추가";
                 goto case 4;
             case 6:
-                explanations[5] = "기본 데미지 15 증가";
+                explanations[5] = "기본 데미지 <color=#FF00C7>15</color> 증가";
                 goto case 5;
             case 7:
-                explanations[6] = "떨어지는 코어 1개 추가";
+                explanations[6] = "떨어지는 코어 <color=#FF00C7>1</color>개 추가";
                 goto case 6;
             case 8:
-                explanations[7] = "기본 데미지 20 증가";
+                explanations[7] = "기본 데미지 <color=#FF00C7>20</color> 증가";
                 goto case 7;
             case 9:
-                explanations[8] = "떨어지는 코어 1개 추가, 기본 데미지 30 증가";
+                explanations[8] = "떨어지는 코어 <color=#FF00C7>1</color>개 추가, 기본 데미지 <color=#FF00C7>30</color> 증가";
                 goto case 8;
         }
     }

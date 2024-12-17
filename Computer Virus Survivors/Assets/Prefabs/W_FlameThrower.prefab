@@ -4916,7 +4916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba25e4526afae24d9e01c47e55c2c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: "\uD654\uC5FC\uBC29\uC0AC\uAE30"
+  objectName: "\uD3EC\uBA67"
   maxLevel: 9
   explanations:
   - "\uD50C\uB808\uC774\uC5B4 \uC804\uBC29\uC758 \uBD80\uCC44\uAF34 \uBC94\uC704\uB85C

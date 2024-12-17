@@ -37,34 +37,35 @@ public class I_CritProb : ItemBehaviour
 
     protected override void InitExplanation()
     {
+
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "백신이 바이러스의 취약점을 발견하여 공격할 확률이 올라갑니다\n치명타 확률 3% 증가";
+                explanations[0] = "바이러스의 행동 패턴을 분석하여 확실히 치료할 확률이 높아집니다\n\n치명타 확률 <color=#FF00C7>3%</color> 증가";
                 break;
             case 2:
-                explanations[1] = "치명타 확률 3% 증가";
+                explanations[1] = "치명타 확률 <color=#FF00C7>3%</color> 증가";
                 goto case 1;
             case 3:
-                explanations[2] = "치명타 확률 3% 증가";
+                explanations[2] = "치명타 확률 <color=#FF00C7>3%</color> 증가";
                 goto case 2;
             case 4:
-                explanations[3] = "치명타 확률 3% 증가";
+                explanations[3] = "치명타 확률 <color=#FF00C7>3%</color> 증가";
                 goto case 3;
             case 5:
-                explanations[4] = "치명타 확률 3% 증가";
+                explanations[4] = "치명타 확률 <color=#FF00C7>3%</color> 증가";
                 goto case 4;
             case 6:
-                explanations[5] = "치명타 확률 3% 증가";
+                explanations[5] = "치명타 확률 <color=#FF00C7>3%</color> 증가";
                 goto case 5;
             case 7:
-                explanations[6] = "치명타 확률 3% 증가";
+                explanations[6] = "치명타 확률 <color=#FF00C7>3%</color> 증가";
                 goto case 6;
             case 8:
-                explanations[7] = "치명타 확률 3% 증가";
+                explanations[7] = "치명타 확률 <color=#FF00C7>3%</color> 증가";
                 goto case 7;
             case 9:
-                explanations[8] = "치명타 확률 6% 증가";
+                explanations[8] = "치명타 확률 <color=#FF00C7>6%</color> 증가";
                 goto case 8;
         }
     }
