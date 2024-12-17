@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Turret
   m_EditorClassIdentifier: 
   poolType: 26
-  maxHP: 1
+  maxHP: 4000
   moveSpeed: 0
   dropTable:
     dropElements: []

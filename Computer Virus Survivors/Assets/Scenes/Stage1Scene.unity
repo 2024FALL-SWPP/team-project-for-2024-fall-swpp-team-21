@@ -13265,10 +13265,10 @@ MonoBehaviour:
     randomAllOverMap: 1
     offsetFromPlayer: 0
     spawnRange: {x: 0, y: 0}
-  - spawnTimeRange: {x: 0, y: 20}
-    spawnPeriod: 5
-    virusID: 11
-    spawnMonsterNum: 1
+  - spawnTimeRange: {x: 0, y: 60}
+    spawnPeriod: 3
+    virusID: 5
+    spawnMonsterNum: 4
     ignoreMaxVirusNum: 0
     randomAllOverMap: 0
     offsetFromPlayer: 0
