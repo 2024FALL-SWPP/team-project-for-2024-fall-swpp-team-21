@@ -42,6 +42,7 @@ public class DamageIndicator : MonoBehaviour
 
     private IEnumerator DisplayDamage()
     {
+        textMesh.fontSize = originalFontSize;
         yield return new WaitForSeconds(displayDuration / 2f);
 
         float elapsedTime = 0;
