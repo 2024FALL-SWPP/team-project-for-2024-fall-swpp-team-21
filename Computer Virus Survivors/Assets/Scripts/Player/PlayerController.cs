@@ -6,6 +6,7 @@ using Cst = GameConstants;
 
 public class PlayerController : MonoBehaviour
 {
+    public Action onPlayerEvade;
 
     public PlayerStatData playerStatData;
     public PlayerStatEventCaller statEventCaller;
@@ -141,6 +142,14 @@ public class PlayerController : MonoBehaviour
         }
 
         StartCoroutine(BeInvincible());
+        // 공격 회피
+        // 무적을 만들어 주지 않으면 몬스터랑 비비면서 다음 프레임에 다시 공격 받음
+        if (IsEvade())
+        {
+            // 회피 이펙트 추가용
+            onPlayerEvade?.Invoke();
+            return;
+        }
         playerStat.CurrentHP -= ReduceDamage(damage);
         Debug.Log("Player HP: " + playerStat.CurrentHP);
         if (playerStat.CurrentHP <= 0)
@@ -160,6 +169,13 @@ public class PlayerController : MonoBehaviour
             reducingDamageInt++;
         }
         return damage - reducingDamageInt;
+    }
+
+    private bool IsEvade()
+    {
+        float evadeDice = UnityEngine.Random.Range(0f, 1f);
+        Debug.Log("Evade dice: " + evadeDice);
+        return evadeDice < playerStat.EvadeProbability / 100f;
     }
 
     public void GetHeal(int heal)
