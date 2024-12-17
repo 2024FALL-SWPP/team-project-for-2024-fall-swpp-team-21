@@ -47,9 +47,9 @@ public class ItemSelectCanvasManager : Singleton<ItemSelectCanvasManager>, IStat
     public void OnEnter()
     {
         transform.SetAsLastSibling();
-        UISoundManager.instance.PlaySound(canvasSoundPreset.EnterSound);
         if (!isShowing)
         {
+            UISoundManager.instance.PlaySound(canvasSoundPreset.EnterSound);
             ShowItemSelectCanvas();
             isShowing = true;
         }
