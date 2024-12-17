@@ -6,6 +6,7 @@ using Cst = GameConstants;
 
 public class PlayerController : MonoBehaviour
 {
+    public Action onPlayerEvade;
 
     public PlayerStatData playerStatData;
     public PlayerStatEventCaller statEventCaller;
@@ -141,13 +142,41 @@ public class PlayerController : MonoBehaviour
         }
 
         StartCoroutine(BeInvincible());
-        playerStat.CurrentHP -= damage;
+        // 공격 회피
+        // 무적을 만들어 주지 않으면 몬스터랑 비비면서 다음 프레임에 다시 공격 받음
+        if (IsEvade())
+        {
+            // 회피 이펙트 추가용
+            onPlayerEvade?.Invoke();
+            return;
+        }
+        playerStat.CurrentHP -= ReduceDamage(damage);
         Debug.Log("Player HP: " + playerStat.CurrentHP);
         playerHitEffect.PlayGetDamageEffect();
         if (playerStat.CurrentHP <= 0)
         {
             Die();
         }
+    }
+
+    private int ReduceDamage(int damage)
+    {
+        float reduceRate = 1f - (7 / (7 + playerStat.DefencePoint + 0.1f * Mathf.Pow(playerStat.DefencePoint, 2)));
+        float reducingDamage = damage * reduceRate;
+        int reducingDamageInt = (int) reducingDamage;
+        float remain = reducingDamage - reducingDamageInt;
+        if (UnityEngine.Random.Range(0f, 1f) < remain)
+        {
+            reducingDamageInt++;
+        }
+        return damage - reducingDamageInt;
+    }
+
+    private bool IsEvade()
+    {
+        float evadeDice = UnityEngine.Random.Range(0f, 1f);
+        Debug.Log("Evade dice: " + evadeDice);
+        return evadeDice < playerStat.EvadeProbability / 100f;
     }
 
     public void GetHeal(int heal)
@@ -186,6 +215,10 @@ public class PlayerController : MonoBehaviour
         {
             sphereCollider.radius = playerStat.ExpGainRange;
         }
+        else if (e.StatName == nameof(PlayerStat.HealthRezenPer10))
+        {
+            StartCoroutine(HPrezen());
+        }
     }
 
     public void DebuffMoveSpeed(float value)
@@ -214,5 +247,23 @@ public class PlayerController : MonoBehaviour
         playerStat.MoveSpeed *= -1;
         yield return new WaitForSeconds(duration);
         playerStat.MoveSpeed *= -1;
+    }
+
+    private IEnumerator HPrezen()
+    {
+        float remainHP = 0;
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            float hpRezenPerSecond = playerStat.HealthRezenPer10 / 10f;
+            int hpZenInt = (int) hpRezenPerSecond;
+            remainHP += hpRezenPerSecond - hpZenInt;
+            if (remainHP > 1f)
+            {
+                hpZenInt++;
+                remainHP -= 1f;
+            }
+            playerStat.CurrentHP += hpZenInt;
+        }
     }
 }
