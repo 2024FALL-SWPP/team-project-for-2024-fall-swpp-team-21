@@ -143,6 +143,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(BeInvincible());
         playerStat.CurrentHP -= damage;
         Debug.Log("Player HP: " + playerStat.CurrentHP);
+        playerHitEffect.PlayGetDamageEffect();
         if (playerStat.CurrentHP <= 0)
         {
             Die();
@@ -152,6 +153,7 @@ public class PlayerController : MonoBehaviour
     public void GetHeal(int heal)
     {
         playerStat.CurrentHP += heal;
+        playerHitEffect.PlayGetHealEffect();
     }
 
     public void GetSelectable()
