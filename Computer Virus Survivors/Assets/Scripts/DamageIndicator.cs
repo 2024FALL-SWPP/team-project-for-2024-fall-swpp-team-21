@@ -12,20 +12,25 @@ public class DamageIndicator : MonoBehaviour
 
     private Vector3 worldPosition;
     private RectTransform rectTransform;
+    private float originalFontSize;
+
+    private void Awake()
+    {
+        textMesh = GetComponent<TextMeshProUGUI>();
+        rectTransform = GetComponent<RectTransform>();
+        originalFontSize = textMesh.fontSize;
+    }
+
     private void OnEnable()
     {
-        if (textMesh == null)
-        {
-            textMesh = GetComponent<TextMeshProUGUI>();
-            rectTransform = GetComponent<RectTransform>();
-        }
+        rectTransform.localScale = Vector3.one;
     }
 
     public void Initialize(int damage, Vector3 virusPosition, bool isCritical = false)
     {
         worldPosition = virusPosition + _offset;
         SetDamage(damage, isCritical);
-        transform.SetParent(CanvasManager.instance.transform);
+        transform.SetParent(CanvasManager.instance.damageIndicators.transform);
     }
 
     private void SetDamage(int damage, bool isCritical)
@@ -37,8 +42,15 @@ public class DamageIndicator : MonoBehaviour
 
     private IEnumerator DisplayDamage()
     {
-        yield return new WaitForSeconds(displayDuration);
+        yield return new WaitForSeconds(displayDuration / 2f);
 
+        float elapsedTime = 0;
+        while (elapsedTime < displayDuration / 2f)
+        {
+            elapsedTime += Time.deltaTime;
+            textMesh.fontSize = Mathf.Lerp(originalFontSize, 0, elapsedTime / (displayDuration / 2f));
+            yield return null;
+        }
         PoolManager.instance.ReturnObject(PoolType.DamageIndicator, gameObject);
 
     }

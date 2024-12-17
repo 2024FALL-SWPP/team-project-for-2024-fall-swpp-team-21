@@ -21,6 +21,8 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
     [SerializeField] private GameEndCanvasManager gameOverCanvas;
     [SerializeField] private GameEndCanvasManager gameClearCanvas;
 
+    [HideInInspector]
+    public GameObject damageIndicators;
     private ReadyState readyState;
     private IState playingState;
     private IState itemSelectState;
@@ -32,6 +34,16 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
 
     public override void Initialize()
     {
+        damageIndicators = new GameObject("DamageIndicators", typeof(Canvas));
+        damageIndicators.transform.SetParent(transform);
+        RectTransform rect = damageIndicators.GetComponent<RectTransform>();
+        rect.anchorMax = new Vector2(1, 1);
+        rect.anchorMin = new Vector2(0, 0);
+        rect.offsetMax = new Vector2(0, 0);
+        rect.offsetMin = new Vector2(0, 0);
+        rect.localScale = Vector3.one;
+        damageIndicators.transform.SetAsFirstSibling();
+        playerGUI.transform.SetAsFirstSibling();
         readyState = new GameObject("ReadyState").AddComponent<ReadyState>();
         readyState.Initialize();
         itemSelectCanvas.Initialize();

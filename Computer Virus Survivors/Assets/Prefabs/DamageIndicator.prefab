@@ -94,8 +94,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 53
+  m_fontSizeBase: 53
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayDuration: 1
-  moveupSpeed: 0.3
+  moveupSpeed: 0.7
   materials:
   - {fileID: 2100000, guid: 42cd509edc815404d91f0607b2347bfb, type: 2}
   - {fileID: 2100000, guid: d1bf29af2a0ebc34d84179030fded500, type: 2}
