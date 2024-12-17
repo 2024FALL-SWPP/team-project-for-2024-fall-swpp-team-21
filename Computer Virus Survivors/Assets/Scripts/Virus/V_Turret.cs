@@ -15,6 +15,11 @@ public class V_Turret : VirusBehaviour
     [SerializeField] private float upSpeed;
     [SerializeField] private float targetYOffset;
 
+    [SerializeField] private SFXSequencePreset shootReadSFXPreset;
+    [SerializeField] private SFXSequencePreset shootFlickerSFXPreset;
+    [SerializeField] private SFXSequencePreset shootBeamSFXPreset;
+    [SerializeField] private float shootSoundOffset;
+
     private LineRenderer lineRenderer;
 
     protected override void Awake()

@@ -12,6 +12,8 @@ public class V_Trojan : VirusBehaviour
     [SerializeField] private float dashDuration = 0.5f;
     [SerializeField] private LayerMask obstacleLayerMask;
     [SerializeField] private Animator animator;
+    [SerializeField] private SFXSequencePreset dashReadySFXPreset;
+    [SerializeField] private SFXPreset dashSFXPreset;
 
     private bool canAttack = false;
     private bool isAttacking = false;
@@ -62,7 +64,7 @@ public class V_Trojan : VirusBehaviour
     private IEnumerator Dash(float duration)
     {
         Debug.Log("Trojan dash START");
-
+        dashSFXPreset.Play();
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
@@ -85,7 +87,7 @@ public class V_Trojan : VirusBehaviour
     {
         isAttacking = true;
         canAttack = false;
-
+        dashReadySFXPreset.Play();
         animator.SetTrigger("t_Attack");
         yield return new WaitForSeconds(dashDelay); // 잠시 멈춤
         animator.SetTrigger("t_Dash");
