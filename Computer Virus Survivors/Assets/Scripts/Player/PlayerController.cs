@@ -253,14 +253,15 @@ public class PlayerController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            int divided = playerStat.HealthRezenPer10 / 10;
-            remainHP += playerStat.HealthRezenPer10 % 10;
+            float hpRezenPerSecond = playerStat.HealthRezenPer10 / 10f;
+            int hpZenInt = (int) hpRezenPerSecond;
+            remainHP += hpRezenPerSecond - hpZenInt;
             if (remainHP > 1f)
             {
-                divided++;
+                hpZenInt++;
                 remainHP -= 1f;
             }
-            playerStat.CurrentHP += divided;
+            playerStat.CurrentHP += hpZenInt;
         }
     }
 }
