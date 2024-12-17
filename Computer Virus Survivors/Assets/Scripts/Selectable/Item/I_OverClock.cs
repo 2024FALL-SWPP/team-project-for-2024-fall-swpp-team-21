@@ -39,7 +39,7 @@ public class I_OverClock : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "CPU클럭을 높여 백신의 속도가 빨라집니다\n공격 속도를 <color=#FF00C7>5%</color> 증가시킵니다";
+                explanations[0] = "CPU클럭을 높여 백신의 속도가 빨라집니다\n\n공격 속도를 <color=#FF00C7>5%</color> 증가시킵니다";
                 break;
             case 2:
                 explanations[1] = "공격 속도 <color=#FF00C7>5%</color> 증가";

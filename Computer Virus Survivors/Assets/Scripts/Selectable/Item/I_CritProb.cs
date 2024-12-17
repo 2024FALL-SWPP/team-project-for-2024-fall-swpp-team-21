@@ -41,7 +41,7 @@ public class I_CritProb : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "바이러스의 행동 패턴을 분석하여 확실히 치료할 확률이 높아집니다\n치명타 확률 <color=#FF00C7>3%</color> 증가";
+                explanations[0] = "바이러스의 행동 패턴을 분석하여 확실히 치료할 확률이 높아집니다\n\n치명타 확률 <color=#FF00C7>3%</color> 증가";
                 break;
             case 2:
                 explanations[1] = "치명타 확률 <color=#FF00C7>3%</color> 증가";

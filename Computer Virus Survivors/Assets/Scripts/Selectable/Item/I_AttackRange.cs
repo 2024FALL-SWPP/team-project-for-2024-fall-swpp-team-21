@@ -40,7 +40,7 @@ public class I_AttackRange : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "바이러스의 시그니처를 분석하여 바이러스를 탐지하여 공격하기 쉬워집니다\n공격 범위를 <color=#FF00C7>8%</color> 증가";
+                explanations[0] = "바이러스의 시그니처를 분석하여 바이러스를 탐지하여 공격하기 쉬워집니다\n\n공격 범위를 <color=#FF00C7>8%</color> 증가";
                 break;
             case 2:
                 explanations[1] = "공격 범위를 <color=#FF00C7>8%</color> 증가";

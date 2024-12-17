@@ -40,7 +40,7 @@ public class I_ExpGain : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "하드웨어 가속의 도움을 받아 바이러스를 학습하기 쉬워집니다\n경험치 획득량을 <color=#FF00C7>7%</color> 증가";
+                explanations[0] = "하드웨어 가속의 도움을 받아 바이러스를 학습하기 쉬워집니다\n\n경험치 획득량을 <color=#FF00C7>7%</color> 증가";
                 break;
             case 2:
                 explanations[1] = "경험치 획득량을 <color=#FF00C7>7%</color> 증가";

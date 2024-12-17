@@ -40,7 +40,7 @@ public class I_MemoryUpgrade : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "백신 코드를 보호하여 바이러스의 공격을 더 많이 버틸 수 있습니다\n최대 체력 <color=#FF00C7>20</color> 증가";
+                explanations[0] = "백신 코드를 보호하여 바이러스의 공격을 더 많이 버틸 수 있습니다\n\n최대 체력 <color=#FF00C7>20</color> 증가";
                 break;
             case 2:
                 explanations[1] = "최대 체력 <color=#FF00C7>20</color> 증가";

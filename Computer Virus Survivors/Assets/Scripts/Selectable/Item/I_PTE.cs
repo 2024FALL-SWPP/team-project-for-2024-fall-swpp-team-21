@@ -40,7 +40,7 @@ public class I_PTE : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "메모리의 보안 레벨을 증가시켜 바이러스의 공격을 회피합니다\n회피율을 <color=#FF00C7>5%</color> 증가시킵니다";
+                explanations[0] = "메모리의 보안 레벨을 증가시켜 바이러스의 공격을 회피합니다\n\n회피율을 <color=#FF00C7>5%</color> 증가시킵니다";
                 break;
             case 2:
                 explanations[1] = "회피율 <color=#FF00C7>5%</color> 증가";

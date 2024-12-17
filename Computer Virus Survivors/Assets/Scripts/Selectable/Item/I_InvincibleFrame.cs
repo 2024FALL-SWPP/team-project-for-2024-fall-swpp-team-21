@@ -28,7 +28,7 @@ public class I_InvincibleFrame : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "커널 레벨에서 백신을 보호해 바이러스가 백신을 발견하기 어려워집니다\n무적 시간 <color=#FF00C7>4</color>프레임 증가";
+                explanations[0] = "커널 레벨에서 백신을 보호해 바이러스가 백신을 발견하기 어려워집니다\n\n무적 시간 <color=#FF00C7>4</color>프레임 증가";
                 break;
             case 2:
                 explanations[1] = "무적 시간 <color=#FF00C7>4</color>프레임 증가";

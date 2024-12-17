@@ -40,7 +40,7 @@ public class I_MagnetRange : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "백신이 더 넓은 범위의 정보를 수집할 수 있습니다\n아이템 획득 범위 <color=#FF00C7>50%</color> 증가";
+                explanations[0] = "백신이 더 넓은 범위의 정보를 수집할 수 있습니다\n\n아이템 획득 범위 <color=#FF00C7>50%</color> 증가";
                 break;
             case 2:
                 explanations[1] = "아이템 획득 범위 <color=#FF00C7>50%</color> 증가";

@@ -40,7 +40,7 @@ public class I_MoveSpeed : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "백신이 메모리 공간을 돌아다니기 쉬워집니다\n이동속도 <color=#FF00C7>10%</color> 증가";
+                explanations[0] = "백신이 메모리 공간을 돌아다니기 쉬워집니다\n\n이동속도 <color=#FF00C7>10%</color> 증가";
                 break;
             case 2:
                 explanations[1] = "이동속도 <color=#FF00C7>10%</color> 증가";

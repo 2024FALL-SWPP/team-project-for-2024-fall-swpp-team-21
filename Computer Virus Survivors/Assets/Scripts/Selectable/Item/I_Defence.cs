@@ -40,7 +40,7 @@ public class I_Defence : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "암호화/복호화 하드웨어 모듈을 설치하여 바이러스가 공격하기 어려워집니다\n방어력 <color=#FF00C7>1</color> 증가";
+                explanations[0] = "암호화/복호화 하드웨어 모듈을 설치하여 바이러스가 공격하기 어려워집니다\n\n방어력 <color=#FF00C7>1</color> 증가";
                 break;
             case 2:
                 explanations[1] = "방어력 <color=#FF00C7>1</color> 증가";

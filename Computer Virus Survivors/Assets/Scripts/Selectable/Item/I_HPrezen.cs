@@ -40,7 +40,7 @@ public class I_HPrezen : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "데이터 자가 복구 기술을 도입해 백신이 스스로 오염을 복구합니다\n체력 <color=#FF00C7>10초당 2</color> 회복";
+                explanations[0] = "데이터 자가 복구 기술을 도입해 백신이 스스로 오염을 복구합니다\n\n체력 <color=#FF00C7>10초당 2</color> 회복";
                 break;
             case 2:
                 explanations[1] = "체력 <color=#FF00C7>10초당 4</color> 회복";
