@@ -7,11 +7,15 @@ using System.Linq;
 /// </summary>
 public class SelectionInfo
 {
+
     public string objectName;
     public int currentLevel;
     public int maxLevel;
     public string explanation;
     public bool isWeapon;
+    public string levelChange;
+    public string type;
+    public Sprite icon;
 
     public SelectionInfo(SelectableBehaviour selectableBehaviour)
     {
@@ -20,34 +24,22 @@ public class SelectionInfo
         this.maxLevel = selectableBehaviour.MaxLevel;
         this.explanation = selectableBehaviour.Explanations[currentLevel];
         this.isWeapon = selectableBehaviour is WeaponBehaviour;
-    }
+        this.icon = selectableBehaviour.Icon;
 
-    public override string ToString()
-    {
-        string levelChange = "NEW!";
+        string levelChange = "<color=#FFFD52>" + "NEW!" + "</color>";
         if (currentLevel != 0 && currentLevel + 1 < maxLevel)
         {
-            levelChange = currentLevel + " -> " + (currentLevel + 1);
+            levelChange = currentLevel + " > " + "<color=#FF5B51>" + (currentLevel + 1) + "</color>";
         }
         else if (currentLevel + 1 == maxLevel)
         {
-            levelChange = "MAX LEVEL!";
+            levelChange = "<color=#FFB000>" + "MAX LEVEL!" + "</color>";
         }
 
-        return string.Format("<{0}>\n" +
-                            "{1}\n" +
-                            "{2}\n" +
-                            "\n" +
-                            "{3}"
-                            , isWeapon ? "무기" : "아이템", objectName, levelChange, explanation);
-        /*
-        <무기>
-        패킷 스트림
-        1 -> 2
-
-        공격속도 15% 증가
-        */
+        this.levelChange = levelChange;
+        this.type = (isWeapon ? "<color=#FF5B51>" + "무기" : "<color=#52FF64>" + "아이템") + "</color>";
     }
+
 }
 
 public class SelectableManager : Singleton<SelectableManager>
