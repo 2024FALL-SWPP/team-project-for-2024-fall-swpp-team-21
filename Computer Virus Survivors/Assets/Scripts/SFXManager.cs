@@ -3,6 +3,7 @@ using System.Collections;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.Audio;
+using System;
 
 public class SFXManager : Singleton<SFXManager>
 {
@@ -13,11 +14,11 @@ public class SFXManager : Singleton<SFXManager>
     private List<TimeScaledAudioSource> audioSourcePool_Virus;
     private List<TimeScaledAudioSource> sequenceAudioSourcePool;
 
-    private Dictionary<int, Coroutine> playingSequence = new Dictionary<int, Coroutine>();
+    private Dictionary<int, Tuple<Coroutine, TimeScaledAudioSource>> playingSequence = new Dictionary<int, Tuple<Coroutine, TimeScaledAudioSource>>();
 
     private int poolSize = 16;
     private int poolSize_Virus = 8;
-    private int sequencePoolSize = 8;
+    private int sequencePoolSize = 16;
 
     public override void Initialize()
     {
@@ -161,22 +162,22 @@ public class SFXManager : Singleton<SFXManager>
 
     public void PlaySoundSequence(SFXElement[] sfxElements, int id = -1)
     {
+
         TimeScaledAudioSource audioSource = GetSequenceAudioSource();
         if (audioSource == null)
         {
             return;
         }
-
+        Debug.Log("PlaySoundSequence SFX : " + id);
         Coroutine newSequence = StartCoroutine(PlaySequence(audioSource, sfxElements));
 
         if (id != -1)
         {
             if (playingSequence.ContainsKey(id))
             {
-                StopCoroutine(playingSequence[id]);
-                playingSequence.Remove(id);
+                StopSoundSequence(id);
             }
-            playingSequence.Add(id, newSequence);
+            playingSequence.Add(id, new Tuple<Coroutine, TimeScaledAudioSource>(newSequence, audioSource));
         }
     }
 
@@ -186,7 +187,11 @@ public class SFXManager : Singleton<SFXManager>
         {
             if (playingSequence.ContainsKey(id))
             {
-                StopCoroutine(playingSequence[id]);
+                if (playingSequence[id] != null)
+                {
+                    StopCoroutine(playingSequence[id].Item1);
+                    playingSequence[id].Item2.Stop();
+                }
                 playingSequence.Remove(id);
             }
         }
@@ -209,9 +214,11 @@ public class SFXManager : Singleton<SFXManager>
             {
                 for (int i = 0; i < clipInfo.loopCount; i++)
                 {
+                    Debug.Log("Wait for loop : " + (clipInfo.endTime - clipInfo.startTime));
                     yield return new WaitForSeconds(clipInfo.endTime - clipInfo.startTime);
+                    audioSource.Stop();
                     audioSource.time = clipInfo.startTime; // 다시 시작
-                    // audioSource.Play();
+                    audioSource.Play();
                 }
             }
             else

@@ -8,7 +8,7 @@ public class SFXSequencePreset : ScriptableObject
     [Header("공격 이팩트 사운드 시퀸스")]
     [SerializeField] private SFXElement[] sfxElements;
 
-    [Header("아이디")]
+    [Header("아이디 (Stop() 기능이 필요한 경우)")]
     [SerializeField] private int id = -1;
 
     public SFXElement[] SFXElements => sfxElements;
@@ -34,8 +34,8 @@ public struct SFXElement
     public bool isLoop;
     public int loopCount;
 
-    public float startTime => playTimeline.x;
-    public float endTime
+    public readonly float startTime => playTimeline.x;
+    public readonly float endTime
     {
         get
         {

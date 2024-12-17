@@ -291,6 +291,11 @@ MonoBehaviour:
   beamDamage: 15
   upSpeed: 3
   targetYOffset: 0.7
+  shootChargeSFXPreset: {fileID: 11400000, guid: b3f2a64b6e33eb84bbd75ddeb3ded3e5, type: 2}
+  shootFlickerSFXPreset: {fileID: 11400000, guid: c068e9a9f2876784bba9fb773a64d323, type: 2}
+  shootPreShootSFXPreset: {fileID: 11400000, guid: 7ec07a2fff3828142b4a80af0cb0c851, type: 2}
+  shootShootSFXPreset: {fileID: 11400000, guid: 6a053d2a12a6ca744bf6599289d571b5, type: 2}
+  preShootSoundTimeOffset: 0.8
 --- !u!65 &8149194556810974710
 BoxCollider:
   m_ObjectHideFlags: 0

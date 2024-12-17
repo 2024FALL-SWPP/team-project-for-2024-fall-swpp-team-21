@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ad4518ca20bb0845b3058490139e896, type: 3}
-  m_Name: Turret_Attack
+  m_Name: Turret_Charge
   m_EditorClassIdentifier: 
   sfxElements:
   - clip: {fileID: 8300000, guid: 0a6afa53c186d474eb613a36fb73cd55, type: 3}
@@ -21,3 +21,4 @@ MonoBehaviour:
     playTimeline: {x: 1, y: 3}
     isLoop: 1
     loopCount: 10
+  id: 1000

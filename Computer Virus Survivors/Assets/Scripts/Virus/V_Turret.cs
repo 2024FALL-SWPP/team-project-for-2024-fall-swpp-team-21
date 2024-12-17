@@ -15,10 +15,11 @@ public class V_Turret : VirusBehaviour
     [SerializeField] private float upSpeed;
     [SerializeField] private float targetYOffset;
 
-    [SerializeField] private SFXSequencePreset shootReadSFXPreset;
+    [SerializeField] private SFXSequencePreset shootChargeSFXPreset;
     [SerializeField] private SFXSequencePreset shootFlickerSFXPreset;
-    [SerializeField] private SFXSequencePreset shootBeamSFXPreset;
-    [SerializeField] private float shootSoundOffset;
+    [SerializeField] private SFXSequencePreset shootPreShootSFXPreset;
+    [SerializeField] private SFXSequencePreset shootShootSFXPreset;
+    [SerializeField] private float preShootSoundTimeOffset;
 
     private LineRenderer lineRenderer;
 
@@ -62,11 +63,13 @@ public class V_Turret : VirusBehaviour
     {
         while (true)
         {
+            shootChargeSFXPreset.Play();
             // 조준
             float elapsedTime = 0f;
             Vector3 targetPos = player.transform.position + new Vector3(0, targetYOffset, 0);
             lineRenderer.enabled = true;
             Coroutine flickerCoroutine = null;
+            bool preShootPlayed = false;
             while (elapsedTime < aimToBeamPeriod)
             {
                 // 일시정지 시에도 조준선이 깜빡거리는 현상 방지
@@ -80,16 +83,26 @@ public class V_Turret : VirusBehaviour
                     lineRenderer.SetPosition(0, muzzle.position);
                     lineRenderer.SetPosition(1, targetPos);
 
+
                     if (elapsedTime >= aimToBeamPeriod - flickerToBeamPeriod && flickerCoroutine == null)
                     {
+                        shootFlickerSFXPreset.Play();
                         flickerCoroutine = StartCoroutine(Flicker());
+                    }
+
+                    if (elapsedTime >= aimToBeamPeriod - preShootSoundTimeOffset && preShootPlayed == false)
+                    {
+                        shootPreShootSFXPreset.Play();
+                        preShootPlayed = true;
                     }
 
                     elapsedTime += Time.deltaTime;
                 }
                 yield return null;
             }
-
+            shootChargeSFXPreset.Stop();
+            shootFlickerSFXPreset.Stop();
+            shootShootSFXPreset.Play();
             // 빔 발사
             StopCoroutine(flickerCoroutine);
             lineRenderer.enabled = false;

@@ -8,6 +8,7 @@ public class SFXSequenceTester : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            sfxSequencePreset.Stop();
             sfxSequencePreset.Play();
         }
     }
