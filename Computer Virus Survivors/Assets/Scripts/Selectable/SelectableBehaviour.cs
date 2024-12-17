@@ -18,6 +18,10 @@ public abstract class SelectableBehaviour : MonoBehaviour
     [SerializeField, ReadOnly(true)]
     protected List<string> explanations = new List<string>();
 
+    [Header("아이콘")]
+    [SerializeField]
+    private Sprite icon;
+
     private GameObject player;
     private int currentLevel = 0;
     protected GameObject Player
@@ -40,7 +44,7 @@ public abstract class SelectableBehaviour : MonoBehaviour
     public int CurrentLevel { get { return currentLevel; } }
     public int MaxLevel { get { return maxLevel; } }
     public ReadOnlyCollection<string> Explanations => explanations.AsReadOnly();
-
+    public Sprite Icon { get { return icon; } }
 
     /// <summary>
     /// 추상 메소드
