@@ -134,10 +134,11 @@ MonoBehaviour:
   poolType: 0
   getSFX: {fileID: 11400000, guid: cc74eb6609482e74095442eeaebf5902, type: 2}
   cubeRenderer: {fileID: 6047476089228217518}
-  startColor: {r: 1, g: 1, b: 0, a: 0}
+  startColor: {r: 0, g: 1, b: 0, a: 0}
   endColor: {r: 1, g: 0, b: 0, a: 0}
   startExp: 100
   endExp: 500
+  intensity: 1
 --- !u!135 &3863375471013688993
 SphereCollider:
   m_ObjectHideFlags: 0
