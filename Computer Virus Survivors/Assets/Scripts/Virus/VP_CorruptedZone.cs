@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VP_CorruptedZone : VirusProjectileBehaviour
 {
+    [SerializeField] private SFXPreset hitSFXPreset;
     private float speed;
     private float maxScale;
     private float existDuration;
@@ -89,6 +90,7 @@ public class VP_CorruptedZone : VirusProjectileBehaviour
         {
             Debug.Log("Player got damage from corrupted zone");
             playerController.GetDamage(damage);
+            hitSFXPreset.Play();
             yield return new WaitForSeconds(dotDamagePeriod);
         }
     }

@@ -9,6 +9,7 @@ public class ItemSelectCanvasManager : Singleton<ItemSelectCanvasManager>, IStat
     public event Action<SelectableBehaviour> SelectionHandler;
 
     [SerializeField] private List<GameObject> itemSelectBtn;
+    [SerializeField] private CanvasSoundPreset canvasSoundPreset;
 
     private List<SelectionInfo> choices;
     private bool isShowing = false;
@@ -48,6 +49,7 @@ public class ItemSelectCanvasManager : Singleton<ItemSelectCanvasManager>, IStat
         transform.SetAsLastSibling();
         if (!isShowing)
         {
+            UISoundManager.instance.PlaySound(canvasSoundPreset.EnterSound);
             ShowItemSelectCanvas();
             isShowing = true;
         }

@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
 
     public SphereCollider sphereCollider;
 
+    [SerializeField] private SFXPreset hitSFX;
+    [SerializeField] private CanvasSoundPreset deathSFX;
+    [SerializeField] private SFXPreset evadeSFX;
+
     private Rigidbody rb;
     private Animator animator;
     private bool isInvincible = false;
@@ -29,7 +33,7 @@ public class PlayerController : MonoBehaviour
         playerStat.Initialize(playerStatData, statEventCaller);
         statEventCaller.StatChangedHandler += OnStatChanged;
 
-        playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour("백신 링"));
+        playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour("패킷 스트림"));
         // 경험치 획득 범위 초기화
         //sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = playerStat.ExpGainRange;
@@ -128,6 +132,7 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         isGameOver = true;
+        UISoundManager.instance.PlaySound(deathSFX.EnterSound);
         animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         animator.Play("Dead");
         GameManager.instance.GameOver();
@@ -142,6 +147,7 @@ public class PlayerController : MonoBehaviour
         }
 
         StartCoroutine(BeInvincible());
+
         // 공격 회피
         // 무적을 만들어 주지 않으면 몬스터랑 비비면서 다음 프레임에 다시 공격 받음
         if (IsEvade())
@@ -151,6 +157,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
         playerStat.CurrentHP -= ReduceDamage(damage);
+        hitSFX.Play();
+
         Debug.Log("Player HP: " + playerStat.CurrentHP);
         playerHitEffect.PlayGetDamageEffect();
         if (playerStat.CurrentHP <= 0)

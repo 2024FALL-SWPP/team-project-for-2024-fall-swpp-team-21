@@ -19585,3 +19585,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectType: 5
   isCriticalEffect: 0
+  sfx: {fileID: 11400000, guid: b5b64cc1087fa054782fbb59eded2fd8, type: 2}

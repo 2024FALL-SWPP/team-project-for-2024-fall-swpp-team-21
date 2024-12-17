@@ -6,6 +6,8 @@ public class VirusSpawnEffect : MonoBehaviour
     private new ParticleSystem particleSystem;
     private float effectSize;
     [SerializeField] private float defaultEffectSize = 0.7f;
+    [SerializeField] private SFXPreset spawnEffectSound;
+
     private void Awake()
     {
         particleSystem = GetComponent<ParticleSystem>();
@@ -15,6 +17,11 @@ public class VirusSpawnEffect : MonoBehaviour
     public void SetEffectSize(float size)
     {
         effectSize = size;
+    }
+
+    private void OnEnable()
+    {
+        spawnEffectSound.Play();
     }
 
     public void SetVirusSize(float virusSize)

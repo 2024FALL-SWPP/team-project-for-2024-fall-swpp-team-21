@@ -468,6 +468,7 @@ MonoBehaviour:
   spawnPeriod: 3
   spawnNum: 3
   spawnRange: 1
+  spawnSFXPreset: {fileID: 11400000, guid: 3a02ebeeda25d4144b4aa6835471a268, type: 2}
 --- !u!136 &8410548968660161111
 CapsuleCollider:
   m_ObjectHideFlags: 0

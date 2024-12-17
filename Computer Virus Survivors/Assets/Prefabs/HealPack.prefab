@@ -49,6 +49,7 @@ MonoBehaviour:
   moveSpeed: 5.5
   acceleration: 1
   poolType: 1
+  getSFX: {fileID: 11400000, guid: 058c456aba1a4024fb5a05b6365bf7bc, type: 2}
   healAmount: 20
 --- !u!135 &3336213741251519831
 SphereCollider:

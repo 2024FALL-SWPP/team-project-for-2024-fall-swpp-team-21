@@ -11,6 +11,7 @@ public class V_Adware : VirusBehaviour
     [SerializeField] private PoolType projType;
     [SerializeField] private float projSpeed;
     [SerializeField] private float projHeight;
+    [SerializeField] private SFXPreset shootSFX;
 
     private bool canAttack = false;
     private float attackTimer = 0.0f;
@@ -54,6 +55,7 @@ public class V_Adware : VirusBehaviour
 
         GameObject proj = PoolManager.instance.GetObject(projType, projPos, Quaternion.LookRotation(projDir));
         proj.GetComponent<VP_Mail>().Initialize(attackDamage, projSpeed, projDir, projHeight);
+        shootSFX.Play();
 
         attackTimer = 0.0f;
     }

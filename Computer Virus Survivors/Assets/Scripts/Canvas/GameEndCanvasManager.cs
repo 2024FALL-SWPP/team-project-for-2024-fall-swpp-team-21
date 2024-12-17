@@ -14,6 +14,7 @@ public class GameEndCanvasManager : Singleton<GameEndCanvasManager>, IState
     [SerializeField] private GameObject gotoHomeBtn;
     [SerializeField] private GameObject weaponStatisticsPanel;
     [SerializeField] private GameObject playerInfoPanel;
+    [SerializeField] private CanvasSoundPreset canvasSoundPreset;
     // private TextMeshProUGUI youdiedText;
     // private Image gameoverImage;
     // private Color textColor;
@@ -110,6 +111,7 @@ public class GameEndCanvasManager : Singleton<GameEndCanvasManager>, IState
         // StartCoroutine(ShowYouDied());
         animator.SetBool("b_GameEnd", true);
         InitializeStatistics();
+        UISoundManager.instance.PlaySound(canvasSoundPreset.EnterSound);
     }
 
     public void OnExit()

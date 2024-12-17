@@ -20,6 +20,11 @@ public class P_FlameThrower : PlayerProjectileBehaviour
 
     public void FireOn(float duration)
     {
+        if (flameParticle != null && flameParticle.isPlaying)
+        {
+            flameParticle.Stop();
+        }
+        StopAllCoroutines();
         StartCoroutine(Fire(duration));
     }
 

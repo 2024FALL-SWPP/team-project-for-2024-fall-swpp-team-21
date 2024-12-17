@@ -10,6 +10,7 @@ public class HealPack : FieldItemBehaviour
     protected override void ItemAction()
     {
         // Heal
+        getSFX?.Play();
         playerController.GetHeal(healAmount);
     }
 }

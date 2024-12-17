@@ -143,3 +143,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackEffectType: 0
+  hitSFXPreset: {fileID: 11400000, guid: a4b7fe26710f8ef4789453648210a0b6, type: 2}

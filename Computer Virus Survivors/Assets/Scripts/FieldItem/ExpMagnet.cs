@@ -9,6 +9,7 @@ public class ExpMagnet : FieldItemBehaviour
 
     protected override void ItemAction()
     {
+        getSFX?.Play();
         GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag("ExpGem");
         foreach (GameObject obj in taggedObjects)
         {

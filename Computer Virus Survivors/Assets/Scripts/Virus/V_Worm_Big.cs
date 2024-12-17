@@ -8,6 +8,8 @@ public class V_Worm_Big : VirusBehaviour
     [SerializeField] private float spawnNum;
     [SerializeField] private float spawnRange;
 
+    [SerializeField] private SFXSequencePreset spawnSFXPreset;
+
     private float attackTimer = 0.0f;
 
     protected override void OnEnable()
@@ -31,6 +33,7 @@ public class V_Worm_Big : VirusBehaviour
 
     private void SpawnWorms()
     {
+        spawnSFXPreset.Play();
         for (int i = 0; i < spawnNum; i++)
         {
             float x = transform.position.x + Random.Range(-spawnRange, spawnRange);

@@ -7,6 +7,7 @@ public sealed class W_PacketStream : WeaponBehaviour
 
     [SerializeField] private GameObject muzzle;
     [SerializeField] private float fluctuationRadius;
+    [SerializeField] private SFXPreset shootSFX;
 
     protected override IEnumerator Attack()
     {
@@ -97,6 +98,7 @@ public sealed class W_PacketStream : WeaponBehaviour
             Vector3 finalPosition = muzzle.transform.position + FireFluctuation();
             proj = PoolManager.instance.GetObject(projectilePool, finalPosition, muzzle.transform.rotation);
             proj.GetComponent<PlayerProjectileBehaviour>().Initialize(finalWeaponData);
+            shootSFX?.Play();
             yield return new WaitForSeconds(0.03f);
         }
     }

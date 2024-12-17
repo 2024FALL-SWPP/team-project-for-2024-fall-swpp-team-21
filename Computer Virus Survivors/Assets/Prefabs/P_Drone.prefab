@@ -326,6 +326,7 @@ MonoBehaviour:
   attackEffectType: 0
   animator: {fileID: 0}
   projectileType: 18
+  shootSFX: {fileID: 11400000, guid: 6ee0d3123957bda478b85491ab090b3a, type: 2}
 --- !u!1 &6563795024481493776
 GameObject:
   m_ObjectHideFlags: 0

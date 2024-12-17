@@ -69,3 +69,4 @@ MonoBehaviour:
   knockbackTime: 0
   dumpAreaRadius: 10
   dumpStartHeight: 15
+  shootSFX: {fileID: 11400000, guid: ccc378a1dcbe1ff4aab59c15993ead70, type: 2}

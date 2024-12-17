@@ -79,6 +79,10 @@ public class MainSceneCanvasManager : Singleton<MainSceneCanvasManager>
         StartCoroutine(((PlayingState) playingState).FadeIn());
     }
 
+    public GraphicRaycaster GetGraphicRaycaster()
+    {
+        return GetComponent<GraphicRaycaster>();
+    }
 
     private enum Signal
     {
@@ -210,6 +214,8 @@ public class MainSceneCanvasManager : Singleton<MainSceneCanvasManager>
         {
             // 씬 전환
             StartCoroutine(StageLoad());
+            // BGM 끄기
+            BgmManager.instance.StopBgm();
         }
 
         private IEnumerator StageLoad()
@@ -229,7 +235,7 @@ public class MainSceneCanvasManager : Singleton<MainSceneCanvasManager>
         {
             float elpasedTime = 0;
             Image image = fadeImage.GetComponent<Image>();
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(1.0f);
             while (elpasedTime < fadeTime)
             {
                 elpasedTime += Time.deltaTime;

@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackEffectType: 0
+  hitSFXPreset: {fileID: 11400000, guid: b2521089574448342b67311f47dc909f, type: 2}
 --- !u!135 &8650621593599438531
 SphereCollider:
   m_ObjectHideFlags: 0

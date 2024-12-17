@@ -559,6 +559,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   animator: {fileID: 2544739328355430415}
+  dashReadySFXPreset: {fileID: 11400000, guid: 27d3036418895f143922a69ab3e55707, type: 2}
+  dashSFXPreset: {fileID: 11400000, guid: c4bdf73d3adecdc41ab1b0e36a93b094, type: 2}
 --- !u!54 &5841041427378954022
 Rigidbody:
   m_ObjectHideFlags: 0

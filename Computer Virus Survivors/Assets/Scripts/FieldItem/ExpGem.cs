@@ -13,6 +13,7 @@ public class ExpGem : FieldItemBehaviour
     [SerializeField] private Color endColor;
     [SerializeField] private int startExp;
     [SerializeField] private int endExp;
+
     private int exp;
 
     public void Initialize(int exp)
@@ -25,6 +26,7 @@ public class ExpGem : FieldItemBehaviour
     protected override void ItemAction()
     {
         // Add exp to player
+        getSFX?.Play();
         playerController.GetExp(exp);
     }
 

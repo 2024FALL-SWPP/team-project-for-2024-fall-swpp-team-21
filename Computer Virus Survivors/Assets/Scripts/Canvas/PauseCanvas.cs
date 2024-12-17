@@ -13,6 +13,7 @@ public class PauseCanvas : Singleton<PauseCanvas>, IState, IPlayerStatObserver
     [SerializeField] private PlayerStatEventCaller playerStatEventCaller;
     [SerializeField] private GameObject baseSpecObject;
     [SerializeField] private GameObject weaponStatisticsPanel;
+    [SerializeField] private CanvasSoundPreset canvasSoundPreset;
     private Dictionary<string, SingleSpec> singleSpecs;
 
     private GameObject weaponSingleStat;
@@ -48,11 +49,13 @@ public class PauseCanvas : Singleton<PauseCanvas>, IState, IPlayerStatObserver
     {
         UpdateStatistics();
         transform.SetAsLastSibling();
+
+        UISoundManager.instance.PlaySound(canvasSoundPreset.EnterSound);
     }
 
     public void OnExit()
     {
-
+        UISoundManager.instance.PlaySound(canvasSoundPreset.ExitSound);
     }
 
     public void OnStatChanged(object sender, StatChangedEventArgs e)
@@ -106,7 +109,8 @@ public class PauseCanvas : Singleton<PauseCanvas>, IState, IPlayerStatObserver
 
         for (int i = 0; i < weaponDatas.Count; i++)
         {
-            GameObject weaponStat = transform.GetChild(i).gameObject;
+            // 첫번째는 항목명이므로 1부터 시작
+            GameObject weaponStat = weaponStatisticsPanel.transform.GetChild(i + 1).gameObject;
             TextMeshProUGUI weaponName = weaponStat.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI weaponKillCount = weaponStat.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI weaponDamage = weaponStat.transform.GetChild(2).GetComponent<TextMeshProUGUI>();

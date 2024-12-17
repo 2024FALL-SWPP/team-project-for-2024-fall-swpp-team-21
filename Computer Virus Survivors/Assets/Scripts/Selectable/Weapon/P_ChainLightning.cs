@@ -73,13 +73,6 @@ public class P_ChainLightning : PlayerProjectileBehaviour
             yield break;
         }
 
-        // 해당 몬스터에서 branch개의 번개 생성
-        for (int i = 0; i < branchCount; i++)
-        {
-            GameObject chainLightning = PoolManager.instance.GetObject(PoolType.Proj_ChainLightning, targetVirus.transform.position + chainHitOffset, Quaternion.identity);
-            P_ChainLightning chainLightningScript = chainLightning.GetComponent<P_ChainLightning>();
-            chainLightningScript.Initialize(finalWeaponData, chainID, chainRange, chainDepth - 1, branchCount);
-        }
 
         // 해당 몬스터를 공격 (애니메이션)
         chainAnim.EndPosition = targetVirus.transform.position + chainHitOffset;
@@ -89,6 +82,9 @@ public class P_ChainLightning : PlayerProjectileBehaviour
         // hitEffect.Play();
         animator.SetBool("LightOn_b", true);
 
+        // 해당 몬스터에서 branch개의 번개 생성
+        StartCoroutine(CreateBranch());
+
         // targetVirus.GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
         targetVirus.GetDamage(finalWeaponData.GetDamageData(out bool isCritical));
         Collider vcollider = targetVirus.GetComponent<Collider>();
@@ -96,8 +92,20 @@ public class P_ChainLightning : PlayerProjectileBehaviour
         yield return new WaitForSeconds(chainDuration);
         animator.SetBool("LightOn_b", false);
 
+
         // 삭제
         PoolManager.instance.ReturnObject(PoolType.Proj_ChainLightning, gameObject);
+    }
+
+    private IEnumerator CreateBranch()
+    {
+        for (int i = 0; i < branchCount; i++)
+        {
+            GameObject chainLightning = PoolManager.instance.GetObject(PoolType.Proj_ChainLightning, targetVirus.transform.position + chainHitOffset, Quaternion.identity);
+            P_ChainLightning chainLightningScript = chainLightning.GetComponent<P_ChainLightning>();
+            chainLightningScript.Initialize(finalWeaponData, chainID, chainRange, chainDepth - 1, branchCount);
+            yield return new WaitForSeconds(Random.Range(0.017f, 0.17f));
+        }
     }
 
     private VirusBehaviour GetNextVirus()
