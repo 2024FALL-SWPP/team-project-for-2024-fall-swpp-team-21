@@ -40,6 +40,7 @@ public class PlayerGUI : MonoBehaviour, IPlayerStatObserver
     public class EXPGroup
     {
         public Slider expCurrent;
+        public TextMeshProUGUI levelText;
 
         private int maxEXP;
         private int currentEXP;
@@ -59,6 +60,11 @@ public class PlayerGUI : MonoBehaviour, IPlayerStatObserver
         private void UpdateEXPbar()
         {
             expCurrent.value = currentEXP / (float) maxEXP;
+        }
+
+        public void SetCurrentLevel(int level)
+        {
+            levelText.text = $"Lv. {level}";
         }
     }
 
@@ -96,6 +102,10 @@ public class PlayerGUI : MonoBehaviour, IPlayerStatObserver
         else if (e.StatName == nameof(PlayerStat.MaxExp))
         {
             expGroup.SetMaxEXP((int) e.NewValue);
+        }
+        else if (e.StatName == nameof(PlayerStat.PlayerLevel))
+        {
+            expGroup.SetCurrentLevel((int) e.NewValue);
         }
     }
 
