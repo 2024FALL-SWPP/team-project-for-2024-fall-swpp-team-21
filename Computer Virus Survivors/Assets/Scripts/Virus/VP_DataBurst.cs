@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VP_DataBurst : VirusProjectileBehaviour
 {
+    [SerializeField] private SFXPreset hitSFXPreset;
     private float speed;
     private float acceleration;
 
@@ -34,6 +35,7 @@ public class VP_DataBurst : VirusProjectileBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            hitSFXPreset.Play();
             other.GetComponent<PlayerController>().GetDamage(damage);
             PoolManager.instance.ReturnObject(PoolType.VProj_DataBurst, gameObject);
         }

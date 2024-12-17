@@ -12,6 +12,7 @@ public class BgmManager : Singleton<BgmManager>
     {
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
+        audioSource.priority = 0;
         audioSource.outputAudioMixerGroup = AudioManager.instance.audioMixer.FindMatchingGroups("BGM")[0];
         PlayBgm();
     }

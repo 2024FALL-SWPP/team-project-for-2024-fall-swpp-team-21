@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VP_EncryptionSpike : VirusProjectileBehaviour
 {
+    [SerializeField] private SFXPreset hitSFXPreset;
     private float speed;
     private float rotateSpeed;
     private float startOffset;
@@ -47,7 +48,7 @@ public class VP_EncryptionSpike : VirusProjectileBehaviour
         if (other.CompareTag("Player") && canDamage)
         {
             other.GetComponent<PlayerController>().GetDamage(damage);
-
+            hitSFXPreset.Play();
             if (attackCoroutine != null)
             {
                 StopCoroutine(attackCoroutine);

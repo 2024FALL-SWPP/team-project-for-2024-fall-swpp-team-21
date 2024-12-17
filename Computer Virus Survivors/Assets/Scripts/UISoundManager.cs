@@ -14,6 +14,7 @@ public class UISoundManager : Singleton<UISoundManager>
     {
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
+        audioSource.priority = 1;
         audioSource.outputAudioMixerGroup = AudioManager.instance.audioMixer.FindMatchingGroups("UI")[0];
         audioSourcePool.Add(audioSource);
 

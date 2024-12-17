@@ -18,10 +18,12 @@ public class V_Ransomware : VirusBehaviour
     [SerializeField] private int eSDamage = 10;
     [SerializeField] private float eSSpeed = 10.0f;
     [SerializeField] private float eSRotateSpeed = 180.0f;
+    [SerializeField] private SFXSequencePreset eS_SFXPreset;
 
     [Header("UI Jam: 방향키 반전")]
     [SerializeField] private float uJDuration = 5.0f;
     [SerializeField] private float uJCooltime = 31.0f;
+    [SerializeField] private SFXSequencePreset uJ_SFXPreset;
 
     [Header("Corrupted Zone: 데미지/디버프 장판 생성")]
     [SerializeField] private Vector2 cZRange = new Vector2(15.0f, 15.0f);
@@ -32,6 +34,7 @@ public class V_Ransomware : VirusBehaviour
     [SerializeField] private float cZExistDuration = 5.0f;
     [SerializeField] private float cZDebuffDegree = 0.5f;
     [SerializeField] private float cZDotDamagePeriod = 0.1f;
+    [SerializeField] private SFXSequencePreset cZ_SFXPreset;
 
     // [Header("Tracking Bolt: 플레이어를 빠르게 추적하는 번개 느낌의 무언가")]
     // [SerializeField] private float tBSpawnDistance = 1.0f;
@@ -47,6 +50,7 @@ public class V_Ransomware : VirusBehaviour
     [SerializeField] private int dBDamage = 10;
     [SerializeField] private float dBInitialSpeed = 5f;
     [SerializeField] private float dBAcceleration = 0.2f;
+    [SerializeField] private SFXSequencePreset dB_SFXPreset;
 
     // 이 외에 생각한 패턴: 광역 원 범위 패턴
 
@@ -112,12 +116,14 @@ public class V_Ransomware : VirusBehaviour
             GameObject pf = PoolManager.instance.GetObject(PoolType.VProj_EncryptionSpike, spikePosition, Quaternion.LookRotation(direction, Vector3.up));
             pf.GetComponent<VP_EncryptionSpike>().Initialize(eSDamage, eSSpeed, eSRotateSpeed, eSOffset);
         }
+        eS_SFXPreset.Play();
     }
 
     private void UIJam()
     {
         Debug.Log("UI Jam!");
         playerController.ReverseSpeed(uJDuration);
+        uJ_SFXPreset.Play();
         StartCoroutine(UIJamCoolDown());
     }
 
@@ -140,6 +146,7 @@ public class V_Ransomware : VirusBehaviour
             GameObject cZ = PoolManager.instance.GetObject(PoolType.VProj_CorruptedZone, position, Quaternion.identity);
             cZ.GetComponent<VP_CorruptedZone>().Initialize(cZDamage, cZSpeed, cZMaxScale, cZExistDuration, cZDebuffDegree, cZDotDamagePeriod);
         }
+        cZ_SFXPreset.Play();
     }
 
     // private void TrackingBolt()
@@ -164,6 +171,8 @@ public class V_Ransomware : VirusBehaviour
             Vector3 position = transform.position + dBHeight * Vector3.up + dBOffset * direction;
             GameObject dB = PoolManager.instance.GetObject(PoolType.VProj_DataBurst, position, Quaternion.LookRotation(direction, Vector3.up));
             dB.GetComponent<VP_DataBurst>().Initialize(dBDamage, dBInitialSpeed, dBAcceleration);
+
+            dB_SFXPreset.Play();
             yield return new WaitForSeconds(dBPeriod);
         }
     }

@@ -70,8 +70,10 @@ MonoBehaviour:
   eSDamage: 10
   eSSpeed: 15
   eSRotateSpeed: 180
+  eS_SFXPreset: {fileID: 11400000, guid: 45bef7a9a38d30e408729fa858d6c7a4, type: 2}
   uJDuration: 10
   uJCooltime: 46
+  uJ_SFXPreset: {fileID: 11400000, guid: 858624c89637fec4789bb264220f55f3, type: 2}
   cZRange: {x: 10, y: 7}
   cZNum: 4
   cZDamage: 2
@@ -80,6 +82,7 @@ MonoBehaviour:
   cZExistDuration: 5
   cZDebuffDegree: 0.5
   cZDotDamagePeriod: 0.1
+  cZ_SFXPreset: {fileID: 11400000, guid: 05a5c9e4ef9b6dd4a8b51d26a97fd786, type: 2}
   dBPeriod: 0.5
   dBNum: 10
   dBHeight: 0.7
@@ -87,6 +90,7 @@ MonoBehaviour:
   dBDamage: 10
   dBInitialSpeed: 3
   dBAcceleration: 30
+  dB_SFXPreset: {fileID: 11400000, guid: 952e55bdd880dec46947ce848e3af21b, type: 2}
 --- !u!54 &1093182472011093825
 Rigidbody:
   m_ObjectHideFlags: 0

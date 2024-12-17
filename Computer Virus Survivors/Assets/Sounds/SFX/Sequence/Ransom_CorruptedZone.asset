@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45c8d53370365640849a7d363afbaa0, type: 3}
-  m_Name: EXP_Get
+  m_Script: {fileID: 11500000, guid: 0ad4518ca20bb0845b3058490139e896, type: 3}
+  m_Name: Ransom_CorruptedZone
   m_EditorClassIdentifier: 
-  sfxClips:
-  - {fileID: 8300000, guid: c7394b441f627fb4ebf2d9167f3aafa8, type: 3}
-  isVirus: 0
+  sfxElements:
+  - clip: {fileID: 8300000, guid: b72dfd18ecfc7a3468bc1689457a11aa, type: 3}
+    playTimeline: {x: 0, y: 0}
+    isLoop: 0
+    loopCount: 0
+  id: -1

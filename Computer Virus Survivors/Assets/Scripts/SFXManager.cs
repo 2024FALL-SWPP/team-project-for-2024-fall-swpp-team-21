@@ -16,9 +16,9 @@ public class SFXManager : Singleton<SFXManager>
 
     private Dictionary<int, Tuple<Coroutine, TimeScaledAudioSource>> playingSequence = new Dictionary<int, Tuple<Coroutine, TimeScaledAudioSource>>();
 
-    private int poolSize = 16;
-    private int poolSize_Virus = 8;
-    private int sequencePoolSize = 16;
+    private int poolSize = 128;
+    private int poolSize_Virus = 64;
+    private int sequencePoolSize = 32;
 
     public override void Initialize()
     {
@@ -48,7 +48,7 @@ public class SFXManager : Singleton<SFXManager>
             }
 
             AudioSource audioSource = gameObject.AddComponent<AudioSource>();
-            TimeScaledAudioSource timeScaledAudioSource = new TimeScaledAudioSource(audioSource);
+            TimeScaledAudioSource timeScaledAudioSource = new TimeScaledAudioSource(audioSource, 100);
             timeScaledAudioSource.playOnAwake = false;
             timeScaledAudioSource.outputAudioMixerGroup = audioMixerGroup_Virus;
             audioSourcePool_Virus.Add(timeScaledAudioSource);
@@ -120,7 +120,7 @@ public class SFXManager : Singleton<SFXManager>
         }
 
         AudioSource newAudioSource = gameObject.AddComponent<AudioSource>();
-        TimeScaledAudioSource timeScaledAudioSource = new TimeScaledAudioSource(newAudioSource);
+        TimeScaledAudioSource timeScaledAudioSource = new TimeScaledAudioSource(newAudioSource, 10);
         timeScaledAudioSource.playOnAwake = false;
         timeScaledAudioSource.outputAudioMixerGroup = audioMixerGroup_Sequence;
         sequenceAudioSourcePool.Add(timeScaledAudioSource);
@@ -274,10 +274,10 @@ public class SFXManager : Singleton<SFXManager>
             set => audioSource.outputAudioMixerGroup = value;
         }
 
-        public TimeScaledAudioSource(AudioSource audioSource)
+        public TimeScaledAudioSource(AudioSource audioSource, int priority = 128)
         {
             this.audioSource = audioSource;
-            audioSource.priority = 128;
+            audioSource.priority = priority;
             originalAudioPitch = audioSource.pitch;
         }
 
