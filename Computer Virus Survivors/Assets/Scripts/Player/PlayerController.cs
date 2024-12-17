@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
     public void GetDamage(int damage)
     {
         // 만약 무적 프레임이 남아있다면 데미지를 받지 않음
-        if (isInvincible)
+        if (isInvincible || damage <= 0)
         {
             return;
         }
