@@ -13,6 +13,7 @@ public class ExpGem : FieldItemBehaviour
     [SerializeField] private Color endColor;
     [SerializeField] private int startExp;
     [SerializeField] private int endExp;
+    [SerializeField] private float intensity = 1.0f;
 
     private int exp;
 
@@ -34,6 +35,6 @@ public class ExpGem : FieldItemBehaviour
     private void MeshChange()
     {
         float invLerp = Mathf.InverseLerp(startExp, endExp, exp);
-        cubeRenderer.material.color = Color.Lerp(startColor, endColor, invLerp);
+        cubeRenderer.material.SetColor("_EmissionColor", Color.Lerp(startColor, endColor, invLerp) * intensity);
     }
 }

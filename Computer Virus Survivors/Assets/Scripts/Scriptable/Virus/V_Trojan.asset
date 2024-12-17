@@ -18,6 +18,6 @@ MonoBehaviour:
   dropTable:
     dropElements: []
   dropExp: 15000
-  contactDamage: 25
+  contactDamage: 30
   knockbackSpeed: 0
   knockbackColor: {fileID: 0}

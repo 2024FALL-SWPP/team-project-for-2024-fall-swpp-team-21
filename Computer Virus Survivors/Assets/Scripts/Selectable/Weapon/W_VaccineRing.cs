@@ -57,9 +57,11 @@ public class W_VaccineRing : WeaponBehaviour
                 break;
             case 8:
                 BasicMultiProjectile += 1;
+                BasicAttackPeriod *= 1 / (1 + 0.3f);
                 break;
             case 9:
-                BasicMultiProjectile += 2;
+                BasicMultiProjectile += 1;
+                BasicDamage += 10;
                 break;
             default:
                 break;
@@ -92,10 +94,10 @@ public class W_VaccineRing : WeaponBehaviour
                 explanations[6] = "기본 데미지 10 증가";
                 goto case 6;
             case 8:
-                explanations[7] = "백신 방패 1개 추가";
+                explanations[7] = "백신 방패 1개 추가, 회전 속도 30% 증가";
                 goto case 7;
             case 9:
-                explanations[8] = "백신 방패 2개 추가";
+                explanations[8] = "백신 방패 1개 추가, 기본 데미지 10 증가";
                 goto case 8;
         }
     }

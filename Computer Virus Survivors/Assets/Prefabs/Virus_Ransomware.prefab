@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   virusData: {fileID: 11400000, guid: 4e31145e2971a3a4cb327071c2866e24, type: 2}
   animator: {fileID: 6885319965651779700}
-  attackPeriod: 15
+  attackPeriod: 12
   attackDelay: 1
   eSNum: 6
   eSHeight: 0.7
@@ -88,7 +88,7 @@ MonoBehaviour:
   dBHeight: 0.7
   dBOffset: 1
   dBDamage: 10
-  dBInitialSpeed: 3
+  dBInitialSpeed: 2
   dBAcceleration: 30
   dB_SFXPreset: {fileID: 11400000, guid: 952e55bdd880dec46947ce848e3af21b, type: 2}
 --- !u!54 &1093182472011093825

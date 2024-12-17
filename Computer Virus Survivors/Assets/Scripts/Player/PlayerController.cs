@@ -48,21 +48,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-
-        // Temp: 스폰 임시로 구현
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Corona);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Trojan);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Ransomware);
-        }
-
         rb.velocity = Vector3.zero;
     }
 

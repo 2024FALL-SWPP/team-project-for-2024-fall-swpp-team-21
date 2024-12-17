@@ -3381,6 +3381,9 @@ MonoBehaviour:
   - poolName: 45
     prefab: {fileID: 6028109088795663505, guid: 683936729ec12ac42a26fb0958dd9030, type: 3}
     initialPoolSize: 0
+  - poolName: 46
+    prefab: {fileID: 3566741519364104383, guid: cfd1dac74ab00694a8e8ac0410bb875a, type: 3}
+    initialPoolSize: 0
 --- !u!4 &454088697
 Transform:
   m_ObjectHideFlags: 0
@@ -13401,15 +13404,15 @@ MonoBehaviour:
   - spawnTimeRange: {x: 540, y: 600}
     spawnPeriod: 3
     virusID: 5
-    spawnMonsterNum: 15
+    spawnMonsterNum: 12
     ignoreMaxVirusNum: 0
     randomAllOverMap: 0
     offsetFromPlayer: 0
     spawnRange: {x: 5, y: 10}
   - spawnTimeRange: {x: 540, y: 600}
-    spawnPeriod: 12
+    spawnPeriod: 10
     virusID: 9
-    spawnMonsterNum: 4
+    spawnMonsterNum: 5
     ignoreMaxVirusNum: 0
     randomAllOverMap: 0
     offsetFromPlayer: 0
@@ -13449,7 +13452,7 @@ MonoBehaviour:
   - spawnTimeRange: {x: 660, y: 720}
     spawnPeriod: 3
     virusID: 6
-    spawnMonsterNum: 5
+    spawnMonsterNum: 8
     ignoreMaxVirusNum: 0
     randomAllOverMap: 0
     offsetFromPlayer: 0
@@ -13513,7 +13516,7 @@ MonoBehaviour:
   - spawnTimeRange: {x: 900, y: 960}
     spawnPeriod: 3
     virusID: 8
-    spawnMonsterNum: 10
+    spawnMonsterNum: 14
     ignoreMaxVirusNum: 0
     randomAllOverMap: 0
     offsetFromPlayer: 0
@@ -13521,7 +13524,7 @@ MonoBehaviour:
   - spawnTimeRange: {x: 960, y: 1020}
     spawnPeriod: 3
     virusID: 8
-    spawnMonsterNum: 7
+    spawnMonsterNum: 10
     ignoreMaxVirusNum: 0
     randomAllOverMap: 0
     offsetFromPlayer: 0

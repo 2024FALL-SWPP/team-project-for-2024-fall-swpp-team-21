@@ -21,17 +21,20 @@ public class V_Turret : VirusBehaviour
     [SerializeField] private SFXSequencePreset shootShootSFXPreset;
     [SerializeField] private float preShootSoundTimeOffset;
 
+    private GameObject laserLine;
     private LineRenderer lineRenderer;
 
     protected override void Awake()
     {
         base.Awake();
-        lineRenderer = GetComponent<LineRenderer>();
+        //lineRenderer = GetComponent<LineRenderer>();
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
+        laserLine = PoolManager.instance.GetObject(PoolType.TurretLaserLine);
+        lineRenderer = laserLine.GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
         upperBody.transform.localRotation = Quaternion.identity;
         StartCoroutine(GoUp());
@@ -121,5 +124,17 @@ public class V_Turret : VirusBehaviour
             lineRenderer.enabled = !lineRenderer.enabled;
             yield return new WaitForSeconds(flickerSwapPeriod);
         }
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        shootChargeSFXPreset.Stop();
+        shootFlickerSFXPreset.Stop();
+        shootPreShootSFXPreset.Stop();
+        shootShootSFXPreset.Stop();
+
+        lineRenderer.enabled = false;
+        PoolManager.instance.ReturnObject(PoolType.TurretLaserLine, laserLine);
     }
 }

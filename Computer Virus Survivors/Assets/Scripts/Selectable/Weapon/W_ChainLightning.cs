@@ -37,6 +37,7 @@ public sealed class W_ChainLightning : WeaponBehaviour
                 branchCount += 1;
                 break;
             case 4:
+                BasicDamage += 1;
                 chainDepth += 1;
                 break;
             case 5:
@@ -44,7 +45,7 @@ public sealed class W_ChainLightning : WeaponBehaviour
                 chainRadius *= 1.5f;
                 break;
             case 6:
-                BasicDamage += 1;
+                BasicDamage += 2;
                 BasicMultiProjectile += 1;
                 break;
             case 7:
@@ -81,28 +82,28 @@ public sealed class W_ChainLightning : WeaponBehaviour
                 // total = (1 * 2 * (1 + 3 ^ 1) = 9)
                 goto case 2;
             case 4:
-                explanations[3] = "추가 전이 횟수 1회 증가";
-                // total = (1 * 2 * (1 + 3 ^ 2) = 20)
+                explanations[3] = "기본 데미지 1 증가, 추가 전이 횟수 1회 증가";
+                // total = (2 * 2 * (1 + 3 ^ 2) = 40)
                 goto case 3;
             case 5:
                 explanations[4] = "기본 데미지 1 증가, 전이 거리 50% 증가";
-                // total = (2 * 2 * (1 + 3 ^ 2) = 40)
+                // total = (3 * 2 * (1 + 3 ^ 2) = 60)
                 goto case 4;
             case 6:
-                explanations[5] = "번개 1개 증가, 기본 데미지 1 증가";
-                // total = (3 * 3 * (1 + 3 ^ 2) = 90)
+                explanations[5] = "기본 데미지 2 증가, 번개 1개 증가";
+                // total = (5 * 3 * (1 + 3 ^ 2) = 150)
                 goto case 5;
             case 7:
                 explanations[6] = "추가전이 횟수 1회 증가";
-                // total = (3 * 3 * (1 + 3 ^ 3) = 252)
+                // total = 5 * 3 * (1 + 3 ^ 3) = 420)
                 goto case 6;
             case 8:
-                explanations[7] = "번개 1개 증가, 기본 데미지 2증가";
-                // total = (4 * 5 * (1 + 3 ^ 3) = 585)
+                explanations[7] = "번개 1개 증가, 기본 데미지 2 증가";
+                // total = (7 * 4 * (1 + 3 ^ 3) = 784)
                 goto case 7;
             case 9:
                 explanations[8] = "번개 1개 증가, 기본 데미지 2 증가";
-                // total = (5 * 7 * (1 + 3 ^ 3) = 980)
+                // total = (9 * 5 * (1 + 3 ^ 3) = 1260)
                 goto case 8;
         }
     }

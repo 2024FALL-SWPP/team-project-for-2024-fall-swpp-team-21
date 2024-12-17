@@ -65,6 +65,10 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
         {
             StateMachine(Signal.GotoMainClicked);
         };
+        gameClearCanvas.GotoHomeBtnHandler += () =>
+        {
+            StateMachine(Signal.GotoMainClicked);
+        };
         GameManager.instance.GameOverHandler += () =>
         {
             StateMachine(Signal.GameOver);
@@ -132,6 +136,9 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
             currentState = newState;
             currentState.OnEnter();
         }
+
+        Debug.Log("Signal : " + signal);
+        Debug.Log("Current State : " + currentState);
 
         if (currentState == (IState) readyState)
         {

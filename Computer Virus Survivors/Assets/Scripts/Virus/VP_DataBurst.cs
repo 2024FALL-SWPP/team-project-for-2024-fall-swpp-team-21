@@ -25,10 +25,10 @@ public class VP_DataBurst : VirusProjectileBehaviour
         transform.Translate(speed * Time.deltaTime * Vector3.forward, Space.Self);
         speed += acceleration * Time.deltaTime;
 
-        if (CheckOutOfScreen())
-        {
-            PoolManager.instance.ReturnObject(PoolType.VProj_DataBurst, gameObject);
-        }
+        // if (CheckOutOfScreen())
+        // {
+        //     PoolManager.instance.ReturnObject(PoolType.VProj_DataBurst, gameObject);
+        // }
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -37,6 +37,10 @@ public class VP_DataBurst : VirusProjectileBehaviour
         {
             hitSFXPreset.Play();
             other.GetComponent<PlayerController>().GetDamage(damage);
+            PoolManager.instance.ReturnObject(PoolType.VProj_DataBurst, gameObject);
+        }
+        else if (other.CompareTag("Wall"))
+        {
             PoolManager.instance.ReturnObject(PoolType.VProj_DataBurst, gameObject);
         }
     }

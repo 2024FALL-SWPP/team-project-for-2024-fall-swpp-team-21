@@ -52,16 +52,21 @@ public class VirusBehaviour : MonoBehaviour
                 Vector3 moveDirection = Vector3.ProjectOnPlane(
                 (player.transform.position - transform.position).normalized,
                 Vector3.up);
-            //transform.Translate(virusData.moveSpeed * Time.deltaTime * moveDirection, Space.World);
-            rb.MovePosition(transform.position + virusData.moveSpeed * Time.fixedDeltaTime * moveDirection);
-            //transform.rotation = Quaternion.LookRotation(moveDirection);
-            rb.MoveRotation(Quaternion.LookRotation(moveDirection));
+                //transform.Translate(virusData.moveSpeed * Time.deltaTime * moveDirection, Space.World);
+                rb.MovePosition(transform.position + virusData.moveSpeed * Time.fixedDeltaTime * moveDirection);
+                //transform.rotation = Quaternion.LookRotation(moveDirection);
+                rb.MoveRotation(Quaternion.LookRotation(moveDirection));
             }
         }
         else // Knockback
         {
-            rb.MovePosition(transform.position + virusData.knockbackSpeed * Time.fixedDeltaTime * -transform.forward);
             knockbackTime = Math.Max(knockbackTime - Time.fixedDeltaTime, 0);
+            if (Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit,
+                virusData.knockbackSpeed * Time.fixedDeltaTime, LayerMask.GetMask("Obstacle")))
+            {
+                return;
+            }
+            rb.MovePosition(transform.position + virusData.knockbackSpeed * Time.fixedDeltaTime * -transform.forward);
         }
 #endif
     }
