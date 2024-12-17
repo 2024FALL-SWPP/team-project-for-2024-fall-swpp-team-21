@@ -51,6 +51,7 @@ public enum PoolType
     VFX_MagicHit_Crit,
     VProj_Mail_Angry,
     RedZone,
+    TurretLaserLine,
     None = -1,
 
 }

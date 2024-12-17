@@ -3381,6 +3381,9 @@ MonoBehaviour:
   - poolName: 45
     prefab: {fileID: 6028109088795663505, guid: 683936729ec12ac42a26fb0958dd9030, type: 3}
     initialPoolSize: 0
+  - poolName: 46
+    prefab: {fileID: 3566741519364104383, guid: cfd1dac74ab00694a8e8ac0410bb875a, type: 3}
+    initialPoolSize: 0
 --- !u!4 &454088697
 Transform:
   m_ObjectHideFlags: 0
@@ -13262,10 +13265,10 @@ MonoBehaviour:
     randomAllOverMap: 1
     offsetFromPlayer: 0
     spawnRange: {x: 0, y: 0}
-  - spawnTimeRange: {x: 0, y: 60}
-    spawnPeriod: 3
-    virusID: 5
-    spawnMonsterNum: 4
+  - spawnTimeRange: {x: 0, y: 20}
+    spawnPeriod: 5
+    virusID: 11
+    spawnMonsterNum: 1
     ignoreMaxVirusNum: 0
     randomAllOverMap: 0
     offsetFromPlayer: 0

@@ -23,10 +23,10 @@ public class VP_Mail : VirusProjectileBehaviour
         transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime);
         transform.Translate(speed * Time.deltaTime * direction, Space.World);
 
-        if (CheckOutOfScreen())
-        {
-            PoolManager.instance.ReturnObject(PoolType.VProj_Mail, gameObject);
-        }
+        // if (CheckOutOfScreen())
+        // {
+        //     PoolManager.instance.ReturnObject(PoolType.VProj_Mail, gameObject);
+        // }
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -34,6 +34,10 @@ public class VP_Mail : VirusProjectileBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerController>().GetDamage(damage);
+            PoolManager.instance.ReturnObject(PoolType.VProj_Mail, gameObject);
+        }
+        else if (other.CompareTag("Wall"))
+        {
             PoolManager.instance.ReturnObject(PoolType.VProj_Mail, gameObject);
         }
     }

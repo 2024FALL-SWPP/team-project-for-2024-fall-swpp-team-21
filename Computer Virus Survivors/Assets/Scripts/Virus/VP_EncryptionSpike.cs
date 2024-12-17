@@ -56,5 +56,9 @@ public class VP_EncryptionSpike : VirusProjectileBehaviour
             }
             PoolManager.instance.ReturnObject(PoolType.VProj_EncryptionSpike, gameObject);
         }
+        else if (other.CompareTag("Wall"))
+        {
+            PoolManager.instance.ReturnObject(PoolType.VProj_EncryptionSpike, gameObject);
+        }
     }
 }
