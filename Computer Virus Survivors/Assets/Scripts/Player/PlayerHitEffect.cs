@@ -6,16 +6,21 @@ using UnityEngine.Rendering.Universal;
 
 public class PlayerHitEffect : HitEffect
 {
+    private Color hitColor;
+    private Color healColor;
+
     private PlayerController player;
 
     public PlayerHitEffect(GameObject gameObject) : base(gameObject)
     {
         this.player = gameObject.GetComponent<PlayerController>();
 
-        player.statEventCaller.StatChangedHandler += OnPlayerStatChange;
-
         Volume volume = GameObject.FindObjectOfType<Volume>();
         volume.profile.TryGet(out vignette);
+
+        hitColor = new Color(43 / 255f, 8 / 255f, 8 / 255f);
+        healColor = new Color(24 / 255f, 82 / 255f, 12 / 255f);
+        SetColor(hitColor);
     }
 
     // 화면 비네팅
@@ -29,15 +34,27 @@ public class PlayerHitEffect : HitEffect
 
     public void OnPlayerStatChange(object o, StatChangedEventArgs args)
     {
-        if (args.StatName == nameof(PlayerStat.CurrentHP))
-        {
-            PlayVignette();
-            base.Play();
-        }
-        else if (args.StatName == nameof(PlayerStat.MaxHP))
+        if (args.StatName == nameof(PlayerStat.MaxHP))
         {
             SetVignette(GetIntensity(player.playerStat.CurrentHP / player.playerStat.MaxHP));
         }
+    }
+
+    public void PlayGetDamageEffect()
+    {
+        PlayVignette();
+        base.Play();
+    }
+
+    public void PlayGetHealEffect()
+    {
+        SetColor(healColor);
+        PlayVignette();
+    }
+
+    private void SetColor(Color color)
+    {
+        vignette.color.value = color;
     }
 
     private float GetIntensity(float hpRatio)
@@ -59,6 +76,7 @@ public class PlayerHitEffect : HitEffect
 
     private void SetVignette(float intensity)
     {
+        SetColor(hitColor);
         vignette.intensity.value = intensity;
     }
 
