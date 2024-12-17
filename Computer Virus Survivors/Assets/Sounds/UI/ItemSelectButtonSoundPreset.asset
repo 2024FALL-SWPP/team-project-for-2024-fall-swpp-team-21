@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31773f0b6ecc306439a9ae5984feed89, type: 3}
   m_Name: ItemSelectButtonSoundPreset
   m_EditorClassIdentifier: 
-  mouseEnter: {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
+  mouseEnter: {fileID: 8300000, guid: c23ba4a55ca15f149ba22d8e8fb0a4a6, type: 3}
   mouseExit: {fileID: 0}
-  buttonClick: {fileID: 8300000, guid: abdbbfd33a46f4549987385f85c536b5, type: 3}
+  buttonClick: {fileID: 8300000, guid: 8688d10a4135d7042ba84851879df015, type: 3}
   buttonClickFail: {fileID: 0}
