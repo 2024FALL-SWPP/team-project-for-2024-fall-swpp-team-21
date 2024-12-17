@@ -1,11 +1,16 @@
 using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SFXManager : Singleton<SFXManager>
 {
+    [SerializeField] private AudioMixerGroup audioMixerGroup;
+    [SerializeField] private AudioMixerGroup audioMixerGroup_Virus;
     private List<TimeScaledAudioSource> audioSourcePool;
+    private List<TimeScaledAudioSource> audioSourcePool_Virus;
     private int poolSize = 16;
+    private int poolSize_Virus = 8;
 
     public override void Initialize()
     {
@@ -13,31 +18,69 @@ public class SFXManager : Singleton<SFXManager>
         {
             audioSourcePool = new List<TimeScaledAudioSource>();
         }
+
+        if (audioSourcePool_Virus == null)
+        {
+            audioSourcePool_Virus = new List<TimeScaledAudioSource>();
+        }
     }
 
-    private TimeScaledAudioSource NewAudioSource()
+    private TimeScaledAudioSource NewAudioSource(bool isVirus = false)
     {
-        if (audioSourcePool.Count >= poolSize)
+        if (isVirus)
         {
-            return null;
+            if (audioSourcePool_Virus.Count >= poolSize_Virus)
+            {
+                return null;
+            }
+
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            TimeScaledAudioSource timeScaledAudioSource = new TimeScaledAudioSource(audioSource);
+            timeScaledAudioSource.playOnAwake = false;
+            timeScaledAudioSource.outputAudioMixerGroup = audioMixerGroup_Virus;
+            audioSourcePool_Virus.Add(timeScaledAudioSource);
+
+            return timeScaledAudioSource;
         }
+        else
+        {
 
-        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
-        TimeScaledAudioSource timeScaledAudioSource = new TimeScaledAudioSource(audioSource);
-        timeScaledAudioSource.playOnAwake = false;
-        timeScaledAudioSource.outputAudioMixerGroup = AudioManager.instance.audioMixer.FindMatchingGroups("SFX")[0];
-        audioSourcePool.Add(timeScaledAudioSource);
+            if (audioSourcePool.Count >= poolSize)
+            {
+                return null;
+            }
 
-        return timeScaledAudioSource;
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            TimeScaledAudioSource timeScaledAudioSource = new TimeScaledAudioSource(audioSource);
+            timeScaledAudioSource.playOnAwake = false;
+            timeScaledAudioSource.outputAudioMixerGroup = audioMixerGroup;
+            audioSourcePool.Add(timeScaledAudioSource);
+
+            return timeScaledAudioSource;
+        }
     }
 
-    private TimeScaledAudioSource GetAudioSource()
+    private TimeScaledAudioSource GetAudioSource(bool isVirus = false)
     {
-        if (audioSourcePool == null)
+        List<TimeScaledAudioSource> asPool = null;
+        if (isVirus)
         {
-            audioSourcePool = new List<TimeScaledAudioSource>();
+            if (audioSourcePool_Virus == null)
+            {
+                audioSourcePool_Virus = new List<TimeScaledAudioSource>();
+            }
+            asPool = audioSourcePool_Virus;
         }
-        foreach (var audioSource in audioSourcePool)
+        else
+        {
+            if (audioSourcePool == null)
+            {
+                audioSourcePool = new List<TimeScaledAudioSource>();
+            }
+            asPool = audioSourcePool;
+        }
+
+        foreach (var audioSource in asPool)
         {
             if (!audioSource.isPlaying)
             {
@@ -45,7 +88,23 @@ public class SFXManager : Singleton<SFXManager>
             }
         }
 
-        return NewAudioSource();
+        return NewAudioSource(isVirus);
+    }
+
+    public void PlaySound_Virus(AudioClip clip)
+    {
+        if (clip == null)
+        {
+            return;
+        }
+        TimeScaledAudioSource audioSource = GetAudioSource(isVirus: true);
+        if (audioSource == null)
+        {
+            return;
+        }
+        Debug.Log("PlaySound Virus SFX : " + clip.name);
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 
     public void PlaySound(AudioClip clip)
@@ -70,6 +129,11 @@ public class SFXManager : Singleton<SFXManager>
         {
             audioSource.SetTimeScale(Time.timeScale);
         }
+
+        foreach (var audioSource in audioSourcePool_Virus)
+        {
+            audioSource.SetTimeScale(Time.timeScale);
+        }
     }
 
     private class TimeScaledAudioSource
@@ -90,7 +154,7 @@ public class SFXManager : Singleton<SFXManager>
             get => audioSource.playOnAwake;
             set => audioSource.playOnAwake = value;
         }
-        public UnityEngine.Audio.AudioMixerGroup outputAudioMixerGroup
+        public AudioMixerGroup outputAudioMixerGroup
         {
             get => audioSource.outputAudioMixerGroup;
             set => audioSource.outputAudioMixerGroup = value;

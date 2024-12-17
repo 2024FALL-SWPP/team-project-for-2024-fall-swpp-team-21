@@ -10299,6 +10299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efba1030a793e994cb1664e6bbbd0e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixerGroup: {fileID: 407779832595818299, guid: 73cdb7e01ea3cd0448c5e04628455adb, type: 2}
+  audioMixerGroup_Virus: {fileID: 834776381744409026, guid: 73cdb7e01ea3cd0448c5e04628455adb, type: 2}
 --- !u!4 &1638424026
 Transform:
   m_ObjectHideFlags: 0
