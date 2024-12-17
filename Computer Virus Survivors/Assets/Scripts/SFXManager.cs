@@ -243,6 +243,11 @@ public class SFXManager : Singleton<SFXManager>
         {
             audioSource.SetTimeScale(Time.timeScale);
         }
+
+        foreach (var audioSource in sequenceAudioSourcePool)
+        {
+            audioSource.SetTimeScale(Time.timeScale);
+        }
     }
 
     private class TimeScaledAudioSource
