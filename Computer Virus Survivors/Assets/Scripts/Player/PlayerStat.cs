@@ -43,6 +43,7 @@ public class PlayerStat : IPlayerStatObserver
         }
         set
         {
+            int originalHP = currentHP;
             currentHP = value;
             if (currentHP < 0)
             {
@@ -52,7 +53,13 @@ public class PlayerStat : IPlayerStatObserver
             {
                 currentHP = maxHP;
             }
-            statEventCaller.Invoke(nameof(CurrentHP), currentHP);
+            if (originalHP != currentHP)
+            {
+                statEventCaller.Invoke(nameof(CurrentHP), currentHP);
+
+            }
+
+
         }
     }
 
