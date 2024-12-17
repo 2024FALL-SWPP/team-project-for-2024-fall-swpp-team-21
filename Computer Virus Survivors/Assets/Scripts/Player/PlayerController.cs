@@ -184,6 +184,10 @@ public class PlayerController : MonoBehaviour
         {
             sphereCollider.radius = playerStat.ExpGainRange;
         }
+        else if (e.StatName == nameof(PlayerStat.HealthRezenPer10))
+        {
+            StartCoroutine(HPrezen());
+        }
     }
 
     public void DebuffMoveSpeed(float value)
@@ -212,5 +216,22 @@ public class PlayerController : MonoBehaviour
         playerStat.MoveSpeed *= -1;
         yield return new WaitForSeconds(duration);
         playerStat.MoveSpeed *= -1;
+    }
+
+    private IEnumerator HPrezen()
+    {
+        float remainHP = 0;
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            int divided = playerStat.HealthRezenPer10 / 10;
+            remainHP += playerStat.HealthRezenPer10 % 10;
+            if (remainHP > 1f)
+            {
+                divided++;
+                remainHP -= 1f;
+            }
+            playerStat.CurrentHP += divided;
+        }
     }
 }
