@@ -141,12 +141,25 @@ public class PlayerController : MonoBehaviour
         }
 
         StartCoroutine(BeInvincible());
-        playerStat.CurrentHP -= damage;
+        playerStat.CurrentHP -= ReduceDamage(damage);
         Debug.Log("Player HP: " + playerStat.CurrentHP);
         if (playerStat.CurrentHP <= 0)
         {
             Die();
         }
+    }
+
+    private int ReduceDamage(int damage)
+    {
+        float reduceRate = 1f - (7 / (7 + playerStat.DefencePoint + 0.1f * Mathf.Pow(playerStat.DefencePoint, 2)));
+        float reducingDamage = damage * reduceRate;
+        int reducingDamageInt = (int) reducingDamage;
+        float remain = reducingDamage - reducingDamageInt;
+        if (UnityEngine.Random.Range(0f, 1f) < remain)
+        {
+            reducingDamageInt++;
+        }
+        return damage - reducingDamageInt;
     }
 
     public void GetHeal(int heal)
