@@ -32,7 +32,7 @@ public sealed class W_CoreDump : WeaponBehaviour
                 BasicMultiProjectile += 1;
                 break;
             case 3:
-                BasicAttackPeriod *= (1 - 0.3f) / 1;
+                BasicAttackPeriod *= (1 - 0.15f) / 1;
                 break;
             case 4:
                 BasicDamage += 20;
@@ -41,7 +41,7 @@ public sealed class W_CoreDump : WeaponBehaviour
                 BasicMultiProjectile += 1;
                 break;
             case 6:
-                BasicAttackPeriod *= (1 - 0.3f) / 1;
+                BasicAttackPeriod *= (1 - 0.15f) / 1;
                 break;
             case 7:
                 BasicDamage += 40;
@@ -69,7 +69,7 @@ public sealed class W_CoreDump : WeaponBehaviour
                 explanations[1] = "떨어지는 코어 1개 추가";
                 goto case 1;
             case 3:
-                explanations[2] = "공격 주기 30% 감소";
+                explanations[2] = "공격 주기 15% 감소";
                 goto case 2;
             case 4:
                 explanations[3] = "기본 데미지 20 증가";
@@ -78,10 +78,10 @@ public sealed class W_CoreDump : WeaponBehaviour
                 explanations[4] = "떨어지는 코어 1개 추가";
                 goto case 4;
             case 6:
-                explanations[5] = "공격 주기 30% 감소";
+                explanations[5] = "공격 주기 15% 감소";
                 goto case 5;
             case 7:
-                explanations[6] = "기본 데미지 40 증가";
+                explanations[6] = "기본 데미지 20 증가";
                 goto case 6;
             case 8:
                 explanations[7] = "떨어지는 코어 1개 추가";

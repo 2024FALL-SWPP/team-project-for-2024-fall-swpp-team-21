@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 7
   maxHP: 30
-  moveSpeed: 0.5
+  moveSpeed: 0.7
   dropTable:
     dropElements: []
   dropExp: 100
   contactDamage: 5
-  knockbackSpeed: 5
+  knockbackSpeed: 7
   knockbackColor: {fileID: 0}

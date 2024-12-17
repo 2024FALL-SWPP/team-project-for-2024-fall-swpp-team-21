@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: V_Chip
   m_EditorClassIdentifier: 
   poolType: 3
-  maxHP: 30
-  moveSpeed: 1
+  maxHP: 20
+  moveSpeed: 1.2
   dropTable:
     dropElements: []
   dropExp: 100

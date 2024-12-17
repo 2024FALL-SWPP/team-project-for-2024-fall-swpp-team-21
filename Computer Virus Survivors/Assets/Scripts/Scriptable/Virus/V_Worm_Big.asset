@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: V_Worm_Big
   m_EditorClassIdentifier: 
   poolType: 12
-  maxHP: 5000
+  maxHP: 4000
   moveSpeed: 0.5
   dropTable:
     dropElements: []
-  dropExp: 4000
-  contactDamage: 40
+  dropExp: 5000
+  contactDamage: 30
   knockbackSpeed: 0
+  knockbackColor: {fileID: 0}

@@ -379,7 +379,7 @@ public class PlayerStat : IPlayerStatObserver
 
             await WaitForItemSelection();
             currentExp -= maxExp;
-            MaxExp = maxExpList[PlayerLevel];
+            MaxExp = maxExpList[Mathf.Min(PlayerLevel, maxExpList.Length - 1)];
             statEventCaller.Invoke(nameof(CurrentExp), currentExp); // 재귀 호출이 일어날 수 있음
         }
         semaphore.Release();

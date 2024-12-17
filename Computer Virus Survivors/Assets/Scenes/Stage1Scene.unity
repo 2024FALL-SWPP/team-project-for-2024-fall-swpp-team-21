@@ -3279,7 +3279,7 @@ MonoBehaviour:
     prefab: {fileID: 947563994292420539, guid: 2a74fc7a952ff6845afc55793e1347de, type: 3}
     initialPoolSize: 0
   - poolName: 11
-    prefab: {fileID: 5841041427378954025, guid: 201474e5e0f694042a381edadef11a79, type: 3}
+    prefab: {fileID: 5841041427378954025, guid: a9dc6f745c27ea042a58f85b3dc50018, type: 3}
     initialPoolSize: 0
   - poolName: 12
     prefab: {fileID: 7793444045799942127, guid: c538b1f898962444fa13158c2caf1865, type: 3}
@@ -9581,7 +9581,16 @@ MonoBehaviour:
   - {fileID: 2549643050272070597, guid: 7ae1688fda32f48d2866bb5f9586ee4f, type: 3}
   - {fileID: 835744681533526102, guid: 267239254684e1046b941498b538d6af, type: 3}
   itemPrefabs:
+  - {fileID: 7749885784722313653, guid: 564c9617fd4aabc43a37df38dfc04fe2, type: 3}
+  - {fileID: 2844120089101344663, guid: 1cade1e11676c374bab78052c33cc62b, type: 3}
+  - {fileID: 2795667744615645165, guid: a9bc1bcc5fa0a4246a93d4da64afaf97, type: 3}
+  - {fileID: 4409495226019107240, guid: 0d4973c892d07ec4bb8a94050450404d, type: 3}
+  - {fileID: 6380360671076609130, guid: aa092a83a977bbe4cacd90019981522a, type: 3}
+  - {fileID: 2723410603292946947, guid: d6e6f8936d931454992265ebb84d5d26, type: 3}
+  - {fileID: 7510037406760784858, guid: c944c83701469a547bb4fc26140669c7, type: 3}
+  - {fileID: 7849132757852708455, guid: 72b7aaf259b973b43a864b6ff680ec63, type: 3}
   - {fileID: 8084648258450572112, guid: b87a10d89b6e7bc49bb1e6b53e47e54a, type: 3}
+  - {fileID: 7080718593660756452, guid: 386f1e01f3f6a404894d74edd802f533, type: 3}
   - {fileID: 5337172507349020482, guid: 136fd2db766dad54da08c99cafb48077, type: 3}
   - {fileID: 5279996990134477508, guid: 225c4c17e6772184c98d332f306d584e, type: 3}
   - {fileID: 732008657286886299, guid: 6dfe305c66b63d04bb02487ae3d5f351, type: 3}
@@ -13377,80 +13386,417 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 4096
-  maxVirusNum: 100
+  maxVirusNum: 150
   turretPoints: {fileID: 95660060}
   spawnPatterns:
-  - spawnTimeRange: {x: 180, y: 181}
-    spawnPeriod: 5
-    virusID: 11
-    spawnMonsterNum: 1
-    ignoreMaxVirusNum: 1
-    randomAroundPlayer: 0
-    randomAllOverMap: 0
-    offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 5, y: 10}
-    spawnPoints:
-    - {x: 0, y: 10}
-  - spawnTimeRange: {x: 0, y: 30}
-    spawnPeriod: 1
-    virusID: 5
+  - spawnTimeRange: {x: 60, y: 9999}
+    spawnPeriod: 120
+    virusID: 27
     spawnMonsterNum: 2
+    ignoreMaxVirusNum: 1
+    randomAllOverMap: 1
+    offsetFromPlayer: 0
+    spawnRange: {x: 0, y: 0}
+  - spawnTimeRange: {x: 0, y: 60}
+    spawnPeriod: 3
+    virusID: 5
+    spawnMonsterNum: 4
     ignoreMaxVirusNum: 0
-    randomAroundPlayer: 1
     randomAllOverMap: 0
-    offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 5, y: 10}
-    spawnPoints: []
-  - spawnTimeRange: {x: 25, y: 60}
-    spawnPeriod: 2
-    virusID: 7
-    spawnMonsterNum: 5
-    ignoreMaxVirusNum: 0
-    randomAroundPlayer: 1
-    randomAllOverMap: 0
-    offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 5, y: 10}
-    spawnPoints: []
+    offsetFromPlayer: 0
+    spawnRange: {x: 10, y: 12}
   - spawnTimeRange: {x: 60, y: 120}
     spawnPeriod: 3
     virusID: 5
-    spawnMonsterNum: 10
+    spawnMonsterNum: 4
     ignoreMaxVirusNum: 0
-    randomAroundPlayer: 1
     randomAllOverMap: 0
-    offsetFromPlayer: {x: 0, y: 0}
+    offsetFromPlayer: 0
     spawnRange: {x: 5, y: 10}
-    spawnPoints: []
-  - spawnTimeRange: {x: 90, y: 120}
-    spawnPeriod: 5
-    virusID: 9
-    spawnMonsterNum: 2
+  - spawnTimeRange: {x: 61, y: 120}
+    spawnPeriod: 3
+    virusID: 3
+    spawnMonsterNum: 4
     ignoreMaxVirusNum: 0
-    randomAroundPlayer: 1
     randomAllOverMap: 0
-    offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 10, y: 15}
-    spawnPoints: []
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 10}
   - spawnTimeRange: {x: 120, y: 180}
-    spawnPeriod: 2
-    virusID: 6
+    spawnPeriod: 3
+    virusID: 3
+    spawnMonsterNum: 12
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 180, y: 240}
+    spawnPeriod: 4
+    virusID: 7
+    spawnMonsterNum: 12
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 7, y: 10}
+  - spawnTimeRange: {x: 240, y: 300}
+    spawnPeriod: 3
+    virusID: 3
     spawnMonsterNum: 10
     ignoreMaxVirusNum: 0
-    randomAroundPlayer: 1
     randomAllOverMap: 0
-    offsetFromPlayer: {x: 0, y: 0}
+    offsetFromPlayer: 0
     spawnRange: {x: 5, y: 10}
-    spawnPoints: []
-  - spawnTimeRange: {x: 60, y: 180}
-    spawnPeriod: 60
-    virusID: 27
+  - spawnTimeRange: {x: 240, y: 245}
+    spawnPeriod: 2
+    virusID: 5
+    spawnMonsterNum: 10
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 7
+    spawnRange: {x: 0, y: 1}
+  - spawnTimeRange: {x: 270, y: 275}
+    spawnPeriod: 2
+    virusID: 5
+    spawnMonsterNum: 10
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 7
+    spawnRange: {x: 0, y: 1}
+  - spawnTimeRange: {x: 300, y: 360}
+    spawnPeriod: 3
+    virusID: 3
+    spawnMonsterNum: 9
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 10}
+  - spawnTimeRange: {x: 301, y: 360}
+    spawnPeriod: 3
+    virusID: 7
+    spawnMonsterNum: 9
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 10}
+  - spawnTimeRange: {x: 300, y: 360}
+    spawnPeriod: 12
+    virusID: 9
+    spawnMonsterNum: 4
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 10, y: 12}
+  - spawnTimeRange: {x: 360, y: 420}
+    spawnPeriod: 3
+    virusID: 5
+    spawnMonsterNum: 8
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 361, y: 420}
+    spawnPeriod: 3
+    virusID: 3
+    spawnMonsterNum: 8
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 362, y: 420}
+    spawnPeriod: 3
+    virusID: 7
+    spawnMonsterNum: 10
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 8, y: 12}
+  - spawnTimeRange: {x: 420, y: 421}
+    spawnPeriod: 2
+    virusID: 12
+    spawnMonsterNum: 1
+    ignoreMaxVirusNum: 1
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 4, y: 4}
+  - spawnTimeRange: {x: 420, y: 480}
+    spawnPeriod: 3
+    virusID: 5
+    spawnMonsterNum: 6
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 480, y: 540}
+    spawnPeriod: 3
+    virusID: 3
+    spawnMonsterNum: 6
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 540, y: 600}
+    spawnPeriod: 3
+    virusID: 5
+    spawnMonsterNum: 15
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 10}
+  - spawnTimeRange: {x: 540, y: 600}
+    spawnPeriod: 12
+    virusID: 9
+    spawnMonsterNum: 4
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 8, y: 12}
+  - spawnTimeRange: {x: 600, y: 660}
+    spawnPeriod: 3
+    virusID: 5
+    spawnMonsterNum: 12
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 4, y: 12}
+  - spawnTimeRange: {x: 600, y: 660}
+    spawnPeriod: 3
+    virusID: 3
+    spawnMonsterNum: 12
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 4, y: 12}
+  - spawnTimeRange: {x: 600, y: 660}
+    spawnPeriod: 1
+    virusID: 7
+    spawnMonsterNum: 4
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 4, y: 12}
+  - spawnTimeRange: {x: 600, y: 660}
+    spawnPeriod: 12
+    virusID: 9
+    spawnMonsterNum: 3
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 8, y: 12}
+  - spawnTimeRange: {x: 660, y: 720}
+    spawnPeriod: 3
+    virusID: 6
+    spawnMonsterNum: 5
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 720, y: 780}
+    spawnPeriod: 3
+    virusID: 6
+    spawnMonsterNum: 7
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 721, y: 780}
+    spawnPeriod: 3
+    virusID: 4
+    spawnMonsterNum: 7
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 780, y: 781}
+    spawnPeriod: 2
+    virusID: 11
+    spawnMonsterNum: 1
+    ignoreMaxVirusNum: 1
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 5}
+  - spawnTimeRange: {x: 780, y: 840}
+    spawnPeriod: 3
+    virusID: 6
+    spawnMonsterNum: 5
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 781, y: 840}
+    spawnPeriod: 3
+    virusID: 5
+    spawnMonsterNum: 5
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 840, y: 900}
+    spawnPeriod: 3
+    virusID: 4
+    spawnMonsterNum: 5
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 841, y: 900}
+    spawnPeriod: 3
+    virusID: 3
+    spawnMonsterNum: 5
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 900, y: 960}
+    spawnPeriod: 3
+    virusID: 8
+    spawnMonsterNum: 10
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 960, y: 1020}
+    spawnPeriod: 3
+    virusID: 8
+    spawnMonsterNum: 7
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 960, y: 1020}
+    spawnPeriod: 12
+    virusID: 10
+    spawnMonsterNum: 4
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 8, y: 10}
+  - spawnTimeRange: {x: 1020, y: 1140}
+    spawnPeriod: 3
+    virusID: 4
+    spawnMonsterNum: 7
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 1021, y: 1140}
+    spawnPeriod: 3
+    virusID: 6
+    spawnMonsterNum: 7
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 1022, y: 1140}
+    spawnPeriod: 3
+    virusID: 8
+    spawnMonsterNum: 7
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 1020, y: 1140}
+    spawnPeriod: 12
+    virusID: 10
+    spawnMonsterNum: 3
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 8, y: 10}
+  - spawnTimeRange: {x: 1140, y: 1200}
+    spawnPeriod: 1
+    virusID: 4
+    spawnMonsterNum: 5
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 1140, y: 1200}
+    spawnPeriod: 1
+    virusID: 6
+    spawnMonsterNum: 5
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 1140, y: 1200}
+    spawnPeriod: 1
+    virusID: 8
+    spawnMonsterNum: 5
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 1200, y: 1201}
+    spawnPeriod: 2
+    virusID: 13
+    spawnMonsterNum: 1
+    ignoreMaxVirusNum: 1
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 5}
+  - spawnTimeRange: {x: 1200, y: 1600}
+    spawnPeriod: 3
+    virusID: 6
+    spawnMonsterNum: 7
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 1290, y: 1600}
+    spawnPeriod: 3
+    virusID: 4
+    spawnMonsterNum: 7
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 1380, y: 1600}
+    spawnPeriod: 3
+    virusID: 8
+    spawnMonsterNum: 5
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 1470, y: 1600}
+    spawnPeriod: 15
+    virusID: 10
     spawnMonsterNum: 2
     ignoreMaxVirusNum: 0
-    randomAroundPlayer: 0
-    randomAllOverMap: 1
-    offsetFromPlayer: {x: 0, y: 0}
-    spawnRange: {x: 0, y: 30}
-    spawnPoints: []
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 1600, y: 9999}
+    spawnPeriod: 3
+    virusID: 6
+    spawnMonsterNum: 15
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 1600, y: 9999}
+    spawnPeriod: 3
+    virusID: 4
+    spawnMonsterNum: 15
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 1600, y: 9999}
+    spawnPeriod: 3
+    virusID: 8
+    spawnMonsterNum: 15
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 5, y: 12}
+  - spawnTimeRange: {x: 1600, y: 9999}
+    spawnPeriod: 10
+    virusID: 10
+    spawnMonsterNum: 2
+    ignoreMaxVirusNum: 0
+    randomAllOverMap: 0
+    offsetFromPlayer: 0
+    spawnRange: {x: 8, y: 12}
 --- !u!4 &2094598314
 Transform:
   m_ObjectHideFlags: 0

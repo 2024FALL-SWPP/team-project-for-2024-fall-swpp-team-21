@@ -288,7 +288,7 @@ MonoBehaviour:
   flickerToBeamPeriod: 1
   flickerSwapPeriod: 0.05
   beamArriveTime: 0.2
-  beamDamage: 20
+  beamDamage: 15
   upSpeed: 3
   targetYOffset: 0.7
 --- !u!65 &8149194556810974710
