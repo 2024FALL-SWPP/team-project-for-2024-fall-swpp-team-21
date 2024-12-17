@@ -32,8 +32,11 @@ public class P_PacketStream : PlayerProjectileBehaviour
         {
             other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetDamageData(out bool isCritical));
             PlayAttackEffect(other.ClosestPoint(transform.position) + new Vector3(0, transform.position.y, 0), Quaternion.identity, isCritical);
+            PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
         }
-
-        PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
+        else if (other.CompareTag("Wall"))
+        {
+            PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
+        }
     }
 }
