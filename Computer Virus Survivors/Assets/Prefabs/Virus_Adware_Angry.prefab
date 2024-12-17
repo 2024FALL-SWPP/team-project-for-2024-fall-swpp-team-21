@@ -54,6 +54,7 @@ MonoBehaviour:
   projType: 44
   projSpeed: 4
   projHeight: 0.5
+  shootSFX: {fileID: 11400000, guid: 67c42cf0c7a431f47b4f5020ee9d8fec, type: 2}
 --- !u!135 &1317087348404408480
 SphereCollider:
   m_ObjectHideFlags: 0

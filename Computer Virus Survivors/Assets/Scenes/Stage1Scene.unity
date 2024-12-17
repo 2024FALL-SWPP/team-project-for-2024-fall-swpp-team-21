@@ -13401,15 +13401,15 @@ MonoBehaviour:
   - spawnTimeRange: {x: 540, y: 600}
     spawnPeriod: 3
     virusID: 5
-    spawnMonsterNum: 15
+    spawnMonsterNum: 12
     ignoreMaxVirusNum: 0
     randomAllOverMap: 0
     offsetFromPlayer: 0
     spawnRange: {x: 5, y: 10}
   - spawnTimeRange: {x: 540, y: 600}
-    spawnPeriod: 12
+    spawnPeriod: 10
     virusID: 9
-    spawnMonsterNum: 4
+    spawnMonsterNum: 5
     ignoreMaxVirusNum: 0
     randomAllOverMap: 0
     offsetFromPlayer: 0
@@ -13449,7 +13449,7 @@ MonoBehaviour:
   - spawnTimeRange: {x: 660, y: 720}
     spawnPeriod: 3
     virusID: 6
-    spawnMonsterNum: 5
+    spawnMonsterNum: 8
     ignoreMaxVirusNum: 0
     randomAllOverMap: 0
     offsetFromPlayer: 0
@@ -13513,7 +13513,7 @@ MonoBehaviour:
   - spawnTimeRange: {x: 900, y: 960}
     spawnPeriod: 3
     virusID: 8
-    spawnMonsterNum: 10
+    spawnMonsterNum: 14
     ignoreMaxVirusNum: 0
     randomAllOverMap: 0
     offsetFromPlayer: 0
@@ -13521,7 +13521,7 @@ MonoBehaviour:
   - spawnTimeRange: {x: 960, y: 1020}
     spawnPeriod: 3
     virusID: 8
-    spawnMonsterNum: 7
+    spawnMonsterNum: 10
     ignoreMaxVirusNum: 0
     randomAllOverMap: 0
     offsetFromPlayer: 0

@@ -283,7 +283,7 @@ MonoBehaviour:
   virusData: {fileID: 11400000, guid: 2c32796c48b9344438a4519ad9c5b063, type: 2}
   upperBody: {fileID: 953155439190896940}
   muzzle: {fileID: 6193209051459430610}
-  aimToBeamPeriod: 4
+  aimToBeamPeriod: 6
   beamToAimPeriod: 1
   flickerToBeamPeriod: 1
   flickerSwapPeriod: 0.05

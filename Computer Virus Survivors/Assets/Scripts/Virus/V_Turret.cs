@@ -122,4 +122,13 @@ public class V_Turret : VirusBehaviour
             yield return new WaitForSeconds(flickerSwapPeriod);
         }
     }
+
+    protected override void Die()
+    {
+        base.Die();
+        shootChargeSFXPreset.Stop();
+        shootFlickerSFXPreset.Stop();
+        shootPreShootSFXPreset.Stop();
+        shootShootSFXPreset.Stop();
+    }
 }

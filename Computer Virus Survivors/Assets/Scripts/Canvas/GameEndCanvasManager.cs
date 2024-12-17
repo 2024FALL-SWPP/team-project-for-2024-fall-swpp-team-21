@@ -102,6 +102,7 @@ public class GameEndCanvasManager : Singleton<GameEndCanvasManager>, IState
 
     public void GotoHomeBtnClicked()
     {
+        Debug.Log("GotoHomeBtnClicked");
         GotoHomeBtnHandler?.Invoke();
     }
 
