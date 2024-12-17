@@ -11,6 +11,7 @@ public class V_Trojan : VirusBehaviour
     [SerializeField] private float dashDelay = 0.3f;
     [SerializeField] private float dashDuration = 0.5f;
     [SerializeField] private LayerMask obstacleLayerMask;
+    [SerializeField] private Animator animator;
 
     private bool canAttack = false;
     private bool isAttacking = false;
@@ -85,9 +86,12 @@ public class V_Trojan : VirusBehaviour
         isAttacking = true;
         canAttack = false;
 
+        animator.SetTrigger("t_Attack");
         yield return new WaitForSeconds(dashDelay); // 잠시 멈춤
+        animator.SetTrigger("t_Dash");
         yield return StartCoroutine(Dash(dashDuration)); // 대시
         yield return new WaitForSeconds(dashDelay); // 잠시 멈춤
+        animator.SetTrigger("t_Return");
 
         attackTimer = 0.0f;
         isAttacking = false;

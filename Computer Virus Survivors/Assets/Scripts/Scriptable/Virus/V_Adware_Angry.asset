@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: V_Adware_Angry
   m_EditorClassIdentifier: 
   poolType: 10
-  maxHP: 80
+  maxHP: 100
   moveSpeed: 0.5
   dropTable:
     dropElements: []
-  dropExp: 200
+  dropExp: 400
   contactDamage: 10
   knockbackSpeed: 10
   knockbackColor: {fileID: 0}

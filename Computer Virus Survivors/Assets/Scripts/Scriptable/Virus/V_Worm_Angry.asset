@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: V_Worm_Angry
   m_EditorClassIdentifier: 
   poolType: 8
-  maxHP: 70
+  maxHP: 90
   moveSpeed: 1.5
   dropTable:
     dropElements: []

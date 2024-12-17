@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: V_Adware
   m_EditorClassIdentifier: 
   poolType: 9
-  maxHP: 40
+  maxHP: 50
   moveSpeed: 0.5
   dropTable:
     dropElements: []
-  dropExp: 100
+  dropExp: 200
   contactDamage: 5
   knockbackSpeed: 15
+  knockbackColor: {fileID: 0}

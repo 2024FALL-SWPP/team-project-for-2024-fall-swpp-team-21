@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virusData: {fileID: 11400000, guid: 5e97c8e17cc608544b0c7476ed5bad31, type: 2}
-  spawnPeriod: 5
+  spawnPeriod: 3
   spawnNum: 3
   spawnRange: 1
 --- !u!136 &8410548968660161111

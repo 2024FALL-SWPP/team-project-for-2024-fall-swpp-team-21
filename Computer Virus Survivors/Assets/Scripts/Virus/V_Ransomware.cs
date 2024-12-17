@@ -33,11 +33,11 @@ public class V_Ransomware : VirusBehaviour
     [SerializeField] private float cZDebuffDegree = 0.5f;
     [SerializeField] private float cZDotDamagePeriod = 0.1f;
 
-    [Header("Tracking Bolt: 플레이어를 빠르게 추적하는 번개 느낌의 무언가")]
-    [SerializeField] private float tBSpawnDistance = 1.0f;
-    [SerializeField] private int tBDamage = 10;
-    [SerializeField] private float tBSpeed = 10.0f;
-    [SerializeField] private float tBExistDuration = 5.0f;
+    // [Header("Tracking Bolt: 플레이어를 빠르게 추적하는 번개 느낌의 무언가")]
+    // [SerializeField] private float tBSpawnDistance = 1.0f;
+    // [SerializeField] private int tBDamage = 10;
+    // [SerializeField] private float tBSpeed = 10.0f;
+    // [SerializeField] private float tBExistDuration = 5.0f;
 
     [Header("Data Burst: 플레이어를 향해 연속해서 빠르게 탄막 발사")]
     [SerializeField] private float dBPeriod = 0.5f;
@@ -60,7 +60,7 @@ public class V_Ransomware : VirusBehaviour
         attackActions.Add(EncryptionSpike);
         attackActions.Add(UIJam);
         attackActions.Add(CorruptedZone);
-        attackActions.Add(TrackingBolt);
+        // attackActions.Add(TrackingBolt);
         attackActions.Add(DataBurst);
     }
 
@@ -142,13 +142,13 @@ public class V_Ransomware : VirusBehaviour
         }
     }
 
-    private void TrackingBolt()
-    {
-        Debug.Log("Tracking Bolt!");
-        Vector3 spawnPosition = player.transform.position + tBSpawnDistance * UnityEngine.Random.insideUnitSphere;
-        GameObject tB = PoolManager.instance.GetObject(PoolType.VProj_TrackingBolt, spawnPosition, Quaternion.identity);
-        tB.GetComponent<VP_TrackingBolt>().Initialize(tBDamage, tBSpeed, tBExistDuration);
-    }
+    // private void TrackingBolt()
+    // {
+    //     Debug.Log("Tracking Bolt!");
+    //     Vector3 spawnPosition = player.transform.position + tBSpawnDistance * UnityEngine.Random.insideUnitSphere;
+    //     GameObject tB = PoolManager.instance.GetObject(PoolType.VProj_TrackingBolt, spawnPosition, Quaternion.identity);
+    //     tB.GetComponent<VP_TrackingBolt>().Initialize(tBDamage, tBSpeed, tBExistDuration);
+    // }
 
     private void DataBurst()
     {

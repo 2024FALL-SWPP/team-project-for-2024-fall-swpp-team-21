@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: V_Chip_Angry
   m_EditorClassIdentifier: 
   poolType: 4
-  maxHP: 70
-  moveSpeed: 1
+  maxHP: 80
+  moveSpeed: 1.6
   dropTable:
     dropElements: []
-  dropExp: 200
+  dropExp: 300
   contactDamage: 10
   knockbackSpeed: 10
   knockbackColor: {fileID: 0}

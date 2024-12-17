@@ -133,7 +133,7 @@ MonoBehaviour:
   acceleration: 1
   poolType: 0
   cubeRenderer: {fileID: 6047476089228217518}
-  startColor: {r: 0, g: 1, b: 0, a: 0}
+  startColor: {r: 1, g: 1, b: 0, a: 0}
   endColor: {r: 1, g: 0, b: 0, a: 0}
   startExp: 100
   endExp: 500
