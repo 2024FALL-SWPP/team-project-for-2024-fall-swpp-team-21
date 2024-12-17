@@ -40,31 +40,31 @@ public class I_HPrezen : ItemBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "데이터 자가 복구 기술을 도입해 백신이 스스로 오염을 복구합니다\n체력 10초당 2 회복";
+                explanations[0] = "데이터 자가 복구 기술을 도입해 백신이 스스로 오염을 복구합니다\n체력 <color=#FF00C7>10초당 2</color> 회복";
                 break;
             case 2:
-                explanations[1] = "체력 10초당 4 회복";
+                explanations[1] = "체력 <color=#FF00C7>10초당 4</color> 회복";
                 goto case 1;
             case 3:
-                explanations[2] = "체력 10초당 6 회복";
+                explanations[2] = "체력 <color=#FF00C7>10초당 6</color> 회복";
                 goto case 2;
             case 4:
-                explanations[3] = "체력 10초당 8 회복";
+                explanations[3] = "체력 <color=#FF00C7>10초당 8</color> 회복";
                 goto case 3;
             case 5:
-                explanations[4] = "체력 10초당 10 회복";
+                explanations[4] = "체력 <color=#FF00C7>10초당 10</color> 회복";
                 goto case 4;
             case 6:
-                explanations[5] = "체력 10초당 12 회복";
+                explanations[5] = "체력 <color=#FF00C7>10초당 12</color> 회복";
                 goto case 5;
             case 7:
-                explanations[6] = "체력 10초당 14 회복";
+                explanations[6] = "체력 <color=#FF00C7>10초당 14</color> 회복";
                 goto case 6;
             case 8:
-                explanations[7] = "체력 10초당 16 회복";
+                explanations[7] = "체력 <color=#FF00C7>10초당 16</color> 회복";
                 goto case 7;
             case 9:
-                explanations[8] = "체력 10초당 20 회복";
+                explanations[8] = "체력 <color=#FF00C7>10초당 20</color> 회복";
                 goto case 8;
         }
     }

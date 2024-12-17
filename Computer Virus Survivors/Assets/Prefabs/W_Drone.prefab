@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0a4c33d6acadb43ad41a0256606dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: "\uB4DC\uB860"
+  objectName: "\uBC31\uC2E0 \uC4F0\uB808\uB4DC"
   maxLevel: 9
   explanations:
   - "\uD50C\uB808\uC774\uC5B4\uB97C \uB530\uB77C\uB2E4\uB2C8\uB294 \uB4DC\uB860\uC744

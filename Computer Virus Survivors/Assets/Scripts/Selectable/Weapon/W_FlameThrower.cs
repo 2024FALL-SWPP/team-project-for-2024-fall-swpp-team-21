@@ -59,31 +59,31 @@ public sealed class W_FlameThrower : WeaponBehaviour
         switch (MaxLevel)
         {
             case 1:
-                explanations[0] = "플레이어 전방의 부채꼴 범위로 불을 뿜어 바이러스에게 지속적인 데미지를 줍니다.";
+                explanations[0] = "화염방사기의 형상을 띈 버퍼가 메모리공간을 강제로 삭제합니다\n부채꼴 형상으로 주기적으로 공격합니다";
                 break;
             case 2:
-                explanations[1] = "공격 주기 2초 감소";
+                explanations[1] = "공격 주기 <color=#FF00C7>2</color>초 감소";
                 goto case 1;
             case 3:
-                explanations[2] = "공격 범위 15% 증가";
+                explanations[2] = "공격 범위 <color=#FF00C7>15%</color> 증가";
                 goto case 2;
             case 4:
-                explanations[3] = "기본 데미지 5 증가";
+                explanations[3] = "기본 데미지 <color=#FF00C7>5</color> 증가";
                 goto case 3;
             case 5:
-                explanations[4] = "공격 주기 2초 감소";
+                explanations[4] = "공격 주기 <color=#FF00C7>2</color>초 감소";
                 goto case 4;
             case 6:
-                explanations[5] = "기본 데미지 5 증가";
+                explanations[5] = "기본 데미지 <color=#FF00C7>5</color> 증가";
                 goto case 5;
             case 7:
-                explanations[6] = "공격 범위 15% 증가";
+                explanations[6] = "공격 범위 <color=#FF00C7>15%</color> 증가";
                 goto case 6;
             case 8:
-                explanations[7] = "기본 데미지 10 증가";
+                explanations[7] = "기본 데미지 <color=#FF00C7>10</color> 증가";
                 goto case 7;
             case 9:
-                explanations[8] = "화염 방사기가 꺼지지 않습니다";
+                explanations[8] = "<color=#FF00C7>화염 방사기가 꺼지지 않습니다</color>";
                 goto case 8;
         }
     }

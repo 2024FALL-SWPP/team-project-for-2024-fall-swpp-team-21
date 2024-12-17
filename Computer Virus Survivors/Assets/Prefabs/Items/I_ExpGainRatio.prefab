@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1b365349e826144b569d0fc0419bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: "<\uC784\uC2DC>\uACBD\uD5D8\uCE58 \uD68D\uB4DD\uB7C9"
+  objectName: "AI \uD558\uB4DC\uC6E8\uC5B4 \uAC00\uC18D"
   maxLevel: 9
   explanations:
   - "\uBC31\uC2E0\uC758 \uBC14\uC774\uB7EC\uC2A4 \uD559\uC2B5 \uB2A5\uB825\uC774
