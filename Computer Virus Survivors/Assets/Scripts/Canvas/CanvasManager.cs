@@ -298,6 +298,7 @@ public class CanvasManager : Singleton<CanvasManager>, IPlayerStatObserver
         public IEnumerator FadeIn()
         {
             float elpasedTime = 0;
+            yield return new WaitForSeconds(1);
             Image image = fadeImage.GetComponent<Image>();
             while (elpasedTime < fadeTime)
             {
