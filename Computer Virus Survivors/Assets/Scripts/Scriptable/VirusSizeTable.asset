@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   virusSizes:
     list:
-    - poolType: -1
-      size: 1
     - poolType: 3
       size: 1.2
     - poolType: 4
@@ -25,20 +23,20 @@ MonoBehaviour:
     - poolType: 6
       size: 1.2
     - poolType: 7
-      size: 1.7
+      size: 1.5
     - poolType: 8
-      size: 1.7
+      size: 1.5
     - poolType: 9
       size: 1.2
     - poolType: 10
       size: 1.2
     - poolType: 11
-      size: 3.1367903
+      size: 3.1
     - poolType: 12
-      size: 5.9500003
+      size: 5.25
     - poolType: 13
-      size: 2
+      size: 1.7
     - poolType: 26
       size: 1.2
     - poolType: 27
-      size: 1
+      size: 2
