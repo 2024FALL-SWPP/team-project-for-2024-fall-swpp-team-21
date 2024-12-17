@@ -5,14 +5,23 @@ using UnityEngine;
 public class SFXManager : Singleton<SFXManager>
 {
     private List<TimeScaledAudioSource> audioSourcePool;
+    private int poolSize = 16;
 
     public override void Initialize()
     {
-        audioSourcePool = new List<TimeScaledAudioSource>();
+        if (audioSourcePool == null)
+        {
+            audioSourcePool = new List<TimeScaledAudioSource>();
+        }
     }
 
     private TimeScaledAudioSource NewAudioSource()
     {
+        if (audioSourcePool.Count >= poolSize)
+        {
+            return null;
+        }
+
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();
         TimeScaledAudioSource timeScaledAudioSource = new TimeScaledAudioSource(audioSource);
         timeScaledAudioSource.playOnAwake = false;
@@ -41,12 +50,16 @@ public class SFXManager : Singleton<SFXManager>
 
     public void PlaySound(AudioClip clip)
     {
-        Debug.Log("PlaySound SFX : " + clip.name);
         if (clip == null)
         {
             return;
         }
         TimeScaledAudioSource audioSource = GetAudioSource();
+        if (audioSource == null)
+        {
+            return;
+        }
+        Debug.Log("PlaySound SFX : " + clip.name);
         audioSource.clip = clip;
         audioSource.Play();
     }
@@ -86,6 +99,7 @@ public class SFXManager : Singleton<SFXManager>
         public TimeScaledAudioSource(AudioSource audioSource)
         {
             this.audioSource = audioSource;
+            audioSource.priority = 128;
             originalAudioPitch = audioSource.pitch;
         }
 
