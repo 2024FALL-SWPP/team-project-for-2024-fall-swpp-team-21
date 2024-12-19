@@ -12,6 +12,17 @@ public class PlayerStatEventCaller : ScriptableObject
     {
         StatChangedHandler?.Invoke(this, new StatChangedEventArgs(statName, newValue));
     }
+
+
+    /// <summary>
+    /// 씬이 전환되어도 스크립터블 오브젝트의 데이터는 유지되므로, 씬이 전환되어도 이벤트 핸들러가 계속 쌓이는 문제가 발생할 수 있음
+    /// 이를 해결하기 위해 이벤트 핸들러를 초기화하는 함수
+    /// 플레이어가 죽으면 호출됨
+    /// </summary>
+    public void ClearSubscribers()
+    {
+        StatChangedHandler = null;
+    }
 }
 
 

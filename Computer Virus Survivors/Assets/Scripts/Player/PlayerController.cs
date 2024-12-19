@@ -6,6 +6,7 @@ using Cst = GameConstants;
 
 public class PlayerController : MonoBehaviour
 {
+    public Action onPlayerEvade;
 
     public PlayerStatData playerStatData;
     public PlayerStatEventCaller statEventCaller;
@@ -13,48 +14,49 @@ public class PlayerController : MonoBehaviour
 
     public SphereCollider sphereCollider;
 
+    [SerializeField] private SFXPreset hitSFX;
+    [SerializeField] private CanvasSoundPreset deathSFX;
+    [SerializeField] private SFXPreset evadeSFX;
+
     private Rigidbody rb;
     private Animator animator;
     private bool isInvincible = false;
+
+    private int debuffNum = 0;
+    private float debuffDegree = 1.0f;
+
+    private PlayerHitEffect playerHitEffect;
+    private bool isGameOver = false;
 
     public void Initialize()
     {
         playerStat.Initialize(playerStatData, statEventCaller);
         statEventCaller.StatChangedHandler += OnStatChanged;
 
-        playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour("화염방사기"));
+        playerStat.TakeSelectable(SelectableManager.instance.GetSelectableBehaviour("패킷 스트림"));
         // 경험치 획득 범위 초기화
         //sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = playerStat.ExpGainRange;
 
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+
+        playerHitEffect = new PlayerHitEffect(gameObject);
     }
 
 
     private void FixedUpdate()
     {
         Move();
-
-        // Temp: 스폰 임시로 구현
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Weak);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Trojan);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SpawnManager.instance.GetComponent<SpawnManager>().Spawn(PoolType.Virus_Ransomware);
-        }
-
         rb.velocity = Vector3.zero;
     }
 
     private void Move()
     {
+        if (isGameOver)
+        {
+            return;
+        }
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -100,35 +102,80 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("b_IsMoving", moveDirection != Vector3.zero);
 
         //transform.Translate(playerStat.MoveSpeed * Time.deltaTime * moveDirection, Space.World);
-        rb.MovePosition(transform.position + playerStat.MoveSpeed * Time.deltaTime * moveDirection);
+        rb.MovePosition(transform.position + playerStat.MoveSpeed * debuffDegree * Time.deltaTime * moveDirection);
         //transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-        rb.MoveRotation(Quaternion.LookRotation(moveDirection, Vector3.up));
-        if (playerStat.MoveSpeed < 0)
+        if (playerStat.MoveSpeed >= 0)
         {
-            transform.rotation *= Quaternion.Euler(0, 180, 0);
+            rb.MoveRotation(Quaternion.LookRotation(moveDirection, Vector3.up));
+        }
+        else
+        {
+            rb.MoveRotation(Quaternion.LookRotation(-moveDirection, Vector3.up));
         }
     }
 
     private void Die()
     {
-        // TODO: Game Over
+        isGameOver = true;
+        UISoundManager.instance.PlaySound(deathSFX.EnterSound);
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        animator.Play("Dead");
+        GameManager.instance.GameOver();
     }
 
     public void GetDamage(int damage)
     {
         // 만약 무적 프레임이 남아있다면 데미지를 받지 않음
-        if (isInvincible)
+        if (isInvincible || damage <= 0)
         {
             return;
         }
 
         StartCoroutine(BeInvincible());
-        playerStat.CurrentHP -= damage;
+
+        // 공격 회피
+        // 무적을 만들어 주지 않으면 몬스터랑 비비면서 다음 프레임에 다시 공격 받음
+        if (IsEvade())
+        {
+            // 회피 이펙트 추가용
+            onPlayerEvade?.Invoke();
+            return;
+        }
+        playerStat.CurrentHP -= ReduceDamage(damage);
+        hitSFX.Play();
+
         Debug.Log("Player HP: " + playerStat.CurrentHP);
+        playerHitEffect.PlayGetDamageEffect();
         if (playerStat.CurrentHP <= 0)
         {
             Die();
         }
+    }
+
+    private int ReduceDamage(int damage)
+    {
+        float reduceRate = 1f - (7 / (7 + playerStat.DefencePoint + 0.1f * Mathf.Pow(playerStat.DefencePoint, 2)));
+        float reducingDamage = damage * reduceRate;
+        int reducingDamageInt = (int) reducingDamage;
+        float remain = reducingDamage - reducingDamageInt;
+        if (UnityEngine.Random.Range(0f, 1f) < remain)
+        {
+            reducingDamageInt++;
+        }
+        return damage - reducingDamageInt;
+    }
+
+    private bool IsEvade()
+    {
+        float evadeDice = UnityEngine.Random.Range(0f, 1f);
+        Debug.Log("Evade dice: " + evadeDice);
+        return evadeDice < playerStat.EvadeProbability / 100f;
+    }
+
+    public void GetHeal(int heal)
+    {
+        playerStat.CurrentHP += heal;
+        playerHitEffect.PlayGetHealEffect();
     }
 
     public void GetSelectable()
@@ -161,17 +208,55 @@ public class PlayerController : MonoBehaviour
         {
             sphereCollider.radius = playerStat.ExpGainRange;
         }
+        else if (e.StatName == nameof(PlayerStat.HealthRezenPer10))
+        {
+            StartCoroutine(HPrezen());
+        }
     }
 
-    public void BuffMoveSpeed(float value, float duration)
+    public void DebuffMoveSpeed(float value)
     {
-        StartCoroutine(BuffMoveSpeedCoroutine(value, duration));
+        debuffNum++;
+        debuffDegree = value;
     }
 
-    private IEnumerator BuffMoveSpeedCoroutine(float value, float duration)
+    public void RestoreMoveSpeed()
     {
-        playerStat.MoveSpeed *= value;
+        debuffNum--;
+        if (debuffNum <= 0)
+        {
+            debuffNum = 0;
+            debuffDegree = 1.0f;
+        }
+    }
+
+    public void ReverseSpeed(float duration)
+    {
+        StartCoroutine(BuffMoveSpeedCoroutine(duration));
+    }
+
+    private IEnumerator BuffMoveSpeedCoroutine(float duration)
+    {
+        playerStat.MoveSpeed *= -1;
         yield return new WaitForSeconds(duration);
-        playerStat.MoveSpeed /= value;
+        playerStat.MoveSpeed *= -1;
+    }
+
+    private IEnumerator HPrezen()
+    {
+        float remainHP = 0;
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            float hpRezenPerSecond = playerStat.HealthRezenPer10 / 10f;
+            int hpZenInt = (int) hpRezenPerSecond;
+            remainHP += hpRezenPerSecond - hpZenInt;
+            if (remainHP > 1f)
+            {
+                hpZenInt++;
+                remainHP -= 1f;
+            }
+            playerStat.CurrentHP += hpZenInt;
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
+public abstract class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
 {
 
     /// <summary>
@@ -40,6 +40,9 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     [SerializeField]
     private int initialAddiCritPoint;    // 기본 치명타 공격 대미지 배율
 
+    [Header("넉백 시간(float)")]
+    [SerializeField]
+    private float knockbackTime;    // 넉백 시간
 
 
 
@@ -156,13 +159,14 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// <summary>
     /// 최종 값
     /// </summary>
-
-    protected int finalDamage { get; private set; }  // 최종 공격력
-    protected int finalMultiProjectile { get; private set; } // 최종 다중 발사체 수
-    protected float finalAttackPeriod { get; private set; }  // 최종 공격 주기
-    protected float finalAttackRange { get; private set; }   // 최종 공격 범위
-    protected int finalCritPoint { get; private set; }       // 최종 치명타 공격 대미지 배율
-    protected int finalCritProbability { get; private set; }  // 최종 치명타 공격 확률
+    ///
+    // protected int finalDamage { get; private set; }  // 최종 공격력
+    // protected int finalMultiProjectile { get; private set; } // 최종 다중 발사체 수
+    // protected float finalAttackPeriod { get; private set; }  // 최종 공격 주기
+    // protected float finalAttackRange { get; private set; }   // 최종 공격 범위
+    // protected int finalCritPoint { get; private set; }       // 최종 치명타 공격 대미지 배율
+    // protected int finalCritProbability { get; private set; }  // 최종 치명타 공격 확률
+    protected FinalWeaponData finalWeaponData = new FinalWeaponData();
 
 
     /// <summary>
@@ -193,6 +197,12 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
         BasicAdditionalCritProbability = initialAddiCritProbability;
         BasicAdditionalCritPoint = initialAddiCritPoint;
 
+        finalWeaponData.knockbackTime = knockbackTime;
+        finalWeaponData.weaponName = ObjectName;
+        finalWeaponData.stat_totalDamage = 0;
+        finalWeaponData.stat_killcount = 0;
+
+        GameManager.instance.AddWeaponData(finalWeaponData);
     }
 
 
@@ -230,17 +240,17 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// <returns></returns>
     protected bool IsCritical()
     {
-        return Random.Range(0, 100) < finalCritProbability;
+        return Random.Range(0, 100) < finalWeaponData.critProbability;
     }
 
 
     /// <summary>
-    /// 공격 대미지를 ���산함
+    /// 공격 대미지를 계산함
     /// </summary>
     /// <param name="attackPoint"></param>
     protected void CalcAttackDamage()
     {
-        finalDamage = BasicDamage * playerStat.AttackPoint / 100;
+        finalWeaponData.damage = BasicDamage * playerStat.AttackPoint / 100;
     }
 
 
@@ -250,7 +260,7 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// <param name="attackSpeed"></param>
     protected void CalcAttackPeriod()
     {
-        finalAttackPeriod = BasicAttackPeriod / playerStat.AttackSpeed * 100;
+        finalWeaponData.attackPeriod = BasicAttackPeriod / playerStat.AttackSpeed * 100;
     }
 
 
@@ -260,7 +270,7 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// <param="attackRange"></param>
     protected void CalcAttackRange()
     {
-        finalAttackRange = BasicAttackRange * playerStat.AttackRange / 100;
+        finalWeaponData.attackRange = BasicAttackRange * playerStat.AttackRange / 100;
     }
 
 
@@ -270,7 +280,7 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// <param name="multiProjectile"></param>
     protected void CalcMultiProjectile()
     {
-        finalMultiProjectile = BasicMultiProjectile + playerStat.MultiProjectile;
+        finalWeaponData.multiProjectile = BasicMultiProjectile + playerStat.MultiProjectile;
     }
 
 
@@ -280,7 +290,7 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// <param name="critAttackProbability"></param>
     protected void CalcCritProbability()
     {
-        finalCritProbability = BasicAdditionalCritProbability + playerStat.CritProbability;
+        finalWeaponData.critProbability = BasicAdditionalCritProbability + playerStat.CritProbability;
     }
 
 
@@ -290,7 +300,7 @@ abstract public class WeaponBehaviour : SelectableBehaviour, IPlayerStatObserver
     /// <param name="critAttackPoint"></param>
     protected void CalcCritPoint()
     {
-        finalCritPoint = BasicAdditionalCritPoint + playerStat.CritPoint;
+        finalWeaponData.critPoint = BasicAdditionalCritPoint + playerStat.CritPoint;
     }
 
 

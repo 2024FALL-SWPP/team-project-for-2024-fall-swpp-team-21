@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -3535,7 +3535,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
     type: 0
     collisionMode: 0
@@ -4857,7 +4857,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
+      scalar: 1
       minScalar: 0.0001
       maxCurve:
         serializedVersion: 2
@@ -5819,7 +5819,7 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 2
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -5872,7 +5872,7 @@ ParticleSystem:
         m_RotationOrder: 4
     z:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 2
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -8349,11 +8349,6 @@ ParticleSystem:
     multiplyColliderForceByCollisionAngle: 1
     m_Planes:
     - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
@@ -9614,6 +9609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f6fd0ef853a5848bc7afdd1fa88b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackEffectType: 3
   animator: {fileID: 0}
   dumpSpeed: 10
   dumpRadius: 2
@@ -9736,7 +9732,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 0.8
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -10487,7 +10483,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 12
+      scalar: 24
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -10935,17 +10931,17 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 1, g: 0.9372549, b: 0.21960784, a: 1}
-        key3: {r: 1, g: 0.8039216, b: 0, a: 0}
-        key4: {r: 1, g: 0.46666667, b: 0, a: 0}
-        key5: {r: 1, g: 0, b: 0, a: 0}
+        key1: {r: 1, g: 0.9072601, b: 0.2028302, a: 0}
+        key2: {r: 0.7075472, g: 0.020998942, b: 0, a: 1}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 5012
-        ctime2: 13685
-        ctime3: 25443
+        ctime1: 10409
+        ctime2: 18504
+        ctime3: 25829
         ctime4: 40670
         ctime5: 65535
         ctime6: 0

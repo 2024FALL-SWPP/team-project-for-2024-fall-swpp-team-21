@@ -3,13 +3,18 @@ using UnityEngine;
 
 public abstract class ProjectileBehaviour : MonoBehaviour
 {
-    [SerializeField] protected Animator animator;
-    protected int damage;
+    protected abstract void OnTriggerEnter(Collider other);
+    private AttackEffect attackEffect = new AttackEffect();
+    [SerializeField] private AttackEffectType attackEffectType = AttackEffectType.Basic;
 
-    public virtual void Initialize(int damage)
+    protected virtual void PlayAttackEffect(Vector3 hitPosition, Quaternion rotation, bool isCritical = false, float scale = 1.0f)
     {
-        this.damage = damage;
+        attackEffect.Play(hitPosition, rotation, attackEffectType, isCritical, scale);
     }
 
-    protected abstract void OnTriggerEnter(Collider other);
+    protected bool CheckOutOfScreen()
+    {
+        Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
+        return viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1;
+    }
 }

@@ -61,6 +61,18 @@ dotnet_naming_symbols.static_readonly_field.applicable_kinds = field
 dotnet_naming_symbols.static_readonly_field.applicable_accessibilities = public
 dotnet_naming_symbols.static_readonly_field.required_modifiers = static, readonly
 
+# private static 필드는 '_'로 시작해야 한다.
+dotnet_naming_rule.static_field_with_underscore.severity = error
+dotnet_naming_rule.static_field_with_underscore.symbols = static_field
+dotnet_naming_rule.static_field_with_underscore.style = underscore_prefix
+
+dotnet_naming_symbols.static_field.applicable_kinds = field
+dotnet_naming_symbols.static_field.applicable_accessibilities = private, internal, protected_internal
+dotnet_naming_symbols.static_field.required_modifiers = static
+
+dotnet_naming_style.underscore_prefix.capitalization = camel_case
+dotnet_naming_style.underscore_prefix.required_prefix = _
+
 # Force explicit access modifiers on all members
 dotnet_style_require_accessibility_modifiers = always:error
 

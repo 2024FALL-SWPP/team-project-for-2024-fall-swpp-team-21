@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class P_PacketStream : ProjectileBehaviour
+public class P_PacketStream : PlayerProjectileBehaviour
 {
     [SerializeField] private float bulletSpeed;
 
@@ -26,20 +26,15 @@ public class P_PacketStream : ProjectileBehaviour
         }
     }
 
-    private bool CheckOutOfScreen()
-    {
-        Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
-        return viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1;
-    }
-
     protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Virus"))
         {
-            other.GetComponent<VirusBehaviour>().GetDamage(damage);
+            other.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetDamageData(out bool isCritical));
+            PlayAttackEffect(other.ClosestPoint(transform.position) + new Vector3(0, transform.position.y, 0), Quaternion.identity, isCritical);
             PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
         }
-        else
+        else if (other.CompareTag("Wall"))
         {
             PoolManager.instance.ReturnObject(PoolType.Proj_PacketStream, gameObject);
         }

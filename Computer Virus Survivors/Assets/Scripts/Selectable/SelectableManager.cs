@@ -1,4 +1,3 @@
-using UnityEditor;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -8,11 +7,15 @@ using System.Linq;
 /// </summary>
 public class SelectionInfo
 {
+
     public string objectName;
     public int currentLevel;
     public int maxLevel;
     public string explanation;
     public bool isWeapon;
+    public string levelChange;
+    public string type;
+    public Sprite icon;
 
     public SelectionInfo(SelectableBehaviour selectableBehaviour)
     {
@@ -21,34 +24,22 @@ public class SelectionInfo
         this.maxLevel = selectableBehaviour.MaxLevel;
         this.explanation = selectableBehaviour.Explanations[currentLevel];
         this.isWeapon = selectableBehaviour is WeaponBehaviour;
-    }
+        this.icon = selectableBehaviour.Icon;
 
-    public override string ToString()
-    {
-        string levelChange = "NEW!";
+        string levelChange = "<color=#FFFD52>" + "NEW!" + "</color>";
         if (currentLevel != 0 && currentLevel + 1 < maxLevel)
         {
-            levelChange = currentLevel + " -> " + (currentLevel + 1);
+            levelChange = currentLevel + " > " + "<color=#FF5B51>" + (currentLevel + 1) + "</color>";
         }
         else if (currentLevel + 1 == maxLevel)
         {
-            levelChange = "MAX LEVEL!";
+            levelChange = "<color=#FFB000>" + "MAX LEVEL!" + "</color>";
         }
 
-        return string.Format("<{0}>\n" +
-                            "{1}\n" +
-                            "{2}\n" +
-                            "\n" +
-                            "{3}"
-                            , isWeapon ? "무기" : "아이템", objectName, levelChange, explanation);
-        /*
-        <무기>
-        패킷 스트림
-        1 -> 2
-
-        공격속도 15% 증가
-        */
+        this.levelChange = levelChange;
+        this.type = (isWeapon ? "<color=#FF5B51>" + "무기" : "<color=#52FF64>" + "아이템") + "</color>";
     }
+
 }
 
 public class SelectableManager : Singleton<SelectableManager>
@@ -217,11 +208,13 @@ public class SelectableManager : Singleton<SelectableManager>
     }
 
 
+#if UNITY_EDITOR
+
     /// <summary>
     /// 인스펙터 창에서 자동으로 선택 가능한 오브젝트를 로드하는 버튼을 추가
     /// </summary>
-    [CustomEditor(typeof(SelectableManager))]
-    public class SelectableManagerEditor : Editor
+    [UnityEditor.CustomEditor(typeof(SelectableManager))]
+    public class SelectableManagerEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
@@ -241,12 +234,12 @@ public class SelectableManager : Singleton<SelectableManager>
             manager.weaponPrefabs = new List<GameObject>();
             manager.itemPrefabs = new List<GameObject>();
 
-            string[] prefabGuids = AssetDatabase.FindAssets("t:Prefab", new[] { "Assets/Prefabs" });
+            string[] prefabGuids = UnityEditor.AssetDatabase.FindAssets("t:Prefab", new[] { "Assets/Prefabs" });
 
             foreach (string guid in prefabGuids)
             {
-                string assetPath = AssetDatabase.GUIDToAssetPath(guid);
-                GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
+                string assetPath = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
+                GameObject prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
 
                 if (prefab != null && prefab.GetComponent<WeaponBehaviour>() != null)
                 {
@@ -254,13 +247,16 @@ public class SelectableManager : Singleton<SelectableManager>
                 }
                 else if (prefab != null && prefab.GetComponent<ItemBehaviour>() != null)
                 {
+                    if (prefab.name == "I_ItemBase")
+                    {
+                        continue;
+                    }
                     manager.itemPrefabs.Add(prefab);
                 }
             }
 
         }
     }
-
-
+#endif
 
 }

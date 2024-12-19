@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3813b8a75afeea143976a2d10aa03fb1, type: 3}
   m_Name: V_Ransomware
   m_EditorClassIdentifier: 
-  poolType: 3
-  maxHP: 90000
+  poolType: 13
+  maxHP: 60000
   moveSpeed: 1
+  dropTable:
+    dropElements: []
   dropExp: 0
-  contactDamage: 90
+  contactDamage: 40
+  knockbackSpeed: 0
+  knockbackColor: {fileID: 0}

@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2844120089101344663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2844120089101344661}
+  - component: {fileID: 2844120089101344660}
+  m_Layer: 0
+  m_Name: I_CritPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2844120089101344661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2844120089101344663}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 746.5, y: 420, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2844120089101344660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2844120089101344663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 695c1becf1b264c4aa90265ab27adf66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: "\uD788\uC2A4\uD1A0\uB9AC \uC800\uC7A5"
+  maxLevel: 6
+  explanations:
+  - "\uBC31\uC2E0\uC774 \uBC14\uC774\uB7EC\uC2A4\uC758 \uCDE8\uC57D\uC810\uC744 \uB354
+    \uAC15\uD558\uAC8C \uACF5\uACA9\uD569\uB2C8\uB2E4\n\uCE58\uBA85\uD0C0 \uB370\uBBF8\uC9C0
+    15% \uC99D\uAC00"
+  - "\uCE58\uBA85\uD0C0 \uB370\uBBF8\uC9C0 15% \uC99D\uAC00"
+  - "\uCE58\uBA85\uD0C0 \uB370\uBBF8\uC9C0 15% \uC99D\uAC00"
+  - "\uCE58\uBA85\uD0C0 \uB370\uBBF8\uC9C0 15% \uC99D\uAC00"
+  - "\uCE58\uBA85\uD0C0 \uB370\uBBF8\uC9C0 20% \uC99D\uAC00"
+  - "\uCE58\uBA85\uD0C0 \uB370\uBBF8\uC9C0 20% \uC99D\uAC00"
+  icon: {fileID: 21300000, guid: 7d2d84fd99f0e654c9318ae57d306adb, type: 3}

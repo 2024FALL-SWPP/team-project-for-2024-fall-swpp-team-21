@@ -14,10 +14,18 @@ public class VirusData : ScriptableObject
     [Header("이동 속도")]
     [SerializeField] public float moveSpeed;
 
+    [Header("드랍 테이블")]
+    [SerializeField] public DropTable dropTable;
+
     [Header("드랍 경험치")]
     [SerializeField] public int dropExp;
 
     [Header("접촉시 데미지")]
     [SerializeField] public int contactDamage;
 
+    [Header("넉백 속도")]
+    [SerializeField] public float knockbackSpeed;
+
+    [Header("넉백 색상")]
+    [SerializeField] public Material knockbackColor;
 }

@@ -2,13 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class ItemSelectCanvasManager : Singleton<ItemSelectCanvasManager>, IState
 {
 
     public event Action<SelectableBehaviour> SelectionHandler;
 
-    [SerializeField] private List<GameObject> itemSelectBtn;
+    [SerializeField] private List<ItemSelectPanel> itemSelectBtn;
+    [SerializeField] private CanvasSoundPreset canvasSoundPreset;
 
     private List<SelectionInfo> choices;
     private bool isShowing = false;
@@ -28,10 +31,10 @@ public class ItemSelectCanvasManager : Singleton<ItemSelectCanvasManager>, IStat
         {
             if (choices.Count <= i)
             {
-                itemSelectBtn[i].SetActive(false);
+                itemSelectBtn[i].itemSelectPanel.SetActive(false);
                 continue;
             }
-            itemSelectBtn[i].transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = choices[i].ToString();
+            itemSelectBtn[i].SetContents(choices[i]);
         }
     }
 
@@ -48,6 +51,7 @@ public class ItemSelectCanvasManager : Singleton<ItemSelectCanvasManager>, IStat
         transform.SetAsLastSibling();
         if (!isShowing)
         {
+            UISoundManager.instance.PlaySound(canvasSoundPreset.EnterSound);
             ShowItemSelectCanvas();
             isShowing = true;
         }
@@ -55,6 +59,26 @@ public class ItemSelectCanvasManager : Singleton<ItemSelectCanvasManager>, IStat
 
     public void OnExit()
     {
+    }
+
+    [Serializable]
+    private class ItemSelectPanel
+    {
+        public GameObject itemSelectPanel;
+        public TMPro.TextMeshProUGUI typeText;
+        public TMPro.TextMeshProUGUI nameText;
+        public TMPro.TextMeshProUGUI levelChangeText;
+        public TMPro.TextMeshProUGUI explanationText;
+        public Image icon;
+
+        public void SetContents(SelectionInfo item)
+        {
+            typeText.text = item.type;
+            nameText.text = item.objectName;
+            levelChangeText.text = item.levelChange;
+            explanationText.text = item.explanation;
+            icon.sprite = item.icon;
+        }
     }
 
 }

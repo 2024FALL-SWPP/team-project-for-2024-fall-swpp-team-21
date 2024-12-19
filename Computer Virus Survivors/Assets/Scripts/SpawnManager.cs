@@ -3,7 +3,9 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 [Serializable]
 public class SpawnPattern
@@ -13,14 +15,12 @@ public class SpawnPattern
     public PoolType virusID;
     public int spawnMonsterNum;
     public bool ignoreMaxVirusNum;  // true일 경우 maxVirusNum을 넘더라도 무시하고 스폰 (ex: 보스)
-    public bool isSpawnPointRandom;
+    public bool randomAllOverMap;  // 맵 경계 내부 전체에서 랜덤하게 스폰
 
-    [Header("랜덤인 경우만")]
-    public Vector2 offsetFromPlayer;
+    [Header("Random All Over Map이 아닌 경우만")]
+    //public Vector2 offsetFromPlayer;
+    public float offsetFromPlayer;
     public Vector2 spawnRange;
-
-    [Header("랜덤이 아닌 경우만 (Spawn Monster Num만큼 필요)")]
-    public List<Vector2> spawnPoints;
 }
 
 public class SpawnPatternList
@@ -39,7 +39,9 @@ public class SpawnManager : Singleton<SpawnManager>
 {
 
     [SerializeField] private Vector2 spawnRange;  // for test: 플레이어 주위 스폰 범위
+    [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private int maxVirusNum = 100;
+    [SerializeField] private GameObject turretPoints;
     public List<SpawnPattern> spawnPatterns;
 
     private GameObject player;
@@ -49,7 +51,7 @@ public class SpawnManager : Singleton<SpawnManager>
     public override void Initialize()
     {
         player = GameManager.instance.Player;
-        LoadSpawnPattern();
+        //LoadSpawnPattern();
         spawnPatterns.Sort((a, b) => a.spawnTimeRange.x.CompareTo(b.spawnTimeRange.x));
     }
 
@@ -61,25 +63,30 @@ public class SpawnManager : Singleton<SpawnManager>
     // for test: 플레이어 주위 스폰
     public void Spawn(PoolType index)
     {
-        Vector2 randomPoint = GetRandomPoint(spawnRange.x, spawnRange.y);
+        Vector2 randomPoint = GetRandomPointAroundPlayer(spawnRange.x, spawnRange.y, Vector2.zero);
 
         Spawn(index, randomPoint.x, randomPoint.y);
     }
 
     // (x, z) 위치에 바이러스 스폰
-    public void Spawn(PoolType index, float x, float z)
+    public void Spawn(PoolType index, float x, float z, bool withEffect = true)
     {
-        Vector3 spawnPosition = player.transform.position + new Vector3(x, 0, z);
+        Vector3 spawnPosition = new Vector3(x, 0, z);
 
-        GameObject virus = PoolManager.instance.GetObject
-        (
-            index,
-            spawnPosition,
-            Quaternion.LookRotation(player.transform.position - spawnPosition)
-        );
+        // GameObject virus = PoolManager.instance.GetObject
+        // (
+        //     index,
+        //     spawnPosition,
+        //     Quaternion.LookRotation(player.transform.position - spawnPosition)
+        // );
 
-        virus.GetComponent<VirusBehaviour>().OnDie += OnVirusDestroyed;
-        currentVirusNum++;  // synchronization issue?
+        // virus.GetComponent<VirusBehaviour>().OnDie += OnVirusDestroyed;
+
+        VirusSpawnFactory.instance.SpawnVirus(index, spawnPosition, withEffect, (VirusBehaviour virus) =>
+        {
+            virus.OnDie += OnVirusDestroyed;
+            currentVirusNum++; // synchronization issue?
+        });
     }
 
 
@@ -100,6 +107,8 @@ public class SpawnManager : Singleton<SpawnManager>
         PoolType virusPoolType = spawnPattern.virusID;
         while (GameManager.instance.gameTime <= spawnPattern.spawnTimeRange.y)
         {
+            Vector2 offsetPoint = GetOffsetPoint(spawnPattern.offsetFromPlayer);
+
             for (int i = 0; i < spawnPattern.spawnMonsterNum; i++)
             {
                 if (currentVirusNum >= maxVirusNum && !spawnPattern.ignoreMaxVirusNum)
@@ -107,13 +116,12 @@ public class SpawnManager : Singleton<SpawnManager>
                     continue;
                 }
 
-                Vector2 randomPoint = spawnPattern.isSpawnPointRandom ?
-                    GetRandomPoint(spawnPattern.spawnRange.x, spawnPattern.spawnRange.y) :
-                    spawnPattern.spawnPoints[i];
-                float x = randomPoint.x + spawnPattern.offsetFromPlayer.x;
-                float z = randomPoint.y + spawnPattern.offsetFromPlayer.y;
+                Vector2 randomPoint = spawnPattern.randomAllOverMap ? GetRandomPointAllOverMap() :
+                    GetRandomPointAroundPlayer(spawnPattern.spawnRange.x, spawnPattern.spawnRange.y, offsetPoint);
+                // float x = randomPoint.x + spawnPattern.offsetFromPlayer.x;
+                // float z = randomPoint.y + spawnPattern.offsetFromPlayer.y;
 
-                Spawn(virusPoolType, x, z);
+                Spawn(virusPoolType, randomPoint.x, randomPoint.y);
             }
             yield return new WaitForSeconds(spawnPattern.spawnPeriod);
         }
@@ -128,37 +136,121 @@ public class SpawnManager : Singleton<SpawnManager>
         spawnPatterns = spawnPatternList.patterns;
     }
 
-    // 반지름이 minRadius ~ maxRadius인 원 안의 랜덤한 점 반환
-    private Vector2 GetRandomPoint(float minRadius, float maxRadius)
+    // 맵 경계 내부 전체에서 랜덤한 점 반환
+    private Vector2 GetRandomPointAllOverMap()
     {
-        // Ensure minRadius is not greater than maxRadius
-        if (minRadius > maxRadius)
+        for (int i = 0; i < 100; i++)
         {
-            (maxRadius, minRadius) = (minRadius, maxRadius);
+            Vector2 point = MapBoundary.instance.GetRandomPoint();
+
+            if (IsValidPoint(point))
+            {
+                return point;
+            }
         }
 
-        // Random angle in radians
-        float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2);
+        Debug.LogWarning("Failed to find a valid point in 100 attempts");
+        return Vector2.zero;
+    }
 
-        // Random radius between minRadius and maxRadius
-        float radius = UnityEngine.Random.Range(minRadius, maxRadius);
+    // 플레이어로부터 반지름이 minRadius ~ maxRadius인 원 안의 랜덤한 점 반환
+    private Vector2 GetRandomPointAroundPlayer(float minRadius, float maxRadius, Vector2 offsetFromPlayer)
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            // Ensure minRadius is not greater than maxRadius
+            if (minRadius > maxRadius)
+            {
+                (maxRadius, minRadius) = (minRadius, maxRadius);
+            }
 
-        // Convert polar coordinates to Cartesian coordinates
-        float x = radius * Mathf.Cos(angle);
-        float y = radius * Mathf.Sin(angle);
+            // Random angle in radians
+            float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2);
 
-        return new Vector2(x, y);
+            // Random radius between minRadius and maxRadius
+            float radius = UnityEngine.Random.Range(minRadius, maxRadius);
+
+            // Convert polar coordinates to Cartesian coordinates
+            float x = radius * Mathf.Cos(angle) + player.transform.position.x;
+            float y = radius * Mathf.Sin(angle) + player.transform.position.z;
+            Vector2 point = new Vector2(x, y) + offsetFromPlayer;
+
+            if (IsValidPoint(point))
+            {
+                return point;
+            }
+        }
+
+        Debug.LogWarning("Failed to find a valid point in 100 attempts");
+        return Vector2.zero;
+    }
+
+    private Vector2 GetOffsetPoint(float radius)
+    {
+        if (radius == 0)
+        {
+            return Vector2.zero;
+        }
+
+        for (int i = 0; i < 100; i++)
+        {
+            // Random angle in radians
+            float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2);
+
+            // Convert polar coordinates to Cartesian coordinates
+            Vector2 circlePoint = radius * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            float x = circlePoint.x + player.transform.position.x;
+            float y = circlePoint.y + player.transform.position.z;
+            Vector2 point = new Vector2(x, y);
+
+            if (IsValidPoint(point))
+            {
+                return circlePoint;
+            }
+        }
+
+        Debug.LogWarning("Failed to find a valid point in 100 attempts");
+        return Vector2.zero;
+    }
+
+    private bool IsValidPoint(Vector2 point)
+    {
+        if (!MapBoundary.instance.PointInBoundary(point))
+        {
+            Debug.Log("Point not in boundary");
+            return false;
+        }
+
+        if (Physics.CheckSphere(new Vector3(point.x, 0, point.y), 0.5f, obstacleLayer)) // TODO? : radius 조정
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public void OnVirusDestroyed(VirusBehaviour virus)
     {
-        virus.OnDie -= OnVirusDestroyed;
+        // virus.OnDie -= OnVirusDestroyed;
         currentVirusNum--;  // synchronization issue?
+    }
+
+    public void SpawnTurret(int idx)
+    {
+        Transform turretPoint = turretPoints.transform.GetChild(idx);
+
+        Debug.Log("Turret Spawned");
+        PoolManager.instance.GetObject
+        (
+            PoolType.RedZone,
+            turretPoint.position,
+            turretPoint.rotation
+        );
     }
 }
 
 
-
+#if UNITY_EDITOR
 /// <summary>
 /// JSON 파일로 저장 및 로드하는 에디터
 /// </summary>
@@ -211,3 +303,4 @@ public class SpawnManagerEditor : Editor
         }
     }
 }
+#endif

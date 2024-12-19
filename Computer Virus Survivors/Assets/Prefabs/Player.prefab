@@ -974,7 +974,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7157442082297473705}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -992,7 +992,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.4
+  m_Radius: 0.3
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.86, z: 0}
@@ -1011,6 +1011,9 @@ MonoBehaviour:
   playerStatData: {fileID: 11400000, guid: 142b6196dcde0c549a57c0b615d6890e, type: 2}
   statEventCaller: {fileID: 11400000, guid: 67c209f7ba7f6f1418b9784b60be40b9, type: 2}
   sphereCollider: {fileID: 6807191690305646296}
+  hitSFX: {fileID: 11400000, guid: 3d51b33aeeff2a94e8cfc22062435a75, type: 2}
+  deathSFX: {fileID: 11400000, guid: 08eb650d6551e5b44bbc29fe86d0edf3, type: 2}
+  evadeSFX: {fileID: 0}
 --- !u!1 &7520164206935666322
 GameObject:
   m_ObjectHideFlags: 0

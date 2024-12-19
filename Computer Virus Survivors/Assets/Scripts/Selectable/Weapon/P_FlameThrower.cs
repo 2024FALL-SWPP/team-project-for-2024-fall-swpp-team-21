@@ -3,29 +3,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P_FlameThrower : ProjectileBehaviour
+public class P_FlameThrower : PlayerProjectileBehaviour
 {
     [SerializeField] private LayerMask virusLayer;
     [SerializeField] private float fireAngle = 120.0f;
     [SerializeField] private float tick = 0.5f;
     private ParticleSystem flameParticle;
 
-    private float radius;
+    // private float radius;
 
-    public void Initialize(int damage, float radius)
-    {
-        this.damage = damage;
-        this.radius = radius;
-    }
+    // public void Initialize(int damage, float radius)
+    // {
+    //     this.damage = damage;
+    //     this.radius = radius;
+    // }
 
     public void FireOn(float duration)
     {
+        if (flameParticle != null && flameParticle.isPlaying)
+        {
+            flameParticle.Stop();
+        }
+        StopAllCoroutines();
         StartCoroutine(Fire(duration));
     }
 
 
     private IEnumerator Fire(float duration)
     {
+        float radius = finalWeaponData.attackRange;
+
         if (flameParticle == null)
         {
             flameParticle = GetComponent<ParticleSystem>();
@@ -53,7 +60,9 @@ public class P_FlameThrower : ProjectileBehaviour
 
                 if (Vector3.Angle(transform.forward, direction) < (fireAngle * 0.5f))
                 {
-                    collider.GetComponent<VirusBehaviour>().GetDamage(damage);
+                    // collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
+                    collider.GetComponent<VirusBehaviour>().GetDamage(finalWeaponData.GetDamageData(out bool isCritical));
+                    PlayAttackEffect(collider.ClosestPoint(transform.position) + new Vector3(0, transform.position.y, 0), Quaternion.identity, isCritical);
                 }
             }
             yield return new WaitForSeconds(tick);
