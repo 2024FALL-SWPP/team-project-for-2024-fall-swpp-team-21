@@ -1,13 +1,10 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UIElements;
 public class PlayerStat : IPlayerStatObserver
 {
-
-    private SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
 
     private PlayerStatEventCaller statEventCaller;
 
@@ -43,12 +40,23 @@ public class PlayerStat : IPlayerStatObserver
         }
         set
         {
+            int originalHP = currentHP;
             currentHP = value;
             if (currentHP < 0)
             {
                 currentHP = 0;
             }
-            statEventCaller.Invoke(nameof(CurrentHP), currentHP);
+            else if (currentHP > maxHP)
+            {
+                currentHP = maxHP;
+            }
+            if (originalHP != currentHP)
+            {
+                statEventCaller.Invoke(nameof(CurrentHP), currentHP);
+
+            }
+
+
         }
     }
 
@@ -289,8 +297,14 @@ public class PlayerStat : IPlayerStatObserver
     private List<WeaponBehaviour> weapons;  // 무기 리스트
     private List<ItemBehaviour> items;    // 아이템 리스트
 
+    private bool itemSelected;
+    private Coroutine itemSelectingCoroutine;
+    private MonoBehaviour coroutineOwner;
+
     public void Initialize(PlayerStatData playerStatData, PlayerStatEventCaller eventCaller)
     {
+        coroutineOwner = GameManager.instance.Player.GetComponent<PlayerController>();
+
         statEventCaller = eventCaller;
         statEventCaller.StatChangedHandler += OnStatChanged;
 
@@ -319,6 +333,8 @@ public class PlayerStat : IPlayerStatObserver
         maxExpList = playerStatData.maxExpList;
         MaxExp = maxExpList[playerLevel];
         CurrentExp = playerStatData.currentExp;
+
+        itemSelected = false;
     }
 
 
@@ -355,7 +371,10 @@ public class PlayerStat : IPlayerStatObserver
     {
         if (e.StatName == nameof(CurrentExp))
         {
-            CurrentExpChanged();
+            if (itemSelectingCoroutine == null)
+            {
+                itemSelectingCoroutine = coroutineOwner.StartCoroutine(CurrentExpChanged());
+            }
         }
     }
 
@@ -366,34 +385,28 @@ public class PlayerStat : IPlayerStatObserver
     // -> 현재 경험치가 maxExp만큼 감소함 -> 경험치 바가 n%가 됨
     // -> maxExp가 PlayerLevel에 맞게 설정됨 -> 경험치 바가 정상화 됨
     // 하드 코딩이고, 변수의 첫글자가 소문자인지 대문자인지에 따라 양상이 달라지기 때문에 버그가 일어날 가능성 다분함
-    private async void CurrentExpChanged()
+    private IEnumerator CurrentExpChanged()
     {
-        await semaphore.WaitAsync();
-        if (currentExp >= maxExp)
+        while (currentExp >= maxExp)
         {
             PlayerLevel++; // Invoke Player Level Changed Event -> Show Item Selection Canvas
 
-            await WaitForItemSelection();
+            ItemSelectCanvasManager.instance.SelectionHandler += ItemSelected;
+            yield return new WaitUntil(() => itemSelected);
+            ItemSelectCanvasManager.instance.SelectionHandler -= ItemSelected;
+
             currentExp -= maxExp;
-            MaxExp = maxExpList[PlayerLevel];
-            statEventCaller.Invoke(nameof(CurrentExp), currentExp); // 재귀 호출이 일어날 수 있음
+            MaxExp = maxExpList[Mathf.Min(PlayerLevel, maxExpList.Length - 1)];
+            itemSelected = false;
+            statEventCaller.Invoke(nameof(CurrentExp), currentExp);
         }
-        semaphore.Release();
+        itemSelectingCoroutine = null;
     }
 
-    private Task WaitForItemSelection()
+    public void ItemSelected(SelectableBehaviour seleted)
     {
-        var tcs = new TaskCompletionSource<bool>();
-
-        void handler(SelectableBehaviour selectable)
-        {
-            TakeSelectable(selectable);
-            tcs.SetResult(true);
-            ItemSelectCanvasManager.instance.SelectionHandler -= handler;
-        }
-
-        ItemSelectCanvasManager.instance.SelectionHandler += handler;
-
-        return tcs.Task;
+        Debug.Log("Item Selected : " + seleted.ObjectName);
+        TakeSelectable(seleted);
+        itemSelected = true;
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24532904a5cd5ee43b6a4bd01661fb3c, type: 3}
   m_Name: Character1
   m_EditorClassIdentifier: 
-  characterName: Test
+  characterName: Um. Lab U3
   maxHP: 100
   currentHP: 100
   healthRezenPer10: 0
@@ -24,7 +24,7 @@ MonoBehaviour:
   attackSpeed: 100
   attackRange: 100
   critProbability: 0
-  critPoint: 0
+  critPoint: 150
   expGainRatio: 100
   playerLevel: 1
   currentExp: 0

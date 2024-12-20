@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3813b8a75afeea143976a2d10aa03fb1, type: 3}
   m_Name: V_Trojan
   m_EditorClassIdentifier: 
-  poolType: 2
-  maxHP: 2000
-  moveSpeed: 3
-  dropExp: 2500
-  contactDamage: 40
+  poolType: 11
+  maxHP: 12000
+  moveSpeed: 2.5
+  dropTable:
+    dropElements: []
+  dropExp: 15000
+  contactDamage: 30
+  knockbackSpeed: 0
+  knockbackColor: {fileID: 0}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class V_Trojan : VirusBehaviour
@@ -9,21 +10,51 @@ public class V_Trojan : VirusBehaviour
     [SerializeField] private float dashSpeed = 15.0f;
     [SerializeField] private float dashDelay = 0.3f;
     [SerializeField] private float dashDuration = 0.5f;
+    [SerializeField] private LayerMask obstacleLayerMask;
+    [SerializeField] private Animator animator;
+    [SerializeField] private SFXSequencePreset dashReadySFXPreset;
+    [SerializeField] private SFXPreset dashSFXPreset;
 
+    private bool canAttack = false;
     private bool isAttacking = false;
-    private bool doNotTrack = false; // 공격 쿨타임 중에 있음
+    private float attackTimer = 0.0f;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        canAttack = false;
+        isAttacking = false;
+        attackTimer = 0.0f;
+        SpawnManager.instance.SpawnTurret(1);
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
 
     private void FixedUpdate()
     {
         if (!isAttacking)
         {
-            Move();
-        }
+            if (canAttack && Vector3.Distance(player.transform.position, transform.position) < attackRange)
+            {
+                isAttacking = true;
+                StartCoroutine(AttackCoroutine());
+            }
+            else
+            {
+                Move();
 
-        if (!isAttacking && !doNotTrack && Vector3.Distance(player.transform.position, transform.position) < attackRange)
-        {
-            isAttacking = true;
-            StartCoroutine(AttackCoroutine());
+                if (!canAttack)
+                {
+                    attackTimer += Time.deltaTime;
+                    if (attackTimer >= attackPeriod)
+                    {
+                        canAttack = true;
+                    }
+                }
+            }
         }
 
         rb.velocity = Vector3.zero;
@@ -33,15 +64,20 @@ public class V_Trojan : VirusBehaviour
     private IEnumerator Dash(float duration)
     {
         Debug.Log("Trojan dash START");
-
+        dashSFXPreset.Play();
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
             //transform.Translate(dashSpeed * Time.deltaTime * Vector3.forward, Space.Self);
-            rb.MovePosition(rb.position + dashSpeed * Time.deltaTime * transform.forward);
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, dashSpeed * Time.fixedDeltaTime, obstacleLayerMask))
+            {
+                break;
+            }
+            rb.MovePosition(rb.position + dashSpeed * Time.fixedDeltaTime * transform.forward);
             elapsedTime += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
+        yield return new WaitForSeconds(duration - elapsedTime);
 
         Debug.Log("Trojan dash END");
     }
@@ -49,19 +85,17 @@ public class V_Trojan : VirusBehaviour
     // TODO: 애니메이션 이용해서 구현
     private IEnumerator AttackCoroutine()
     {
-        // Maybe only use x and z
-        if (Vector3.Distance(player.transform.position, transform.position) < attackRange)
-        {
-            Debug.Log("Trojan is attacking");
+        isAttacking = true;
+        canAttack = false;
+        dashReadySFXPreset.Play();
+        animator.SetTrigger("t_Attack");
+        yield return new WaitForSeconds(dashDelay); // 잠시 멈춤
+        animator.SetTrigger("t_Dash");
+        yield return StartCoroutine(Dash(dashDuration)); // 대시
+        yield return new WaitForSeconds(dashDelay); // 잠시 멈춤
+        animator.SetTrigger("t_Return");
 
-            yield return new WaitForSeconds(dashDelay); // 잠시 멈춤
-            yield return StartCoroutine(Dash(dashDuration)); // 대시
-            yield return new WaitForSeconds(dashDelay); // 잠시 멈춤
-            isAttacking = false;
-
-            doNotTrack = true;
-            yield return new WaitForSeconds(attackPeriod);
-            doNotTrack = false;
-        }
+        attackTimer = 0.0f;
+        isAttacking = false;
     }
 }

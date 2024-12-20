@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Linq;
 
 
-public class P_ChainLightning : ProjectileBehaviour
+public class P_ChainLightning : PlayerProjectileBehaviour
 {
     [SerializeField] private LayerMask virusLayer;
     [SerializeField] private float chainInterval;
@@ -13,19 +13,19 @@ public class P_ChainLightning : ProjectileBehaviour
     [SerializeField] private Vector3 chainHitOffset;
 
     private LightningBoltScript chainAnim;
-    private ParticleSystem hitEffect;
+    // private ParticleSystem hitEffect;
     private int chainID;
     private int chainDepth;
     private float chainRange;
     private int branchCount;
     private VirusBehaviour targetVirus;
 
-    public void Initialize(int damage, int chainID, float chainRange, int chainDepth, int branchCount, VirusBehaviour iniitalVirus = null)
+    public void Initialize(FinalWeaponData finalWeaponData, int chainID, float chainRange, int chainDepth, int branchCount, VirusBehaviour iniitalVirus = null)
     {
+        base.Initialize(finalWeaponData);
         this.chainID = chainID;
         this.chainRange = chainRange;
         this.chainDepth = chainDepth;
-        this.damage = damage;
         this.branchCount = branchCount;
         this.targetVirus = iniitalVirus;
 
@@ -33,7 +33,7 @@ public class P_ChainLightning : ProjectileBehaviour
         {
             animator = GetComponent<Animator>();
             chainAnim = GetComponentInChildren<LightningBoltScript>();
-            hitEffect = GetComponentInChildren<ParticleSystem>();
+            // hitEffect = GetComponentInChildren<ParticleSystem>();
         }
 
         chainAnim.StartPosition = transform.position;
@@ -73,27 +73,39 @@ public class P_ChainLightning : ProjectileBehaviour
             yield break;
         }
 
-        // 해당 몬스터에서 branch개의 번개 생성
-        for (int i = 0; i < branchCount; i++)
-        {
-            GameObject chainLightning = PoolManager.instance.GetObject(PoolType.Proj_ChainLightning, targetVirus.transform.position + chainHitOffset, Quaternion.identity);
-            P_ChainLightning chainLightningScript = chainLightning.GetComponent<P_ChainLightning>();
-            chainLightningScript.Initialize(damage, chainID, chainRange, chainDepth - 1, branchCount);
-        }
 
         // 해당 몬스터를 공격 (애니메이션)
         chainAnim.EndPosition = targetVirus.transform.position + chainHitOffset;
         Vector3 emissionDirection = transform.position - targetVirus.transform.position;
-        hitEffect.transform.rotation = Quaternion.LookRotation(emissionDirection);
-        hitEffect.transform.position = chainAnim.EndPosition;
-        hitEffect.Play();
+        // hitEffect.transform.rotation = Quaternion.LookRotation(emissionDirection);
+        // hitEffect.transform.position = chainAnim.EndPosition;
+        // hitEffect.Play();
         animator.SetBool("LightOn_b", true);
-        targetVirus.GetDamage(damage);
+
+        // 해당 몬스터에서 branch개의 번개 생성
+        StartCoroutine(CreateBranch());
+
+        // targetVirus.GetDamage(finalWeaponData.GetFinalDamage(), finalWeaponData.knockbackTime);
+        targetVirus.GetDamage(finalWeaponData.GetDamageData(out bool isCritical));
+        Collider vcollider = targetVirus.GetComponent<Collider>();
+        PlayAttackEffect(vcollider.ClosestPoint(transform.position), Quaternion.identity, isCritical);
         yield return new WaitForSeconds(chainDuration);
         animator.SetBool("LightOn_b", false);
 
+
         // 삭제
         PoolManager.instance.ReturnObject(PoolType.Proj_ChainLightning, gameObject);
+    }
+
+    private IEnumerator CreateBranch()
+    {
+        for (int i = 0; i < branchCount; i++)
+        {
+            GameObject chainLightning = PoolManager.instance.GetObject(PoolType.Proj_ChainLightning, targetVirus.transform.position + chainHitOffset, Quaternion.identity);
+            P_ChainLightning chainLightningScript = chainLightning.GetComponent<P_ChainLightning>();
+            chainLightningScript.Initialize(finalWeaponData, chainID, chainRange, chainDepth - 1, branchCount);
+            yield return new WaitForSeconds(Random.Range(0.017f, 0.17f));
+        }
     }
 
     private VirusBehaviour GetNextVirus()
